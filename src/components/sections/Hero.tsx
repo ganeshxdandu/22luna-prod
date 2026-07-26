@@ -1,0 +1,129 @@
+'use client';
+
+import * as React from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+import { ArrowUpRight } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { fadeIn, fadeUp } from '@/lib/animations';
+import { buildCloudinaryUrl } from '@/lib/cloudinary';
+import { cn } from '@/lib/utils';
+
+const HERO_IMAGE_PUBLIC_ID = 'hero_s6fbu6';
+
+// Hero image: Cloudinary handles ALL optimization.
+// q_100 = full quality from Cloudinary, no Next.js re-compression (unoptimized=true).
+const heroImageUrl = buildCloudinaryUrl(HERO_IMAGE_PUBLIC_ID, {
+  quality: 100,
+  format: 'auto',
+  crop: 'fill',
+  gravity: 'auto',
+});
+
+
+export interface HeroProps {
+  className?: string;
+}
+
+export function Hero({ className }: HeroProps) {
+  return (
+    <section
+      className={cn("relative w-full h-screen min-h-[600px] overflow-hidden", className)}
+    >
+      {/* ── Background Image ── */}
+      {/* unoptimized: Cloudinary already delivers an optimized URL — skip Next.js double-compression */}
+      <Image
+        src={heroImageUrl}
+        alt="22luna – Elevated Aesthetics, Precision Medical Care"
+        fill
+        priority
+        unoptimized
+        sizes="100vw"
+        className="object-cover object-center"
+      />
+
+      {/* ── 20% Black Overlay for contrast ── */}
+      <div className="absolute inset-0 bg-black/20" />
+
+      {/* ── Subtle dark gradient overlay for text legibility ── */}
+      <div className="absolute inset-0 bg-gradient-to-t from-charcoal/60 via-charcoal/10 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-r from-charcoal/30 via-transparent to-transparent" />
+
+      {/* ── Left Vertical Label ── */}
+      <motion.div
+        variants={fadeIn}
+        initial="hidden"
+        animate="visible"
+        custom={{ delay: 0.6, duration: 1 }}
+        className="absolute left-5 top-1/2 -translate-y-1/2 flex items-center gap-2"
+        style={{ writingMode: 'vertical-rl', transform: 'translateY(-50%)' }}
+      >
+        <span className="text-moon-ivory/60 font-sans tracking-[0.3em] uppercase"
+          style={{ fontSize: '0.55rem', letterSpacing: '0.3em' }}
+        >
+          Skin · Hair · Dental · IV
+        </span>
+      </motion.div>
+
+      {/* ── Right Vertical Label: SCROLL DOWN ── */}
+      <motion.div
+        variants={fadeIn}
+        initial="hidden"
+        animate="visible"
+        custom={{ delay: 0.8, duration: 1 }}
+        className="absolute right-5 top-1/2 -translate-y-1/2 flex items-center"
+        style={{ writingMode: 'vertical-rl', transform: 'translateY(-50%)' }}
+      >
+        <span
+          className="text-moon-ivory/60 font-sans tracking-[0.3em] uppercase"
+          style={{ fontSize: '0.55rem' }}
+        >
+          Scroll Down →
+        </span>
+      </motion.div>
+
+      {/* ── Bottom Content Area ── */}
+      <div className="absolute bottom-0 left-0 right-0 px-8 py-8 flex flex-col sm:flex-row sm:items-end justify-between items-start gap-6 sm:gap-0">
+
+        {/* Headline */}
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          animate="visible"
+          custom={{ delay: 0.2, duration: 1.1 }}
+          className="max-w-[90%] sm:max-w-[65%] md:max-w-[55%] lg:max-w-[50%]"
+        >
+          <h1
+            className="text-moon-ivory font-display leading-[1.05] tracking-[-0.02em]"
+            style={{ fontSize: 'clamp(2rem, 4.444vw, 4rem)', fontWeight: 400 }}
+          >
+            Elevated Aesthetics.{' '}
+            <br />
+            Precision Medical Care.
+          </h1>
+        </motion.div>
+
+        {/* Book Consultation CTA */}
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          animate="visible"
+          custom={{ delay: 0.5, duration: 1 }}
+          className="mb-1"
+        >
+          <Link
+            href="/book-consultation"
+            className="inline-flex items-center gap-2 tracking-normal rounded-full bg-moon-ivory/15 backdrop-blur-sm border border-moon-ivory/30 text-moon-ivory font-sans text-[0.75rem] uppercase px-6 py-3.5 transition-all duration-500 hover:bg-moon-ivory hover:text-charcoal hover:border-moon-ivory group"
+          >
+            Book Consultation
+            <ArrowUpRight
+              size={13}
+              className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+            />
+          </Link>
+        </motion.div>
+
+      </div>
+    </section>
+  );
+}
