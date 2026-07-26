@@ -50,7 +50,7 @@ export function UnderstandingCTA({ className }: UnderstandingCTAProps) {
             </h2>
             
             <p className="text-white/85 font-sans font-light text-xs md:text-sm tracking-wide leading-[1.6] max-w-[620px] mt-4 mb-8">
-              Every consultation is an opportunity to understand your skin, your lifestyle, and your goals before creating a treatment plan that's thoughtfully designed for you.
+              Every consultation is an opportunity to understand your skin, your lifestyle, and your goals before creating a treatment plan that&apos;s thoughtfully designed for you.
             </p>
 
             <Link

@@ -78,7 +78,7 @@ export function SpaceSection({ className }: SpaceSectionProps) {
               Aesthetics
             </span>
             <h2 className="font-display text-[2rem] md:text-[2.5rem] leading-tight tracking-tighter text-charcoal mb-4">
-              <span className="font-light">THE SPACE WE'VE </span>
+              <span className="font-light">THE SPACE WE&apos;VE </span>
               <span className="text-botanical font-medium">DESIGNED</span>
             </h2>
             <p className="text-stone-gray font-sans font-light text-xs md:text-sm tracking-wide">

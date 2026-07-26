@@ -106,7 +106,15 @@ export function InstagramFeed({ className }: InstagramFeedProps) {
         .then((res) => res.json())
         .then((data) => {
           if (data && data.data) {
-            const fetchedPosts: InstagramPost[] = data.data.map((item: any) => ({
+            interface IGDataPost {
+              id: string;
+              media_type: string;
+              media_url: string;
+              permalink: string;
+              caption?: string;
+              thumbnail_url?: string;
+            }
+            const fetchedPosts: InstagramPost[] = data.data.map((item: IGDataPost) => ({
               id: item.id,
               mediaUrl: item.media_type === 'VIDEO' ? item.thumbnail_url || item.media_url : item.media_url,
               permalink: item.permalink,

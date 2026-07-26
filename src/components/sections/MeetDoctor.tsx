@@ -7,7 +7,7 @@ import { ArrowUpRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { buildCloudinaryUrl } from '@/lib/cloudinary';
 import { cn } from '@/lib/utils';
-import { fadeIn, fadeUp } from '@/lib/animations';
+import { fadeUp } from '@/lib/animations';
 
 const DOCTOR_IMAGE_PUBLIC_ID = 'doctor_qlzziq';
 const PATTERN_IMAGE_PUBLIC_ID = 'pattern_zva0wm.svg';
