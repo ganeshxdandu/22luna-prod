@@ -3,7 +3,7 @@
 import * as React from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { fadeUp, fadeIn, scaleIn } from '@/lib/animations';
+import { fadeUp, scaleIn } from '@/lib/animations';
 import { cn } from '@/lib/utils';
 
 export interface OneDestinationProps {

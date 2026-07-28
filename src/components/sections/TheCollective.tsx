@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { motion } from 'framer-motion';
-import { fadeUp, fadeIn } from '@/lib/animations';
+import { fadeUp } from '@/lib/animations';
 import { cn } from '@/lib/utils';
 
 export interface TeamMember {

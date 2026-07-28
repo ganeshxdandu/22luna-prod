@@ -3,7 +3,7 @@
 import * as React from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { fadeUp, fadeIn, scaleIn } from '@/lib/animations';
+import { fadeUp, scaleIn } from '@/lib/animations';
 import { cn } from '@/lib/utils';
 
 export interface FoundersStoryProps {
@@ -21,9 +21,12 @@ export function FoundersStory({ className }: FoundersStoryProps) {
     >
       {/* ── Background Giant Watermark SVG (Inverted for white/light color on dark bg) ── */}
       <div className="absolute top-8 left-0 w-full z-0 px-6 md:px-8 select-none pointer-events-none">
-        <img
+        <Image
           src="https://res.cloudinary.com/dz5xgcfj/image/upload/v1785160109/THE_FOUNDER_acqvrj.svg"
           alt="The Founder"
+          width={1200}
+          height={200}
+          unoptimized
           className="w-full h-auto opacity-50"
         />
       </div>

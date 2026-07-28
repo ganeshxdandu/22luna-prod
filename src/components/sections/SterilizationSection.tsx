@@ -3,7 +3,6 @@
 import * as React from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-motion';
-import { Sparkle } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const STEPS = [
@@ -117,7 +116,7 @@ export function SterilizationSection({ className }: SterilizationSectionProps) {
         {/* Bottom Right pinned paragraphs */}
         <div className={cn("absolute bottom-6 right-6 md:bottom-8 md:right-8 max-w-[350px] transition-all duration-700", activeStep === 0 ? "z-30" : "z-10")}>
           <p className="font-sans text-moon-ivory/80 text-[14px] sm:text-[15px] lg:text-[16px] leading-[1.7] tracking-tight font-light text-right md:text-left">
-            Most clinics never show what happens behind the scenes. At 22Luna, hygiene isn't an afterthought. It's built into every step of your experience.
+            Most clinics never show what happens behind the scenes. At 22Luna, hygiene isn&apos;t an afterthought. It&apos;s built into every step of your experience.
           </p>
         </div>
 

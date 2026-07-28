@@ -55,9 +55,12 @@ export function SanctuaryFeatures({ className }: SanctuaryFeaturesProps) {
           className="w-full border-b border-charcoal/10 pb-8"
         >
           <div className="w-full">
-            <img
+            <Image
               src="/SANCTUARY FEATURES.svg"
               alt="Sanctuary Features"
+              width={1200}
+              height={100}
+              unoptimized
               className="w-full h-auto select-none pointer-events-none"
             />
           </div>
