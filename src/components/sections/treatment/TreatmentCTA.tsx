@@ -22,7 +22,7 @@ export function TreatmentCTA({ treatment, className }: TreatmentCTAProps) {
   return (
     <section
       className={cn(
-        'bg-moon-ivory pt-0 pb-12 md:pb-16 px-6 md:px-8 w-full select-none',
+        'bg-moon-ivory py-16 md:py-24 lg:py-28 px-6 md:px-8 w-full select-none',
         className
       )}
     >

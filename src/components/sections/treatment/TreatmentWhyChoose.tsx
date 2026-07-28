@@ -47,8 +47,14 @@ export function TreatmentWhyChoose({ treatment, className }: TreatmentWhyChooseP
               viewport={{ once: true, margin: '-60px' }}
               custom={{ delay: 0.1 + i * 0.08 }}
               className={cn(
-                'py-8 md:py-10 pr-8 flex flex-col gap-4 border-b border-charcoal/10',
-                // Vertical dividers between columns
+                'py-8 md:py-10 flex flex-col gap-4 border-b border-charcoal/10',
+                // Responsive padding around vertical dividers
+                i === 0
+                  ? 'lg:pl-0 lg:pr-8'
+                  : i === treatment.whyChooseItems.length - 1
+                  ? 'lg:pl-8 lg:pr-0'
+                  : 'lg:px-8',
+                // Vertical dividers between columns on desktop
                 i < treatment.whyChooseItems.length - 1 ? 'lg:border-r lg:border-charcoal/10' : ''
               )}
             >

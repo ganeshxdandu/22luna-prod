@@ -53,7 +53,7 @@ export function TreatmentBenefits({ treatment, className }: TreatmentBenefitsPro
                 viewport={{ once: true, margin: '-60px' }}
                 custom={{ delay: 0.1 + (i % 3) * 0.08 }}
                 className={cn(
-                  'flex flex-col gap-5 py-10 pr-0 sm:pr-8',
+                  'flex flex-col gap-5 py-10',
                   // Bottom borders
                   !isLastRow ? 'border-b border-charcoal/10' : '',
                   // Mobile always has border-b
@@ -61,9 +61,9 @@ export function TreatmentBenefits({ treatment, className }: TreatmentBenefitsPro
                   // Re-add bottom border for non-last rows on SM+
                   !isLastRow ? 'sm:border-b sm:border-charcoal/10' : '',
                   // Right column borders on desktop
-                  col < 2 ? 'lg:border-r lg:border-charcoal/10 lg:pr-12' : '',
-                  // Indent middle and right columns on desktop
-                  col > 0 ? 'lg:pl-12' : '',
+                  col < 2 ? 'lg:border-r lg:border-charcoal/10' : '',
+                  // Ample padding around vertical dividers
+                  col === 0 ? 'lg:pl-0 lg:pr-10' : col === 2 ? 'lg:pl-10 lg:pr-0' : 'lg:px-10',
                 )}
               >
                 {/* Benefit number ghost */}
