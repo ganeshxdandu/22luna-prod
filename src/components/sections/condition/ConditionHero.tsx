@@ -6,36 +6,26 @@ import { ArrowUpRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { fadeUp, fadeIn } from '@/lib/animations';
 import { cn } from '@/lib/utils';
-import type { TreatmentData } from '@/lib/treatment-data';
+import type { ConditionDetailData } from '@/lib/condition-detail-data';
 
-export interface TreatmentHeroProps {
-  treatment: TreatmentData;
+export interface ConditionHeroProps {
+  condition: ConditionDetailData;
   className?: string;
 }
 
-const snapshotKeys: Array<{ key: keyof TreatmentData['snapshot']; label: string }> = [
-  { key: 'duration', label: 'Duration' },
-  { key: 'comfortLevel', label: 'Comfort Level' },
-  { key: 'downtime', label: 'Downtime' },
-  { key: 'visibleResults', label: 'Visible Results' },
-  { key: 'suitableFor', label: 'Suitable For' },
-  { key: 'sessions', label: 'Sessions' },
-];
-
-export function TreatmentHero({ treatment, className }: TreatmentHeroProps) {
+export function ConditionHero({ condition, className }: ConditionHeroProps) {
   return (
     <section
-      id="treatment-hero"
+      id="condition-hero"
       className={cn(
         'relative w-full bg-moon-ivory border-b border-charcoal/10',
         className
       )}
     >
-      <div className="max-w-site mx-auto w-full px-6 md:px-8 pt-[96px] md:pt-[112px] pb-16 md:pb-20 flex flex-col lg:flex-row items-start gap-16 lg:gap-20">
+      <div className="max-w-site mx-auto w-full px-6 md:px-8 pt-[104px] md:pt-[124px] pb-16 md:pb-24 flex flex-col lg:flex-row items-start justify-between gap-12 lg:gap-20">
 
-        {/* ── LEFT: Text Column ── */}
-        <div className="w-full lg:w-[55%] flex flex-col">
-
+        {/* Left Column: Category & Name */}
+        <div className="w-full lg:w-[54%] flex flex-col">
           {/* Breadcrumb Navigation */}
           <motion.nav
             variants={fadeIn}
@@ -53,44 +43,41 @@ export function TreatmentHero({ treatment, className }: TreatmentHeroProps) {
             </Link>
             <span className="text-stone-gray/30 text-[0.65rem] select-none">/</span>
             <Link
-              href="/treatments"
+              href="/conditions"
               className="font-sans text-[0.68rem] tracking-[0.18em] uppercase text-stone-gray/60 hover:text-botanical transition-colors duration-300"
             >
-              Treatments
+              Conditions
             </Link>
             <span className="text-stone-gray/30 text-[0.65rem] select-none">/</span>
             <span className="font-sans text-[0.68rem] tracking-[0.18em] uppercase text-stone-gray/70">
-              {treatment.category}
+              {condition.category}
             </span>
             <span className="text-stone-gray/30 text-[0.65rem] select-none">/</span>
             <span className="font-sans text-[0.68rem] tracking-[0.18em] uppercase text-botanical font-medium">
-              {treatment.name}
+              {condition.name}
             </span>
           </motion.nav>
 
-          {/* Treatment Name */}
           <motion.h1
             variants={fadeUp}
             initial="hidden"
             animate="visible"
             custom={{ delay: 0.2, duration: 1.1 }}
-            className="font-display text-charcoal uppercase leading-[1.0] tracking-[-0.03em] text-[2.8rem] sm:text-[3.5rem] lg:text-[4rem] font-normal mb-6"
+            className="font-display text-charcoal uppercase leading-[1.0] tracking-[-0.03em] text-[2.6rem] sm:text-[3.4rem] lg:text-[4rem] font-normal mb-6"
           >
-            {treatment.name}
+            {condition.name}
           </motion.h1>
 
-          {/* Tagline */}
           <motion.p
             variants={fadeUp}
             initial="hidden"
             animate="visible"
             custom={{ delay: 0.3, duration: 1.0 }}
-            className="font-sans text-stone-gray text-[15px] sm:text-[16px] leading-[1.8] font-light max-w-[440px] mb-10"
+            className="font-sans text-stone-gray text-[15px] sm:text-[16px] lg:text-[17px] leading-[1.85] font-light max-w-[460px] mb-10"
           >
-            {treatment.tagline}
+            {condition.tagline}
           </motion.p>
 
-          {/* CTA */}
           <motion.div
             variants={fadeIn}
             initial="hidden"
@@ -111,41 +98,24 @@ export function TreatmentHero({ treatment, className }: TreatmentHeroProps) {
           </motion.div>
         </div>
 
-        {/* ── RIGHT: Treatment Snapshot Panel ── */}
+        {/* Right Column: Reassuring Note Box */}
         <motion.div
           variants={fadeUp}
           initial="hidden"
           animate="visible"
           custom={{ delay: 0.35, duration: 1.0 }}
-          className="w-full lg:w-[45%] lg:max-w-[420px] border border-charcoal/10 rounded-[2px] overflow-hidden bg-soft-ivory"
+          className="w-full lg:w-[42%] lg:max-w-[400px] border border-charcoal/10 rounded-[2px] p-7 md:p-8 bg-soft-ivory flex flex-col gap-4"
         >
-          {/* Panel Header */}
-          <div className="px-6 py-4 border-b border-charcoal/10">
-            <span className="font-sans text-[0.65rem] tracking-[0.2em] uppercase text-stone-gray font-medium">
-              Treatment Snapshot
+          <span className="font-sans text-[0.65rem] tracking-[0.2em] uppercase text-botanical font-medium">
+            Clinical Perspective
+          </span>
+          <p className="font-sans text-charcoal text-[0.88rem] leading-[1.75] font-light">
+            Concerns are simply starting points for conversation. This page is designed to inform, not to diagnose. Every individual presentation is unique.
+          </p>
+          <div className="pt-4 border-t border-charcoal/8 flex items-center justify-between">
+            <span className="font-sans text-[0.72rem] text-stone-gray font-light">
+              Doctor-Led Assessment Always
             </span>
-          </div>
-
-          {/* Snapshot Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 divide-y sm:divide-y-0 divide-charcoal/8">
-            {snapshotKeys.map(({ key, label }, idx) => (
-              <div
-                key={key}
-                className={cn(
-                  'px-6 py-5 flex flex-col gap-1 border-charcoal/8',
-                  // Draw right border on odd columns, bottom border on all except last two rows
-                  idx % 2 === 0 ? 'sm:border-r' : '',
-                  idx < snapshotKeys.length - 2 ? 'sm:border-b' : ''
-                )}
-              >
-                <span className="font-sans text-[0.6rem] tracking-[0.18em] uppercase text-stone-gray/70 font-medium">
-                  {label}
-                </span>
-                <span className="font-sans text-[0.85rem] text-charcoal font-light leading-snug">
-                  {treatment.snapshot[key]}
-                </span>
-              </div>
-            ))}
           </div>
         </motion.div>
 
