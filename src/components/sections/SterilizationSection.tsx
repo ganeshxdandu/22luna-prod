@@ -1,0 +1,221 @@
+'use client';
+
+import * as React from 'react';
+import Image from 'next/image';
+import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-motion';
+import { Sparkle } from 'lucide-react';
+import { cn } from '@/lib/utils';
+
+const STEPS = [
+  { id: 'intro', label: 'Intro' },
+  {
+    id: 'instruments',
+    label: 'Sterilized Instruments',
+    category: 'LATEST DEVICES',
+    titleLines: ['STERILIZED', 'INSTRUMENTS'],
+    description: 'All clinical instruments undergo medical-grade autoclave sterilization.',
+    image: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=400&auto=format&fit=crop',
+  },
+  {
+    id: 'bedding',
+    label: 'Sanitized Bedding',
+    category: 'PATIENT HYGIENE',
+    titleLines: ['SANITIZED', 'BEDDING'],
+    description: 'Disposable paper sheets and sanitized linen for every session.',
+    image: 'https://images.unsplash.com/photo-1616627547907-77de8a9a200f?q=80&w=400&auto=format&fit=crop',
+  },
+  {
+    id: 'disposables',
+    label: 'Single-Use Disposables',
+    category: 'SINGLE-USE',
+    titleLines: ['SINGLE-USE', 'DISPOSABLES'],
+    description: 'All needles, micro-cannulas, and consumables are strictly single-use.',
+    image: 'https://images.unsplash.com/photo-1576086213369-97a306d36557?q=80&w=400&auto=format&fit=crop',
+  },
+  {
+    id: 'uv',
+    label: 'UV Sterilization & Fumigation',
+    category: 'AMBIENT PROTECTION',
+    titleLines: ['UV STERILIZATION', '& FUMIGATION'],
+    description: 'Full suite UV sterilization and chemical fumigation between patients.',
+    image: 'https://images.unsplash.com/photo-1583947215259-38e31be8751f?q=80&w=400&auto=format&fit=crop',
+  },
+  { id: 'safety', label: 'Safety' },
+  { id: 'foundation', label: 'Foundation' },
+];
+
+export interface SterilizationSectionProps {
+  className?: string;
+}
+
+export function SterilizationSection({ className }: SterilizationSectionProps) {
+  const containerRef = React.useRef<HTMLDivElement>(null);
+  const [activeStep, setActiveStep] = React.useState(0);
+
+  // Hook scroll progress of the container
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ['start start', 'end end'],
+  });
+
+  // Map progress to steps indices
+  useMotionValueEvent(scrollYProgress, 'change', (latest) => {
+    const stepCount = STEPS.length;
+    // Map progress so that it reaches the final step (Foundation) at 85% scroll progress
+    if (latest >= 0.85) {
+      setActiveStep(6);
+      return;
+    }
+    const scaledProgress = latest / 0.85;
+    const index = Math.floor(scaledProgress * (stepCount - 1));
+    setActiveStep(Math.min(Math.max(index, 0), stepCount - 2));
+  });
+
+  return (
+    <div
+      ref={containerRef}
+      className={cn('relative w-full h-[600vh]', className)}
+    >
+      {/* Sticky Viewport Container */}
+      <div className="sticky relative top-0 left-0 w-full h-screen overflow-hidden bg-charcoal">
+        
+        {/* Background Image: Treatment Room */}
+        <div className="absolute inset-0 w-full h-full">
+          <Image
+            src="https://res.cloudinary.com/dz5xgcfj/image/upload/v1785110031/Treatment_Room_jdlkol.png"
+            alt="22Luna Sterile Treatment Room"
+            fill
+            priority
+            unoptimized
+            className="object-cover object-center"
+          />
+        </div>
+
+        {/* Dynamic Dark Overlay: sits at z-20 to cover image and corner text */}
+        <div 
+          className="absolute inset-0 bg-charcoal transition-opacity duration-700 ease-out z-20"
+          style={{
+            opacity: activeStep === 0 ? 0.2 : activeStep >= 5 ? 0.95 : 0.88
+          }}
+        />
+
+        {/* Corner Branding Details - z-30 initially to stay bright, dims to z-10 behind overlay on scroll */}
+        <div className={cn("absolute top-6 left-6 md:top-8 md:left-8 transition-all duration-700", activeStep === 0 ? "z-30" : "z-10")}>
+          <h2 className="font-display text-[24px] sm:text-[32px] lg:text-[40px] leading-[1.05] tracking-[-0.02em] uppercase text-moon-ivory">
+            Gold Standard
+            <br />
+            Sterilization
+          </h2>
+        </div>
+
+        <div className={cn("absolute top-6 right-6 md:top-8 md:right-8 transition-all duration-700", activeStep === 0 ? "z-30" : "z-10")}>
+          <span className="font-sans text-[14px] tracking-tight font-extralight uppercase text-moon-ivory">
+            Feature <span className="font-normal">03</span>
+          </span>
+        </div>
+
+        {/* Bottom Right pinned paragraphs */}
+        <div className={cn("absolute bottom-6 right-6 md:bottom-8 md:right-8 max-w-[350px] transition-all duration-700", activeStep === 0 ? "z-30" : "z-10")}>
+          <p className="font-sans text-moon-ivory/80 text-[14px] sm:text-[15px] lg:text-[16px] leading-[1.7] tracking-tight font-light text-right md:text-left">
+            Most clinics never show what happens behind the scenes. At 22Luna, hygiene isn't an afterthought. It's built into every step of your experience.
+          </p>
+        </div>
+
+        {/* Center Indicators / Scrolling prompts */}
+        {activeStep < 5 && (
+          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 text-center flex flex-col items-center gap-2 pointer-events-none">
+            <span className="font-sans text-[0.6rem] tracking-[0.22em] uppercase text-moon-ivory/50">
+              Active Scroll
+            </span>
+            <motion.span
+              animate={{ y: [0, 4, 0] }}
+              transition={{ repeat: Infinity, duration: 1.5, ease: 'easeInOut' }}
+              className="text-moon-ivory/40 text-[0.6rem]"
+            >
+              ↓
+            </motion.span>
+          </div>
+        )}
+
+        {/* ── STAGE 1: Mid-Scroll Cards (Steps 1 to 4) ── */}
+        <div className="absolute inset-0 flex items-center justify-center z-30 p-6">
+          <AnimatePresence mode="wait">
+            {activeStep >= 1 && activeStep <= 4 && (
+              <motion.div
+                key={activeStep}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                className="bg-moon-ivory/95 backdrop-blur-sm border border-charcoal/5 rounded-[4px] shadow-[0_12px_40px_rgba(0,0,0,0.12)] p-8 md:p-10 w-full max-w-[560px] flex flex-row items-center justify-between gap-8 md:gap-10"
+              >
+                {/* Left Content info */}
+                <div className="flex-1 flex flex-col">
+                  <span className="font-sans text-[0.6rem] tracking-[0.2em] uppercase text-botanical font-medium">
+                    {STEPS[activeStep].category}
+                  </span>
+                  <h3 className="font-display text-[1.35rem] md:text-[1.55rem] leading-[1.1] uppercase text-charcoal mt-2 tracking-tight">
+                    {STEPS[activeStep].titleLines && STEPS[activeStep].titleLines.map((line, idx) => (
+                      <span key={idx} className="block">{line}</span>
+                    ))}
+                  </h3>
+                  <p className="font-sans text-stone-gray text-[0.76rem] leading-[1.6] font-light mt-3">
+                    {STEPS[activeStep].description}
+                  </p>
+                </div>
+
+                {/* Right Image preview */}
+                <div className="relative w-28 h-28 md:w-36 md:h-36 rounded-[4px] overflow-hidden shrink-0 bg-soft-ivory">
+                  <Image
+                    src={STEPS[activeStep].image || ''}
+                    alt={STEPS[activeStep].label || ''}
+                    fill
+                    unoptimized
+                    className="object-cover"
+                  />
+                </div>
+              </motion.div>
+            )}
+
+            {/* ── STAGE 2: Safety Statement (Step 5) ── */}
+            {activeStep === 5 && (
+              <motion.div
+                key="safety"
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.6 }}
+                className="text-center max-w-xl"
+              >
+                <h3 className="font-display text-[1.8rem] sm:text-[2.6rem] lg:text-[3rem] text-moon-ivory leading-[1.1] tracking-tight uppercase">
+                  Your safety is <br className="sm:hidden" /> not a feature.
+                </h3>
+              </motion.div>
+            )}
+
+            {/* ── STAGE 3: Foundation Statement (Step 6) ── */}
+            {activeStep === 6 && (
+              <motion.div
+                key="foundation"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.8 }}
+                className="text-center w-full flex flex-col items-center"
+              >
+                <span className="font-display text-sm tracking-[0.3em] text-moon-ivory/60 uppercase mb-4">
+                  It is our
+                </span>
+                
+                {/* Big typography title */}
+                <h3 className="font-display text-[4rem] sm:text-[6.5rem] md:text-[8rem] lg:text-[10rem] text-moon-ivory leading-none tracking-[-0.03em] uppercase select-none">
+                  Foundation
+                </h3>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+
+      </div>
+    </div>
+  );
+}

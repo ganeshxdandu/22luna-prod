@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { displayFont, sansFont } from '@/app/fonts';
 import { ThemeProvider } from '@/components/providers/ThemeProvider';
+import { ScrollProvider } from '@/components/providers/ScrollProvider';
 import { SITE_METADATA } from '@/lib/constants';
 import '@/styles/globals.css';
 
@@ -53,9 +54,11 @@ export default function RootLayout({
     >
       <body className="flex flex-col min-h-screen bg-background">
         <ThemeProvider>
-          <div className="w-full max-w-site mx-auto flex flex-col min-h-screen overflow-x-hidden">
-            {children}
-          </div>
+          <ScrollProvider>
+            <div className="w-full max-w-site mx-auto flex flex-col min-h-screen">
+              {children}
+            </div>
+          </ScrollProvider>
         </ThemeProvider>
       </body>
     </html>

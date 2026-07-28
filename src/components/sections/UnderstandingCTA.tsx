@@ -9,13 +9,23 @@ import { fadeUp } from '@/lib/animations';
 
 export interface UnderstandingCTAProps {
   className?: string;
+  title?: string;
+  subtitle?: string;
+  buttonText?: string;
+  buttonHref?: string;
 }
 
-export function UnderstandingCTA({ className }: UnderstandingCTAProps) {
+export function UnderstandingCTA({
+  className,
+  title = "Beautiful Results Begin With Understanding",
+  subtitle = "Every consultation is an opportunity to understand your skin, your lifestyle, and your goals before creating a treatment plan that's thoughtfully designed for you.",
+  buttonText = "Book Consultation",
+  buttonHref = "#book",
+}: UnderstandingCTAProps) {
   return (
     <section
       className={cn(
-        "bg-moon-ivory pb-16 md:pb-24 lg:pb-32 px-4 sm:px-6 md:px-8 w-full select-none",
+        "bg-moon-ivory pt-0 pb-12 md:pb-16 px-6 md:px-8 w-full select-none",
         className
       )}
     >
@@ -27,7 +37,7 @@ export function UnderstandingCTA({ className }: UnderstandingCTAProps) {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
-          className="relative w-full rounded-[16px] md:rounded-[24px] bg-[#BBA175] py-16 md:py-20 lg:py-24 px-6 md:px-12 text-center overflow-hidden flex flex-col items-center justify-center shadow-lg border border-white/5"
+          className="relative w-full rounded-[16px] md:rounded-[24px] bg-[#BBA175] py-16 md:py-20 lg:py-24 px-6 md:px-12 text-center overflow-hidden flex flex-col items-center justify-center"
         >
           {/* ── Clean SVG Geometric Diamond Background Pattern ── */}
           <div 
@@ -45,19 +55,19 @@ export function UnderstandingCTA({ className }: UnderstandingCTAProps) {
           {/* ── Content ── */}
           <div className="relative z-10 max-w-[750px] flex flex-col items-center">
             
-            <h2 className="font-display text-[1.75rem] sm:text-[2.25rem] md:text-[2.75rem] lg:text-[40px] text-white leading-tight tracking-tight font-light">
-              Beautiful Results Begin With Understanding
+            <h2 className="font-display text-[1.75rem] sm:text-[2.25rem] md:text-[2.75rem] lg:text-[40px] text-white leading-tight tracking-tight font-light uppercase">
+              {title}
             </h2>
             
             <p className="text-white/85 font-sans font-light text-xs md:text-sm tracking-wide leading-[1.6] max-w-[620px] mt-4 mb-8">
-              Every consultation is an opportunity to understand your skin, your lifestyle, and your goals before creating a treatment plan that&apos;s thoughtfully designed for you.
+              {subtitle}
             </p>
 
             <Link
-              href="#book"
+              href={buttonHref}
               className="inline-flex items-center gap-2 bg-white hover:bg-[#FDFBF7] text-[#BBA175] font-sans font-medium text-xs md:text-[13px] py-3.5 px-7 rounded-full shadow-md transition-all duration-300 hover:scale-[1.02]"
             >
-              Book Consultation
+              {buttonText}
               <ArrowUpRight size={15} strokeWidth={2.5} className="mt-0.5" />
             </Link>
 

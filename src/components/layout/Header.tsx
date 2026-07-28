@@ -3,11 +3,13 @@
 import * as React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 import { ShoppingBag, ArrowUpRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const navLinks = [
   { label: 'About', href: '/about' },
+  { label: 'Consultation', href: '/consultation' },
   { label: 'Conditions', href: '/conditions' },
   { label: 'Treatments', href: '/treatments' },
   { label: 'Shop', href: '/shop' },
@@ -15,14 +17,22 @@ const navLinks = [
   { label: 'Contact', href: '/contact' },
 ];
 
+export type HeaderVariant = 'dark' | 'light';
+
 export interface HeaderProps {
   className?: string;
+  /** 'dark'  → transparent → charcoal (default, for pages with dark hero)
+   *  'light' → ivory bg, charcoal text, botanical CTA (for pages with light bg) */
+  variant?: HeaderVariant;
 }
 
-export function Header({ className }: HeaderProps) {
+export function Header({ className, variant = 'dark' }: HeaderProps) {
   const [scrolled, setScrolled] = React.useState(false);
   const [visible, setVisible] = React.useState(true);
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const pathname = usePathname();
+
+  const isLight = variant === 'light';
 
   React.useEffect(() => {
     let lastY = window.scrollY;
@@ -36,9 +46,9 @@ export function Header({ className }: HeaderProps) {
       } else {
         const diff = currentY - lastY;
         if (diff > 5) {
-          setVisible(false); // Scroll down -> Hide
+          setVisible(false);
         } else if (diff < -5) {
-          setVisible(true); // Scroll up -> Show
+          setVisible(true);
         }
       }
       lastY = currentY;
@@ -48,28 +58,42 @@ export function Header({ className }: HeaderProps) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  /* ─── Dark variant styles (existing behaviour) ─── */
+  const darkHeader = cn(
+    'fixed top-0 left-0 right-0 z-50 transition-all duration-500 transform border-b',
+    scrolled
+      ? 'bg-charcoal/80 backdrop-blur-md shadow-sm border-border/10'
+      : 'bg-transparent border-white/5',
+    visible ? 'translate-y-0' : '-translate-y-full pointer-events-none',
+    className
+  );
+
+  /* ─── Light variant styles ─── */
+  const lightHeader = cn(
+    'fixed top-0 left-0 right-0 z-50 transition-all duration-500 transform border-b',
+    scrolled
+      ? 'bg-moon-ivory/95 backdrop-blur-md shadow-sm border-border/60'
+      : 'bg-moon-ivory border-border/40',
+    visible ? 'translate-y-0' : '-translate-y-full pointer-events-none',
+    className
+  );
+
   return (
     <>
-      <header
-        className={cn(
-          'fixed top-0 left-0 right-0 z-50 transition-all duration-500 transform border-b',
-          scrolled
-            ? 'bg-charcoal/80 backdrop-blur-md shadow-sm border-border/10'
-            : 'bg-transparent border-white/5',
-          visible ? 'translate-y-0' : '-translate-y-full pointer-events-none',
-          className
-        )}
-      >
-        <div className="flex items-center justify-between px-6 md:px-10 lg:px-16 h-16 md:h-[72px]">
+      <header className={isLight ? lightHeader : darkHeader}>
+        <div className="max-w-site mx-auto w-full flex items-center justify-between px-4 sm:px-6 md:px-8 h-16 md:h-[72px]">
 
-          {/* Logo Container */}
+          {/* Logo */}
           <div className="md:flex-1 flex justify-start">
             <Link href="/" className="relative h-9 md:h-12 w-28 md:w-36 select-none group">
               <Image
-                src="/logo.svg"
+                src={isLight ? '/logo-dark.svg' : '/logo.svg'}
                 alt="22LUNA"
                 fill
-                className="object-contain object-left brightness-0 invert"
+                className={cn(
+                  'object-contain object-left',
+                  isLight ? '' : 'brightness-0 invert'
+                )}
                 priority
               />
             </Link>
@@ -77,52 +101,74 @@ export function Header({ className }: HeaderProps) {
 
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-7">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={cn(
-                  'text-moon-ivory/80 font-sans font-light transition-colors duration-300 hover:text-moon-ivory relative group',
-                  'text-sm tracking-[0.04em]'
-                )}
-              >
-                {link.label}
-                <span className="absolute -bottom-0.5 left-0 w-0 h-px bg-moon-ivory/60 transition-all duration-300 group-hover:w-full" />
-              </Link>
-            ))}
+            {navLinks.map((link) => {
+              const isActive = pathname === link.href;
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={cn(
+                    'font-sans transition-colors duration-300 relative text-sm tracking-tight',
+                    isActive ? 'font-medium' : 'font-light',
+                    isLight
+                      ? isActive
+                        ? 'text-botanical'
+                        : 'text-stone-gray hover:text-botanical'
+                      : isActive
+                        ? 'text-botanical'
+                        : 'text-moon-ivory/80 hover:text-botanical'
+                  )}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
           </nav>
 
-          {/* Right Actions & Mobile Toggle Container */}
+          {/* Right Actions */}
           <div className="md:flex-1 flex justify-end items-center gap-2 md:gap-4">
-            {/* Cart / Bag (Always Visible) */}
+            {/* Cart */}
             <button
               aria-label="Shopping bag"
-              className="text-moon-ivory/80 hover:text-moon-ivory transition-colors duration-300 p-1.5"
+              className={cn(
+                'transition-colors duration-300 p-1.5',
+                isLight
+                  ? 'text-charcoal/60 hover:text-charcoal'
+                  : 'text-moon-ivory/80 hover:text-moon-ivory'
+              )}
             >
               <ShoppingBag size={18} strokeWidth={1.5} />
             </button>
 
-            {/* Book Consultation CTA (Desktop Only) */}
+            {/* Book Consultation CTA (Desktop) */}
             <div className="hidden md:flex items-center">
               <Link
                 href="/book-consultation"
-                className="inline-flex items-center tracking-tight gap-1.5 rounded-full border border-moon-ivory/40 text-moon-ivory/90 font-sans text-[0.75rem] uppercase px-5 py-2.5 transition-all duration-300 hover:border-moon-ivory hover:text-moon-ivory hover:bg-moon-ivory/10"
+                className={cn(
+                  'inline-flex items-center tracking-tight gap-1.5 rounded-full font-sans text-[0.75rem] uppercase px-5 py-2.5 transition-all duration-300',
+                  isLight
+                    ? 'bg-botanical text-moon-ivory hover:bg-botanical/90 border border-botanical'
+                    : 'border border-moon-ivory/40 text-moon-ivory/90 hover:border-moon-ivory hover:text-moon-ivory hover:bg-moon-ivory/10'
+                )}
               >
                 Book Consultation
                 <ArrowUpRight size={13} strokeWidth={1.8} />
               </Link>
             </div>
 
-            {/* Mobile Menu Toggle (Mobile) */}
+            {/* Mobile Toggle */}
             <button
-              className="md:hidden text-moon-ivory p-2"
+              className={cn(
+                'md:hidden p-2',
+                isLight ? 'text-charcoal' : 'text-moon-ivory'
+              )}
               onClick={() => setMobileOpen((o) => !o)}
               aria-label="Toggle menu"
             >
               <span className="flex flex-col gap-[5px]">
-                <span className={cn('block w-5 h-px bg-moon-ivory transition-all duration-300', mobileOpen && 'rotate-45 translate-y-[7px]')} />
-                <span className={cn('block w-5 h-px bg-moon-ivory transition-all duration-300', mobileOpen && 'opacity-0')} />
-                <span className={cn('block w-5 h-px bg-moon-ivory transition-all duration-300', mobileOpen && '-rotate-45 -translate-y-[7px]')} />
+                <span className={cn('block w-5 h-px transition-all duration-300', isLight ? 'bg-charcoal' : 'bg-moon-ivory', mobileOpen && 'rotate-45 translate-y-[7px]')} />
+                <span className={cn('block w-5 h-px transition-all duration-300', isLight ? 'bg-charcoal' : 'bg-moon-ivory', mobileOpen && 'opacity-0')} />
+                <span className={cn('block w-5 h-px transition-all duration-300', isLight ? 'bg-charcoal' : 'bg-moon-ivory', mobileOpen && '-rotate-45 -translate-y-[7px]')} />
               </span>
             </button>
           </div>
