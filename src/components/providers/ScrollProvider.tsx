@@ -45,7 +45,7 @@ export interface ScrollProviderProps {
 
 export function ScrollProvider({ children }: ScrollProviderProps) {
   return (
-    <ReactLenis root options={{ lerp: 0.1, duration: 1.2, syncTouch: true }}>
+    <ReactLenis root options={{ lerp: 0.1, duration: 1.2, syncTouch: false }}>
       <ScrollHandler />
       {children}
     </ReactLenis>

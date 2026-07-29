@@ -14,7 +14,7 @@ import { ContactCTA } from '@/components/sections/contact/ContactCTA';
 export const metadata: Metadata = {
   title: 'Visit & Contact Us | 22luna Sanctuary',
   description:
-    'Visit 22luna Skin, Hair & Dental Sanctuary in Indiranagar, Bengaluru. Find clinic opening hours, location map, valet parking info, and direct contact channels.',
+    'Visit 22luna Skin, Hair & Dental Sanctuary in Ashok Nagar, Bengaluru. Find clinic opening hours, location map, parking details, and direct contact channels.',
 };
 
 export default function ContactPage() {

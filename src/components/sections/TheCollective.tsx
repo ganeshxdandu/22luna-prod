@@ -1,6 +1,7 @@
 'use client';
 
 import * as React from 'react';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { fadeUp } from '@/lib/animations';
 import { cn } from '@/lib/utils';
@@ -12,11 +13,29 @@ export interface TeamMember {
 }
 
 const TEAM_MEMBERS: TeamMember[] = [
-  { name: 'Dr. Devanjali', role: 'Orthodontist' },
-  { name: 'Dr. Iqbal', role: 'Orthodontist' },
-  { name: 'Dr. Romir', role: 'Maxillo Surgeon' },
-  { name: 'Dr. Fatima', role: 'Endodontist' },
-  { name: 'Dr. Anirban', role: 'Periodontist' },
+  { 
+    name: 'Dr. Devanjali', 
+    role: 'Orthodontist',
+    image: 'https://res.cloudinary.com/dz5xgcfj/image/upload/v1785294011/devanjali_lzfmlh.png'
+  },
+  { 
+    name: 'Dr. Iqbal', 
+    role: 'Orthodontist' 
+  },
+  { 
+    name: 'Dr. Romir', 
+    role: 'Maxillo Surgeon',
+    image: 'https://res.cloudinary.com/dz5xgcfj/image/upload/v1785293977/romir_hx6qtx.png'
+  },
+  { 
+    name: 'Dr. Fatima', 
+    role: 'Endodontist' 
+  },
+  { 
+    name: 'Dr. Anirban', 
+    role: 'Periodontist',
+    image: 'https://res.cloudinary.com/dz5xgcfj/image/upload/v1785294034/anirban_snoaqm.png'
+  },
 ];
 
 export interface TheCollectiveProps {
@@ -62,10 +81,21 @@ export function TheCollective({ className }: TheCollectiveProps) {
               custom={{ delay: 0.15 + index * 0.08 }}
               className="flex flex-col items-start w-full group"
             >
-              {/* Photo Placeholder Box (Brand green placeholder bg) */}
-              <div className="w-full aspect-[4/5] bg-[#2E4A40] rounded-[2px] shadow-sm overflow-hidden select-none transition-transform duration-500 group-hover:scale-[1.01]">
-                {/* Fallback pattern / background */}
-                <div className="w-full h-full opacity-40 mix-blend-overlay bg-gradient-to-tr from-charcoal to-transparent" />
+              {/* Photo Box (Brand green placeholder bg fallback, or Doctor Image if provided) */}
+              <div className="w-full aspect-[4/5] bg-[#2E4A40] rounded-[2px] shadow-sm overflow-hidden select-none transition-transform duration-500 group-hover:scale-[1.01] relative">
+                {member.image ? (
+                  <Image
+                    src={member.image}
+                    alt={member.name}
+                    fill
+                    unoptimized
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 20vw"
+                    className="object-cover object-center"
+                  />
+                ) : (
+                  /* Fallback pattern / background */
+                  <div className="w-full h-full opacity-40 mix-blend-overlay bg-gradient-to-tr from-charcoal to-transparent" />
+                )}
               </div>
 
               {/* Doctor Details */}

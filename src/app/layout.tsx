@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { displayFont, sansFont } from '@/app/fonts';
 import { ThemeProvider } from '@/components/providers/ThemeProvider';
 import { ScrollProvider } from '@/components/providers/ScrollProvider';
+import { GuidedDiscoveryModal } from '@/components/ui/GuidedDiscoveryModal';
 import { SITE_METADATA } from '@/lib/constants';
 import '@/styles/globals.css';
 
@@ -57,6 +58,7 @@ export default function RootLayout({
           <ScrollProvider>
             <div className="w-full max-w-site mx-auto flex flex-col min-h-screen">
               {children}
+              <GuidedDiscoveryModal />
             </div>
           </ScrollProvider>
         </ThemeProvider>

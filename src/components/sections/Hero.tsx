@@ -49,6 +49,15 @@ export function Hero({ className }: HeroProps) {
       <div className="absolute inset-0 bg-gradient-to-t from-charcoal/60 via-charcoal/10 to-transparent" />
       <div className="absolute inset-0 bg-gradient-to-r from-charcoal/30 via-transparent to-transparent" />
 
+      {/* ── Soft Breathing Moonlight Glow Layer ── */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <motion.div
+          animate={{ opacity: [0.04, 0.09, 0.04], scale: [1, 1.05, 1] }}
+          transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
+          className="absolute -bottom-24 left-1/4 w-[600px] h-[600px] rounded-full bg-[#BBA175]/25 blur-[140px]"
+        />
+      </div>
+
       {/* ── Left Vertical Label ── */}
       <motion.div
         variants={fadeIn}
@@ -58,8 +67,8 @@ export function Hero({ className }: HeroProps) {
         className="absolute left-5 top-1/2 -translate-y-1/2 flex items-center gap-2"
         style={{ writingMode: 'vertical-rl', transform: 'translateY(-50%)' }}
       >
-        <span className="text-moon-ivory/60 font-sans tracking-[0.3em] uppercase"
-          style={{ fontSize: '0.55rem', letterSpacing: '0.3em' }}
+        <span className="text-moon-ivory/60 font-sans tracking-tight uppercase"
+          style={{ fontSize: '0.625rem', letterSpacing: '0.07em' }}
         >
           Skin · Hair · Dental · IV
         </span>
@@ -75,8 +84,8 @@ export function Hero({ className }: HeroProps) {
         style={{ writingMode: 'vertical-rl', transform: 'translateY(-50%)' }}
       >
         <span
-          className="text-moon-ivory/60 font-sans tracking-[0.3em] uppercase"
-          style={{ fontSize: '0.55rem' }}
+          className="text-moon-ivory/60 font-sans tracking-[0.07em] uppercase"
+          style={{ fontSize: '0.625rem' }}
         >
           Scroll Down →
         </span>
@@ -112,7 +121,7 @@ export function Hero({ className }: HeroProps) {
           className="mb-1"
         >
           <Link
-            href="/book-consultation"
+            href="https://wa.me/918971725522?text=I%20would%20like%20to%20book%20a%20consultation." target="_blank" rel="noopener noreferrer"
             className="inline-flex items-center gap-2 tracking-normal rounded-full bg-moon-ivory/15 backdrop-blur-sm border border-moon-ivory/30 text-moon-ivory font-sans text-[0.75rem] uppercase px-6 py-3.5 transition-all duration-500 hover:bg-moon-ivory hover:text-charcoal hover:border-moon-ivory group"
           >
             Book Consultation

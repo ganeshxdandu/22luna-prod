@@ -40,8 +40,12 @@ export function ConditionsCTA({ className }: ConditionsCTAProps) {
             }}
           />
 
-          {/* Soft ambient glow */}
-          <div className="absolute w-[500px] h-[500px] rounded-full bg-white/10 blur-[100px] pointer-events-none" />
+          {/* Soft breathing ambient moonlight glow */}
+          <motion.div
+            animate={{ opacity: [0.1, 0.22, 0.1], scale: [1, 1.08, 1] }}
+            transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
+            className="absolute w-[500px] h-[500px] rounded-full bg-white/15 blur-[100px] pointer-events-none"
+          />
 
           {/* Content */}
           <div className="relative z-10 max-w-[700px] flex flex-col items-center">
@@ -60,7 +64,7 @@ export function ConditionsCTA({ className }: ConditionsCTAProps) {
             </p>
 
             <Link
-              href="/book-consultation"
+              href="https://wa.me/918971725522?text=I%20would%20like%20to%20book%20a%20consultation." target="_blank" rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-white hover:bg-[#FDFBF7] text-[#BBA175] font-sans font-medium text-xs md:text-[13px] py-3.5 px-8 rounded-full shadow-md transition-all duration-300 hover:scale-[1.02]"
             >
               Begin with a Consultation

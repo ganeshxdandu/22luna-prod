@@ -46,7 +46,7 @@ export default function TreatmentsPage() {
         title="Unsure Which Treatment Fits Your Concern?"
         subtitle="You don't need to know the name of a procedure to begin. Every journey starts with an open, unhurried consultation where we listen to your goals and build a thoughtful plan together."
         buttonText="Book Consultation"
-        buttonHref="/book-consultation"
+        buttonHref="https://wa.me/918971725522?text=I%20would%20like%20to%20book%20a%20consultation."
       />
 
       {/* ── FOOTER ── */}

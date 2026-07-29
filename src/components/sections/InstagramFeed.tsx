@@ -49,10 +49,10 @@ const STATIC_FEED: InstagramPost[] = [
     caption: 'Follow our journey of wellness & longevity.',
   },
   {
-    id: 'static_placeholder_1',
-    mediaUrl: '',
+    id: 'static_space_one',
+    mediaUrl: 'https://res.cloudinary.com/doycsx0hd/image/upload/q_auto/f_auto/v1776607603/space-one_sze6zc.png',
     permalink: INSTAGRAM_PROFILE_URL,
-    isPlaceholder: true,
+    caption: 'Inside our calm Bengaluru sanctuary designed to help you slow down.',
   },
   {
     id: 'static_2',
@@ -61,10 +61,10 @@ const STATIC_FEED: InstagramPost[] = [
     caption: 'Keravive Scalp Treatment - Hydrafacial for your hair health.',
   },
   {
-    id: 'static_placeholder_2',
-    mediaUrl: '',
+    id: 'static_space_three',
+    mediaUrl: 'https://res.cloudinary.com/doycsx0hd/image/upload/q_auto/f_auto/v1776607577/space-three_ugvc0n.png',
     permalink: INSTAGRAM_PROFILE_URL,
-    isPlaceholder: true,
+    caption: 'Quiet, intentional spaces for mindful aesthetic care.',
   },
   {
     id: 'static_3',

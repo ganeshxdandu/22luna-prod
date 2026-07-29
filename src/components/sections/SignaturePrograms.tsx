@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { buildCloudinaryUrl } from '@/lib/cloudinary';
 import { cn } from '@/lib/utils';
@@ -45,6 +46,15 @@ const PROGRAMS: ProgramItem[] = [
 ];
 // ─────────────────────────────────────────────────────────
 
+// Map care category item IDs to their corresponding landing page anchors
+const getProgramSectionUrl = (id: string): string => {
+  if (id === '01') return '/treatments#skin-category';
+  if (id === '02') return '/treatments#hair-category';
+  if (id === '03') return '/treatments#dental-category';
+  if (id === '04') return '/treatments#wellness-category';
+  return '/treatments';
+};
+
 export interface SignatureProgramsProps {
   className?: string;
 }
@@ -84,10 +94,12 @@ export function SignaturePrograms({ className }: SignatureProgramsProps) {
           <div className="flex flex-col border-t border-charcoal/10">
             {PROGRAMS.map((program, idx) => {
               const isActive = activeIndex === idx;
+              const targetUrl = getProgramSectionUrl(program.id);
               return (
-                <div
+                <Link
                   key={program.id}
-                  className="border-b border-charcoal/10 py-6 md:py-8 px-4 sm:px-6 md:px-8 cursor-pointer transition-all duration-500 relative group"
+                  href={targetUrl}
+                  className="border-b border-charcoal/10 py-6 md:py-8 px-4 sm:px-6 md:px-8 cursor-pointer transition-all duration-500 relative block group"
                   onMouseEnter={() => setActiveIndex(idx)}
                 >
                   {/* Background Hover Highlight Slide */}
@@ -132,7 +144,7 @@ export function SignaturePrograms({ className }: SignatureProgramsProps) {
                       {program.id}
                     </span>
                   </div>
-                </div>
+                </Link>
               );
             })}
           </div>

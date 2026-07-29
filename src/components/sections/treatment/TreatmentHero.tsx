@@ -27,7 +27,7 @@ export function TreatmentHero({ treatment, className }: TreatmentHeroProps) {
     <section
       id="treatment-hero"
       className={cn(
-        'relative w-full bg-moon-ivory border-b border-charcoal/10',
+        'relative w-full bg-moon-ivory border-b border-charcoal/10 arch-light-wash-top',
         className
       )}
     >
@@ -51,18 +51,18 @@ export function TreatmentHero({ treatment, className }: TreatmentHeroProps) {
             >
               Home
             </Link>
-            <span className="text-stone-gray/30 text-[0.65rem] select-none">/</span>
+            <span className="w-1.5 h-1.5 rounded-full border border-botanical/40 bg-botanical/15 shrink-0 inline-block" />
             <Link
               href="/treatments"
               className="font-sans text-[0.68rem] tracking-[0.18em] uppercase text-stone-gray/60 hover:text-botanical transition-colors duration-300"
             >
               Treatments
             </Link>
-            <span className="text-stone-gray/30 text-[0.65rem] select-none">/</span>
+            <span className="w-1.5 h-1.5 rounded-full border border-botanical/40 bg-botanical/15 shrink-0 inline-block" />
             <span className="font-sans text-[0.68rem] tracking-[0.18em] uppercase text-stone-gray/70">
               {treatment.category}
             </span>
-            <span className="text-stone-gray/30 text-[0.65rem] select-none">/</span>
+            <span className="w-1.5 h-1.5 rounded-full border border-botanical/40 bg-botanical/15 shrink-0 inline-block" />
             <span className="font-sans text-[0.68rem] tracking-[0.18em] uppercase text-botanical font-medium">
               {treatment.name}
             </span>
@@ -98,7 +98,7 @@ export function TreatmentHero({ treatment, className }: TreatmentHeroProps) {
             custom={{ delay: 0.45, duration: 0.9 }}
           >
             <Link
-              href="/book-consultation"
+              href="https://wa.me/918971725522?text=I%20would%20like%20to%20book%20a%20consultation." target="_blank" rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-full bg-botanical text-moon-ivory font-sans text-[0.72rem] uppercase px-7 py-3.5 tracking-tight transition-all duration-300 hover:bg-botanical/90 group"
             >
               Book Consultation
@@ -112,13 +112,17 @@ export function TreatmentHero({ treatment, className }: TreatmentHeroProps) {
         </div>
 
         {/* ── RIGHT: Treatment Snapshot Panel ── */}
-        <motion.div
-          variants={fadeUp}
-          initial="hidden"
-          animate="visible"
-          custom={{ delay: 0.35, duration: 1.0 }}
-          className="w-full lg:w-[45%] lg:max-w-[420px] border border-charcoal/10 rounded-[2px] overflow-hidden bg-soft-ivory"
-        >
+        <div className="relative w-full lg:w-[45%] lg:max-w-[420px]">
+          {/* Soft ambient moonlight halo */}
+          <div className="absolute -inset-4 rounded-full bg-[#BBA175]/10 blur-[40px] pointer-events-none" />
+
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            animate="visible"
+            custom={{ delay: 0.35, duration: 1.0 }}
+            className="relative w-full border border-charcoal/10 rounded-[2px] overflow-hidden bg-soft-ivory luna-soft-shadow"
+          >
           {/* Panel Header */}
           <div className="px-6 py-4 border-b border-charcoal/10">
             <span className="font-sans text-[0.65rem] tracking-[0.2em] uppercase text-stone-gray font-medium">
@@ -148,6 +152,7 @@ export function TreatmentHero({ treatment, className }: TreatmentHeroProps) {
             ))}
           </div>
         </motion.div>
+      </div>
 
       </div>
     </section>

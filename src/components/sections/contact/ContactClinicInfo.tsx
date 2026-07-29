@@ -69,10 +69,10 @@ export function ContactClinicInfo({ className }: ContactClinicInfoProps) {
                 22luna Skin, Hair & Dental Sanctuary
               </p>
               <p className="font-sans text-stone-gray text-[0.85rem] leading-[1.7] font-light">
-                Indiranagar, Bengaluru, Karnataka 560038
+                #5, Rest House Crescent, Ashok Nagar, Bengaluru 560001
               </p>
               <p className="font-sans text-stone-gray/80 text-[0.78rem] font-light mt-2 pt-2 border-t border-charcoal/8">
-                Landmark: Near 100ft Road, Indiranagar
+                Landmark: Off Kasturba Cross Road, near Coconut Grove
               </p>
             </div>
           </motion.div>
@@ -91,12 +91,12 @@ export function ContactClinicInfo({ className }: ContactClinicInfoProps) {
             </span>
             <div className="flex flex-col gap-2">
               <div className="flex justify-between items-baseline">
-                <span className="font-sans text-charcoal text-[0.88rem] font-medium">Monday – Saturday</span>
+                <span className="font-sans text-charcoal text-[0.88rem] font-medium">Tuesday – Sunday</span>
                 <span className="font-sans text-stone-gray text-[0.85rem] font-light">10:00 AM – 7:00 PM</span>
               </div>
-              <div className="flex justify-between items-baseline pt-2 border-t border-charcoal/8">
-                <span className="font-sans text-charcoal text-[0.88rem] font-medium">Sunday</span>
-                <span className="font-sans text-stone-gray text-[0.85rem] font-light">By Prior Appointment</span>
+              <div className="flex justify-between items-baseline pt-2 border-t border-charcoal/8 opacity-60">
+                <span className="font-sans text-charcoal text-[0.88rem] font-medium">Monday</span>
+                <span className="font-sans text-stone-gray text-[0.85rem] font-light">Closed</span>
               </div>
             </div>
           </motion.div>
@@ -118,7 +118,7 @@ export function ContactClinicInfo({ className }: ContactClinicInfoProps) {
                 Phone: <strong className="font-medium text-charcoal">+91 89717 25522</strong>
               </p>
               <p className="font-sans text-stone-gray text-[0.85rem] font-light">
-                Email: <strong className="font-medium text-charcoal">care@22luna.com</strong>
+                Email: <strong className="font-medium text-charcoal">hello@22luna.com</strong>
               </p>
               <p className="font-sans text-stone-gray/80 text-[0.78rem] font-light mt-1 pt-2 border-t border-charcoal/8">
                 WhatsApp available for instant queries
@@ -126,7 +126,7 @@ export function ContactClinicInfo({ className }: ContactClinicInfoProps) {
             </div>
           </motion.div>
 
-          {/* Card 4: Valet & Parking */}
+          {/* Card 4: Parking & Access */}
           <motion.div
             variants={fadeUp}
             initial="hidden"
@@ -136,10 +136,10 @@ export function ContactClinicInfo({ className }: ContactClinicInfoProps) {
             className="bg-moon-ivory border border-charcoal/10 rounded-[2px] p-7 md:p-8 flex flex-col justify-between gap-4"
           >
             <span className="font-sans text-[0.65rem] tracking-[0.2em] uppercase text-botanical font-medium">
-              Valet & Parking
+              Parking & Access
             </span>
             <p className="font-sans text-stone-gray text-[0.85rem] leading-[1.7] font-light">
-              Complimentary valet parking is available directly at the clinic entrance for all scheduled appointments.
+              Limited street parking is available on Rest House Crescent. We highly recommend arriving via cab or using the MG Road Metro Station (a 5-minute walk from the clinic).
             </p>
           </motion.div>
 

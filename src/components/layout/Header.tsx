@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { ShoppingBag, ArrowUpRight } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
 
 const navLinks = [
@@ -30,6 +31,7 @@ export function Header({ className, variant = 'dark' }: HeaderProps) {
   const [scrolled, setScrolled] = React.useState(false);
   const [visible, setVisible] = React.useState(true);
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [cartHovered, setCartHovered] = React.useState(false);
   const pathname = usePathname();
 
   const isLight = variant === 'light';
@@ -58,41 +60,34 @@ export function Header({ className, variant = 'dark' }: HeaderProps) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  /* ─── Dark variant styles (existing behaviour) ─── */
-  const darkHeader = cn(
-    'fixed top-0 left-0 right-0 z-50 transition-all duration-500 transform border-b',
-    scrolled
-      ? 'bg-charcoal/80 backdrop-blur-md shadow-sm border-border/10'
-      : 'bg-transparent border-white/5',
-    visible ? 'translate-y-0' : '-translate-y-full pointer-events-none',
-    className
-  );
+  const isLightMode = isLight || scrolled;
 
-  /* ─── Light variant styles ─── */
-  const lightHeader = cn(
+  const headerClass = cn(
     'fixed top-0 left-0 right-0 z-50 transition-all duration-500 transform border-b',
     scrolled
-      ? 'bg-moon-ivory/95 backdrop-blur-md shadow-sm border-border/60'
-      : 'bg-moon-ivory border-border/40',
+      ? 'bg-moon-ivory/95 backdrop-blur-md shadow-sm border-charcoal/10'
+      : isLight
+        ? 'bg-moon-ivory border-charcoal/10'
+        : 'bg-transparent border-white/5',
     visible ? 'translate-y-0' : '-translate-y-full pointer-events-none',
     className
   );
 
   return (
     <>
-      <header className={isLight ? lightHeader : darkHeader}>
+      <header className={headerClass}>
         <div className="max-w-site mx-auto w-full flex items-center justify-between px-4 sm:px-6 md:px-8 h-16 md:h-[72px]">
 
           {/* Logo */}
           <div className="md:flex-1 flex justify-start">
             <Link href="/" className="relative h-9 md:h-12 w-28 md:w-36 select-none group">
               <Image
-                src={isLight ? '/logo-dark.svg' : '/logo.svg'}
+                src={isLightMode ? '/logo-dark.svg' : '/logo.svg'}
                 alt="22LUNA"
                 fill
                 className={cn(
                   'object-contain object-left',
-                  isLight ? '' : 'brightness-0 invert'
+                  isLightMode ? '' : 'brightness-0 invert'
                 )}
                 priority
               />
@@ -110,7 +105,7 @@ export function Header({ className, variant = 'dark' }: HeaderProps) {
                   className={cn(
                     'font-sans transition-colors duration-300 relative text-sm tracking-tight',
                     isActive ? 'font-medium' : 'font-light',
-                    isLight
+                    isLightMode
                       ? isActive
                         ? 'text-botanical'
                         : 'text-stone-gray hover:text-botanical'
@@ -127,26 +122,56 @@ export function Header({ className, variant = 'dark' }: HeaderProps) {
 
           {/* Right Actions */}
           <div className="md:flex-1 flex justify-end items-center gap-2 md:gap-4">
-            {/* Cart */}
-            <button
-              aria-label="Shopping bag"
-              className={cn(
-                'transition-colors duration-300 p-1.5',
-                isLight
-                  ? 'text-charcoal/60 hover:text-charcoal'
-                  : 'text-moon-ivory/80 hover:text-moon-ivory'
-              )}
+            {/* Cart with Custom Tooltip */}
+            <div
+              className="relative flex items-center"
+              onMouseEnter={() => setCartHovered(true)}
+              onMouseLeave={() => setCartHovered(false)}
             >
-              <ShoppingBag size={18} strokeWidth={1.5} />
-            </button>
+              <Link
+                href="/shop"
+                aria-label="Shop Collection"
+                className={cn(
+                  'transition-colors duration-300 p-1.5 flex items-center justify-center',
+                  isLightMode
+                    ? 'text-charcoal/70 hover:text-botanical'
+                    : 'text-moon-ivory/80 hover:text-botanical'
+                )}
+              >
+                <ShoppingBag size={18} strokeWidth={1.5} />
+              </Link>
+
+              {/* Floating Custom Tooltip */}
+              <AnimatePresence>
+                {cartHovered && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 6, scale: 0.96 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 4, scale: 0.96 }}
+                    transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+                    className="absolute right-0 top-full mt-2.5 w-60 rounded-[8px] bg-moon-ivory border border-charcoal/10 p-4 shadow-lg z-50 text-left pointer-events-none luna-soft-shadow"
+                  >
+                    <div className="flex items-center gap-1.5 mb-1">
+                      <span className="w-1.5 h-1.5 rounded-full bg-botanical shrink-0" />
+                      <span className="font-sans text-[0.68rem] tracking-[0.18em] uppercase text-botanical font-medium">
+                        Shop Coming Soon
+                      </span>
+                    </div>
+                    <p className="font-sans text-stone-gray text-[0.78rem] leading-[1.5] font-light">
+                      Thoughtfully curated. Worth the wait.
+                    </p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
 
             {/* Book Consultation CTA (Desktop) */}
             <div className="hidden md:flex items-center">
               <Link
-                href="/book-consultation"
+                href="https://wa.me/918971725522?text=I%20would%20like%20to%20book%20a%20consultation." target="_blank" rel="noopener noreferrer"
                 className={cn(
                   'inline-flex items-center tracking-tight gap-1.5 rounded-full font-sans text-[0.75rem] uppercase px-5 py-2.5 transition-all duration-300',
-                  isLight
+                  isLightMode
                     ? 'bg-botanical text-moon-ivory hover:bg-botanical/90 border border-botanical'
                     : 'border border-moon-ivory/40 text-moon-ivory/90 hover:border-moon-ivory hover:text-moon-ivory hover:bg-moon-ivory/10'
                 )}
@@ -160,15 +185,15 @@ export function Header({ className, variant = 'dark' }: HeaderProps) {
             <button
               className={cn(
                 'md:hidden p-2',
-                isLight ? 'text-charcoal' : 'text-moon-ivory'
+                isLightMode ? 'text-charcoal' : 'text-moon-ivory'
               )}
               onClick={() => setMobileOpen((o) => !o)}
               aria-label="Toggle menu"
             >
               <span className="flex flex-col gap-[5px]">
-                <span className={cn('block w-5 h-px transition-all duration-300', isLight ? 'bg-charcoal' : 'bg-moon-ivory', mobileOpen && 'rotate-45 translate-y-[7px]')} />
-                <span className={cn('block w-5 h-px transition-all duration-300', isLight ? 'bg-charcoal' : 'bg-moon-ivory', mobileOpen && 'opacity-0')} />
-                <span className={cn('block w-5 h-px transition-all duration-300', isLight ? 'bg-charcoal' : 'bg-moon-ivory', mobileOpen && '-rotate-45 -translate-y-[7px]')} />
+                <span className={cn('block w-5 h-px transition-all duration-300', isLightMode ? 'bg-charcoal' : 'bg-moon-ivory', mobileOpen && 'rotate-45 translate-y-[7px]')} />
+                <span className={cn('block w-5 h-px transition-all duration-300', isLightMode ? 'bg-charcoal' : 'bg-moon-ivory', mobileOpen && 'opacity-0')} />
+                <span className={cn('block w-5 h-px transition-all duration-300', isLightMode ? 'bg-charcoal' : 'bg-moon-ivory', mobileOpen && '-rotate-45 -translate-y-[7px]')} />
               </span>
             </button>
           </div>
@@ -192,7 +217,7 @@ export function Header({ className, variant = 'dark' }: HeaderProps) {
           </nav>
           <div className="mt-10">
             <Link
-              href="/book-consultation"
+              href="https://wa.me/918971725522?text=I%20would%20like%20to%20book%20a%20consultation." target="_blank" rel="noopener noreferrer"
               onClick={() => setMobileOpen(false)}
               className="inline-flex items-center gap-2 rounded-full border border-moon-ivory/40 text-moon-ivory/90 font-sans text-xs tracking-tight uppercase px-6 py-3"
             >

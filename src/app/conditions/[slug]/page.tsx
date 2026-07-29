@@ -21,6 +21,17 @@ interface ConditionPageProps {
   params: Promise<{ slug: string }>;
 }
 
+export async function generateStaticParams() {
+  return [
+    { slug: 'acne-scars' },
+    { slug: 'hyperpigmentation-melasma' },
+    { slug: 'fine-lines-wrinkles' },
+    { slug: 'hair-thinning' },
+    { slug: 'gummy-smile' },
+    { slug: 'rosacea-redness' },
+  ];
+}
+
 export async function generateMetadata(
   { params }: ConditionPageProps
 ): Promise<Metadata> {

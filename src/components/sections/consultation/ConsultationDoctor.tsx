@@ -9,20 +9,12 @@ import { buildCloudinaryUrl } from '@/lib/cloudinary';
 import { cn } from '@/lib/utils';
 import { fadeUp } from '@/lib/animations';
 
-const DOCTOR_IMAGE_PUBLIC_ID = 'doctor_qlzziq';
-
 export interface ConsultationDoctorProps {
   className?: string;
 }
 
 export function ConsultationDoctor({ className }: ConsultationDoctorProps) {
-  const doctorImageUrl = buildCloudinaryUrl(DOCTOR_IMAGE_PUBLIC_ID, {
-    width: 1000,
-    height: 1375,
-    crop: 'fill',
-    gravity: 'face',
-    quality: 100,
-  });
+  const doctorImageUrl = 'https://res.cloudinary.com/dz5xgcfj/image/upload/v1785290554/doc_cxeext.png';
 
   return (
     <section
@@ -35,13 +27,16 @@ export function ConsultationDoctor({ className }: ConsultationDoctorProps) {
       <div className="max-w-site mx-auto flex flex-col lg:flex-row items-center justify-center gap-12 lg:gap-20">
 
         {/* ── Left Side: Arched Image Frame ── */}
-        <div className="flex justify-center w-full lg:w-[420px] shrink-0">
+        <div className="flex justify-center w-full lg:w-[420px] shrink-0 relative">
+          {/* Subtle soft ambient moonlight halo */}
+          <div className="absolute -inset-4 rounded-t-full bg-[#BBA175]/10 blur-[50px] pointer-events-none" />
+
           <motion.div
             variants={fadeUp}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-100px' }}
-            className="border border-charcoal/10 rounded-t-full p-3 md:p-4 w-full aspect-[8/11] flex items-center justify-center bg-transparent"
+            className="relative border border-charcoal/10 rounded-t-full p-3 md:p-4 w-full aspect-[8/11] flex items-center justify-center bg-transparent luna-soft-shadow"
           >
             <div className="w-full h-full relative rounded-t-full overflow-hidden bg-charcoal/5">
               <Image
@@ -83,12 +78,12 @@ export function ConsultationDoctor({ className }: ConsultationDoctorProps) {
                 Dr. Niharika Mandhyan
               </span>
               <span className="font-sans text-[0.75rem] tracking-wider text-stone-gray font-light">
-                Founder & Lead Clinical Aesthetician, 22luna
+                Founder & Medical Director, 22Luna
               </span>
             </div>
 
             <Link
-              href="/about"
+              href="/about#founders-story"
               className="inline-flex items-center gap-1.5 text-botanical hover:text-charcoal font-sans text-[0.75rem] font-medium uppercase tracking-tight transition-all duration-300 relative group"
             >
               Read Our Full Story

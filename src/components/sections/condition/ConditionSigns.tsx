@@ -52,7 +52,7 @@ export function ConditionSigns({ condition, className }: ConditionSignsProps) {
               className="py-6 sm:py-7 flex items-baseline justify-between gap-6 group"
             >
               <div className="flex items-baseline gap-6 sm:gap-10">
-                <span className="font-display text-charcoal/25 text-[1.2rem] sm:text-[1.4rem] font-light shrink-0">
+                <span className="w-8 h-8 rounded-full border border-charcoal/15 flex items-center justify-center font-sans text-stone-gray text-[0.72rem] shrink-0 font-medium group-hover:border-botanical group-hover:text-botanical transition-colors duration-300">
                   {String(idx + 1).padStart(2, '0')}
                 </span>
                 <span className="font-sans text-charcoal text-[0.92rem] sm:text-[1.05rem] font-light leading-snug group-hover:text-botanical transition-colors duration-300">

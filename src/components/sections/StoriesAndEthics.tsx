@@ -1,8 +1,9 @@
 'use client';
 
 import * as React from 'react';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { fadeUp, fadeIn } from '@/lib/animations';
+import { fadeUp } from '@/lib/animations';
 import { cn } from '@/lib/utils';
 
 export interface StoriesAndEthicsProps {
@@ -20,17 +21,16 @@ export function StoriesAndEthics({ className }: StoriesAndEthicsProps) {
       >
         <div className="max-w-site mx-auto w-full p-6 md:p-8 flex flex-col lg:flex-row items-stretch gap-8 lg:gap-0">
           
-          {/* Left Column: Image Block Placeholder (50% container width, 1:1 aspect ratio) */}
-          <div className="w-full lg:w-1/2 aspect-square bg-[#2E4A40] shrink-0 flex items-center justify-center p-8 text-center shadow-sm rounded-[2px] select-none">
-            <motion.span
-              variants={fadeIn}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: '-60px' }}
-              className="font-sans text-[0.65rem] tracking-[0.25em] uppercase text-moon-ivory/60 leading-relaxed max-w-[280px]"
-            >
-              DR. NIHARIKA WITH VYSHAK & DSP
-            </motion.span>
+          {/* Left Column: Real Image (50% container width, 1:1 aspect ratio) */}
+          <div className="w-full lg:w-1/2 aspect-square shrink-0 relative overflow-hidden rounded-[2px] shadow-sm bg-charcoal/5">
+            <Image
+              src="https://res.cloudinary.com/dz5xgcfj/image/upload/v1785291650/01_r2amun.png"
+              alt="22luna clinical consultation and therapy suite"
+              fill
+              unoptimized
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              className="object-cover transition-transform duration-1000 hover:scale-105"
+            />
           </div>
 
           {/* Right Column: Text block (50% container width, flush-left on mobile, centered on desktop) */}
@@ -72,17 +72,16 @@ export function StoriesAndEthics({ className }: StoriesAndEthicsProps) {
       >
         <div className="max-w-site mx-auto w-full p-6 md:p-8 flex flex-col lg:flex-row-reverse items-stretch gap-8 lg:gap-0">
           
-          {/* Right Column: Image Block Placeholder (50% container width, 1:1 aspect ratio) */}
-          <div className="w-full lg:w-1/2 aspect-square bg-[#2E4A40] shrink-0 flex items-center justify-center p-8 text-center shadow-sm rounded-[2px] select-none">
-            <motion.span
-              variants={fadeIn}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: '-60px' }}
-              className="font-sans text-[0.65rem] tracking-[0.25em] uppercase text-moon-ivory/60 leading-relaxed max-w-[280px]"
-            >
-              DR. NIHARIKA CONSULTATION SHOT
-            </motion.span>
+          {/* Right Column: Real Image (50% container width, 1:1 aspect ratio) */}
+          <div className="w-full lg:w-1/2 aspect-square shrink-0 relative overflow-hidden rounded-[2px] shadow-sm bg-charcoal/5">
+            <Image
+              src="https://res.cloudinary.com/doycsx0hd/image/upload/q_auto/f_auto/v1776607707/arch-two_tutte1.png"
+              alt="Serene curved arches at 22luna"
+              fill
+              unoptimized
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              className="object-cover transition-transform duration-1000 hover:scale-105"
+            />
           </div>
 
           {/* Left Column: Text block (50% container width, flush-left on mobile, centered on desktop) */}

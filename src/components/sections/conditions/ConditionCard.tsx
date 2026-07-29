@@ -23,7 +23,7 @@ export function ConditionCard({ condition, className, delay = 0 }: ConditionCard
       viewport={{ once: true, margin: '-40px' }}
       custom={{ delay }}
       className={cn(
-        'group relative bg-soft-ivory/60 hover:bg-soft-ivory border border-charcoal/10 rounded-[2px] p-6 sm:p-7 flex flex-col justify-between transition-all duration-500 hover:border-charcoal/20 hover:shadow-sm',
+        'group relative bg-soft-ivory/60 hover:bg-soft-ivory border border-charcoal/10 rounded-[2px] p-6 sm:p-7 flex flex-col justify-between transition-all duration-500 hover:border-charcoal/20 luna-soft-shadow arch-niche-glow',
         className
       )}
     >

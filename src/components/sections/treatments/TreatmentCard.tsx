@@ -8,13 +8,34 @@ import { fadeUp } from '@/lib/animations';
 import { cn } from '@/lib/utils';
 import type { CatalogueItem } from '@/lib/treatments-catalogue';
 
+// Helper function to map a treatment slug to its corresponding section anchor on the treatments page
+function getTreatmentSectionUrl(slug: string): string {
+  const s = slug.toLowerCase();
+  
+  if (s.includes('hair') || s.includes('gfc') || s.includes('scalp') || s.includes('keravive')) {
+    return '/treatments#hair-category';
+  }
+  if (s.includes('teeth') || s.includes('align') || s.includes('implant') || s.includes('veneer') || s.includes('smile') || s.includes('whitening')) {
+    return '/treatments#dental-category';
+  }
+  if (s.includes('nad') || s.includes('cocktail') || s.includes('infusion') || s.includes('hydration') || s.includes('wellness') || s.includes('reviv') || s.includes('glow')) {
+    return '/treatments#wellness-category';
+  }
+  
+  // Default fallback is skin category
+  return '/treatments#skin-category';
+}
+
 export interface TreatmentCardProps {
   treatment: CatalogueItem;
   className?: string;
   delay?: number;
+  onClick?: () => void;
 }
 
-export function TreatmentCard({ treatment, className, delay = 0 }: TreatmentCardProps) {
+export function TreatmentCard({ treatment, className, delay = 0, onClick }: TreatmentCardProps) {
+  const targetUrl = getTreatmentSectionUrl(treatment.slug);
+
   return (
     <motion.div
       variants={fadeUp}
@@ -23,7 +44,7 @@ export function TreatmentCard({ treatment, className, delay = 0 }: TreatmentCard
       viewport={{ once: true, margin: '-40px' }}
       custom={{ delay }}
       className={cn(
-        'group relative bg-soft-ivory/60 hover:bg-soft-ivory border border-charcoal/10 rounded-[2px] p-6 sm:p-7 flex flex-col justify-between transition-all duration-500 hover:border-charcoal/20 hover:shadow-sm',
+        'group relative bg-soft-ivory/60 hover:bg-soft-ivory border border-charcoal/10 rounded-[2px] p-6 sm:p-7 flex flex-col justify-between transition-all duration-500 hover:border-charcoal/20 luna-soft-shadow arch-niche-glow',
         className
       )}
     >
@@ -42,7 +63,8 @@ export function TreatmentCard({ treatment, className, delay = 0 }: TreatmentCard
       {/* Learn More Link */}
       <div className="mt-6 pt-4 border-t border-charcoal/5 flex items-center justify-between">
         <Link
-          href={`/treatments/${treatment.slug}`}
+          href={targetUrl}
+          onClick={onClick}
           className="inline-flex items-center gap-1.5 font-sans text-[0.72rem] uppercase tracking-wider text-botanical font-medium group/link"
         >
           <span>Learn More</span>

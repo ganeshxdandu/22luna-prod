@@ -11,10 +11,10 @@ export interface ContactMapProps {
 }
 
 const MAP_EMBED_URL =
-  'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3887.978807530647!2d77.6401083!3d12.9731233!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae16a75f0a4f5f%3A0x6a1b2c3d4e5f6g7h!2sIndiranagar%2C%20Bengaluru%2C%20Karnataka!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin';
+  'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3887.9562469569173!2d77.6041185!3d12.9746503!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae172a127754b9%3A0xfb75683bb0e65b33!2s22%20Luna%20Clinic!5e0!3m2!1sen!2sin!4v1776600153449!5m2!1sen!2sin';
 
 const GOOGLE_MAPS_EXTERNAL_URL =
-  'https://maps.google.com/?q=22luna+Skin+Hair+Dental+Sanctuary+Indiranagar+Bengaluru';
+  'https://www.google.com/maps?cid=18119420072044813107';
 
 export function ContactMap({ className }: ContactMapProps) {
   return (
@@ -37,7 +37,7 @@ export function ContactMap({ className }: ContactMapProps) {
               Interactive Map
             </span>
             <h2 className="font-display text-charcoal uppercase leading-[1.05] tracking-[-0.03em] text-[1.8rem] sm:text-[2.25rem] lg:text-[2.75rem] font-normal">
-              Find Us in Indiranagar
+              Find Us in Ashok Nagar
             </h2>
           </motion.div>
 

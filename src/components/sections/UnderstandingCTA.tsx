@@ -20,7 +20,7 @@ export function UnderstandingCTA({
   title = "Beautiful Results Begin With Understanding",
   subtitle = "Every consultation is an opportunity to understand your skin, your lifestyle, and your goals before creating a treatment plan that's thoughtfully designed for you.",
   buttonText = "Book Consultation",
-  buttonHref = "#book",
+  buttonHref = "https://wa.me/918971725522?text=I%20would%20like%20to%20book%20a%20consultation.",
 }: UnderstandingCTAProps) {
   return (
     <section
@@ -49,8 +49,12 @@ export function UnderstandingCTA({
             }}
           />
 
-          {/* ── Soft Ambient Center Glow ── */}
-          <div className="absolute w-[500px] h-[500px] rounded-full bg-white/10 blur-[100px] pointer-events-none" />
+          {/* ── Soft Breathing Ambient Moonlight Glow ── */}
+          <motion.div
+            animate={{ opacity: [0.1, 0.22, 0.1], scale: [1, 1.08, 1] }}
+            transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
+            className="absolute w-[500px] h-[500px] rounded-full bg-white/15 blur-[100px] pointer-events-none"
+          />
 
           {/* ── Content ── */}
           <div className="relative z-10 max-w-[750px] flex flex-col items-center">

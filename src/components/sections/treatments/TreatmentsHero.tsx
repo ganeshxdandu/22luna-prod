@@ -16,7 +16,7 @@ export function TreatmentsHero({ className }: TreatmentsHeroProps) {
     <section
       id="treatments-hero"
       className={cn(
-        'relative w-full bg-moon-ivory border-b border-charcoal/10',
+        'relative w-full bg-moon-ivory border-b border-charcoal/10 arch-light-wash-top',
         className
       )}
     >
@@ -68,7 +68,7 @@ export function TreatmentsHero({ className }: TreatmentsHeroProps) {
               custom={{ delay: 0.45, duration: 0.9 }}
             >
               <Link
-                href="/book-consultation"
+                href="https://wa.me/918971725522?text=I%20would%20like%20to%20book%20a%20consultation." target="_blank" rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-full bg-botanical text-moon-ivory font-sans text-[0.72rem] uppercase px-7 py-3.5 tracking-tight transition-all duration-300 hover:bg-botanical/90 group"
               >
                 Book a Consultation
