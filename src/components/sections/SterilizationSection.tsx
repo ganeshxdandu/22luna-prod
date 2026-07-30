@@ -13,15 +13,15 @@ const STEPS = [
     category: 'LATEST DEVICES',
     titleLines: ['STERILIZED', 'INSTRUMENTS'],
     description: 'All clinical instruments undergo medical-grade autoclave sterilization.',
-    image: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=400&auto=format&fit=crop',
+    image: 'https://res.cloudinary.com/dz5xgcfj/image/upload/v1785397953/instruments_cstpp8.png',
   },
   {
     id: 'bedding',
     label: 'Sanitized Bedding',
     category: 'PATIENT HYGIENE',
     titleLines: ['SANITIZED', 'BEDDING'],
-    description: 'Disposable paper sheets and sanitized linen for every session.',
-    image: 'https://images.unsplash.com/photo-1616627547907-77de8a9a200f?q=80&w=400&auto=format&fit=crop',
+    description: 'Bedding sanitized for every patient.',
+    image: 'https://res.cloudinary.com/dz5xgcfj/image/upload/v1785397953/bedding_qudetj.png',
   },
   {
     id: 'disposables',
@@ -29,7 +29,7 @@ const STEPS = [
     category: 'SINGLE-USE',
     titleLines: ['SINGLE-USE', 'DISPOSABLES'],
     description: 'All needles, micro-cannulas, and consumables are strictly single-use.',
-    image: 'https://images.unsplash.com/photo-1576086213369-97a306d36557?q=80&w=400&auto=format&fit=crop',
+    image: 'https://res.cloudinary.com/dz5xgcfj/image/upload/v1785397953/disposables_bebldt.png',
   },
   {
     id: 'uv',
@@ -37,7 +37,7 @@ const STEPS = [
     category: 'AMBIENT PROTECTION',
     titleLines: ['UV STERILIZATION', '& FUMIGATION'],
     description: 'Full suite UV sterilization and chemical fumigation between patients.',
-    image: 'https://images.unsplash.com/photo-1583947215259-38e31be8751f?q=80&w=400&auto=format&fit=crop',
+    image: 'https://res.cloudinary.com/dz5xgcfj/image/upload/v1785397953/fumigation_lcty2k.png',
   },
   { id: 'safety', label: 'Safety' },
   { id: 'foundation', label: 'Foundation' },
@@ -122,7 +122,7 @@ export function SterilizationSection({ className }: SterilizationSectionProps) {
 
         {/* Center Indicators / Scrolling prompts */}
         {activeStep < 5 && (
-          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 text-center flex flex-col items-center gap-2 pointer-events-none">
+          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 text-center hidden sm:flex flex-col items-center gap-2 pointer-events-none">
             <span className="font-sans text-[0.6rem] tracking-[0.22em] uppercase text-moon-ivory/50">
               Active Scroll
             </span>
@@ -146,32 +146,58 @@ export function SterilizationSection({ className }: SterilizationSectionProps) {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                className="bg-moon-ivory/95 backdrop-blur-sm border border-charcoal/5 rounded-[4px] shadow-[0_12px_40px_rgba(0,0,0,0.12)] p-8 md:p-10 w-full max-w-[560px] flex flex-row items-center justify-between gap-8 md:gap-10"
+                className="bg-[#F6F3ED] border border-charcoal/[0.06] rounded-[16px] shadow-[0_12px_40px_rgba(0,0,0,0.06)] p-6 sm:p-8 md:p-10 w-full max-w-[600px] flex flex-col gap-6 md:gap-8"
               >
-                {/* Left Content info */}
-                <div className="flex-1 flex flex-col">
-                  <span className="font-sans text-[0.6rem] tracking-[0.2em] uppercase text-botanical font-medium">
-                    {STEPS[activeStep].category}
+                {/* Card Header Bar */}
+                <div className="flex items-center justify-between pb-4 border-b border-charcoal/[0.08]">
+                  <span className="font-sans text-[11px] tracking-[0.18em] text-stone-gray font-light uppercase">
+                    22 LUNA
                   </span>
-                  <h3 className="font-display text-[1.35rem] md:text-[1.55rem] leading-[1.1] uppercase text-charcoal mt-2 tracking-tight">
-                    {STEPS[activeStep].titleLines && STEPS[activeStep].titleLines.map((line, idx) => (
-                      <span key={idx} className="block">{line}</span>
-                    ))}
-                  </h3>
-                  <p className="font-sans text-stone-gray text-[0.76rem] leading-[1.6] font-light mt-3">
-                    {STEPS[activeStep].description}
-                  </p>
+                  <div className="font-sans text-[13px] tracking-tight">
+                    <span className="font-medium text-botanical">0{activeStep}</span>
+                    <span className="font-light text-stone-gray">/04</span>
+                  </div>
                 </div>
 
-                {/* Right Image preview */}
-                <div className="relative w-28 h-28 md:w-36 md:h-36 rounded-[4px] overflow-hidden shrink-0 bg-soft-ivory">
-                  <Image
-                    src={STEPS[activeStep].image || ''}
-                    alt={STEPS[activeStep].label || ''}
-                    fill
-                    unoptimized
-                    className="object-cover"
-                  />
+                {/* Main Card Body */}
+                <div className="flex flex-col md:flex-row items-stretch md:items-center justify-start gap-8">
+                  {/* Left Column (Text) */}
+                  <div className="flex-1 flex flex-col justify-center">
+                    <div className="flex items-center gap-2 text-botanical mb-4">
+                      {/* Padlock Icon */}
+                      <svg className="w-3.5 h-3.5 stroke-[2]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round">
+                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                      </svg>
+                      <span className="font-sans text-[11px] tracking-[0.18em] uppercase font-semibold">
+                        INTERNAL PROTOCOL 0{activeStep}
+                      </span>
+                    </div>
+
+                    <h3 className="font-display text-[24px] sm:text-[28px] md:text-[32px] leading-[1.1] uppercase tracking-tight text-charcoal">
+                      <span className="block text-charcoal font-light">
+                        {STEPS[activeStep].titleLines?.[0]}
+                      </span>
+                      <span className="block text-botanical font-normal mt-1">
+                        {STEPS[activeStep].titleLines?.[1]}
+                      </span>
+                    </h3>
+
+                    <p className="font-sans text-stone-gray text-[14px] md:text-[15px] leading-[1.6] font-light mt-2 md:mt-3 max-w-[300px]">
+                      {STEPS[activeStep].description}
+                    </p>
+                  </div>
+
+                  {/* Right Column (Image) */}
+                  <div className="relative w-[120px] h-[160px] sm:w-[150px] sm:h-[200px] rounded-[12px] overflow-hidden shrink-0 bg-soft-ivory">
+                    <Image
+                      src={STEPS[activeStep].image || ''}
+                      alt={STEPS[activeStep].label || ''}
+                      fill
+                      unoptimized
+                      className="object-cover"
+                    />
+                  </div>
                 </div>
               </motion.div>
             )}

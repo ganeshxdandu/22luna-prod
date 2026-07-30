@@ -4,6 +4,8 @@ import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { getTreatmentBySlug } from '@/lib/treatment-data';
 
+import { BreadcrumbSchema } from '@/components/seo/BreadcrumbSchema';
+
 // ── Section imports ──────────────────────────────────────────────────────────
 import { TreatmentHero } from '@/components/sections/treatment/TreatmentHero';
 import { TreatmentIntroduction } from '@/components/sections/treatment/TreatmentIntroduction';
@@ -35,8 +37,24 @@ export async function generateMetadata(
   }
 
   return {
-    title: treatment.name,
+    title: `${treatment.name} | Treatments | 22Luna`,
     description: treatment.tagline,
+    alternates: {
+      canonical: `https://22luna.in/treatments/${slug}`,
+    },
+    openGraph: {
+      title: `${treatment.name} | Treatments | 22Luna`,
+      description: treatment.tagline,
+      url: `https://22luna.in/treatments/${slug}`,
+      images: [
+        {
+          url: 'https://res.cloudinary.com/dz5xgcfj/image/upload/v1785397953/instruments_cstpp8.png',
+          width: 1200,
+          height: 630,
+          alt: treatment.name,
+        },
+      ],
+    },
   };
 }
 
@@ -48,8 +66,15 @@ export default async function TreatmentDetailPage({ params }: TreatmentPageProps
     notFound();
   }
 
+  const breadcrumbs = [
+    { name: 'Home', item: '/' },
+    { name: 'Treatments', item: '/treatments' },
+    { name: treatment.name, item: `/treatments/${slug}` },
+  ];
+
   return (
     <main className="flex flex-col">
+      <BreadcrumbSchema items={breadcrumbs} />
       {/* Light header — matches About page variant */}
       <Header variant="light" />
 

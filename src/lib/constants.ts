@@ -4,12 +4,12 @@
  */
 
 export const SITE_METADATA = {
-  title: '22luna — Luxury Editorial & Calm Digital Space',
+  title: '22Luna - Luxury Editorial & Calm Digital Space',
   description: 'A premium digital editorial platform curated for holistic health, medical wellness, and spacious design aesthetics.',
-  url: 'https://22luna.com',
+  url: 'https://22luna.in',
   ogImage: '/assets/placeholders/og-image.jpg',
-  author: '22luna Editorial Team',
-  twitter: '@22luna',
+  author: '22Luna Editorial Team',
+  twitter: '@22Luna',
 };
 
 export const CONTAINER_WIDTHS = {

@@ -118,7 +118,7 @@ export function ContactClinicInfo({ className }: ContactClinicInfoProps) {
                 Phone: <strong className="font-medium text-charcoal">+91 89717 25522</strong>
               </p>
               <p className="font-sans text-stone-gray text-[0.85rem] font-light">
-                Email: <strong className="font-medium text-charcoal">hello@22luna.com</strong>
+                Email: <strong className="font-medium text-charcoal">hello@22luna.in</strong>
               </p>
               <p className="font-sans text-stone-gray/80 text-[0.78rem] font-light mt-1 pt-2 border-t border-charcoal/8">
                 WhatsApp available for instant queries

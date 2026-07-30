@@ -4,8 +4,12 @@ import { Footer } from '@/components/layout/Footer';
 import { NotFoundClient } from '@/components/sections/not-found/NotFoundClient';
 
 export const metadata: Metadata = {
-  title: '404 — Page Not Found | 22luna',
+  title: '404 - Page Not Found | 22Luna',
   description: 'Nothing here but a little moonlight. Let us guide you back somewhere familiar.',
+  robots: {
+    index: false,
+    follow: true,
+  },
 };
 
 export default function NotFoundPage() {

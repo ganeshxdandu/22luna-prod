@@ -58,7 +58,7 @@ export function ContactHero({ className }: ContactHeroProps) {
               custom={{ delay: 0.3, duration: 1.0 }}
               className="font-sans text-stone-gray text-[15px] sm:text-[16px] lg:text-[17px] leading-[1.85] font-light"
             >
-              Whether you are ready to schedule a consultation, ask a practical question about your visit, or simply learn more about our philosophy — our clinic team is at your service.
+              Whether you are ready to schedule a consultation, ask a practical question about your visit, or simply learn more about our philosophy - our clinic team is at your service.
             </motion.p>
 
             {/* CTAs */}

@@ -2,14 +2,38 @@ import type { Metadata } from 'next';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 
+import { BreadcrumbSchema } from '@/components/seo/BreadcrumbSchema';
+
 export const metadata: Metadata = {
-  title: 'Terms of Use | 22luna Sanctuary',
-  description: 'Website terms, medical disclaimers, and consultation policies at 22luna.',
+  title: 'Terms of Use | 22Luna Sanctuary',
+  description: 'Website terms, medical disclaimers, and consultation policies at 22Luna.',
+  alternates: {
+    canonical: 'https://22luna.in/terms-of-use',
+  },
+  openGraph: {
+    title: 'Terms of Use | 22Luna Sanctuary',
+    description: 'Website terms, medical disclaimers, and consultation policies at 22Luna.',
+    url: 'https://22luna.in/terms-of-use',
+    images: [
+      {
+        url: 'https://res.cloudinary.com/dz5xgcfj/image/upload/v1785397953/bedding_qudetj.png',
+        width: 1200,
+        height: 630,
+        alt: '22Luna Terms of Use',
+      },
+    ],
+  },
 };
+
+const BREADCRUMB_ITEMS = [
+  { name: 'Home', item: '/' },
+  { name: 'Terms of Use', item: '/terms-of-use' },
+];
 
 export default function TermsOfUsePage() {
   return (
     <main className="flex flex-col bg-moon-ivory">
+      <BreadcrumbSchema items={BREADCRUMB_ITEMS} />
       {/* Light navigation header */}
       <Header variant="light" />
 
@@ -46,7 +70,7 @@ export default function TermsOfUsePage() {
                 1. No Medical Diagnosis or Advice
               </h2>
               <p>
-                The information provided on this website—including details on treatments, skin concerns, and case studies—is 
+                The information provided on this website - including details on treatments, skin concerns, and case studies - is 
                 strictly for educational and exploration purposes. It does not replace a professional medical consultation, 
                 diagnosis, or treatment plan. A direct evaluation by our clinical team is required for diagnosis.
               </p>
@@ -79,8 +103,8 @@ export default function TermsOfUsePage() {
               </h2>
               <p>
                 If you have questions regarding these terms, medical disclaimers, or booking guidelines, please email us at 
-                <a href="mailto:hello@22luna.com" className="text-botanical hover:text-charcoal underline transition-colors mx-1">
-                  hello@22luna.com
+                <a href="mailto:hello@22luna.in" className="text-botanical hover:text-charcoal underline transition-colors mx-1">
+                  hello@22luna.in
                 </a> 
                 or call the clinic directly.
               </p>

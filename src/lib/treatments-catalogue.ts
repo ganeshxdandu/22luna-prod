@@ -162,7 +162,7 @@ export const HAIR_TREATMENTS: CatalogueItem[] = [
   {
     name: 'GFC Treatment',
     slug: 'gfc-hair',
-    description: 'Growth factor concentrate — a refined evolution of PRP for hair density.',
+    description: 'Growth factor concentrate - a refined evolution of PRP for hair density.',
   },
   {
     name: 'Hair Mesotherapy',
@@ -182,7 +182,7 @@ export const HAIR_TREATMENTS: CatalogueItem[] = [
   {
     name: 'PRF Hair',
     slug: 'prf-hair',
-    description: 'Platelet-rich fibrin — a natural, additive-free alternative to PRP.',
+    description: 'Platelet-rich fibrin - a natural, additive-free alternative to PRP.',
   },
 ];
 

@@ -136,13 +136,13 @@ export const TREATMENT_DATA: Record<string, TreatmentData> = {
     introHeading: 'A Facial That Works\nAt a Medical Level.',
     introParagraphs: [
       'HydraFacial is not a standard facial. It is a medical-grade, multi-step skin treatment that combines cleansing, exfoliation, chemical peeling, painless extractions, and deep hydration in one continuous sequence.',
-      'Unlike treatments that correct or restore, HydraFacial primarily maintains. It is a treatment you return to regularly — not because something is wrong, but because consistent skin health is built over time, not in a single visit.',
+      'Unlike treatments that correct or restore, HydraFacial primarily maintains. It is a treatment you return to regularly - not because something is wrong, but because consistent skin health is built over time, not in a single visit.',
       'The technology uses a vortex suction tip to simultaneously remove congestion and infuse active serums, leaving the skin immediately clearer, smoother and more luminous with zero recovery time required.',
     ],
     whyChooseItems: [
       {
         title: 'Immediate, visible improvement.',
-        description: 'Skin appears visibly clearer, more even-toned and hydrated within hours of treatment — without redness or downtime.',
+        description: 'Skin appears visibly clearer, more even-toned and hydrated within hours of treatment - without redness or downtime.',
       },
       {
         title: 'Suitable for all skin types.',

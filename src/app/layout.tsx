@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { displayFont, sansFont } from '@/app/fonts';
 import { ThemeProvider } from '@/components/providers/ThemeProvider';
 import { ScrollProvider } from '@/components/providers/ScrollProvider';
@@ -6,14 +6,24 @@ import { GuidedDiscoveryModal } from '@/components/ui/GuidedDiscoveryModal';
 import { SITE_METADATA } from '@/lib/constants';
 import '@/styles/globals.css';
 
+export const viewport: Viewport = {
+  themeColor: '#F7F4EF',
+};
+
 export const metadata: Metadata = {
   title: {
     default: SITE_METADATA.title,
-    template: `%s | ${SITE_METADATA.title}`,
+    template: `%s | 22luna`,
   },
   description: SITE_METADATA.description,
   metadataBase: new URL(SITE_METADATA.url),
   authors: [{ name: SITE_METADATA.author }],
+  manifest: '/manifest.json',
+  appleWebApp: {
+    capable: true,
+    title: '22luna',
+    statusBarStyle: 'default',
+  },
   openGraph: {
     title: SITE_METADATA.title,
     description: SITE_METADATA.description,
@@ -38,7 +48,16 @@ export const metadata: Metadata = {
     images: [SITE_METADATA.ogImage],
   },
   icons: {
-    icon: '/favicon.ico',
+    icon: [
+      {
+        url: '/22luna-dark.svg',
+        media: '(prefers-color-scheme: light)',
+      },
+      {
+        url: '/22luna.svg',
+        media: '(prefers-color-scheme: dark)',
+      },
+    ],
   },
 };
 

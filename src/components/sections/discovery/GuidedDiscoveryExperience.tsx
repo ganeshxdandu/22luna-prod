@@ -168,9 +168,9 @@ export function GuidedDiscoveryExperience({ className, onClose }: GuidedDiscover
               >
                 {/* Question Heading & Subtitle */}
                 <div>
-                  <h2 className="font-display text-charcoal uppercase leading-[1.08] tracking-[-0.03em] text-[2rem] sm:text-[2.6rem] lg:text-[3rem] font-normal mb-3">
+                  <h1 className="font-display text-charcoal uppercase leading-[1.08] tracking-[-0.03em] text-[2rem] sm:text-[2.6rem] lg:text-[3rem] font-normal mb-3">
                     {currentQuestion.question}
-                  </h2>
+                  </h1>
                   <p className="font-sans text-stone-gray text-[0.88rem] sm:text-[0.95rem] leading-[1.75] font-light">
                     {currentQuestion.subtitle}
                   </p>

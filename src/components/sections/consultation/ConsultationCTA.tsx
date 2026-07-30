@@ -88,7 +88,7 @@ export function ConsultationCTA({ className }: ConsultationCTAProps) {
 
             {/* Reassurance note */}
             <p className="mt-6 font-sans text-[0.7rem] text-white/50 font-light tracking-wide">
-              Unhurried 45-minute appointments · Complete confidentiality
+              Unhurried appointments · Complete confidentiality
             </p>
 
           </div>

@@ -75,7 +75,7 @@ export function StoriesAndEthics({ className }: StoriesAndEthicsProps) {
           {/* Right Column: Real Image (50% container width, 1:1 aspect ratio) */}
           <div className="w-full lg:w-1/2 aspect-square shrink-0 relative overflow-hidden rounded-[2px] shadow-sm bg-charcoal/5">
             <Image
-              src="https://res.cloudinary.com/doycsx0hd/image/upload/q_auto/f_auto/v1776607707/arch-two_tutte1.png"
+              src="https://res.cloudinary.com/dz5xgcfj/image/upload/v1785398110/WhatsApp_Image_2026-07-28_at_16.59.32_kbl9ld.jpg"
               alt="Serene curved arches at 22luna"
               fill
               unoptimized

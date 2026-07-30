@@ -11,15 +11,39 @@ import { HairCategorySection } from '@/components/sections/treatments/HairCatego
 import { DentalCategorySection } from '@/components/sections/treatments/DentalCategorySection';
 import { WellnessRevivSection } from '@/components/sections/treatments/WellnessRevivSection';
 
+import { BreadcrumbSchema } from '@/components/seo/BreadcrumbSchema';
+
 export const metadata: Metadata = {
-  title: 'Our Treatments',
+  title: 'Our Treatments | 22Luna Sanctuary',
   description:
     'Explore our curated portfolio of skin, hair, dental, and wellness treatments. Grouped by concern and category to help you navigate with confidence.',
+  alternates: {
+    canonical: 'https://22luna.in/treatments',
+  },
+  openGraph: {
+    title: 'Our Treatments | 22Luna Sanctuary',
+    description: 'Explore our curated portfolio of skin, hair, dental, and wellness treatments. Grouped by concern and category to help you navigate with confidence.',
+    url: 'https://22luna.in/treatments',
+    images: [
+      {
+        url: 'https://res.cloudinary.com/dz5xgcfj/image/upload/v1785397953/instruments_cstpp8.png',
+        width: 1200,
+        height: 630,
+        alt: 'Treatments at 22Luna Sanctuary',
+      },
+    ],
+  },
 };
+
+const BREADCRUMB_ITEMS = [
+  { name: 'Home', item: '/' },
+  { name: 'Treatments', item: '/treatments' },
+];
 
 export default function TreatmentsPage() {
   return (
     <main className="flex flex-col">
+      <BreadcrumbSchema items={BREADCRUMB_ITEMS} />
       {/* Light Header — consistent with About and Treatment detail pages */}
       <Header variant="light" />
 

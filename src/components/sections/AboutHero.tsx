@@ -120,7 +120,7 @@ export function AboutHero({ className }: AboutHeroProps) {
         >
           <Image
             src={ABOUT_HERO_IMAGE}
-            alt="22LUNA Clinic — Our boutique sanctuary in Bengaluru"
+            alt="22Luna Clinic - Our boutique sanctuary in Bengaluru"
             fill
             priority
             unoptimized

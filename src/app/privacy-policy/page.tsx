@@ -2,14 +2,38 @@ import type { Metadata } from 'next';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 
+import { BreadcrumbSchema } from '@/components/seo/BreadcrumbSchema';
+
 export const metadata: Metadata = {
-  title: 'Privacy Policy | 22luna Sanctuary',
-  description: 'How we collect, store, and protect your personal and medical information at 22luna.',
+  title: 'Privacy Policy | 22Luna Sanctuary',
+  description: 'How we collect, store, and protect your personal and medical information at 22Luna.',
+  alternates: {
+    canonical: 'https://22luna.in/privacy-policy',
+  },
+  openGraph: {
+    title: 'Privacy Policy | 22Luna Sanctuary',
+    description: 'How we collect, store, and protect your personal and medical information at 22Luna.',
+    url: 'https://22luna.in/privacy-policy',
+    images: [
+      {
+        url: 'https://res.cloudinary.com/dz5xgcfj/image/upload/v1785397953/bedding_qudetj.png',
+        width: 1200,
+        height: 630,
+        alt: '22Luna Privacy Policy',
+      },
+    ],
+  },
 };
+
+const BREADCRUMB_ITEMS = [
+  { name: 'Home', item: '/' },
+  { name: 'Privacy Policy', item: '/privacy-policy' },
+];
 
 export default function PrivacyPolicyPage() {
   return (
     <main className="flex flex-col bg-moon-ivory">
+      <BreadcrumbSchema items={BREADCRUMB_ITEMS} />
       {/* Light navigation header */}
       <Header variant="light" />
 
@@ -80,8 +104,8 @@ export default function PrivacyPolicyPage() {
               <p>
                 You hold the right to request access to the personal records we hold, request corrections to any inaccuracies, 
                 or request deletion of your administrative files. You can reach out directly via our email at 
-                <a href="mailto:hello@22luna.com" className="text-botanical hover:text-charcoal underline transition-colors mx-1">
-                  hello@22luna.com
+                <a href="mailto:hello@22luna.in" className="text-botanical hover:text-charcoal underline transition-colors mx-1">
+                  hello@22luna.in
                 </a> 
                 to exercise these rights.
               </p>

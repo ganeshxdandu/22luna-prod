@@ -4,6 +4,8 @@ import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { getConditionBySlug } from '@/lib/condition-detail-data';
 
+import { BreadcrumbSchema } from '@/components/seo/BreadcrumbSchema';
+
 // ── Section Imports ──────────────────────────────────────────────────────────
 import { ConditionHero } from '@/components/sections/condition/ConditionHero';
 import { ConditionUnderstanding } from '@/components/sections/condition/ConditionUnderstanding';
@@ -43,8 +45,24 @@ export async function generateMetadata(
   }
 
   return {
-    title: condition.name,
+    title: `${condition.name} | Conditions | 22Luna`,
     description: condition.tagline,
+    alternates: {
+      canonical: `https://22luna.in/conditions/${slug}`,
+    },
+    openGraph: {
+      title: `${condition.name} | Conditions | 22Luna`,
+      description: condition.tagline,
+      url: `https://22luna.in/conditions/${slug}`,
+      images: [
+        {
+          url: 'https://res.cloudinary.com/dz5xgcfj/image/upload/v1785397953/bedding_qudetj.png',
+          width: 1200,
+          height: 630,
+          alt: condition.name,
+        },
+      ],
+    },
   };
 }
 
@@ -56,8 +74,15 @@ export default async function ConditionDetailPage({ params }: ConditionPageProps
     notFound();
   }
 
+  const breadcrumbs = [
+    { name: 'Home', item: '/' },
+    { name: 'Conditions', item: '/conditions' },
+    { name: condition.name, item: `/conditions/${slug}` },
+  ];
+
   return (
     <main className="flex flex-col">
+      <BreadcrumbSchema items={breadcrumbs} />
       {/* Light Header — consistent with sister pages */}
       <Header variant="light" />
 

@@ -13,19 +13,19 @@ export interface ContactSpaceGalleryProps {
 
 const GALLERY_IMAGES = [
   {
-    publicId: 'skin_qo9vhn',
+    publicId: '39e8e1b1-2fcd-4b4f-9d72-047c24301a25_vitdbu',
     caption: 'Private Consultation Suite',
     subtitle: 'Unhurried, confidential clinical discussions in serene comfort.',
   },
   {
-    publicId: 'wellness_mit4vq',
+    publicId: 'SAN_8574_uxe9hm',
     caption: 'REVIV IV Wellness Suite',
     subtitle: 'Tranquil sanctuary environment designed for complete relaxation.',
   },
   {
-    publicId: 'dental_fpthem',
-    caption: 'Aesthetic Dental Suite',
-    subtitle: 'Precision 3D digital smile design and restorative care.',
+    publicId: '79e38ee2-3e06-4612-9e47-9bfd60eb07dd_rsdmbx',
+    caption: 'Serene Waiting Lounge',
+    subtitle: 'A welcoming, hospitality-forward space to rest before your appointment.',
   },
 ];
 

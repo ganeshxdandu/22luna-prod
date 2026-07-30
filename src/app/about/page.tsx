@@ -13,15 +13,39 @@ import { ScienceBeforeHype } from '@/components/sections/ScienceBeforeHype';
 import { TheCollective } from '@/components/sections/TheCollective';
 import { UnderstandingCTA } from '@/components/sections/UnderstandingCTA';
 
+import { BreadcrumbSchema } from '@/components/seo/BreadcrumbSchema';
+
 export const metadata: Metadata = {
-  title: 'About Us',
+  title: 'About Us | 22Luna Skin, Hair & Dental Sanctuary',
   description:
     'Our boutique sanctuary in the heart of Bengaluru City — cutting-edge aesthetics, private suites, ambient lighting, and seamless care from Consultation to Glow.',
+  alternates: {
+    canonical: 'https://22luna.in/about',
+  },
+  openGraph: {
+    title: 'About Us | 22Luna Skin, Hair & Dental Sanctuary',
+    description: 'Our boutique sanctuary in the heart of Bengaluru City — cutting-edge aesthetics, private suites, ambient lighting, and seamless care from Consultation to Glow.',
+    url: 'https://22luna.in/about',
+    images: [
+      {
+        url: 'https://22luna.in/assets/placeholders/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'About 22Luna Sanctuary',
+      },
+    ],
+  },
 };
+
+const BREADCRUMB_ITEMS = [
+  { name: 'Home', item: '/' },
+  { name: 'About', item: '/about' },
+];
 
 export default function AboutPage() {
   return (
     <main className="flex flex-col">
+      <BreadcrumbSchema items={BREADCRUMB_ITEMS} />
       {/* Light variant: ivory bg, dark charcoal text, botanical green CTA */}
       <Header variant="light" />
 

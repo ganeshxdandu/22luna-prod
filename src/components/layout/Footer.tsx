@@ -51,7 +51,7 @@ export function Footer({ className }: FooterProps) {
             </Link>
             
             <p className="font-sans font-light text-[0.88rem] leading-[1.8] text-moon-ivory/80 max-w-[340px] tracking-wide">
-              Skin, hair and dental care designed around you — guided by clinical experience, precision ethics, and a genuine love for what we do.
+              Skin, hair and dental care designed around you - guided by clinical experience, precision ethics, and a genuine love for what we do.
             </p>
             
             {/* Social channels (Minimal, text handles or simple icons) */}
@@ -126,9 +126,9 @@ export function Footer({ className }: FooterProps) {
                   <Phone size={14} className="text-gold shrink-0" />
                   <span>+91 89717 25522</span>
                 </a>
-                <a href="mailto:hello@22luna.com" className="flex items-center gap-3 hover:text-white transition-colors duration-300">
+                <a href="mailto:hello@22luna.in" className="flex items-center gap-3 hover:text-white transition-colors duration-300">
                   <Mail size={14} className="text-gold shrink-0" />
-                  <span>hello@22luna.com</span>
+                  <span>hello@22luna.in</span>
                 </a>
               </div>
 

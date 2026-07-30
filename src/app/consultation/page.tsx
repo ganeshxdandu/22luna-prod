@@ -13,15 +13,39 @@ import { ConsultationFAQ } from '@/components/sections/consultation/Consultation
 import { ConsultationReassurance } from '@/components/sections/consultation/ConsultationReassurance';
 import { ConsultationCTA } from '@/components/sections/consultation/ConsultationCTA';
 
+import { BreadcrumbSchema } from '@/components/seo/BreadcrumbSchema';
+
 export const metadata: Metadata = {
-  title: 'Consultation & Philosophy of Care',
+  title: 'Consultation & Philosophy of Care | 22Luna',
   description:
-    'Discover our philosophy of care. Consultation at 22luna is a thoughtful, unhurried conversation designed to help you understand your skin and choose with confidence.',
+    'Discover our philosophy of care. Consultation at 22Luna is a thoughtful, unhurried conversation designed to help you understand your skin and choose with confidence.',
+  alternates: {
+    canonical: 'https://22luna.in/consultation',
+  },
+  openGraph: {
+    title: 'Consultation & Philosophy of Care | 22Luna',
+    description: 'Discover our philosophy of care. Consultation at 22Luna is a thoughtful, unhurried conversation designed to help you understand your skin and choose with confidence.',
+    url: 'https://22luna.in/consultation',
+    images: [
+      {
+        url: 'https://res.cloudinary.com/dz5xgcfj/image/upload/v1785396175/SAN_8574_uxe9hm.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Philosophy of Care at 22Luna',
+      },
+    ],
+  },
 };
+
+const BREADCRUMB_ITEMS = [
+  { name: 'Home', item: '/' },
+  { name: 'Consultation', item: '/consultation' },
+];
 
 export default function ConsultationPage() {
   return (
     <main className="flex flex-col">
+      <BreadcrumbSchema items={BREADCRUMB_ITEMS} />
       {/* Light Header — consistent with About and Treatments pages */}
       <Header variant="light" />
 
