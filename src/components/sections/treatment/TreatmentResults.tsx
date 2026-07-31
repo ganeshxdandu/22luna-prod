@@ -1,7 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import Image from 'next/image';
+import { CloudinaryImage } from '@/components/ui/CloudinaryImage';
 import { motion } from 'framer-motion';
 import { fadeUp, fadeIn, scaleIn } from '@/lib/animations';
 import { cn } from '@/lib/utils';
@@ -81,11 +81,11 @@ export function TreatmentResults({ treatment, className }: TreatmentResultsProps
                 className="flex-1 flex flex-col gap-3"
               >
                 <div className="relative w-full aspect-[4/5] overflow-hidden rounded-[2px] bg-soft-ivory">
-                  <Image
+                  <CloudinaryImage
                     src={results.beforeImage}
                     alt="Before treatment"
                     fill
-                    unoptimized
+                    sizes="(max-width: 640px) 100vw, 45vw"
                     className="object-cover object-center"
                   />
                 </div>
@@ -111,11 +111,11 @@ export function TreatmentResults({ treatment, className }: TreatmentResultsProps
                 className="flex-1 flex flex-col gap-3"
               >
                 <div className="relative w-full aspect-[4/5] overflow-hidden rounded-[2px] bg-soft-ivory">
-                  <Image
+                  <CloudinaryImage
                     src={results.afterImage}
                     alt="After treatment"
                     fill
-                    unoptimized
+                    sizes="(max-width: 640px) 100vw, 45vw"
                     className="object-cover object-center"
                   />
                 </div>

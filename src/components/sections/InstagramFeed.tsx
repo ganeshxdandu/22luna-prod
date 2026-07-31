@@ -1,9 +1,9 @@
 'use client';
 
 import * as React from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import { CloudinaryImage } from '@/components/ui/CloudinaryImage';
 import { buildCloudinaryUrl } from '@/lib/cloudinary';
 import { cn } from '@/lib/utils';
 import { fadeUp } from '@/lib/animations';
@@ -203,11 +203,10 @@ export function InstagramFeed({ className }: InstagramFeedProps) {
                   rel="noopener noreferrer"
                   className="w-[240px] md:w-[280px] aspect-square rounded-[4px] overflow-hidden relative shrink-0 group border border-charcoal/[0.03] shadow-sm bg-charcoal/5"
                 >
-                  <Image
+                  <CloudinaryImage
                     src={post.mediaUrl}
                     alt={post.caption || 'Instagram post'}
                     fill
-                    unoptimized
                     sizes="280px"
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
                   />
@@ -231,11 +230,10 @@ export function InstagramFeed({ className }: InstagramFeedProps) {
                 rel="noopener noreferrer"
                 className="w-[240px] md:w-[280px] aspect-square rounded-[4px] overflow-hidden relative shrink-0 group border border-charcoal/[0.03] shadow-sm bg-charcoal/5"
               >
-                <Image
+                <CloudinaryImage
                   src={post.mediaUrl}
                   alt={post.caption || 'Instagram post'}
                   fill
-                  unoptimized
                   sizes="280px"
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
                 />

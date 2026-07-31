@@ -1,7 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import Image from 'next/image';
+import { CloudinaryImage } from '@/components/ui/CloudinaryImage';
 import { motion } from 'framer-motion';
 import { fadeUp, fadeIn } from '@/lib/animations';
 import { cn } from '@/lib/utils';
@@ -69,11 +69,11 @@ export function ScienceBeforeHype({ className }: ScienceBeforeHypeProps) {
 
       {/* ── Bottom Full-Width Image ── */}
       <div className="relative w-full aspect-[16/10] sm:aspect-[16/8] lg:aspect-[21/9] overflow-hidden bg-soft-ivory">
-        <Image
+        <CloudinaryImage
           src="https://res.cloudinary.com/dz5xgcfj/image/upload/v1785206441/ChatGPT_Image_Jul_13_2026_11_33_06_AM_s5uktt.png"
           alt="22Luna modern dental treatment room setting with advanced dental chair and scenic window view of green foliage"
           fill
-          unoptimized
+          sizes="100vw"
           className="object-cover object-center"
         />
         {/* Subtle depth gradient */}

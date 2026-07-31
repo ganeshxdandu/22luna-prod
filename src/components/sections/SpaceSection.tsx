@@ -1,7 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import Image from 'next/image';
+import { CloudinaryImage } from '@/components/ui/CloudinaryImage';
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { fadeUp } from '@/lib/animations';
@@ -51,11 +51,11 @@ export function SpaceSection({ className }: SpaceSectionProps) {
     >
       {/* Subtle Grain Overlay */}
       <div className="absolute inset-0 opacity-[0.015] pointer-events-none z-10">
-        <Image
+        <CloudinaryImage
           src={SPACE_ASSETS.NOISE}
           alt=""
           fill
-          unoptimized
+          sizes="100vw"
           className="object-cover"
         />
       </div>
@@ -108,11 +108,10 @@ export function SpaceSection({ className }: SpaceSectionProps) {
               >
                 {/* Image Component */}
                 <div className="w-full h-full relative overflow-hidden">
-                  <Image
+                  <CloudinaryImage
                     src={img}
                     alt="Clinic space design detail"
                     fill
-                    unoptimized
                     sizes="(max-width: 768px) 100vw, 33vw"
                     className="object-cover transition-transform duration-[1200ms] ease-[cubic-bezier(.22,.61,.36,1)] scale-[1.02] group-hover:scale-105"
                   />

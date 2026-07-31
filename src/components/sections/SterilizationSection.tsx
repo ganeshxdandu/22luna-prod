@@ -1,7 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import Image from 'next/image';
+import { CloudinaryImage } from '@/components/ui/CloudinaryImage';
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-motion';
 import { cn } from '@/lib/utils';
 
@@ -80,12 +80,12 @@ export function SterilizationSection({ className }: SterilizationSectionProps) {
         
         {/* Background Image: Treatment Room */}
         <div className="absolute inset-0 w-full h-full">
-          <Image
+          <CloudinaryImage
             src="https://res.cloudinary.com/dz5xgcfj/image/upload/v1785110031/Treatment_Room_jdlkol.png"
             alt="22Luna Sterile Treatment Room"
             fill
             priority
-            unoptimized
+            sizes="100vw"
             className="object-cover object-center"
           />
         </div>
@@ -190,11 +190,11 @@ export function SterilizationSection({ className }: SterilizationSectionProps) {
 
                   {/* Right Column (Image) */}
                   <div className="relative w-[120px] h-[160px] sm:w-[150px] sm:h-[200px] rounded-[12px] overflow-hidden shrink-0 bg-soft-ivory">
-                    <Image
+                    <CloudinaryImage
                       src={STEPS[activeStep].image || ''}
                       alt={STEPS[activeStep].label || ''}
                       fill
-                      unoptimized
+                      sizes="(max-width: 768px) 120px, 150px"
                       className="object-cover"
                     />
                   </div>

@@ -1,7 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import Image from 'next/image';
+import { CloudinaryImage } from '@/components/ui/CloudinaryImage';
 import { motion } from 'framer-motion';
 import { fadeUp, fadeIn, scaleIn } from '@/lib/animations';
 import { cn } from '@/lib/utils';
@@ -69,11 +69,11 @@ export function DifferentKind({ className }: DifferentKindProps) {
             className="relative w-full aspect-[16/10] overflow-hidden rounded-[2px] shadow-sm bg-soft-ivory flex items-center justify-center group"
           >
             {/* Background Image */}
-            <Image
+            <CloudinaryImage
               src="https://res.cloudinary.com/dz5xgcfj/image/upload/v1785160928/SAN_8471_m8zyuz.jpg"
               alt="A Different Kind of Clinic - 22Luna Interior Lobby"
               fill
-              unoptimized
+              sizes="(max-width: 1024px) 100vw, 60vw"
               className="object-cover transition-transform duration-700 ease-editorial group-hover:scale-[1.02]"
             />
 

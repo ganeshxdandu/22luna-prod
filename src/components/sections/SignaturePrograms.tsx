@@ -1,10 +1,9 @@
 'use client';
 
 import * as React from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import { buildCloudinaryUrl } from '@/lib/cloudinary';
+import { CloudinaryImage } from '@/components/ui/CloudinaryImage';
 import { cn } from '@/lib/utils';
 import { fadeIn, fadeUp } from '@/lib/animations';
 
@@ -169,18 +168,11 @@ export function SignaturePrograms({ className }: SignatureProgramsProps) {
                 transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
                 className="absolute inset-0 w-full h-full"
               >
-                <Image
-                  src={buildCloudinaryUrl(PROGRAMS[activeIndex].publicId, {
-                    width: 1200,
-                    height: 1500,
-                    crop: 'fill',
-                    gravity: 'auto',
-                    quality: 100,
-                  })}
+                <CloudinaryImage
+                  src={PROGRAMS[activeIndex].publicId}
                   alt={PROGRAMS[activeIndex].title}
                   fill
                   priority
-                  unoptimized
                   sizes="(max-width: 1024px) 100vw, 40vw"
                   className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
                 />

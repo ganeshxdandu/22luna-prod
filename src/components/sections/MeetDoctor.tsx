@@ -1,11 +1,10 @@
 'use client';
 
 import * as React from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { buildCloudinaryUrl } from '@/lib/cloudinary';
+import { CloudinaryImage } from '@/components/ui/CloudinaryImage';
 import { cn } from '@/lib/utils';
 import { fadeUp } from '@/lib/animations';
 
@@ -18,8 +17,6 @@ export interface MeetDoctorProps {
 export function MeetDoctor({ className }: MeetDoctorProps) {
   const doctorImageUrl = 'https://res.cloudinary.com/dz5xgcfj/image/upload/v1785290554/doc_cxeext.png';
 
-  const patternImageUrl = buildCloudinaryUrl(PATTERN_IMAGE_PUBLIC_ID);
-
   return (
     <section
       className={cn(
@@ -29,11 +26,11 @@ export function MeetDoctor({ className }: MeetDoctorProps) {
     >
       {/* ── Floral Pattern Top Right ── */}
       <div className="absolute top-0 right-0 w-[200px] md:w-[350px] aspect-square opacity-[0.12] select-none pointer-events-none z-0">
-        <Image
-          src={patternImageUrl}
+        <CloudinaryImage
+          src={PATTERN_IMAGE_PUBLIC_ID}
           alt="Flora Pattern Decor"
           fill
-          unoptimized
+          sizes="(max-width: 768px) 200px, 350px"
           className="object-contain object-right-top"
         />
       </div>
@@ -53,12 +50,11 @@ export function MeetDoctor({ className }: MeetDoctorProps) {
             className="relative border border-charcoal/10 rounded-t-full p-3 md:p-4 w-full aspect-[8/11] flex items-center justify-center bg-transparent luna-soft-shadow"
           >
             <div className="w-full h-full relative rounded-t-full overflow-hidden bg-charcoal/5">
-              <Image
+              <CloudinaryImage
                 src={doctorImageUrl}
                 alt="Dr. Niharika Mandhyan"
                 fill
                 priority
-                unoptimized
                 sizes="(max-width: 1024px) 100vw, 35vw"
                 className="object-cover object-center transition-transform duration-700 hover:scale-105"
               />

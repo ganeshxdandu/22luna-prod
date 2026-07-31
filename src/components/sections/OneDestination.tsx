@@ -1,7 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import Image from 'next/image';
+import { CloudinaryImage } from '@/components/ui/CloudinaryImage';
 import { motion } from 'framer-motion';
 import { fadeUp, scaleIn } from '@/lib/animations';
 import { cn } from '@/lib/utils';
@@ -48,11 +48,11 @@ export function OneDestination({ className }: OneDestinationProps) {
             custom={{ delay: 0.15, duration: 1.2 }}
             className="relative w-full max-w-[360px] lg:max-w-none aspect-[10/15] lg:aspect-none lg:h-[90vh] lg:w-[60vh] overflow-hidden rounded-t-full shadow-sm bg-soft-ivory"
           >
-            <Image
+            <CloudinaryImage
               src="https://res.cloudinary.com/dz5xgcfj/image/upload/v1785110060/SAN_8603_wbggty.jpg"
               alt="22Luna Sanctuary Interior Stairs and Chandelier"
               fill
-              unoptimized
+              sizes="(max-width: 1024px) 100vw, 35vw"
               className="object-cover object-center"
             />
           </motion.div>

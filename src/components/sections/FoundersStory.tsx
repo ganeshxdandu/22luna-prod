@@ -1,7 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import Image from 'next/image';
+import { CloudinaryImage } from '@/components/ui/CloudinaryImage';
 import { motion } from 'framer-motion';
 import { fadeUp, scaleIn } from '@/lib/animations';
 import { cn } from '@/lib/utils';
@@ -21,12 +21,12 @@ export function FoundersStory({ className }: FoundersStoryProps) {
     >
       {/* ── Background Giant Watermark SVG (Inverted for white/light color on dark bg) ── */}
       <div className="absolute top-8 left-0 w-full z-0 px-6 md:px-8 select-none pointer-events-none">
-        <Image
+        <CloudinaryImage
           src="https://res.cloudinary.com/dz5xgcfj/image/upload/v1785160109/THE_FOUNDER_acqvrj.svg"
           alt="The Founder"
           width={1200}
           height={200}
-          unoptimized
+          sizes="100vw"
           className="w-full h-auto opacity-50"
         />
       </div>
@@ -55,12 +55,12 @@ export function FoundersStory({ className }: FoundersStoryProps) {
           custom={{ delay: 0.1, duration: 1.3 }}
           className="relative w-full h-full"
         >
-          <Image
+          <CloudinaryImage
             src="https://res.cloudinary.com/dz5xgcfj/image/upload/v1785141712/doctor_h1oeb7.png"
             alt="Dr. Niharika Mandhyan - Founder of 22Luna"
             fill
             priority
-            unoptimized
+            sizes="(max-width: 1024px) 100vw, 85vh"
             className="object-contain object-bottom"
           />
         </motion.div>
@@ -122,11 +122,11 @@ export function FoundersStory({ className }: FoundersStoryProps) {
       {/* ── Mobile Layout Bottom Portrait (Fills the end of the section on mobile) ── */}
       <div className="lg:hidden flex flex-col items-center justify-center pt-8 z-10 w-full mt-auto">
         <div className="relative w-[320px] sm:w-[380px] aspect-[9/10] overflow-visible">
-          <Image
+          <CloudinaryImage
             src="https://res.cloudinary.com/dz5xgcfj/image/upload/v1785141712/doctor_h1oeb7.png"
             alt="Dr. Niharika Mandhyan - Founder of 22Luna"
             fill
-            unoptimized
+            sizes="(max-width: 768px) 320px, 380px"
             className="object-contain object-bottom"
           />
         </div>

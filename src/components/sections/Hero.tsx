@@ -2,23 +2,13 @@
 
 import * as React from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { ArrowUpRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { fadeIn, fadeUp } from '@/lib/animations';
-import { buildCloudinaryUrl } from '@/lib/cloudinary';
+import { CloudinaryImage } from '@/components/ui/CloudinaryImage';
 import { cn } from '@/lib/utils';
 
 const HERO_IMAGE_PUBLIC_ID = 'hero_s6fbu6';
-
-// Hero image: Cloudinary handles ALL optimization.
-// q_100 = full quality from Cloudinary, no Next.js re-compression (unoptimized=true).
-const heroImageUrl = buildCloudinaryUrl(HERO_IMAGE_PUBLIC_ID, {
-  quality: 100,
-  format: 'auto',
-  crop: 'fill',
-  gravity: 'auto',
-});
 
 
 export interface HeroProps {
@@ -31,13 +21,11 @@ export function Hero({ className }: HeroProps) {
       className={cn("relative w-full h-screen min-h-[600px] overflow-hidden", className)}
     >
       {/* ── Background Image ── */}
-      {/* unoptimized: Cloudinary already delivers an optimized URL — skip Next.js double-compression */}
-      <Image
-        src={heroImageUrl}
+      <CloudinaryImage
+        src={HERO_IMAGE_PUBLIC_ID}
         alt="22luna – Elevated Aesthetics, Precision Medical Care"
         fill
         priority
-        unoptimized
         sizes="100vw"
         className="object-cover object-center"
       />

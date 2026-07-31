@@ -1,7 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import Image from 'next/image';
+import { CloudinaryImage } from '@/components/ui/CloudinaryImage';
 import { motion } from 'framer-motion';
 import { fadeUp } from '@/lib/animations';
 import { cn } from '@/lib/utils';
@@ -23,11 +23,10 @@ export function StoriesAndEthics({ className }: StoriesAndEthicsProps) {
           
           {/* Left Column: Real Image (50% container width, 1:1 aspect ratio) */}
           <div className="w-full lg:w-1/2 aspect-square shrink-0 relative overflow-hidden rounded-[2px] shadow-sm bg-charcoal/5">
-            <Image
+            <CloudinaryImage
               src="https://res.cloudinary.com/dz5xgcfj/image/upload/v1785470003/Filmy_Grain_V2_boeijs.png"
               alt="22Luna clinical consultation and therapy suite"
               fill
-              unoptimized
               sizes="(max-width: 1024px) 100vw, 50vw"
               className="object-cover transition-transform duration-1000 hover:scale-105"
             />
@@ -74,11 +73,10 @@ export function StoriesAndEthics({ className }: StoriesAndEthicsProps) {
           
           {/* Right Column: Real Image (50% container width, 1:1 aspect ratio) */}
           <div className="w-full lg:w-1/2 aspect-square shrink-0 relative overflow-hidden rounded-[2px] shadow-sm bg-charcoal/5">
-            <Image
+            <CloudinaryImage
               src="https://res.cloudinary.com/dz5xgcfj/image/upload/v1785398110/WhatsApp_Image_2026-07-28_at_16.59.32_kbl9ld.jpg"
               alt="Serene curved arches at 22luna"
               fill
-              unoptimized
               sizes="(max-width: 1024px) 100vw, 50vw"
               className="object-cover transition-transform duration-1000 hover:scale-105"
             />

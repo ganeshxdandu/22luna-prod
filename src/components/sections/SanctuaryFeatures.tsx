@@ -1,7 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import Image from 'next/image';
+import { CloudinaryImage } from '@/components/ui/CloudinaryImage';
 import { motion } from 'framer-motion';
 import { fadeUp, fadeIn } from '@/lib/animations';
 import { cn } from '@/lib/utils';
@@ -55,12 +55,11 @@ export function SanctuaryFeatures({ className }: SanctuaryFeaturesProps) {
           className="w-full border-b border-charcoal/10 pb-8"
         >
           <div className="w-full">
-            <Image
+            <CloudinaryImage
               src="/SANCTUARY FEATURES.svg"
               alt="Sanctuary Features"
               width={1200}
               height={100}
-              unoptimized
               className="w-full h-auto select-none pointer-events-none"
             />
           </div>
@@ -85,11 +84,11 @@ export function SanctuaryFeatures({ className }: SanctuaryFeaturesProps) {
                   {/* Image wrapper */}
                   <div className="relative w-full flex-1 flex items-center justify-center min-h-[200px]">
                     <div className="relative w-44 h-44 md:w-52 md:h-52 transition-transform duration-700 ease-editorial group-hover:scale-[1.03]">
-                      <Image
+                      <CloudinaryImage
                         src={card.image}
                         alt={card.alt}
                         fill
-                        unoptimized
+                        sizes="(max-width: 768px) 176px, 208px"
                         className="object-contain"
                       />
                     </div>

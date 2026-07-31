@@ -1,7 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import Image from 'next/image';
+import { CloudinaryImage } from '@/components/ui/CloudinaryImage';
 import { motion } from 'framer-motion';
 import { fadeUp, fadeIn, scaleIn } from '@/lib/animations';
 import { cn } from '@/lib/utils';
@@ -118,12 +118,11 @@ export function AboutHero({ className }: AboutHeroProps) {
           className="relative w-full lg:w-7/12 overflow-hidden aspect-[3/2] sm:aspect-video lg:aspect-auto lg:h-full shrink-0"
           /* Hard edges — no border-radius, no overflow */
         >
-          <Image
+          <CloudinaryImage
             src={ABOUT_HERO_IMAGE}
             alt="22Luna Clinic - Our boutique sanctuary in Bengaluru"
             fill
             priority
-            unoptimized
             sizes="(max-width: 1024px) 100vw, 65vw"
             className="object-cover object-center"
           />

@@ -1,7 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import Image from 'next/image';
+import { CloudinaryImage } from '@/components/ui/CloudinaryImage';
 import { motion } from 'framer-motion';
 import { fadeUp } from '@/lib/animations';
 import { cn } from '@/lib/utils';
@@ -84,11 +84,10 @@ export function TheCollective({ className }: TheCollectiveProps) {
               {/* Photo Box (Brand green placeholder bg fallback, or Doctor Image if provided) */}
               <div className="w-full aspect-[4/5] bg-[#2E4A40] rounded-[2px] shadow-sm overflow-hidden select-none transition-transform duration-500 group-hover:scale-[1.01] relative">
                 {member.image ? (
-                  <Image
+                  <CloudinaryImage
                     src={member.image}
                     alt={member.name}
                     fill
-                    unoptimized
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 20vw"
                     className="object-cover object-center"
                   />

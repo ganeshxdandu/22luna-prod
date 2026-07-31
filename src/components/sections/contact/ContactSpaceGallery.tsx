@@ -1,10 +1,9 @@
 'use client';
 
 import * as React from 'react';
-import Image from 'next/image';
+import { CloudinaryImage } from '@/components/ui/CloudinaryImage';
 import { motion } from 'framer-motion';
 import { fadeUp, fadeIn } from '@/lib/animations';
-import { buildCloudinaryUrl } from '@/lib/cloudinary';
 import { cn } from '@/lib/utils';
 
 export interface ContactSpaceGalleryProps {
@@ -70,14 +69,6 @@ export function ContactSpaceGallery({ className }: ContactSpaceGalleryProps) {
         {/* Immersive Photography Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {GALLERY_IMAGES.map((item, idx) => {
-            const imageUrl = buildCloudinaryUrl(item.publicId, {
-              width: 1000,
-              height: 1200,
-              crop: 'fill',
-              gravity: 'auto',
-              quality: 100,
-            });
-
             return (
               <motion.div
                 key={item.publicId}
@@ -90,11 +81,11 @@ export function ContactSpaceGallery({ className }: ContactSpaceGalleryProps) {
               >
                 {/* Image frame */}
                 <div className="relative w-full aspect-[4/5] rounded-[2px] overflow-hidden bg-charcoal/5 border border-charcoal/10">
-                  <Image
-                    src={imageUrl}
+                  <CloudinaryImage
+                    src={item.publicId}
                     alt={item.caption}
                     fill
-                    unoptimized
+                    sizes="(max-width: 768px) 100vw, 33vw"
                     className="object-cover object-center transition-transform duration-700 ease-editorial group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-charcoal/30 via-transparent to-transparent opacity-40 group-hover:opacity-20 transition-opacity duration-500" />

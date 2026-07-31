@@ -1,11 +1,10 @@
 'use client';
 
 import * as React from 'react';
-import Image from 'next/image';
 import { ArrowDown } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { fadeUp, fadeIn } from '@/lib/animations';
-import { buildCloudinaryUrl } from '@/lib/cloudinary';
+import { CloudinaryImage } from '@/components/ui/CloudinaryImage';
 import { cn } from '@/lib/utils';
 import { TREATMENT_CATEGORIES } from '@/lib/treatments-catalogue';
 
@@ -62,14 +61,6 @@ export function CategoryCardsOverview({ className }: CategoryCardsOverviewProps)
         {/* Categories Grid (2x2 on md+, stacked on mobile) */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
           {TREATMENT_CATEGORIES.map((category, idx) => {
-            const imageUrl = buildCloudinaryUrl(category.cloudinaryPublicId, {
-              width: 1000,
-              height: 1000,
-              crop: 'fill',
-              gravity: 'auto',
-              quality: 100,
-            });
-
             return (
               <motion.div
                 key={category.id}
@@ -82,11 +73,11 @@ export function CategoryCardsOverview({ className }: CategoryCardsOverviewProps)
               >
                 {/* Image Aspect Box */}
                 <div className="relative w-full aspect-[16/10] overflow-hidden bg-charcoal/5">
-                  <Image
-                    src={imageUrl}
+                  <CloudinaryImage
+                    src={category.cloudinaryPublicId}
                     alt={category.name}
                     fill
-                    unoptimized
+                    sizes="(max-width: 768px) 100vw, 50vw"
                     className="object-cover object-center transition-transform duration-700 ease-editorial group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-charcoal/40 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-500" />

@@ -43,8 +43,11 @@ export function CloudinaryImage({
 }: CloudinaryImageProps) {
   const isCloudinary = React.useMemo(() => {
     if (!src) return false;
-    // Local paths (starts with /) or external links are not standard Cloudinary public IDs
-    return !src.startsWith('/') && !isFullUrl(src);
+    if (src.startsWith('/')) return false;
+    if (isFullUrl(src)) {
+      return src.includes('res.cloudinary.com');
+    }
+    return true;
   }, [src]);
 
   // Next.js custom loader for Cloudinary images (automatically handles responsive srcSets)
@@ -69,6 +72,8 @@ export function CloudinaryImage({
     }
     return undefined;
   }, [src, isCloudinary, blurPlaceholder]);
+
+  if (!src) return null;
 
   // Standard static image props
   const imageProps: Partial<ImageProps> = {

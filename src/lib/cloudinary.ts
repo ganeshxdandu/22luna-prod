@@ -40,22 +40,43 @@ export function buildCloudinaryUrl(
     return publicId;
   }
 
-  // Extract publicId if a full Cloudinary URL was accidentally passed
+  // Extract publicId and cloudName if a Cloudinary URL is passed
   let cleanPublicId = publicId;
-  const cloudName = CLOUDINARY_CONFIG.cloudName;
-  const cloudinaryDomain = `res.cloudinary.com/${cloudName}/image/upload/`;
+  let cloudName = CLOUDINARY_CONFIG.cloudName;
 
-  if (publicId.includes(cloudinaryDomain)) {
-    const parts = publicId.split(cloudinaryDomain);
-    // The second part might contain transformations, we want just the publicId
-    const afterUpload = parts[1];
-    const afterUploadParts = afterUpload.split('/');
-    // Check if the first part has transformations (like w_100, f_auto, etc.)
-    if (afterUploadParts[0].includes('_') || afterUploadParts[0] === 'v1' || /^\d+$/.test(afterUploadParts[0])) {
-      // It has transformations or a version prefix, slice them out
-      cleanPublicId = afterUploadParts.slice(1).join('/');
-    } else {
-      cleanPublicId = afterUpload;
+  if (publicId.includes('res.cloudinary.com/')) {
+    const uploadSplit = publicId.split(/\/image\/upload\//);
+    if (uploadSplit.length === 2) {
+      const domainPart = uploadSplit[0];
+      const pathPart = uploadSplit[1];
+      
+      const domainParts = domainPart.split('/');
+      cloudName = domainParts[domainParts.length - 1];
+      
+      const pathSegments = pathPart.split('/');
+      const cleanSegments = pathSegments.filter((segment, index) => {
+        if (index === pathSegments.length - 1) return true;
+        if (/^v\d+$/.test(segment)) return false;
+        if (/^[a-z]{1,3}_[a-zA-Z0-9:]+$/.test(segment)) return false;
+        if (segment.includes(',') && segment.split(',').every(s => /^[a-z]{1,3}_[a-zA-Z0-9:]+$/.test(s))) {
+          return false;
+        }
+        return true;
+      });
+      cleanPublicId = cleanSegments.join('/');
+    }
+  } else {
+    // Fallback for relative public IDs that might contain the default domain split
+    const cloudinaryDomain = `res.cloudinary.com/${cloudName}/image/upload/`;
+    if (publicId.includes(cloudinaryDomain)) {
+      const parts = publicId.split(cloudinaryDomain);
+      const afterUpload = parts[1];
+      const afterUploadParts = afterUpload.split('/');
+      if (afterUploadParts[0].includes('_') || afterUploadParts[0] === 'v1' || /^\d+$/.test(afterUploadParts[0]) || /^v\d+$/.test(afterUploadParts[0])) {
+        cleanPublicId = afterUploadParts.slice(1).join('/');
+      } else {
+        cleanPublicId = afterUpload;
+      }
     }
   }
 

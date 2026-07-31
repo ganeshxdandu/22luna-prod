@@ -1,7 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import Image from 'next/image';
+import { CloudinaryImage } from '@/components/ui/CloudinaryImage';
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { fadeUp } from '@/lib/animations';
@@ -116,13 +116,12 @@ function ImageCard({ item }: { item: ImageItem }) {
   return (
     <div className="my-6 group flex flex-col">
       <div className={cn("relative overflow-hidden rounded-[8px] bg-charcoal/[0.03] border border-charcoal/[0.05] shadow-[0_4px_24px_rgba(0,0,0,0.01)] transition-all duration-700", item.aspect)}>
-        <Image
+        <CloudinaryImage
           src={item.src}
           alt={item.caption}
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           className="object-cover transition-transform duration-[1200ms] ease-[cubic-bezier(.22,.61,.36,1)] scale-[1.01] group-hover:scale-105"
-          unoptimized
         />
         {/* Editorial overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-charcoal/5 via-transparent to-transparent pointer-events-none" />

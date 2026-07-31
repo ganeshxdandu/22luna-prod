@@ -1,11 +1,10 @@
 'use client';
 
 import * as React from 'react';
-import Image from 'next/image';
+import { CloudinaryImage } from '@/components/ui/CloudinaryImage';
 import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { buildCloudinaryUrl } from '@/lib/cloudinary';
 import { cn } from '@/lib/utils';
 import { fadeUp } from '@/lib/animations';
 
@@ -39,12 +38,11 @@ export function ConsultationDoctor({ className }: ConsultationDoctorProps) {
             className="relative border border-charcoal/10 rounded-t-full p-3 md:p-4 w-full aspect-[8/11] flex items-center justify-center bg-transparent luna-soft-shadow"
           >
             <div className="w-full h-full relative rounded-t-full overflow-hidden bg-charcoal/5">
-              <Image
+              <CloudinaryImage
                 src={doctorImageUrl}
                 alt="Dr. Niharika Mandhyan — 22Luna Founder"
                 fill
                 priority
-                unoptimized
                 sizes="(max-width: 1024px) 100vw, 35vw"
                 className="object-cover object-center transition-transform duration-700 hover:scale-105"
               />
