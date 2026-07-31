@@ -4,7 +4,6 @@ import * as React from 'react';
 import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { fadeIn, fadeUp } from '@/lib/animations';
 import { CloudinaryImage } from '@/components/ui/CloudinaryImage';
 import { cn } from '@/lib/utils';
 
@@ -46,13 +45,9 @@ export function Hero({ className }: HeroProps) {
         />
       </div>
 
-      {/* ── Left Vertical Label ── */}
-      <motion.div
-        variants={fadeIn}
-        initial="hidden"
-        animate="visible"
-        custom={{ delay: 0.6, duration: 1 }}
-        className="absolute left-5 top-1/2 -translate-y-1/2 flex items-center gap-2"
+      {/* ── Left Vertical Label (Pure CSS Animation) ── */}
+      <div
+        className="absolute left-5 top-1/2 -translate-y-1/2 flex items-center gap-2 css-fade-in-delayed-1"
         style={{ writingMode: 'vertical-rl', transform: 'translateY(-50%)' }}
       >
         <span className="text-moon-ivory/60 font-sans tracking-tight uppercase"
@@ -60,15 +55,11 @@ export function Hero({ className }: HeroProps) {
         >
           Skin · Hair · Dental · IV
         </span>
-      </motion.div>
+      </div>
 
-      {/* ── Right Vertical Label: SCROLL DOWN ── */}
-      <motion.div
-        variants={fadeIn}
-        initial="hidden"
-        animate="visible"
-        custom={{ delay: 0.8, duration: 1 }}
-        className="absolute right-5 top-1/2 -translate-y-1/2 flex items-center"
+      {/* ── Right Vertical Label: SCROLL DOWN (Pure CSS Animation) ── */}
+      <div
+        className="absolute right-5 top-1/2 -translate-y-1/2 flex items-center css-fade-in-delayed-2"
         style={{ writingMode: 'vertical-rl', transform: 'translateY(-50%)' }}
       >
         <span
@@ -77,19 +68,13 @@ export function Hero({ className }: HeroProps) {
         >
           Scroll Down →
         </span>
-      </motion.div>
+      </div>
 
       {/* ── Bottom Content Area ── */}
       <div className="absolute bottom-0 left-0 right-0 px-8 py-8 flex flex-col sm:flex-row sm:items-end justify-between items-start gap-6 sm:gap-0">
 
-        {/* Headline */}
-        <motion.div
-          variants={fadeUp}
-          initial="hidden"
-          animate="visible"
-          custom={{ delay: 0.2, duration: 1.1 }}
-          className="max-w-[90%] sm:max-w-[65%] md:max-w-[55%] lg:max-w-[50%]"
-        >
+        {/* Headline (Pure CSS Animation) */}
+        <div className="max-w-[90%] sm:max-w-[65%] md:max-w-[55%] lg:max-w-[50%] css-fade-up-headline">
           <h1
             className="text-moon-ivory font-display leading-[1.05] tracking-[-0.02em]"
             style={{ fontSize: 'clamp(2rem, 4.444vw, 4rem)', fontWeight: 400 }}
@@ -98,16 +83,10 @@ export function Hero({ className }: HeroProps) {
             <br />
             Precision Medical Care.
           </h1>
-        </motion.div>
+        </div>
 
-        {/* Book Consultation CTA */}
-        <motion.div
-          variants={fadeUp}
-          initial="hidden"
-          animate="visible"
-          custom={{ delay: 0.5, duration: 1 }}
-          className="mb-1"
-        >
+        {/* Book Consultation CTA (Pure CSS Animation) */}
+        <div className="mb-1 css-fade-up-cta">
           <Link
             href="https://wa.me/918971725522?text=I%20would%20like%20to%20book%20a%20consultation." target="_blank" rel="noopener noreferrer"
             className="inline-flex items-center gap-2 tracking-normal rounded-full bg-moon-ivory/15 backdrop-blur-sm border border-moon-ivory/30 text-moon-ivory font-sans text-[0.75rem] uppercase px-6 py-3.5 transition-all duration-500 hover:bg-moon-ivory hover:text-charcoal hover:border-moon-ivory group"
@@ -118,7 +97,7 @@ export function Hero({ className }: HeroProps) {
               className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
             />
           </Link>
-        </motion.div>
+        </div>
 
       </div>
     </section>
