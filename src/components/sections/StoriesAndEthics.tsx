@@ -24,8 +24,8 @@ export function StoriesAndEthics({ className }: StoriesAndEthicsProps) {
           {/* Left Column: Real Image (50% container width, 1:1 aspect ratio) */}
           <div className="w-full lg:w-1/2 aspect-square shrink-0 relative overflow-hidden rounded-[2px] shadow-sm bg-charcoal/5">
             <Image
-              src="https://res.cloudinary.com/dz5xgcfj/image/upload/v1785291650/01_r2amun.png"
-              alt="22luna clinical consultation and therapy suite"
+              src="https://res.cloudinary.com/dz5xgcfj/image/upload/v1785470003/Filmy_Grain_V2_boeijs.png"
+              alt="22Luna clinical consultation and therapy suite"
               fill
               unoptimized
               sizes="(max-width: 1024px) 100vw, 50vw"
