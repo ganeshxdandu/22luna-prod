@@ -60,6 +60,49 @@ export interface SignatureProgramsProps {
 
 export function SignaturePrograms({ className }: SignatureProgramsProps) {
     const [activeIndex, setActiveIndex] = React.useState(0);
+    const itemRefs = React.useRef<(HTMLAnchorElement | null)[]>([]);
+
+    React.useEffect(() => {
+        let observer: IntersectionObserver | null = null;
+
+        const initObserver = () => {
+            if (observer) {
+                observer.disconnect();
+            }
+
+            // Only activate scroll observer on mobile/tablet (viewport < 1024px)
+            if (window.innerWidth < 1024) {
+                const observerOptions = {
+                    root: null,
+                    rootMargin: "-42% 0px -42% 0px", // focus on the middle vertical band
+                    threshold: 0,
+                };
+
+                observer = new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            const index = itemRefs.current.indexOf(entry.target as HTMLAnchorElement);
+                            if (index !== -1) {
+                                setActiveIndex(index);
+                            }
+                        }
+                    });
+                }, observerOptions);
+
+                itemRefs.current.forEach((ref) => {
+                    if (ref) observer?.observe(ref);
+                });
+            }
+        };
+
+        initObserver();
+
+        window.addEventListener("resize", initObserver);
+        return () => {
+            window.removeEventListener("resize", initObserver);
+            if (observer) observer.disconnect();
+        };
+    }, []);
 
     return (
         <section
@@ -100,6 +143,7 @@ export function SignaturePrograms({ className }: SignatureProgramsProps) {
                             return (
                                 <Link
                                     key={program.id}
+                                    ref={(el) => { itemRefs.current[idx] = el; }}
                                     href={targetUrl}
                                     className="border-b border-charcoal/10 py-6 md:py-8 px-4 sm:px-6 md:px-8 cursor-pointer transition-all duration-500 relative block group"
                                     onMouseEnter={() => setActiveIndex(idx)}

@@ -68,10 +68,11 @@ export function ScrollPinnedGallery({ className }: ScrollPinnedGalleryProps) {
     /* Outer container: acts as scroll track on all screens (h-[260vh]) */
     <div 
       ref={containerRef} 
+      id="advanced-technology"
       className={cn('relative w-full h-[260vh]', className)}
     >
       {/* Sticky viewport container: pins screens inside viewport on scroll */}
-      <div className="w-full sticky top-0 h-screen overflow-hidden flex flex-col justify-center py-6 sm:py-10">
+      <div className="w-full sticky top-0 h-screen overflow-hidden flex flex-col justify-center py-4 sm:py-10">
         
         {/* Gallery Title & Header Info */}
         <div className="max-w-site mx-auto w-full px-6 md:px-8 mb-6 lg:mb-8 flex flex-col lg:flex-row lg:justify-between lg:items-end gap-4 lg:gap-8">
@@ -103,16 +104,16 @@ export function ScrollPinnedGallery({ className }: ScrollPinnedGalleryProps) {
             {ENHANCED_TECH_CARDS.map((card, i) => (
               <div
                 key={i}
-                className="w-[260px] sm:w-[320px] md:w-[380px] lg:w-[330px] xl:w-[380px] shrink-0 bg-soft-ivory border border-charcoal/[0.05] rounded-[4px] p-5 sm:p-8 lg:p-6 xl:p-8 flex flex-col justify-between items-stretch aspect-[4/5] group hover:border-charcoal/[0.12] hover:shadow-[0_16px_40px_rgb(46,44,41,0.03)] transition-all duration-700"
+                className="w-[290px] xs:w-[320px] sm:w-[320px] md:w-[380px] lg:w-[330px] xl:w-[380px] shrink-0 bg-soft-ivory border border-charcoal/[0.05] rounded-[4px] p-5 sm:p-8 lg:p-6 xl:p-8 flex flex-col justify-between items-stretch aspect-[3/4] sm:aspect-[4/5] group hover:border-charcoal/[0.12] hover:shadow-[0_16px_40px_rgb(46,44,41,0.03)] transition-all duration-700"
               >
                 {/* Product render container with premium soft frame */}
                 <div className="relative w-full flex-1 bg-charcoal/[0.012] rounded-[2px] flex items-center justify-center p-4 lg:p-3 xl:p-5 overflow-hidden mb-4 sm:mb-6">
-                  <div className="relative w-32 h-32 sm:w-44 sm:h-44 lg:w-40 lg:h-40 xl:w-48 xl:h-48 transition-transform duration-1000 ease-editorial group-hover:scale-[1.03]">
+                  <div className="relative w-40 h-40 xs:w-48 xs:h-48 sm:w-44 sm:h-44 lg:w-40 lg:h-40 xl:w-48 xl:h-48 transition-transform duration-1000 ease-editorial group-hover:scale-[1.03]">
                     <CloudinaryImage
                       src={card.image}
                       alt={card.alt}
                       fill
-                      sizes="(max-width: 640px) 130px, (max-width: 768px) 160px, 200px"
+                      sizes="(max-width: 640px) 160px, (max-width: 768px) 176px, 200px"
                       className="object-contain"
                     />
                   </div>

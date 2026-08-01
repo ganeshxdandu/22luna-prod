@@ -89,6 +89,7 @@ export function Footer({ className }: FooterProps) {
               {[
                 { label: 'Home', href: '/' },
                 { label: 'About', href: '/about' },
+                { label: 'Advanced Technology', href: '/about#advanced-technology' },
                 { label: 'Treatments', href: '/treatments' },
                 { label: 'Concerns Index', href: '/concerns' },
                 { label: 'Consultation Philosophy', href: '/consultation' },
