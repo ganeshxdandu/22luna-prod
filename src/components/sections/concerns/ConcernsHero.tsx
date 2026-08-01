@@ -7,14 +7,14 @@ import { motion } from 'framer-motion';
 import { fadeUp, fadeIn } from '@/lib/animations';
 import { cn } from '@/lib/utils';
 
-export interface ConditionsHeroProps {
+export interface ConcernsHeroProps {
   className?: string;
 }
 
-export function ConditionsHero({ className }: ConditionsHeroProps) {
+export function ConcernsHero({ className }: ConcernsHeroProps) {
   return (
     <section
-      id="conditions-hero"
+      id="concerns-hero"
       className={cn(
         'relative w-full bg-moon-ivory border-b border-charcoal/10 arch-light-wash-top',
         className

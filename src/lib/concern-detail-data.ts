@@ -1,11 +1,11 @@
 /**
- * Condition Detail Data Schema
- * Single source of truth for all individual condition detail pages (/conditions/[slug]).
+ * Concern Detail Data Schema
+ * Single source of truth for all individual concern detail pages (/concerns/[slug]).
  */
 
-import { SKIN_CONCERNS, HAIR_CONCERNS, DENTAL_CONCERNS, ConditionItem } from './conditions-catalogue';
+import { SKIN_CONCERNS, HAIR_CONCERNS, DENTAL_CONCERNS, ConcernItem } from './concerns-catalogue';
 
-export interface ConditionCause {
+export interface ConcernCause {
   factor: string;
   explanation: string;
 }
@@ -16,12 +16,12 @@ export interface SuitableTreatmentRef {
   description: string;
 }
 
-export interface ConditionFAQItem {
+export interface ConcernFAQItem {
   question: string;
   answer: string;
 }
 
-export interface ConditionDetailData {
+export interface ConcernDetailData {
   slug: string;
   name: string;
   tagline: string;
@@ -36,7 +36,7 @@ export interface ConditionDetailData {
   signsNoticed: string[];
 
   // Section 4: Causes
-  causes: ConditionCause[];
+  causes: ConcernCause[];
 
   // Section 5: When to seek advice
   adviceGuidance: string[];
@@ -48,7 +48,7 @@ export interface ConditionDetailData {
   preventionTips: string[];
 
   // Section 8: FAQs
-  faqs: ConditionFAQItem[];
+  faqs: ConcernFAQItem[];
 
   // Section 9: CTA
   ctaTitle?: string;
@@ -56,10 +56,10 @@ export interface ConditionDetailData {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// EXPLICIT CONDITION DETAIL REPOSITORY
+// EXPLICIT CONCERN DETAIL REPOSITORY
 // ─────────────────────────────────────────────────────────────────────────────
 
-export const CONDITION_DETAIL_DATA: Record<string, ConditionDetailData> = {
+export const CONCERN_DETAIL_DATA: Record<string, ConcernDetailData> = {
   'acne-scars': {
     slug: 'acne-scars',
     name: 'Acne & Acne Scars',
@@ -170,11 +170,11 @@ export const CONDITION_DETAIL_DATA: Record<string, ConditionDetailData> = {
 };
 
 // ─────────────────────────────────────────────────────────────────────────────
-// DYNAMIC GENERATOR FOR ALL OTHER CONDITIONS
+// DYNAMIC GENERATOR FOR ALL OTHER CONCERNS
 // ─────────────────────────────────────────────────────────────────────────────
 
-function createGenericConditionData(slug: string): ConditionDetailData {
-  let item: ConditionItem | undefined;
+function createGenericConcernData(slug: string): ConcernDetailData {
+  let item: ConcernItem | undefined;
 
   for (const c of SKIN_CONCERNS) { if (c.slug === slug) { item = c; break; } }
   if (!item) { for (const c of HAIR_CONCERNS) { if (c.slug === slug) { item = c; break; } } }
@@ -248,9 +248,9 @@ function createGenericConditionData(slug: string): ConditionDetailData {
   };
 }
 
-export function getConditionBySlug(slug: string): ConditionDetailData {
-  if (CONDITION_DETAIL_DATA[slug]) {
-    return CONDITION_DETAIL_DATA[slug];
+export function getConcernBySlug(slug: string): ConcernDetailData {
+  if (CONCERN_DETAIL_DATA[slug]) {
+    return CONCERN_DETAIL_DATA[slug];
   }
-  return createGenericConditionData(slug);
+  return createGenericConcernData(slug);
 }

@@ -3,12 +3,12 @@ import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 
 // ── Section Imports ──────────────────────────────────────────────────────────
-import { ConditionsHero } from '@/components/sections/conditions/ConditionsHero';
-import { ConditionCategoriesOverview } from '@/components/sections/conditions/ConditionCategoriesOverview';
-import { SkinConditionsSection } from '@/components/sections/conditions/SkinConditionsSection';
-import { HairConditionsSection } from '@/components/sections/conditions/HairConditionsSection';
-import { DentalConditionsSection } from '@/components/sections/conditions/DentalConditionsSection';
-import { ConditionsCTA } from '@/components/sections/conditions/ConditionsCTA';
+import { ConcernsHero } from '@/components/sections/concerns/ConcernsHero';
+import { ConcernCategoriesOverview } from '@/components/sections/concerns/ConcernCategoriesOverview';
+import { SkinConcernsSection } from '@/components/sections/concerns/SkinConcernsSection';
+import { HairConcernsSection } from '@/components/sections/concerns/HairConcernsSection';
+import { DentalConcernsSection } from '@/components/sections/concerns/DentalConcernsSection';
+import { ConcernsCTA } from '@/components/sections/concerns/ConcernsCTA';
 
 import { BreadcrumbSchema } from '@/components/seo/BreadcrumbSchema';
 
@@ -17,12 +17,12 @@ export const metadata: Metadata = {
   description:
     'Explore concerns across skin, hair, and dental care. Start with what you observe, and let our doctors guide you toward the right clinical approach.',
   alternates: {
-    canonical: 'https://22luna.in/conditions',
+    canonical: 'https://22luna.in/concerns',
   },
   openGraph: {
     title: 'Skin, Hair & Dental Concerns | 22Luna',
     description: 'Explore concerns across skin, hair, and dental care. Start with what you observe, and let our doctors guide you toward the right clinical approach.',
-    url: 'https://22luna.in/conditions',
+    url: 'https://22luna.in/concerns',
     images: [
       {
         url: 'https://res.cloudinary.com/dz5xgcfj/image/upload/v1785397953/bedding_qudetj.png',
@@ -36,10 +36,10 @@ export const metadata: Metadata = {
 
 const BREADCRUMB_ITEMS = [
   { name: 'Home', item: '/' },
-  { name: 'Conditions', item: '/conditions' },
+  { name: 'Concerns', item: '/concerns' },
 ];
 
-export default function ConditionsPage() {
+export default function ConcernsPage() {
   return (
     <main className="flex flex-col">
       <BreadcrumbSchema items={BREADCRUMB_ITEMS} />
@@ -47,22 +47,22 @@ export default function ConditionsPage() {
       <Header variant="light" />
 
       {/* ── SECTION 1: Hero ── */}
-      <ConditionsHero />
+      <ConcernsHero />
 
       {/* ── SECTION 2: Category Overview Cards ── */}
-      <ConditionCategoriesOverview />
+      <ConcernCategoriesOverview />
 
       {/* ── SECTION 3: Skin Concerns Listing ── */}
-      <SkinConditionsSection />
+      <SkinConcernsSection />
 
       {/* ── SECTION 4: Hair Concerns Listing ── */}
-      <HairConditionsSection />
+      <HairConcernsSection />
 
       {/* ── SECTION 5: Dental Concerns Listing ── */}
-      <DentalConditionsSection />
+      <DentalConcernsSection />
 
       {/* ── SECTION 6: Consultation Guidance CTA ── */}
-      <ConditionsCTA />
+      <ConcernsCTA />
 
       {/* ── FOOTER ── */}
       <Footer />

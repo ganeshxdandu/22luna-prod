@@ -4,6 +4,7 @@ import * as React from "react";
 import Link from "next/link";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
+import { CloudinaryImage } from "@/components/ui/CloudinaryImage";
 import { fadeUp, fadeIn } from "@/lib/animations";
 import { cn } from "@/lib/utils";
 
@@ -11,7 +12,31 @@ export interface WellnessRevivSectionProps {
     className?: string;
 }
 
+const GALLERY_ITEMS = [
+    { src: "https://res.cloudinary.com/dz5xgcfj/video/upload/v1785551138/instagram-highlight-316492473298_ovyk7v.mp4", type: "video" },
+    { src: "https://res.cloudinary.com/dz5xgcfj/video/upload/v1785551134/instagram-highlight-332119416512_zkg1wm.mp4", type: "video" },
+    { src: "https://res.cloudinary.com/dz5xgcfj/video/upload/v1785551134/instagram-highlight-313231872002_jf4tyj.mp4", type: "video" },
+    { src: "https://res.cloudinary.com/dz5xgcfj/image/upload/v1785551134/instagram-highlight-317063136303_jzlmfs.jpg", type: "image" },
+    { src: "https://res.cloudinary.com/dz5xgcfj/image/upload/v1785551133/instagram-highlight-252902476606_pndblc.jpg", type: "image" },
+    { src: "https://res.cloudinary.com/dz5xgcfj/image/upload/v1785551133/instagram-highlight-307112307800_u9ghys.jpg", type: "image" },
+    { src: "https://res.cloudinary.com/dz5xgcfj/image/upload/v1785551132/instagram-highlight-252860349945_lc0vh9.jpg", type: "image" },
+    { src: "https://res.cloudinary.com/dz5xgcfj/image/upload/v1785551131/instagram-highlight-253866337462_hkolke.jpg", type: "image" },
+    { src: "https://res.cloudinary.com/dz5xgcfj/image/upload/v1785551131/instagram-highlight-308192728959_i3craf.jpg", type: "image" },
+    { src: "https://res.cloudinary.com/dz5xgcfj/image/upload/v1785551131/instagram-highlight-309452676821_e6iyia.jpg", type: "image" },
+    { src: "https://res.cloudinary.com/dz5xgcfj/image/upload/v1785551131/instagram-highlight-314307669175_luruos.jpg", type: "image" },
+    { src: "https://res.cloudinary.com/dz5xgcfj/image/upload/v1785551130/instagram-highlight-314307703823_sqaq6a.jpg", type: "image" },
+];
+
 export function WellnessRevivSection({ className }: WellnessRevivSectionProps) {
+    // Distribute the 12 items evenly across 3 columns to loop seamlessly
+    const col1 = [GALLERY_ITEMS[0], GALLERY_ITEMS[3], GALLERY_ITEMS[6], GALLERY_ITEMS[9]];
+    const col2 = [GALLERY_ITEMS[1], GALLERY_ITEMS[4], GALLERY_ITEMS[7], GALLERY_ITEMS[10]];
+    const col3 = [GALLERY_ITEMS[2], GALLERY_ITEMS[5], GALLERY_ITEMS[8], GALLERY_ITEMS[11]];
+
+    const col1Items = [...col1, ...col1];
+    const col2Items = [...col2, ...col2];
+    const col3Items = [...col3, ...col3];
+
     return (
         <section
             id="wellness-category"
@@ -20,6 +45,29 @@ export function WellnessRevivSection({ className }: WellnessRevivSectionProps) {
                 className,
             )}
         >
+            {/* Inject vertical marquee animation styles */}
+            <style dangerouslySetInnerHTML={{ __html: `
+                @keyframes marquee-up {
+                    0% { transform: translateY(0); }
+                    100% { transform: translateY(-50%); }
+                }
+                @keyframes marquee-down {
+                    0% { transform: translateY(-50%); }
+                    100% { transform: translateY(0); }
+                }
+                .animate-marquee-up {
+                    animation: marquee-up 35s linear infinite;
+                }
+                .animate-marquee-down {
+                    animation: marquee-down 35s linear infinite;
+                }
+                /* Pause on hover */
+                .hover-pause:hover .animate-marquee-up,
+                .hover-pause:hover .animate-marquee-down {
+                    animation-play-state: paused;
+                }
+            `}} />
+
             {/* Subtle background ambient pattern / glow */}
             <div
                 className="absolute inset-0 opacity-[0.04] pointer-events-none"
@@ -31,7 +79,7 @@ export function WellnessRevivSection({ className }: WellnessRevivSectionProps) {
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gold/10 rounded-full blur-[140px] pointer-events-none" />
 
             <div className="max-w-site mx-auto w-full px-6 md:px-8 relative z-10">
-                <div className="max-w-[800px] mx-auto flex flex-col items-center text-center">
+                <div className="max-w-[1000px] mx-auto flex flex-col items-center text-center">
                     {/* Partner Tagline Label */}
                     <motion.div
                         variants={fadeIn}
@@ -66,7 +114,7 @@ export function WellnessRevivSection({ className }: WellnessRevivSectionProps) {
                         whileInView="visible"
                         viewport={{ once: true }}
                         custom={{ delay: 0.3 }}
-                        className="font-sans text-moon-ivory/80 text-[15px] sm:text-[16px] lg:text-[17px] leading-[1.85] font-light mb-10 max-w-[680px]"
+                        className="font-sans text-moon-ivory/80 text-[15px] sm:text-[16px] lg:text-[17px] leading-[1.85] font-light mb-12 max-w-[680px]"
                     >
                         To deliver medical-grade intravenous hydration, nutrient
                         therapies, and longevity infusions at the highest
@@ -81,40 +129,96 @@ export function WellnessRevivSection({ className }: WellnessRevivSectionProps) {
                         safety, efficacy, and complete serenity.
                     </motion.p>
 
-                    {/* Key Partner Highlights (reassuring list) */}
-                    <motion.div
-                        variants={fadeIn}
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true }}
-                        custom={{ delay: 0.4 }}
-                        className="grid grid-cols-1 sm:grid-cols-3 gap-6 w-full py-8 border-y border-moon-ivory/15 mb-10 text-left sm:text-center"
-                    >
-                        <div className="flex flex-col items-center gap-1.5">
-                            <span className="font-sans text-[0.7rem] tracking-[0.18em] uppercase text-gold font-medium">
-                                Global Protocols
-                            </span>
-                            <span className="font-sans text-[0.85rem] text-moon-ivory/70 font-light">
-                                Formulated by REVIV physicians
-                            </span>
+                    {/* ── Vertical Marquee Gallery Section ── */}
+                    <div className="w-full mb-16 md:mb-20 flex flex-col items-center">
+                        <div
+                            className="w-full h-[450px] md:h-[550px] overflow-hidden relative grid grid-cols-1 md:grid-cols-3 gap-6 hover-pause px-4"
+                            style={{
+                                maskImage: "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.15) 8%, rgba(0,0,0,0.5) 18%, rgba(0,0,0,0.85) 28%, black 38%, black 62%, rgba(0,0,0,0.85) 72%, rgba(0,0,0,0.5) 82%, rgba(0,0,0,0.15) 92%, transparent 100%)",
+                                WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.15) 8%, rgba(0,0,0,0.5) 18%, rgba(0,0,0,0.85) 28%, black 38%, black 62%, rgba(0,0,0,0.85) 72%, rgba(0,0,0,0.5) 82%, rgba(0,0,0,0.15) 92%, transparent 100%)",
+                            }}
+                        >
+
+                            <div className="relative h-full overflow-hidden flex flex-col gap-6">
+                                <div className="flex flex-col gap-6 animate-marquee-up">
+                                    {col1Items.map((item, idx) => (
+                                        <div key={`col1-${idx}`} className="relative aspect-[9/16] rounded-[8px] overflow-hidden bg-white/5 border border-white/10 shadow-xl group">
+                                            {item.type === "video" ? (
+                                                <video
+                                                    src={item.src}
+                                                    autoPlay
+                                                    loop
+                                                    muted
+                                                    playsInline
+                                                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                                />
+                                            ) : (
+                                                <CloudinaryImage src={item.src} alt="REVIV Highlight" fill sizes="(max-width: 768px) 100vw, 320px" className="transition-transform duration-700 group-hover:scale-105" />
+                                            )}
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+
+                            <div className="relative h-full overflow-hidden hidden md:flex flex-col gap-6">
+                                <div className="flex flex-col gap-6 animate-marquee-down">
+                                    {col2Items.map((item, idx) => (
+                                        <div key={`col2-${idx}`} className="relative aspect-[9/16] rounded-[8px] overflow-hidden bg-white/5 border border-white/10 shadow-xl group">
+                                            {item.type === "video" ? (
+                                                <video
+                                                    src={item.src}
+                                                    autoPlay
+                                                    loop
+                                                    muted
+                                                    playsInline
+                                                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                                />
+                                            ) : (
+                                                <CloudinaryImage src={item.src} alt="REVIV Highlight" fill sizes="(max-width: 768px) 100vw, 320px" className="transition-transform duration-700 group-hover:scale-105" />
+                                            )}
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+
+                            <div className="relative h-full overflow-hidden hidden md:flex flex-col gap-6">
+                                <div className="flex flex-col gap-6 animate-marquee-up">
+                                    {col3Items.map((item, idx) => (
+                                        <div key={`col3-${idx}`} className="relative aspect-[9/16] rounded-[8px] overflow-hidden bg-white/5 border border-white/10 shadow-xl group">
+                                            {item.type === "video" ? (
+                                                <video
+                                                    src={item.src}
+                                                    autoPlay
+                                                    loop
+                                                    muted
+                                                    playsInline
+                                                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                                />
+                                            ) : (
+                                                <CloudinaryImage src={item.src} alt="REVIV Highlight" fill sizes="(max-width: 768px) 100vw, 320px" className="transition-transform duration-700 group-hover:scale-105" />
+                                            )}
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
                         </div>
-                        <div className="flex flex-col items-center gap-1.5">
-                            <span className="font-sans text-[0.7rem] tracking-[0.18em] uppercase text-gold font-medium">
-                                Physician Supervised
-                            </span>
-                            <span className="font-sans text-[0.85rem] text-moon-ivory/70 font-light">
-                                Administered by certified specialists
-                            </span>
+
+                        {/* Statistic Row */}
+                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 w-full py-8 border-y border-moon-ivory/15 mt-16 text-center">
+                            <div className="flex flex-col items-center gap-1.5">
+                                <span className="font-display text-gold text-2xl sm:text-3xl font-light tracking-tight">2,000,000+</span>
+                                <span className="font-sans text-[0.7rem] tracking-[0.15em] uppercase text-moon-ivory/60 font-medium">IV Therapies Delivered</span>
+                            </div>
+                            <div className="flex flex-col items-center gap-1.5">
+                                <span className="font-display text-gold text-2xl sm:text-3xl font-light tracking-tight">100+</span>
+                                <span className="font-sans text-[0.7rem] tracking-[0.15em] uppercase text-moon-ivory/60 font-medium">Global Locations</span>
+                            </div>
+                            <div className="flex flex-col items-center gap-1.5">
+                                <span className="font-display text-gold text-2xl sm:text-3xl font-light tracking-tight">Since 2013</span>
+                                <span className="font-sans text-[0.7rem] tracking-[0.15em] uppercase text-moon-ivory/60 font-medium">Trusted Worldwide</span>
+                            </div>
                         </div>
-                        <div className="flex flex-col items-center gap-1.5">
-                            <span className="font-sans text-[0.7rem] tracking-[0.18em] uppercase text-gold font-medium">
-                                Private Suites
-                            </span>
-                            <span className="font-sans text-[0.85rem] text-moon-ivory/70 font-light">
-                                Tranquil luxury sanctuary setting
-                            </span>
-                        </div>
-                    </motion.div>
+                    </div>
 
                     {/* Transition CTA */}
                     <motion.div

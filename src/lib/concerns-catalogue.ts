@@ -1,27 +1,27 @@
 /**
- * Conditions Catalogue Data
- * Single source of truth for the /conditions landing page.
+ * Concerns Catalogue Data
+ * Single source of truth for the /concerns landing page.
  * Sister system to treatments-catalogue.ts.
  */
 
-export interface ConditionItem {
+export interface ConcernItem {
   name: string;
   slug: string;
   description: string;
 }
 
-export interface ConditionCategory {
+export interface ConcernCategory {
   id: string;
   name: string;
   description: string;
   cloudinaryPublicId: string;
-  concerns: ConditionItem[];
+  concerns: ConcernItem[];
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
 // SKIN CONCERNS
 // ─────────────────────────────────────────────────────────────────────────────
-export const SKIN_CONCERNS: ConditionItem[] = [
+export const SKIN_CONCERNS: ConcernItem[] = [
   {
     name: 'Acne & Acne Scars',
     slug: 'acne-scars',
@@ -67,7 +67,7 @@ export const SKIN_CONCERNS: ConditionItem[] = [
 // ─────────────────────────────────────────────────────────────────────────────
 // HAIR CONCERNS
 // ─────────────────────────────────────────────────────────────────────────────
-export const HAIR_CONCERNS: ConditionItem[] = [
+export const HAIR_CONCERNS: ConcernItem[] = [
   {
     name: 'Hair Loss & Thinning',
     slug: 'hair-thinning',
@@ -103,7 +103,7 @@ export const HAIR_CONCERNS: ConditionItem[] = [
 // ─────────────────────────────────────────────────────────────────────────────
 // DENTAL CONCERNS
 // ─────────────────────────────────────────────────────────────────────────────
-export const DENTAL_CONCERNS: ConditionItem[] = [
+export const DENTAL_CONCERNS: ConcernItem[] = [
   {
     name: 'Gummy Smile & Asymmetry',
     slug: 'gummy-smile',
@@ -137,9 +137,9 @@ export const DENTAL_CONCERNS: ConditionItem[] = [
 ];
 
 // ─────────────────────────────────────────────────────────────────────────────
-// CONDITION CATEGORIES OVERVIEW
+// CONCERN CATEGORIES OVERVIEW
 // ─────────────────────────────────────────────────────────────────────────────
-export const CONDITION_CATEGORIES: ConditionCategory[] = [
+export const CONCERN_CATEGORIES: ConcernCategory[] = [
   {
     id: 'skin-concerns',
     name: 'Skin Concerns',

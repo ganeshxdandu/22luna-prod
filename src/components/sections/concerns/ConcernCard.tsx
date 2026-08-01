@@ -6,15 +6,15 @@ import { ArrowUpRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { fadeUp } from '@/lib/animations';
 import { cn } from '@/lib/utils';
-import type { ConditionItem } from '@/lib/conditions-catalogue';
+import type { ConcernItem } from '@/lib/concerns-catalogue';
 
-export interface ConditionCardProps {
-  condition: ConditionItem;
+export interface ConcernCardProps {
+  concern: ConcernItem;
   className?: string;
   delay?: number;
 }
 
-export function ConditionCard({ condition, className, delay = 0 }: ConditionCardProps) {
+export function ConcernCard({ concern, className, delay = 0 }: ConcernCardProps) {
   return (
     <motion.div
       variants={fadeUp}
@@ -30,19 +30,19 @@ export function ConditionCard({ condition, className, delay = 0 }: ConditionCard
       <div className="flex flex-col gap-3">
         {/* Concern Name */}
         <h4 className="font-display text-charcoal text-[1.15rem] sm:text-[1.25rem] leading-tight tracking-tight uppercase group-hover:text-botanical transition-colors duration-300">
-          {condition.name}
+          {concern.name}
         </h4>
 
         {/* One Sentence Description */}
         <p className="font-sans text-stone-gray text-[0.82rem] leading-[1.7] font-light">
-          {condition.description}
+          {concern.description}
         </p>
       </div>
 
       {/* Learn More Link */}
       <div className="mt-6 pt-4 border-t border-charcoal/5 flex items-center justify-between">
         <Link
-          href={`/conditions/${condition.slug}`}
+          href={`/concerns/${concern.slug}`}
           className="inline-flex items-center gap-1.5 font-sans text-[0.72rem] uppercase tracking-wider text-botanical font-medium group/link"
         >
           <span>Learn More</span>

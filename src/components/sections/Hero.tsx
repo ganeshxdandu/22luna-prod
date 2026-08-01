@@ -51,7 +51,7 @@ export function Hero({ className }: HeroProps) {
         style={{ writingMode: 'vertical-rl', transform: 'translateY(-50%)' }}
       >
         <span className="text-moon-ivory/60 font-sans tracking-tight uppercase"
-          style={{ fontSize: '0.625rem', letterSpacing: '0.07em' }}
+          style={{ fontSize: '12px', letterSpacing: '0.07em' }}
         >
           Skin · Hair · Dental · IV
         </span>
@@ -64,7 +64,7 @@ export function Hero({ className }: HeroProps) {
       >
         <span
           className="text-moon-ivory/60 font-sans tracking-[0.07em] uppercase"
-          style={{ fontSize: '0.625rem' }}
+          style={{ fontSize: '12px' }}
         >
           Scroll Down →
         </span>

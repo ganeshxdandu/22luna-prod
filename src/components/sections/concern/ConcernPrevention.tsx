@@ -4,17 +4,17 @@ import * as React from 'react';
 import { motion } from 'framer-motion';
 import { fadeUp, fadeIn } from '@/lib/animations';
 import { cn } from '@/lib/utils';
-import type { ConditionDetailData } from '@/lib/condition-detail-data';
+import type { ConcernDetailData } from '@/lib/concern-detail-data';
 
-export interface ConditionPreventionProps {
-  condition: ConditionDetailData;
+export interface ConcernPreventionProps {
+  concern: ConcernDetailData;
   className?: string;
 }
 
-export function ConditionPrevention({ condition, className }: ConditionPreventionProps) {
+export function ConcernPrevention({ concern, className }: ConcernPreventionProps) {
   return (
     <section
-      id="condition-prevention"
+      id="concern-prevention"
       className={cn('relative w-full bg-soft-ivory border-b border-charcoal/10 py-16 md:py-24', className)}
     >
       <div className="max-w-site mx-auto w-full px-6 md:px-8">
@@ -41,7 +41,7 @@ export function ConditionPrevention({ condition, className }: ConditionPreventio
 
         {/* Tips Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {condition.preventionTips.map((tip, idx) => (
+          {concern.preventionTips.map((tip, idx) => (
             <motion.div
               key={idx}
               variants={fadeUp}

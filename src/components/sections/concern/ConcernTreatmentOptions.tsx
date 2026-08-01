@@ -4,18 +4,18 @@ import * as React from 'react';
 import { motion } from 'framer-motion';
 import { fadeUp, fadeIn } from '@/lib/animations';
 import { cn } from '@/lib/utils';
-import type { ConditionDetailData } from '@/lib/condition-detail-data';
+import type { ConcernDetailData } from '@/lib/concern-detail-data';
 import { TreatmentCard } from '@/components/sections/treatments/TreatmentCard';
 
-export interface ConditionTreatmentOptionsProps {
-  condition: ConditionDetailData;
+export interface ConcernTreatmentOptionsProps {
+  concern: ConcernDetailData;
   className?: string;
 }
 
-export function ConditionTreatmentOptions({ condition, className }: ConditionTreatmentOptionsProps) {
+export function ConcernTreatmentOptions({ concern, className }: ConcernTreatmentOptionsProps) {
   return (
     <section
-      id="condition-treatments"
+      id="concern-treatments"
       className={cn('relative w-full bg-limestone border-b border-charcoal/10 py-16 md:py-24', className)}
     >
       <div className="max-w-site mx-auto w-full px-6 md:px-8">
@@ -54,7 +54,7 @@ export function ConditionTreatmentOptions({ condition, className }: ConditionTre
 
         {/* Treatment Cards Grid */}
         <div className="mt-12 md:mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {condition.suitableTreatments.map((treatment, idx) => (
+          {concern.suitableTreatments.map((treatment, idx) => (
             <TreatmentCard
               key={treatment.slug}
               treatment={treatment}

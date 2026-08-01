@@ -31,6 +31,7 @@ export interface GuidedDiscoveryModalProps {
 export function GuidedDiscoveryModal({ className }: GuidedDiscoveryModalProps) {
   const [isOpen, setIsOpen] = React.useState(false);
   const [isTriggersVisible, setIsTriggersVisible] = React.useState(true);
+  const [shouldHide, setShouldHide] = React.useState(false);
   const lenis = useLenis();
 
   // Close modal on Escape key
@@ -86,11 +87,48 @@ export function GuidedDiscoveryModal({ className }: GuidedDiscoveryModalProps) {
     return () => window.removeEventListener('scroll', checkPathAndScroll);
   }, []);
 
+  // Hide sticky widgets when active in Sanctuary Features or Sterilization sections
+  React.useEffect(() => {
+    const ids = ['sanctuary-features', 'sterilization-section'];
+    const intersectionStates: Record<string, boolean> = {};
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          intersectionStates[entry.target.id] = entry.isIntersecting;
+        });
+        const isAnyIntersecting = Object.values(intersectionStates).some(Boolean);
+        setShouldHide(isAnyIntersecting);
+      },
+      {
+        rootMargin: '-5% 0px -5% 0px',
+        threshold: 0.01,
+      }
+    );
+
+    const checkAndObserve = () => {
+      ids.forEach((id) => {
+        const el = document.getElementById(id);
+        if (el) {
+          observer.observe(el);
+        }
+      });
+    };
+
+    checkAndObserve();
+    const interval = setInterval(checkAndObserve, 1500);
+
+    return () => {
+      clearInterval(interval);
+      observer.disconnect();
+    };
+  }, []);
+
   return (
     <>
       {/* ── 1. STICKY SIDEBAR TAB: MEET LUNA ── */}
       <AnimatePresence>
-        {isTriggersVisible && (
+        {isTriggersVisible && !shouldHide && (
           <>
             {/* Desktop View */}
             <div className="fixed right-0 top-[40%] -translate-y-1/2 z-40 select-none hidden sm:block">
@@ -140,7 +178,7 @@ export function GuidedDiscoveryModal({ className }: GuidedDiscoveryModalProps) {
 
       {/* ── 2. FLOATING WHATSAPP BUTTON (Bottom Right Corner) ── */}
       <AnimatePresence>
-        {isTriggersVisible && (
+        {isTriggersVisible && !shouldHide && (
           <motion.div
             initial={{ opacity: 0, scale: 0.8, y: 15 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}

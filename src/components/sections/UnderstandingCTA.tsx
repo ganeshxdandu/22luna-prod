@@ -69,7 +69,7 @@ export function UnderstandingCTA({
 
             <Link
               href={buttonHref}
-              className="inline-flex items-center gap-2 bg-white hover:bg-[#FDFBF7] text-[#BBA175] font-sans font-medium text-xs md:text-[13px] py-3.5 px-7 rounded-full shadow-md transition-all duration-300 hover:scale-[1.02]"
+              className="inline-flex items-center gap-2 bg-white hover:bg-[#FDFBF7] text-[#BBA175] font-sans font-medium text-sm md:text-[15px] py-4 px-8 rounded-full shadow-md transition-all duration-300 hover:scale-[1.02]"
             >
               {buttonText}
               <ArrowUpRight size={15} strokeWidth={2.5} className="mt-0.5" />

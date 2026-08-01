@@ -187,6 +187,32 @@ export const HAIR_TREATMENTS: CatalogueItem[] = [
 ];
 
 // ─────────────────────────────────────────────────────────────────────────────
+// WELLNESS & IV
+// ─────────────────────────────────────────────────────────────────────────────
+export const WELLNESS_TREATMENTS: CatalogueItem[] = [
+  {
+    name: 'REVIV IV Hydration',
+    slug: 'reviv-iv-hydration',
+    description: 'Medical-grade intravenous hydration and replenishment formulated by REVIV.',
+  },
+  {
+    name: 'Vitaglow Infusion',
+    slug: 'vitaglow-infusion',
+    description: 'Advanced vitamin and antioxidant cocktail for cellular rejuvenation and skin radiance.',
+  },
+  {
+    name: 'Royal Flush Longevity',
+    slug: 'royal-flush-longevity',
+    description: 'Premium hydration and detoxification infusion to optimize wellness and recovery.',
+  },
+  {
+    name: 'Megaboost Infusion',
+    slug: 'megaboost-infusion',
+    description: 'Targeted wellness infusion designed to boost immune health and physical resilience.',
+  },
+];
+
+// ─────────────────────────────────────────────────────────────────────────────
 // DENTAL
 // ─────────────────────────────────────────────────────────────────────────────
 export const DENTAL_TREATMENTS: CatalogueItem[] = [
@@ -261,6 +287,7 @@ export const TREATMENT_CATEGORIES: TreatmentCategory[] = [
     id: 'wellness',
     name: 'Wellness & IV',
     description: 'IV therapy and longevity programmes delivered through our REVIV partnership.',
-    cloudinaryPublicId: 'wellness_mit4vq',
+    cloudinaryPublicId: 'ivdrip_yhlvex',
+    treatments: WELLNESS_TREATMENTS,
   },
 ];

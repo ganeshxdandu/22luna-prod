@@ -1,6 +1,6 @@
 import { MetadataRoute } from 'next';
 import { SKIN_GROUPS, HAIR_TREATMENTS, DENTAL_TREATMENTS } from '@/lib/treatments-catalogue';
-import { SKIN_CONCERNS, HAIR_CONCERNS, DENTAL_CONCERNS } from '@/lib/conditions-catalogue';
+import { SKIN_CONCERNS, HAIR_CONCERNS, DENTAL_CONCERNS } from '@/lib/concerns-catalogue';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://22luna.in';
@@ -12,7 +12,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '/contact',
     '/consultation',
     '/treatments',
-    '/conditions',
+    '/concerns',
     '/medical-tourism',
     '/shop',
     '/find-your-starting-point',
@@ -54,19 +54,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.6,
   }));
 
-  // 3. Dynamic Condition Routes
-  const conditionSlugs: string[] = [
+  // 3. Dynamic Concern Routes
+  const concernSlugs: string[] = [
     ...SKIN_CONCERNS.map((c) => c.slug),
     ...HAIR_CONCERNS.map((c) => c.slug),
     ...DENTAL_CONCERNS.map((c) => c.slug),
   ];
 
-  const conditionEntries = conditionSlugs.map((slug) => ({
-    url: `${baseUrl}/conditions/${slug}`,
+  const concernEntries = concernSlugs.map((slug) => ({
+    url: `${baseUrl}/concerns/${slug}`,
     lastModified: new Date(),
     changeFrequency: 'weekly' as const,
     priority: 0.6,
   }));
 
-  return [...staticEntries, ...treatmentEntries, ...conditionEntries];
+  return [...staticEntries, ...treatmentEntries, ...concernEntries];
 }

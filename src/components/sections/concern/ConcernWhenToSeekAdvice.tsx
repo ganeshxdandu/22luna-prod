@@ -4,14 +4,14 @@ import * as React from 'react';
 import { motion } from 'framer-motion';
 import { fadeUp, fadeIn } from '@/lib/animations';
 import { cn } from '@/lib/utils';
-import type { ConditionDetailData } from '@/lib/condition-detail-data';
+import type { ConcernDetailData } from '@/lib/concern-detail-data';
 
-export interface ConditionWhenToSeekAdviceProps {
-  condition: ConditionDetailData;
+export interface ConcernWhenToSeekAdviceProps {
+  concern: ConcernDetailData;
   className?: string;
 }
 
-export function ConditionWhenToSeekAdvice({ condition, className }: ConditionWhenToSeekAdviceProps) {
+export function ConcernWhenToSeekAdvice({ concern, className }: ConcernWhenToSeekAdviceProps) {
   return (
     <section
       id="when-to-seek-advice"
@@ -58,7 +58,7 @@ export function ConditionWhenToSeekAdvice({ condition, className }: ConditionWhe
           custom={{ delay: 0.25 }}
           className="w-full lg:w-[52%] lg:max-w-[540px] border-t border-charcoal/10 divide-y divide-charcoal/10"
         >
-          {condition.adviceGuidance.map((item, idx) => (
+          {concern.adviceGuidance.map((item, idx) => (
             <div key={idx} className="py-5 flex items-start gap-4">
               <span className="w-1.5 h-1.5 rounded-full bg-botanical shrink-0 mt-[8px]" aria-hidden />
               <span className="font-sans text-charcoal text-[0.9rem] leading-[1.7] font-light">

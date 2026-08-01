@@ -90,7 +90,7 @@ export function Footer({ className }: FooterProps) {
                 { label: 'Home', href: '/' },
                 { label: 'About', href: '/about' },
                 { label: 'Treatments', href: '/treatments' },
-                { label: 'Conditions Index', href: '/conditions' },
+                { label: 'Concerns Index', href: '/concerns' },
                 { label: 'Consultation Philosophy', href: '/consultation' },
                 { label: 'Contact Clinic', href: '/contact' },
               ].map((link) => (

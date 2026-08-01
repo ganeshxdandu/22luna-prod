@@ -50,12 +50,19 @@ export interface SterilizationSectionProps {
 export function SterilizationSection({ className }: SterilizationSectionProps) {
   const containerRef = React.useRef<HTMLDivElement>(null);
   const [activeStep, setActiveStep] = React.useState(0);
+  const [scrollProgress, setScrollProgress] = React.useState(0);
 
   // Hook scroll progress of the container
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ['start start', 'end end'],
   });
+
+  React.useEffect(() => {
+    return scrollYProgress.on('change', (latest) => {
+      setScrollProgress(latest);
+    });
+  }, [scrollYProgress]);
 
   // Map progress to steps indices
   useMotionValueEvent(scrollYProgress, 'change', (latest) => {
@@ -72,6 +79,7 @@ export function SterilizationSection({ className }: SterilizationSectionProps) {
 
   return (
     <div
+      id="sterilization-section"
       ref={containerRef}
       className={cn('relative w-full h-[600vh]', className)}
     >
@@ -94,7 +102,7 @@ export function SterilizationSection({ className }: SterilizationSectionProps) {
         <div 
           className="absolute inset-0 bg-charcoal transition-opacity duration-700 ease-out z-20"
           style={{
-            opacity: activeStep === 0 ? 0.2 : activeStep >= 5 ? 0.95 : 0.88
+            opacity: activeStep === 0 ? 0.55 : activeStep >= 5 ? 0.98 : 0.92
           }}
         />
 
@@ -120,21 +128,6 @@ export function SterilizationSection({ className }: SterilizationSectionProps) {
           </p>
         </div>
 
-        {/* Center Indicators / Scrolling prompts */}
-        {activeStep < 5 && (
-          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 text-center hidden sm:flex flex-col items-center gap-2 pointer-events-none">
-            <span className="font-sans text-[0.6rem] tracking-[0.22em] uppercase text-moon-ivory/50">
-              Active Scroll
-            </span>
-            <motion.span
-              animate={{ y: [0, 4, 0] }}
-              transition={{ repeat: Infinity, duration: 1.5, ease: 'easeInOut' }}
-              className="text-moon-ivory/40 text-[0.6rem]"
-            >
-              ↓
-            </motion.span>
-          </div>
-        )}
 
         {/* ── STAGE 1: Mid-Scroll Cards (Steps 1 to 4) ── */}
         <div className="absolute inset-0 flex items-center justify-center z-30 p-6">
@@ -240,7 +233,72 @@ export function SterilizationSection({ className }: SterilizationSectionProps) {
           </AnimatePresence>
         </div>
 
+        <div className={cn(
+          "absolute bottom-6 left-0 right-0 md:bottom-8 z-30 w-full transition-all duration-700",
+          activeStep > 0 ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"
+        )}>
+          <div className="max-w-site mx-auto w-full px-6 md:px-8 flex items-center justify-between gap-4 sm:gap-6">
+            {/* Left label */}
+            <div className="text-[10px] font-sans text-moon-ivory/40 uppercase tracking-widest select-none hidden md:block">
+              Sterilization Protocol
+            </div>
+
+            {/* Progress bar track */}
+            <div className="h-[2px] bg-white/10 flex-1 rounded-full relative overflow-hidden max-w-md">
+              <div 
+                className="absolute left-0 top-0 bottom-0 bg-white rounded-full"
+                style={{ width: `${scrollProgress * 100}%` }}
+              />
+            </div>
+
+            {/* Dynamic Moon Phase Artifact */}
+            <div className="shrink-0 flex items-center justify-center w-5 h-5 text-white" title={`Moon Phase: ${Math.round(scrollProgress * 100)}% illuminated`}>
+              <MoonPhase progress={scrollProgress * 100} />
+            </div>
+
+            {/* Percentage */}
+            <div className="text-[10px] font-sans text-moon-ivory/60 uppercase tracking-widest tabular-nums select-none shrink-0">
+              Scroll to explore &bull; {Math.round(scrollProgress * 100)}%
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
+  );
+}
+
+function MoonPhase({ progress }: { progress: number }) {
+  const p = Math.max(0, Math.min(100, progress));
+  
+  let rx = 10;
+  let sweep = 0;
+  
+  if (p < 50) {
+    rx = 10 - (p / 50) * 10;
+    sweep = 0; // Curve right (crescent)
+  } else {
+    rx = ((p - 50) / 50) * 10;
+    sweep = 1; // Curve left (gibbous)
+  }
+  
+  const safeRx = Math.max(0.01, rx);
+  
+  return (
+    <svg 
+      width="14" 
+      height="14" 
+      viewBox="0 0 24 24" 
+      fill="none" 
+      stroke="currentColor" 
+      strokeWidth="1.5"
+      className="text-current rotate-[135deg]"
+    >
+      <circle cx="12" cy="12" r="10" />
+      <path 
+        d={`M 12 2 A 10 10 0 0 1 12 22 A ${safeRx} 10 0 0 ${sweep} 12 2 Z`} 
+        fill="currentColor" 
+      />
+    </svg>
   );
 }

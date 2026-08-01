@@ -4,18 +4,18 @@ import * as React from 'react';
 import { motion } from 'framer-motion';
 import { fadeUp, fadeIn } from '@/lib/animations';
 import { cn } from '@/lib/utils';
-import { HAIR_CONCERNS } from '@/lib/conditions-catalogue';
-import { ConditionCard } from './ConditionCard';
+import { DENTAL_CONCERNS } from '@/lib/concerns-catalogue';
+import { ConcernCard } from './ConcernCard';
 
-export interface HairConditionsSectionProps {
+export interface DentalConcernsSectionProps {
   className?: string;
 }
 
-export function HairConditionsSection({ className }: HairConditionsSectionProps) {
+export function DentalConcernsSection({ className }: DentalConcernsSectionProps) {
   return (
     <section
-      id="hair-concerns"
-      className={cn('relative w-full bg-limestone border-b border-charcoal/10 py-16 md:py-24', className)}
+      id="dental-concerns"
+      className={cn('relative w-full bg-soft-ivory border-b border-charcoal/10 py-16 md:py-24', className)}
     >
       <div className="max-w-site mx-auto w-full px-6 md:px-8">
 
@@ -30,10 +30,10 @@ export function HairConditionsSection({ className }: HairConditionsSectionProps)
             className="w-full lg:w-[45%]"
           >
             <span className="font-sans text-[0.7rem] tracking-[0.22em] uppercase text-botanical font-medium block mb-3">
-              Category 02
+              Category 03
             </span>
             <h2 className="font-display text-charcoal uppercase leading-[1.05] tracking-[-0.03em] text-[2.2rem] sm:text-[2.75rem] lg:text-[3.25rem] font-normal">
-              Hair & Scalp Concerns
+              Dental & Smile Concerns
             </h2>
           </motion.div>
 
@@ -46,17 +46,17 @@ export function HairConditionsSection({ className }: HairConditionsSectionProps)
             className="w-full lg:w-[50%] lg:max-w-[520px]"
           >
             <p className="font-sans text-stone-gray text-[14px] sm:text-[15px] lg:text-[16px] leading-[1.85] font-light">
-              Hair thinning and scalp sensitivity develop over time. Understanding whether shedding is hormonal, stress-induced, or follicle-related allows us to select biological growth treatments with precision.
+              Dental aesthetics influence your entire facial expression. From subtle tooth discolouration to gum proportions and crowding, we evaluate smile concerns through digital 3D planning.
             </p>
           </motion.div>
         </div>
 
         {/* Cards Grid */}
         <div className="mt-12 md:mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {HAIR_CONCERNS.map((item, idx) => (
-            <ConditionCard
+          {DENTAL_CONCERNS.map((item, idx) => (
+            <ConcernCard
               key={item.slug}
-              condition={item}
+              concern={item}
               delay={0.05 * idx}
             />
           ))}

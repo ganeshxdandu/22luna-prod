@@ -5,14 +5,14 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Plus, Minus } from 'lucide-react';
 import { fadeUp } from '@/lib/animations';
 import { cn } from '@/lib/utils';
-import type { ConditionDetailData } from '@/lib/condition-detail-data';
+import type { ConcernDetailData } from '@/lib/concern-detail-data';
 
-export interface ConditionFAQProps {
-  condition: ConditionDetailData;
+export interface ConcernFAQProps {
+  concern: ConcernDetailData;
   className?: string;
 }
 
-export function ConditionFAQ({ condition, className }: ConditionFAQProps) {
+export function ConcernFAQ({ concern, className }: ConcernFAQProps) {
   const [openIndex, setOpenIndex] = React.useState<number | null>(0);
 
   const toggleItem = (index: number) => {
@@ -21,7 +21,7 @@ export function ConditionFAQ({ condition, className }: ConditionFAQProps) {
 
   return (
     <section
-      id="condition-faq"
+      id="concern-faq"
       className={cn(
         'bg-moon-ivory border-b border-charcoal/10 py-16 md:py-24 lg:py-32 px-4 sm:px-6 md:px-8 w-full select-none',
         className
@@ -48,14 +48,14 @@ export function ConditionFAQ({ condition, className }: ConditionFAQProps) {
               </span>
             </h2>
             <p className="text-stone-gray font-sans font-light text-xs md:text-sm tracking-wide max-w-[340px]">
-              Direct, transparent answers regarding {condition.name.toLowerCase()}.
+              Direct, transparent answers regarding {concern.name.toLowerCase()}.
             </p>
           </motion.div>
         </div>
 
         {/* ── Right Content: Accordion List ── */}
         <div className="lg:col-span-7 flex flex-col w-full">
-          {condition.faqs.map((item, idx) => {
+          {concern.faqs.map((item, idx) => {
             const isOpen = openIndex === idx;
             return (
               <div

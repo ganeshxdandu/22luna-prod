@@ -4,17 +4,17 @@ import * as React from 'react';
 import { motion } from 'framer-motion';
 import { fadeUp, fadeIn } from '@/lib/animations';
 import { cn } from '@/lib/utils';
-import type { ConditionDetailData } from '@/lib/condition-detail-data';
+import type { ConcernDetailData } from '@/lib/concern-detail-data';
 
-export interface ConditionUnderstandingProps {
-  condition: ConditionDetailData;
+export interface ConcernUnderstandingProps {
+  concern: ConcernDetailData;
   className?: string;
 }
 
-export function ConditionUnderstanding({ condition, className }: ConditionUnderstandingProps) {
+export function ConcernUnderstanding({ concern, className }: ConcernUnderstandingProps) {
   return (
     <section
-      id="condition-understanding"
+      id="concern-understanding"
       className={cn('relative w-full bg-moon-ivory border-b border-charcoal/10 py-16 md:py-24', className)}
     >
       <div className="max-w-site mx-auto w-full px-6 md:px-8 flex flex-col lg:flex-row justify-between items-start gap-10 lg:gap-20">
@@ -41,13 +41,13 @@ export function ConditionUnderstanding({ condition, className }: ConditionUnders
             custom={{ delay: 0.2 }}
             className="font-display text-charcoal uppercase leading-[1.05] tracking-[-0.03em] text-[1.8rem] sm:text-[2.3rem] lg:text-[2.75rem] font-normal"
           >
-            {condition.understandingHeading}
+            {concern.understandingHeading}
           </motion.h2>
         </div>
 
         {/* Right Column: Paragraphs + Prevalence note */}
         <div className="w-full lg:w-[50%] lg:max-w-[520px] flex flex-col gap-6">
-          {condition.understandingParagraphs.map((para, i) => (
+          {concern.understandingParagraphs.map((para, i) => (
             <motion.p
               key={i}
               variants={fadeUp}
@@ -74,7 +74,7 @@ export function ConditionUnderstanding({ condition, className }: ConditionUnders
               Prevalence & Context
             </span>
             <p className="font-sans text-charcoal text-[0.85rem] leading-[1.7] font-light">
-              {condition.howCommon}
+              {concern.howCommon}
             </p>
           </motion.div>
         </div>

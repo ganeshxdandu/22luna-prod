@@ -9,9 +9,10 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
 
 const navLinks = [
+  {label: 'Home', href: '/'},
   { label: 'About', href: '/about' },
-  { label: 'Consultation', href: '/consultation' },
-  { label: 'Conditions', href: '/conditions' },
+  // { label: 'Consultation', href: '/consultation' },
+  { label: 'Concerns', href: '/concerns' },
   { label: 'Treatments', href: '/treatments' },
   { label: 'Shop', href: '/shop' },
   { label: 'Medical Tourism', href: '/medical-tourism' },
@@ -104,14 +105,16 @@ export function Header({ className, variant = 'dark' }: HeaderProps) {
                   href={link.href}
                   className={cn(
                     'font-sans transition-colors duration-300 relative text-sm tracking-tight',
-                    isActive ? 'font-medium' : 'font-light',
+                    isLightMode
+                      ? isActive ? 'font-medium' : 'font-light'
+                      : isActive ? 'font-semibold' : 'font-light',
                     isLightMode
                       ? isActive
                         ? 'text-botanical'
                         : 'text-stone-gray hover:text-botanical'
                       : isActive
-                        ? 'text-botanical'
-                        : 'text-moon-ivory/80 hover:text-botanical'
+                        ? 'text-white'
+                        : 'text-moon-ivory/80 hover:text-white'
                   )}
                 >
                   {link.label}

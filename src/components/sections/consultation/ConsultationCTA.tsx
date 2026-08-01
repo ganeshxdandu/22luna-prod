@@ -68,7 +68,7 @@ export function ConsultationCTA({ className }: ConsultationCTAProps) {
               {/* Primary CTA */}
               <Link
                 href="https://wa.me/918971725522?text=I%20would%20like%20to%20book%20a%20consultation." target="_blank" rel="noopener noreferrer"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white hover:bg-[#FDFBF7] text-[#BBA175] font-sans font-medium text-xs md:text-[13px] py-3.5 px-7 rounded-full shadow-md transition-all duration-300 hover:scale-[1.02]"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white hover:bg-[#FDFBF7] text-[#BBA175] font-sans font-medium text-sm md:text-[15px] py-4 px-8 rounded-full shadow-md transition-all duration-300 hover:scale-[1.02]"
               >
                 Book Consultation
                 <ArrowUpRight size={15} strokeWidth={2.5} className="mt-0.5" />
@@ -79,7 +79,7 @@ export function ConsultationCTA({ className }: ConsultationCTAProps) {
                 href="https://wa.me/918971725522"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white/15 hover:bg-white/25 text-white border border-white/30 font-sans font-medium text-xs md:text-[13px] py-3.5 px-7 rounded-full transition-all duration-300 backdrop-blur-sm"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white/15 hover:bg-white/25 text-white border border-white/30 font-sans font-medium text-sm md:text-[15px] py-4 px-8 rounded-full transition-all duration-300 backdrop-blur-sm"
               >
                 <MessageCircle size={15} strokeWidth={2} />
                 Talk to Us on WhatsApp

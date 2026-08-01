@@ -6,17 +6,17 @@ import { ArrowUpRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { fadeUp, fadeIn } from '@/lib/animations';
 import { cn } from '@/lib/utils';
-import type { ConditionDetailData } from '@/lib/condition-detail-data';
+import type { ConcernDetailData } from '@/lib/concern-detail-data';
 
-export interface ConditionHeroProps {
-  condition: ConditionDetailData;
+export interface ConcernHeroProps {
+  concern: ConcernDetailData;
   className?: string;
 }
 
-export function ConditionHero({ condition, className }: ConditionHeroProps) {
+export function ConcernHero({ concern, className }: ConcernHeroProps) {
   return (
     <section
-      id="condition-hero"
+      id="concern-hero"
       className={cn(
         'relative w-full bg-moon-ivory border-b border-charcoal/10 arch-light-wash-top',
         className
@@ -43,18 +43,18 @@ export function ConditionHero({ condition, className }: ConditionHeroProps) {
             </Link>
             <span className="w-1.5 h-1.5 rounded-full border border-botanical/40 bg-botanical/15 shrink-0 inline-block" />
             <Link
-              href="/conditions"
+              href="/concerns"
               className="font-sans text-[0.68rem] tracking-[0.18em] uppercase text-stone-gray/60 hover:text-botanical transition-colors duration-300"
             >
-              Conditions
+              concerns
             </Link>
             <span className="w-1.5 h-1.5 rounded-full border border-botanical/40 bg-botanical/15 shrink-0 inline-block" />
             <span className="font-sans text-[0.68rem] tracking-[0.18em] uppercase text-stone-gray/70">
-              {condition.category}
+              {concern.category}
             </span>
             <span className="w-1.5 h-1.5 rounded-full border border-botanical/40 bg-botanical/15 shrink-0 inline-block" />
             <span className="font-sans text-[0.68rem] tracking-[0.18em] uppercase text-botanical font-medium">
-              {condition.name}
+              {concern.name}
             </span>
           </motion.nav>
 
@@ -65,7 +65,7 @@ export function ConditionHero({ condition, className }: ConditionHeroProps) {
             custom={{ delay: 0.2, duration: 1.1 }}
             className="font-display text-charcoal uppercase leading-[1.0] tracking-[-0.03em] text-[2.6rem] sm:text-[3.4rem] lg:text-[4rem] font-normal mb-6"
           >
-            {condition.name}
+            {concern.name}
           </motion.h1>
 
           <motion.p
@@ -75,7 +75,7 @@ export function ConditionHero({ condition, className }: ConditionHeroProps) {
             custom={{ delay: 0.3, duration: 1.0 }}
             className="font-sans text-stone-gray text-[15px] sm:text-[16px] lg:text-[17px] leading-[1.85] font-light max-w-[460px] mb-10"
           >
-            {condition.tagline}
+            {concern.tagline}
           </motion.p>
 
           <motion.div

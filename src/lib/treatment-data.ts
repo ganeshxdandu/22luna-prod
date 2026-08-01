@@ -8,6 +8,7 @@ import {
   SKIN_GROUPS,
   HAIR_TREATMENTS,
   DENTAL_TREATMENTS,
+  WELLNESS_TREATMENTS,
   CatalogueItem,
 } from './treatments-catalogue';
 
@@ -639,13 +640,15 @@ function createGenericTreatmentData(slug: string): TreatmentData {
   }
   if (!item) item = HAIR_TREATMENTS.find((t) => t.slug === slug);
   if (!item) item = DENTAL_TREATMENTS.find((t) => t.slug === slug);
+  if (!item) item = WELLNESS_TREATMENTS.find((t) => t.slug === slug);
 
   const name = item ? item.name : slug.replace(/-/g, ' ').replace(/\b\w/g, (l) => l.toUpperCase());
   const description = item ? item.description : 'A medical-grade clinical treatment designed with precision and care.';
 
   const isHair = slug.includes('hair') || slug.includes('scalp') || slug.includes('exosome');
   const isDental = slug.includes('dental') || slug.includes('teeth') || slug.includes('aligners') || slug.includes('crown') || slug.includes('bonding') || slug.includes('root') || slug.includes('veneers');
-  const category = isHair ? 'Hair' : isDental ? 'Dental' : 'Skin';
+  const isWellness = slug.includes('reviv') || slug.includes('infusion') || slug.includes('longevity') || slug.includes('wellness') || slug.includes('boost');
+  const category = isHair ? 'Hair' : isDental ? 'Dental' : isWellness ? 'Wellness' : 'Skin';
 
   return {
     slug,

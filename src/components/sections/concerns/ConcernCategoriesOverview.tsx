@@ -6,16 +6,16 @@ import { motion } from 'framer-motion';
 import { fadeUp, fadeIn } from '@/lib/animations';
 import { CloudinaryImage } from '@/components/ui/CloudinaryImage';
 import { cn } from '@/lib/utils';
-import { CONDITION_CATEGORIES } from '@/lib/conditions-catalogue';
+import { CONCERN_CATEGORIES } from '@/lib/concerns-catalogue';
 
-export interface ConditionCategoriesOverviewProps {
+export interface ConcernCategoriesOverviewProps {
   className?: string;
 }
 
-export function ConditionCategoriesOverview({ className }: ConditionCategoriesOverviewProps) {
+export function ConcernCategoriesOverview({ className }: ConcernCategoriesOverviewProps) {
   return (
     <section
-      id="condition-categories-overview"
+      id="concern-categories-overview"
       className={cn('relative w-full bg-limestone border-b border-charcoal/10 py-16 md:py-24', className)}
     >
       <div className="max-w-site mx-auto w-full px-6 md:px-8">
@@ -44,7 +44,7 @@ export function ConditionCategoriesOverview({ className }: ConditionCategoriesOv
 
         {/* Categories Grid (3 columns on lg, 1-2 on mobile) */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-8">
-          {CONDITION_CATEGORIES.map((category, idx) => {
+          {CONCERN_CATEGORIES.map((category, idx) => {
             return (
               <motion.div
                 key={category.id}

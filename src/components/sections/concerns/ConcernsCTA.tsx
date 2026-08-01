@@ -6,21 +6,15 @@ import { ArrowUpRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { fadeUp } from '@/lib/animations';
 import { cn } from '@/lib/utils';
-import type { ConditionDetailData } from '@/lib/condition-detail-data';
 
-export interface ConditionCTAProps {
-  condition: ConditionDetailData;
+export interface ConcernsCTAProps {
   className?: string;
 }
 
-export function ConditionCTA({ condition, className }: ConditionCTAProps) {
-  const title = condition.ctaTitle ?? `Discuss ${condition.name} In Consultation`;
-  const subtitle =
-    condition.ctaSubtitle ??
-    "Every concern looks slightly different from person to person. The goal isn't to identify the perfect treatment online — the goal is to understand your skin, hair, or dental health properly before making any decisions.";
-
+export function ConcernsCTA({ className }: ConcernsCTAProps) {
   return (
     <section
+      id="concerns-cta"
       className={cn(
         'bg-moon-ivory py-16 md:py-24 lg:py-28 px-6 md:px-8 w-full select-none',
         className
@@ -58,28 +52,28 @@ export function ConditionCTA({ condition, className }: ConditionCTAProps) {
 
             {/* Eyebrow */}
             <span className="font-sans text-[0.68rem] tracking-[0.22em] uppercase text-white/60 font-medium mb-5 block">
-              Begin With Understanding
+              Consultation Guidance
             </span>
 
             <h2 className="font-display text-[1.8rem] sm:text-[2.25rem] md:text-[2.75rem] lg:text-[3rem] text-white leading-tight tracking-tight font-light uppercase mb-5">
-              {title}
+              Need help finding your concern?
             </h2>
 
             <p className="text-white/85 font-sans font-light text-xs md:text-[14px] tracking-wide leading-[1.75] max-w-[560px] mb-8">
-              {subtitle}
+              You do not need to diagnose yourself or identify your concern perfectly. Many skin and hair issues share similar characteristics. Our unhurried consultation exists to distinguish subtle causes and design the right clinical approach for you.
             </p>
 
             <Link
               href="https://wa.me/918971725522?text=I%20would%20like%20to%20book%20a%20consultation." target="_blank" rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-white hover:bg-[#FDFBF7] text-[#BBA175] font-sans font-medium text-xs md:text-[13px] py-3.5 px-8 rounded-full shadow-md transition-all duration-300 hover:scale-[1.02]"
             >
-              Book Consultation
+              Begin with a Consultation
               <ArrowUpRight size={15} strokeWidth={2.5} className="mt-0.5" />
             </Link>
 
             {/* Reassurance note */}
             <p className="mt-6 font-sans text-[0.7rem] text-white/50 font-light tracking-wide">
-              No pressure. No rigid packages. Just an unhurried, honest assessment.
+              No pressure. No pre-set packages. Just medical clarity.
             </p>
 
           </div>

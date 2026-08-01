@@ -4,17 +4,17 @@ import * as React from 'react';
 import { motion } from 'framer-motion';
 import { fadeUp, fadeIn } from '@/lib/animations';
 import { cn } from '@/lib/utils';
-import type { ConditionDetailData } from '@/lib/condition-detail-data';
+import type { ConcernDetailData } from '@/lib/concern-detail-data';
 
-export interface ConditionSignsProps {
-  condition: ConditionDetailData;
+export interface ConcernSignsProps {
+  concern: ConcernDetailData;
   className?: string;
 }
 
-export function ConditionSigns({ condition, className }: ConditionSignsProps) {
+export function ConcernSigns({ concern, className }: ConcernSignsProps) {
   return (
     <section
-      id="condition-signs"
+      id="concern-signs"
       className={cn('relative w-full bg-limestone border-b border-charcoal/10 py-16 md:py-24', className)}
     >
       <div className="max-w-site mx-auto w-full px-6 md:px-8">
@@ -41,7 +41,7 @@ export function ConditionSigns({ condition, className }: ConditionSignsProps) {
 
         {/* Editorial List */}
         <div className="border-t border-charcoal/10 divide-y divide-charcoal/10">
-          {condition.signsNoticed.map((sign, idx) => (
+          {concern.signsNoticed.map((sign, idx) => (
             <motion.div
               key={idx}
               variants={fadeUp}
