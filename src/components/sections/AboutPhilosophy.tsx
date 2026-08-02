@@ -35,10 +35,10 @@ export function AboutPhilosophy({ className }: AboutPhilosophyProps) {
       <div className="max-w-site mx-auto w-full p-6 md:p-8 flex-1 flex flex-col justify-center">
         
         {/* Row: Left Column (Label + Heading) stretches to match Right Column (stacked paragraphs) */}
-        <div className="flex flex-col lg:flex-row justify-between items-stretch gap-12 lg:gap-8 w-full">
+        <div className="flex flex-col lg:flex-row justify-between items-start gap-6 lg:gap-16 w-full">
           
-          {/* Left Column: Spans top-to-bottom of the text block height */}
-          <div className="flex flex-col justify-between lg:w-[45%] shrink-0 min-h-[220px] lg:min-h-0">
+          {/* Left Column */}
+          <div className="flex flex-col gap-3 lg:gap-4 lg:w-[45%] shrink-0">
             {/* TOP: Label */}
             <motion.div
               variants={fadeIn}
@@ -51,7 +51,7 @@ export function AboutPhilosophy({ className }: AboutPhilosophyProps) {
                 Our <span className="font-normal">Philosophy</span>
               </p>
             </motion.div>
-
+ 
             {/* BOTTOM: Heading */}
             <motion.div
               variants={fadeUp}
@@ -59,7 +59,7 @@ export function AboutPhilosophy({ className }: AboutPhilosophyProps) {
               whileInView="visible"
               viewport={{ once: true, margin: '-40px' }}
               custom={{ delay: 0.2, duration: 1.1 }}
-              className="mt-8 lg:mt-0"
+              className="relative"
             >
               <h2
                 className="font-display text-moon-ivory uppercase leading-[1.15] tracking-[-0.02em] text-[28px] sm:text-[34px] lg:text-[40px]"

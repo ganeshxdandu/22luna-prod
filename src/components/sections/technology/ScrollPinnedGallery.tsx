@@ -75,7 +75,7 @@ export function ScrollPinnedGallery({ className }: ScrollPinnedGalleryProps) {
     <div 
       ref={containerRef} 
       id="advanced-technology"
-      className={cn('relative w-full h-[260vh]', className)}
+      className={cn('relative w-full h-[215vh]', className)}
     >
       {/* Sticky viewport container: pins screens inside viewport on scroll */}
       <div className="w-full sticky top-0 h-screen overflow-hidden flex flex-col justify-between pt-4 pb-12 md:pt-6 md:pb-16">
@@ -113,11 +113,11 @@ export function ScrollPinnedGallery({ className }: ScrollPinnedGalleryProps) {
                 <div
                   key={i}
                   className={cn(
-                    "relative w-[290px] xs:w-[320px] sm:w-[320px] md:w-[380px] lg:w-[330px] xl:w-[380px] shrink-0 border rounded-[4px] p-5 sm:p-6 flex flex-col justify-between items-stretch aspect-[4/5] sm:aspect-[4/4.6] group overflow-hidden transition-all duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)] select-none",
+                    "relative w-[300px] xs:w-[340px] sm:w-[340px] md:w-[400px] lg:w-[360px] xl:w-[420px] shrink-0 border rounded-[4px] p-5 sm:p-6 flex flex-col justify-between items-stretch aspect-[4/5] sm:aspect-[4/4.6] group overflow-hidden transition-all duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)] select-none",
                     isActive 
-                      ? "bg-[#F2EDE2] border-charcoal/[0.08]" 
+                      ? "bg-moon-ivory border-charcoal/[0.08]" 
                       : "bg-soft-ivory border-charcoal/[0.03]",
-                    "lg:hover:bg-[#F2EDE2] lg:hover:border-charcoal/[0.08]"
+                    "lg:hover:bg-moon-ivory lg:hover:border-charcoal/[0.08]"
                   )}
                 >
                   {/* Diagonal editorial light sweep reflection */}
@@ -151,7 +151,7 @@ export function ScrollPinnedGallery({ className }: ScrollPinnedGalleryProps) {
                   {/* Product render container */}
                   <div className="relative w-full flex-1 flex items-center justify-center overflow-visible mb-3 z-10">
                     <div className={cn(
-                      "relative w-28 h-28 xs:w-32 xs:h-32 sm:w-36 sm:h-36 lg:w-28 lg:h-28 xl:w-36 xl:h-36 transform-gpu transition-all duration-[850ms] ease-[cubic-bezier(0.16,1,0.3,1)]",
+                      "relative w-32 h-32 xs:w-36 xs:h-36 sm:w-40 sm:h-40 lg:w-32 lg:h-32 xl:w-40 xl:h-40 transform-gpu transition-all duration-[850ms] ease-[cubic-bezier(0.16,1,0.3,1)]",
                       isActive 
                         ? "-translate-y-2.5 scale-[1.04] lg:translate-y-0 lg:scale-100" 
                         : "translate-y-0 scale-100",
@@ -161,7 +161,7 @@ export function ScrollPinnedGallery({ className }: ScrollPinnedGalleryProps) {
                         src={card.image}
                         alt={card.alt}
                         fill
-                        sizes="(max-width: 640px) 112px, (max-width: 768px) 144px, 144px"
+                        sizes="(max-width: 640px) 144px, (max-width: 768px) 160px, 160px"
                         className="object-contain filter drop-shadow-[0_8px_16px_rgba(0,0,0,0.02)]"
                       />
                     </div>
@@ -217,6 +217,12 @@ export function ScrollPinnedGallery({ className }: ScrollPinnedGalleryProps) {
                 </div>
               );
             })}
+            
+            {/* Elegant spacer element to force margin on the right of the last card */}
+            <div 
+              className="w-16 xs:w-20 sm:w-24 md:w-32 lg:w-[calc((100vw-1440px)/2+32px)] shrink-0 block" 
+              aria-hidden="true" 
+            />
           </motion.div>
         </div>
 

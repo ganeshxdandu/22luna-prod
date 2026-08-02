@@ -26,7 +26,7 @@ export function AboutHero({ className }: AboutHeroProps) {
        * On desktop the flex row sits inside this padded box;
        * the image fills its column but stays contained (hard edges, no overflow).
        */}
-      <div className="max-w-site mx-auto w-full px-6 pb-6 pt-[96px] md:px-8 md:pb-8 md:pt-[104px] flex flex-col lg:flex-row gap-10 lg:gap-0 min-h-screen lg:min-h-0 lg:h-full">
+      <div className="max-w-site mx-auto w-full px-6 pb-6 pt-[96px] md:px-8 md:pb-8 md:pt-[104px] flex flex-col lg:flex-row gap-10 lg:gap-0 h-auto lg:h-full">
 
         {/* ── LEFT: Text Column ── */}
         <div className="relative flex flex-col w-full lg:w-5/12 shrink-0 lg:pr-8">
