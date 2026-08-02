@@ -71,34 +71,36 @@ export function Hero({ className }: HeroProps) {
       </div>
 
       {/* ── Bottom Content Area ── */}
-      <div className="absolute bottom-0 left-0 right-0 px-8 py-8 flex flex-col sm:flex-row sm:items-end justify-between items-start gap-6 sm:gap-0">
+      <div className="absolute bottom-0 left-0 right-0 py-8">
+        <div className="max-w-site mx-auto w-full px-6 md:px-8 flex flex-col sm:flex-row sm:items-end justify-between items-start gap-6 sm:gap-0">
+          
+          {/* Headline (Pure CSS Animation) */}
+          <div className="max-w-[90%] sm:max-w-[65%] md:max-w-[55%] lg:max-w-[50%] css-fade-up-headline">
+            <h1
+              className="text-moon-ivory font-display leading-[1.05] tracking-[-0.02em]"
+              style={{ fontSize: 'clamp(2rem, 4.444vw, 4rem)', fontWeight: 400 }}
+            >
+              Elevated Aesthetics.{' '}
+              <br />
+              Precision Medical Care.
+            </h1>
+          </div>
 
-        {/* Headline (Pure CSS Animation) */}
-        <div className="max-w-[90%] sm:max-w-[65%] md:max-w-[55%] lg:max-w-[50%] css-fade-up-headline">
-          <h1
-            className="text-moon-ivory font-display leading-[1.05] tracking-[-0.02em]"
-            style={{ fontSize: 'clamp(2rem, 4.444vw, 4rem)', fontWeight: 400 }}
-          >
-            Elevated Aesthetics.{' '}
-            <br />
-            Precision Medical Care.
-          </h1>
+          {/* Book Consultation CTA (Pure CSS Animation) */}
+          <div className="mb-1 css-fade-up-cta">
+            <Link
+              href="https://wa.me/918971725522?text=I%20would%20like%20to%20book%20a%20consultation." target="_blank" rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 tracking-normal rounded-full bg-moon-ivory/15 backdrop-blur-sm border border-moon-ivory/30 text-moon-ivory font-sans text-[0.75rem] uppercase px-6 py-3.5 transition-all duration-500 hover:bg-moon-ivory hover:text-charcoal hover:border-moon-ivory group"
+            >
+              Book Consultation
+              <ArrowUpRight
+                size={13}
+                className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+              />
+            </Link>
+          </div>
+
         </div>
-
-        {/* Book Consultation CTA (Pure CSS Animation) */}
-        <div className="mb-1 css-fade-up-cta">
-          <Link
-            href="https://wa.me/918971725522?text=I%20would%20like%20to%20book%20a%20consultation." target="_blank" rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 tracking-normal rounded-full bg-moon-ivory/15 backdrop-blur-sm border border-moon-ivory/30 text-moon-ivory font-sans text-[0.75rem] uppercase px-6 py-3.5 transition-all duration-500 hover:bg-moon-ivory hover:text-charcoal hover:border-moon-ivory group"
-          >
-            Book Consultation
-            <ArrowUpRight
-              size={13}
-              className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-            />
-          </Link>
-        </div>
-
       </div>
     </section>
   );

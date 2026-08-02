@@ -106,26 +106,29 @@ export function SterilizationSection({ className }: SterilizationSectionProps) {
           }}
         />
 
-        {/* Corner Branding Details - z-30 initially to stay bright, dims to z-10 behind overlay on scroll */}
-        <div className={cn("absolute top-6 left-6 md:top-8 md:left-8 transition-all duration-700", activeStep === 0 ? "z-30" : "z-10")}>
-          <h2 className="font-display text-[24px] sm:text-[32px] lg:text-[40px] leading-[1.05] tracking-[-0.02em] uppercase text-moon-ivory">
-            Gold Standard
-            <br />
-            Sterilization
-          </h2>
-        </div>
+        {/* Content Container constrained to max-w-site for ultra-wide screen alignment */}
+        <div className="absolute inset-0 w-full h-full max-w-site mx-auto px-4 sm:px-6 md:px-8 pointer-events-none z-30">
+          {/* Corner Branding Details */}
+          <div className={cn("absolute top-6 left-4 sm:left-6 md:left-8 pointer-events-auto transition-all duration-700", activeStep === 0 ? "opacity-100" : "opacity-0")}>
+            <h2 className="font-display text-[24px] sm:text-[32px] lg:text-[40px] leading-[1.05] tracking-[-0.02em] uppercase text-moon-ivory">
+              Gold Standard
+              <br />
+              Sterilization
+            </h2>
+          </div>
 
-        <div className={cn("absolute top-6 right-6 md:top-8 md:right-8 transition-all duration-700", activeStep === 0 ? "z-30" : "z-10")}>
-          <span className="font-sans text-[14px] tracking-tight font-extralight uppercase text-moon-ivory">
-            Feature <span className="font-normal">03</span>
-          </span>
-        </div>
+          <div className={cn("absolute top-6 right-4 sm:right-6 md:right-8 pointer-events-auto transition-all duration-700", activeStep === 0 ? "opacity-100" : "opacity-0")}>
+            <span className="font-sans text-[14px] tracking-tight font-extralight uppercase text-moon-ivory">
+              Feature <span className="font-normal">03</span>
+            </span>
+          </div>
 
-        {/* Bottom Right pinned paragraphs */}
-        <div className={cn("absolute bottom-6 right-6 md:bottom-8 md:right-8 max-w-[350px] transition-all duration-700", activeStep === 0 ? "z-30" : "z-10")}>
-          <p className="font-sans text-moon-ivory/80 text-[14px] sm:text-[15px] lg:text-[16px] leading-[1.7] tracking-tight font-light text-right md:text-left">
-            Most clinics never show what happens behind the scenes. At 22Luna, hygiene isn&apos;t an afterthought. It&apos;s built into every step of your experience.
-          </p>
+          {/* Bottom Right pinned paragraphs */}
+          <div className={cn("absolute bottom-6 right-4 sm:right-6 md:right-8 max-w-[350px] pointer-events-auto transition-all duration-700", activeStep === 0 ? "opacity-100 animate-fade-in" : "opacity-0 pointer-events-none")}>
+            <p className="font-sans text-moon-ivory/80 text-[14px] sm:text-[15px] lg:text-[16px] leading-[1.7] tracking-tight font-light text-right md:text-left">
+              Most clinics never show what happens behind the scenes. At 22Luna, hygiene isn&apos;t an afterthought. It&apos;s built into every step of your experience.
+            </p>
+          </div>
         </div>
 
 

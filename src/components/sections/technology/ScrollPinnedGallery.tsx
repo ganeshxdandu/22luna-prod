@@ -64,6 +64,12 @@ export function ScrollPinnedGallery({ className }: ScrollPinnedGalleryProps) {
     });
   }, [scrollYProgress]);
 
+  // Compute active card index dynamically based on scroll progress for mobile scroll-triggering
+  const activeCardIndex = Math.min(
+    ENHANCED_TECH_CARDS.length - 1,
+    Math.max(0, Math.round((scrollProgress / 100) * (ENHANCED_TECH_CARDS.length - 1)))
+  );
+
   return (
     /* Outer container: acts as scroll track on all screens (h-[260vh]) */
     <div 
@@ -72,10 +78,10 @@ export function ScrollPinnedGallery({ className }: ScrollPinnedGalleryProps) {
       className={cn('relative w-full h-[260vh]', className)}
     >
       {/* Sticky viewport container: pins screens inside viewport on scroll */}
-      <div className="w-full sticky top-0 h-screen overflow-hidden flex flex-col justify-center py-4 sm:py-10">
+      <div className="w-full sticky top-0 h-screen overflow-hidden flex flex-col justify-between pt-4 pb-12 md:pt-6 md:pb-16">
         
         {/* Gallery Title & Header Info */}
-        <div className="max-w-site mx-auto w-full px-6 md:px-8 mb-6 lg:mb-8 flex flex-col lg:flex-row lg:justify-between lg:items-end gap-4 lg:gap-8">
+        <div className="max-w-site mx-auto w-full px-6 md:px-8 mb-4 lg:mb-6 flex flex-col lg:flex-row lg:justify-between lg:items-end gap-4 lg:gap-8">
           <div className="max-w-sm shrink-0">
             <span className="font-sans text-[13px] tracking-tight font-extralight uppercase text-botanical block mb-1">
               Feature <span className="font-normal">01</span>
@@ -101,46 +107,116 @@ export function ScrollPinnedGallery({ className }: ScrollPinnedGalleryProps) {
             style={{ x }}
             className="flex gap-8 select-none overflow-visible pl-6 pr-6 md:pl-8 md:pr-8 lg:pl-[calc((100vw-1440px)/2+32px)] lg:pr-[calc((100vw-1440px)/2+32px)]"
           >
-            {ENHANCED_TECH_CARDS.map((card, i) => (
-              <div
-                key={i}
-                className="w-[290px] xs:w-[320px] sm:w-[320px] md:w-[380px] lg:w-[330px] xl:w-[380px] shrink-0 bg-soft-ivory border border-charcoal/[0.05] rounded-[4px] p-5 sm:p-8 lg:p-6 xl:p-8 flex flex-col justify-between items-stretch aspect-[3/4] sm:aspect-[4/5] group hover:border-charcoal/[0.12] hover:shadow-[0_16px_40px_rgb(46,44,41,0.03)] transition-all duration-700"
-              >
-                {/* Product render container with premium soft frame */}
-                <div className="relative w-full flex-1 bg-charcoal/[0.012] rounded-[2px] flex items-center justify-center p-4 lg:p-3 xl:p-5 overflow-hidden mb-4 sm:mb-6">
-                  <div className="relative w-40 h-40 xs:w-48 xs:h-48 sm:w-44 sm:h-44 lg:w-40 lg:h-40 xl:w-48 xl:h-48 transition-transform duration-1000 ease-editorial group-hover:scale-[1.03]">
-                    <CloudinaryImage
-                      src={card.image}
-                      alt={card.alt}
-                      fill
-                      sizes="(max-width: 640px) 160px, (max-width: 768px) 176px, 200px"
-                      className="object-contain"
-                    />
-                  </div>
-                </div>
+            {ENHANCED_TECH_CARDS.map((card, i) => {
+              const isActive = activeCardIndex === i;
+              return (
+                <div
+                  key={i}
+                  className={cn(
+                    "relative w-[290px] xs:w-[320px] sm:w-[320px] md:w-[380px] lg:w-[330px] xl:w-[380px] shrink-0 border rounded-[4px] p-5 sm:p-6 flex flex-col justify-between items-stretch aspect-[4/5] sm:aspect-[4/4.6] group overflow-hidden transition-all duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)] select-none",
+                    isActive 
+                      ? "bg-[#F2EDE2] border-charcoal/[0.08]" 
+                      : "bg-soft-ivory border-charcoal/[0.03]",
+                    "lg:hover:bg-[#F2EDE2] lg:hover:border-charcoal/[0.08]"
+                  )}
+                >
+                  {/* Diagonal editorial light sweep reflection */}
+                  <div className="absolute inset-0 w-full h-full bg-gradient-to-tr from-transparent via-white/[0.07] to-transparent -translate-x-full lg:group-hover:translate-x-full transition-transform duration-[1400ms] ease-out pointer-events-none z-10" />
 
-                {/* Info Text Details */}
-                <div className="flex flex-col">
-                  <span className="font-sans text-[8px] sm:text-[9px] uppercase tracking-[0.2em] text-botanical font-bold mb-1">
-                    {card.category}
-                  </span>
-                  <h5 className="font-display text-[16px] sm:text-[20px] uppercase text-charcoal font-medium leading-snug tracking-tight mb-2 group-hover:text-gold transition-colors duration-300">
-                    {card.title}
-                  </h5>
-                  <div className="h-0 group-hover:h-12 overflow-hidden opacity-0 group-hover:opacity-100 transition-all duration-500 hidden sm:block">
-                    <p className="font-sans text-[11px] sm:text-[12px] text-stone-gray font-light leading-relaxed">
-                      {card.description}
-                    </p>
+                  {/* Minimal top-right exhibition arrow indicator */}
+                  <div className={cn(
+                    "absolute top-5 right-5 z-10 transition-all duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)]",
+                    isActive 
+                      ? "opacity-30 translate-x-0 lg:opacity-0 lg:-translate-x-1.5" 
+                      : "opacity-0 -translate-x-1.5",
+                    "lg:group-hover:opacity-40 lg:group-hover:translate-x-0"
+                  )}>
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-charcoal">
+                      <path d="M7 17L17 7M17 7H7M17 7V17" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
                   </div>
-                  <div className="mt-2 pt-2 border-t border-charcoal/[0.04] flex items-center justify-between text-[10px] sm:text-[11px] font-sans tracking-wide text-charcoal/40">
-                    <span>{card.subtitle}</span>
-                    <span className="text-gold opacity-60 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300">
-                      Discover →
+
+                  {/* Pedestal Shadow Element (moves with image) */}
+                  <div className={cn(
+                    "absolute top-[52%] sm:top-[48%] left-1/2 -translate-x-1/2 w-20 h-[4px] bg-charcoal/[0.05] rounded-full blur-[3.5px] z-0 transition-all duration-[850ms] ease-[cubic-bezier(0.16,1,0.3,1)]",
+                    isActive 
+                      ? "scale-x-[0.72] opacity-30 blur-[5px] lg:scale-x-100 lg:opacity-60 lg:blur-[3.5px]" 
+                      : "scale-x-100 opacity-60 blur-[3.5px]",
+                    "lg:group-hover:scale-x-[0.72] lg:group-hover:opacity-30 lg:group-hover:blur-[5px]"
+                  )} />
+
+                  {/* Spotlight background behind the product */}
+                  <div className="absolute inset-x-0 top-0 h-[60%] bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.7)_0%,transparent_65%)] pointer-events-none z-0" />
+
+                  {/* Product render container */}
+                  <div className="relative w-full flex-1 flex items-center justify-center overflow-visible mb-3 z-10">
+                    <div className={cn(
+                      "relative w-28 h-28 xs:w-32 xs:h-32 sm:w-36 sm:h-36 lg:w-28 lg:h-28 xl:w-36 xl:h-36 transform-gpu transition-all duration-[850ms] ease-[cubic-bezier(0.16,1,0.3,1)]",
+                      isActive 
+                        ? "-translate-y-2.5 scale-[1.04] lg:translate-y-0 lg:scale-100" 
+                        : "translate-y-0 scale-100",
+                      "lg:group-hover:-translate-y-2.5 lg:group-hover:scale-[1.04]"
+                    )}>
+                      <CloudinaryImage
+                        src={card.image}
+                        alt={card.alt}
+                        fill
+                        sizes="(max-width: 640px) 112px, (max-width: 768px) 144px, 144px"
+                        className="object-contain filter drop-shadow-[0_8px_16px_rgba(0,0,0,0.02)]"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Info Text Details */}
+                  <div className="flex flex-col z-10 mt-auto">
+                    <span className="font-sans text-[8.5px] sm:text-[9.5px] uppercase tracking-[0.22em] text-stone-gray/70 font-semibold mb-1">
+                      {card.category}
                     </span>
+                    <h5 className={cn(
+                      "font-display text-[17px] sm:text-[21px] uppercase text-charcoal font-normal leading-snug tracking-tight mb-1.5 transition-colors duration-[750ms] ease-[cubic-bezier(0.16,1,0.3,1)]",
+                      isActive ? "text-botanical lg:text-charcoal" : "text-charcoal",
+                      "lg:group-hover:text-botanical"
+                    )}>
+                      {card.title}
+                    </h5>
+
+                    {/* Expandable Editorial Drawer (shows metadata & description on hover/scroll-active) */}
+                    <div className={cn(
+                      "overflow-hidden transition-all duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)]",
+                      isActive 
+                        ? "h-28 opacity-100 lg:h-0 lg:opacity-0" 
+                        : "h-0 opacity-0",
+                      "lg:group-hover:h-28 lg:group-hover:opacity-100"
+                    )}>
+                      {/* Refined Metadata Details Row */}
+                      <div className="flex items-center gap-2.5 text-[8.5px] sm:text-[9px] font-sans tracking-widest text-stone-gray/50 uppercase pb-2.5 mb-2.5 border-b border-charcoal/[0.04] w-full">
+                        <span>{card.origin}</span>
+                        <span className="w-[3px] h-[3px] rounded-full bg-charcoal/[0.08]" />
+                        <span>{card.spec}</span>
+                        {card.fdaApproved && (
+                          <>
+                            <span className="w-[3px] h-[3px] rounded-full bg-charcoal/[0.08]" />
+                            <span className="text-botanical/60 font-semibold">FDA</span>
+                          </>
+                        )}
+                      </div>
+
+                      {/* Description copy */}
+                      <p className="font-sans text-[11px] sm:text-[12px] text-stone-gray font-light leading-normal pr-4 w-full">
+                        {card.description}
+                      </p>
+                    </div>
                   </div>
+
+                  {/* Hairline interactive hover line */}
+                  <div className={cn(
+                    "absolute bottom-0 left-0 h-[1.5px] bg-botanical transition-all duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)]",
+                    isActive ? "w-full lg:w-0" : "w-0",
+                    "lg:group-hover:w-full"
+                  )} />
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </motion.div>
         </div>
 

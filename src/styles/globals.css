@@ -6,7 +6,7 @@
   --font-display: var(--font-display), Georgia, Cambria, "Times New Roman", Times, serif;
 
   /* Site-wide max-width constraint */
-  --max-w-site: 1440px;
+  --max-width-site: 1440px;
 
   /* Custom animations */
   --animate-marquee: marquee 30s linear infinite;
