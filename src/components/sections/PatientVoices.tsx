@@ -423,7 +423,7 @@ export function PatientVoices({ className }: PatientVoicesProps) {
 
                 <div className="w-px h-9 bg-charcoal/[0.07]" aria-hidden="true" />
 
-                <TrustMetric value="59" label="Reviews" />
+                <TrustMetric value="500+" label="Verified Reviews" />
 
                 <div className="w-px h-9 bg-charcoal/[0.07] hidden sm:block" aria-hidden="true" />
 
@@ -448,7 +448,7 @@ export function PatientVoices({ className }: PatientVoicesProps) {
               identical to another.
             */}
 
-            {/* Col 1 — upward · 48s */}
+            {/* Col 1 — upward · 48s (Always visible — 1 column on mobile) */}
             <InfiniteConveyor
               reviews={COLUMNS[0]}
               direction="up"
@@ -457,16 +457,16 @@ export function PatientVoices({ className }: PatientVoicesProps) {
               className="flex-1"
             />
 
-            {/* Col 2 — downward · 65s */}
+            {/* Col 2 — downward · 65s (Visible on sm+ / tablet & desktop) */}
             <InfiniteConveyor
               reviews={COLUMNS[1]}
               direction="down"
               duration={65}
               onCardClick={setActiveReview}
-              className="flex-1"
+              className="flex-1 hidden sm:block"
             />
 
-            {/* Col 3 — upward · 38s · hidden on < lg */}
+            {/* Col 3 — upward · 38s (Visible on lg+ / desktop) */}
             <InfiniteConveyor
               reviews={COLUMNS[2]}
               direction="up"
@@ -475,7 +475,7 @@ export function PatientVoices({ className }: PatientVoicesProps) {
               className="flex-1 hidden lg:block"
             />
 
-            {/* Col 4 — downward · 56s · hidden on < lg */}
+            {/* Col 4 — downward · 56s (Visible on lg+ / desktop) */}
             <InfiniteConveyor
               reviews={COLUMNS[3]}
               direction="down"
