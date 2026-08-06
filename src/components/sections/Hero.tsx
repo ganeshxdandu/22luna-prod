@@ -86,13 +86,13 @@ export function Hero({ className }: HeroProps) {
             </h1>
           </div>
 
-          {/* Book Consultation CTA (Pure CSS Animation) */}
+          {/* Explore Treatments CTA (Pure CSS Animation) */}
           <div className="mb-1 css-fade-up-cta">
             <Link
-              href="https://wa.me/918971725522?text=I%20would%20like%20to%20book%20a%20consultation." target="_blank" rel="noopener noreferrer"
+              href="/treatments"
               className="inline-flex items-center gap-2 tracking-normal rounded-full bg-moon-ivory/15 backdrop-blur-sm border border-moon-ivory/30 text-moon-ivory font-sans text-[0.75rem] uppercase px-6 py-3.5 transition-all duration-500 hover:bg-moon-ivory hover:text-charcoal hover:border-moon-ivory group"
             >
-              Book Consultation
+              Explore Treatments
               <ArrowUpRight
                 size={13}
                 className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"

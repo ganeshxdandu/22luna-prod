@@ -6,6 +6,7 @@ import { SignaturePrograms } from '@/components/sections/SignaturePrograms';
 import { MeetDoctor } from '@/components/sections/MeetDoctor';
 import { PatientStories } from '@/components/sections/PatientStories';
 import { QuietTrust } from '@/components/sections/QuietTrust';
+import { PatientVoices } from '@/components/sections/PatientVoices';
 import { FAQ } from '@/components/sections/FAQ';
 import { InstagramFeed } from '@/components/sections/InstagramFeed';
 import { SpaceSection } from '@/components/sections/SpaceSection';
@@ -55,8 +56,11 @@ export default function Home() {
       {/* ── SECTION 5: Patient Stories ── */}
       {/* <PatientStories /> */}
 
-      {/* ── SECTION 5.5: Quiet Trust (Editorial Asymmetrical Section) ── */}
-      <QuietTrust />
+      {/* ── SECTION 5.5: Patient Voices — Living review wall (100vh bento conveyor) ── */}
+      <PatientVoices />
+
+      {/* ── SECTION 5.6: Moments at 22 Luna — Media gallery ── */}
+      {/* <QuietTrust /> */}
 
       {/* ── SECTION 6: FAQ ── */}
       <FAQ />

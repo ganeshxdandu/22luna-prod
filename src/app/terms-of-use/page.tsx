@@ -52,62 +52,135 @@ export default function TermsOfUsePage() {
           </h1>
 
           <p className="font-sans text-stone-gray text-[0.8rem] tracking-wider uppercase font-light mb-8">
-            Last Updated: July 29, 2026
+            Last Updated: August 4, 2026
           </p>
 
           <div className="h-[1px] w-full bg-charcoal/10 mb-10" />
 
           {/* Content paragraphs */}
-          <div className="space-y-8 text-stone-gray font-sans font-light text-[0.92rem] sm:text-[0.98rem] leading-[1.8] tracking-wide">
+          <div className="space-y-8 text-stone-gray font-sans font-light text-[0.92rem] sm:text-[0.98rem] leading-[1.8] tracking-wide w-full">
             
             <p>
-              Welcome to the 22luna website. By accessing or browsing this website, you agree to comply with 
-              and be bound by the following Terms of Use and guidelines.
+              Welcome to 22Luna! These Terms &amp; Conditions (the &quot;Terms&quot;) govern your use of our website (22luna.in) and all content and services provided through it. By accessing or using our website, you agree to these Terms. Please note that we may update these Terms periodically, and it is your responsibility to review them. If you do not agree to these Terms, please refrain from using our website.
             </p>
 
             <div className="space-y-3 pt-4">
               <h2 className="font-display text-[1.25rem] text-charcoal tracking-tight font-medium uppercase">
-                1. No Medical Diagnosis or Advice
+                Appointments
               </h2>
+              <p className="font-semibold text-charcoal">Booking an Appointment</p>
+              <p>To book an appointment at 22Luna, you can:</p>
+              <ul className="list-disc pl-5 space-y-1">
+                <li><span className="font-semibold">Online:</span> Visit our website and use the online booking system.</li>
+                <li><span className="font-semibold">Phone:</span> Call us at <a href="tel:8971724422" className="text-botanical hover:text-charcoal underline transition-colors font-medium">8971724422</a>, <a href="tel:8971725522" className="text-botanical hover:text-charcoal underline transition-colors font-medium">8971725522</a></li>
+                <li><span className="font-semibold">In-Person:</span> Visit our clinic at Address - 5, Rest House, Kasturba Cross Rd, Shanthala Nagar, Ashok Nagar, Bengaluru, Karnataka 560001</li>
+              </ul>
+
+              <p className="font-semibold text-charcoal mt-4">Cancellation and Rescheduling</p>
               <p>
-                The information provided on this website - including details on treatments, skin concerns, and case studies - is 
-                strictly for educational and exploration purposes. It does not replace a professional medical consultation, 
-                diagnosis, or treatment plan. A direct evaluation by our clinical team is required for diagnosis.
+                If you need to cancel or reschedule your appointment, please notify us at least 24 hours in advance. Late cancellations or no-shows may be subject to a fee.
+              </p>
+
+              <p className="font-semibold text-charcoal mt-4">Late Arrival Policy</p>
+              <p>
+                If you arrive late for your appointment, we will do our best to accommodate you. However, your appointment may need to be rescheduled to ensure timely service for all patients.
+              </p>
+
+              <p className="font-semibold text-charcoal mt-4">Consultation Fees</p>
+              <p>
+                Consultation fees vary based on the type of service and duration. Please contact our reception for specific details.
               </p>
             </div>
 
             <div className="space-y-3 pt-4">
               <h2 className="font-display text-[1.25rem] text-charcoal tracking-tight font-medium uppercase">
-                2. Appointment & Cancellation Policy
+                Pictorial Images &amp; Photographs Disclaimer
               </h2>
               <p>
-                Booking requests made via the website are subject to scheduling availability and confirmation. 
-                We appreciate at least 24 hours&apos; notice for cancellations or modifications of scheduled consultations.
+                Results may vary between individuals and treatments. All images are for illustrative purposes only.
               </p>
             </div>
 
             <div className="space-y-3 pt-4">
               <h2 className="font-display text-[1.25rem] text-charcoal tracking-tight font-medium uppercase">
-                3. Intellectual Property
+                Medical Advice Disclaimer
               </h2>
               <p>
-                All editorial articles, clinical descriptions, photography, design elements, and logos on this website 
-                are the intellectual property of 22luna. Copying, republishing, or distributing any materials without 
-                express written consent is prohibited.
+                The content on this website, including text, images, videos, photos, audio, and graphics, is for informational purposes only and does not constitute medical advice, diagnosis, treatment, or recommendations of any kind. It should not replace advice provided by qualified healthcare professionals. We do not endorse specific tests, physicians, products, procedures, opinions, or other information on this website.
               </p>
             </div>
 
             <div className="space-y-3 pt-4">
               <h2 className="font-display text-[1.25rem] text-charcoal tracking-tight font-medium uppercase">
-                4. General Inquiries
+                Guarantee/Warranty
               </h2>
               <p>
-                If you have questions regarding these terms, medical disclaimers, or booking guidelines, please email us at 
-                <a href="mailto:hello@22luna.in" className="text-botanical hover:text-charcoal underline transition-colors mx-1">
-                  hello@22luna.in
-                </a> 
-                or call the clinic directly.
+                No guarantee or warranty is provided for any treatments or services. Individual results may vary.
               </p>
+            </div>
+
+            <div className="space-y-3 pt-4">
+              <h2 className="font-display text-[1.25rem] text-charcoal tracking-tight font-medium uppercase">
+                Limitation of Liability
+              </h2>
+              <p>
+                In no event shall 22Luna.in, its founders, owners, employees, agents, or service providers (collectively, &quot;Protected Entities&quot;) be liable for any direct, indirect, special, punitive, consequential, or incidental damages arising from or related to the use of our website. Users assume full responsibility for any adverse outcomes.
+              </p>
+            </div>
+
+            <div className="space-y-3 pt-4">
+              <h2 className="font-display text-[1.25rem] text-charcoal tracking-tight font-medium uppercase">
+                Copyright &amp; Prohibited Use
+              </h2>
+              <p>
+                All textual content on this website is the copyright of 22Luna.in, registered in Bangalore, India. No part of this website may be used without prior written consent from 22Luna.in. Commercial use, distribution, or promotion of website content is strictly prohibited. Users may not download, distribute, display, publish, copy, reproduce, transmit, create derivative works from, sell, or otherwise exploit any content available on our website.
+              </p>
+            </div>
+
+            <div className="space-y-3 pt-4">
+              <h2 className="font-display text-[1.25rem] text-charcoal tracking-tight font-medium uppercase">
+                Hosting
+              </h2>
+              <p>
+                Our website is hosted on Wordpress Org. They provide us with an online platform that allows us to show our products and services to you.
+              </p>
+            </div>
+
+            <div className="space-y-3 pt-4">
+              <h2 className="font-display text-[1.25rem] text-charcoal tracking-tight font-medium uppercase">
+                Changes to These Terms of Service
+              </h2>
+              <p>
+                We reserve the right, at our sole discretion, to update, change or replace any part of these Terms of Service by posting updates and changes to our website. It is your responsibility to check our website periodically for changes. Your continued use of or access to our website or the Service following the posting of any changes to these Terms of Service constitutes acceptance of those changes.
+              </p>
+            </div>
+
+            <div className="space-y-3 pt-4">
+              <h2 className="font-display text-[1.25rem] text-charcoal tracking-tight font-medium uppercase">
+                Contact Information
+              </h2>
+              <p>
+                Questions about the Terms of Service should be sent to us at{' '}
+                <a href="mailto:22lunaskin@gmail.com" className="text-botanical hover:text-charcoal underline transition-colors">
+                  22lunaskin@gmail.com
+                </a>
+              </p>
+              <p className="mt-2 font-semibold text-charcoal">Our contact information is posted below:</p>
+              <p className="text-charcoal font-medium">22 Luna Clinic</p>
+              <ul className="list-none space-y-1">
+                <li>
+                  <span className="font-semibold text-charcoal">Email:</span>{' '}
+                  <a href="mailto:22lunaskin@gmail.com" className="text-botanical hover:text-charcoal underline transition-colors">
+                    22lunaskin@gmail.com
+                  </a>
+                </li>
+                <li>
+                  <span className="font-semibold text-charcoal">Address:</span> 5, Rest House, Kasturba Cross Rd, Shanthala Nagar, Ashok Nagar, Bengaluru, Karnataka 560001
+                </li>
+                <li>
+                  <span className="font-semibold text-charcoal">Ph:</span> <a href="tel:8971724422" className="text-botanical hover:text-charcoal underline transition-colors font-medium">8971724422</a>, <a href="tel:8971725522" className="text-botanical hover:text-charcoal underline transition-colors font-medium">8971725522</a>
+                </li>
+              </ul>
             </div>
 
           </div>

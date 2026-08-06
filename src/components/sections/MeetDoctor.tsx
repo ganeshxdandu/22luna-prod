@@ -47,8 +47,46 @@ export function MeetDoctor({ className }: MeetDoctorProps) {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
-            className="relative border border-charcoal/10 rounded-t-full p-3 md:p-4 w-full aspect-[8/11] flex items-center justify-center bg-transparent luna-soft-shadow"
+            className="relative border border-charcoal/10 rounded-t-full p-3 md:p-4 w-full aspect-[8/11] flex items-center justify-center bg-transparent luna-soft-shadow group"
           >
+            {/* ── Glassmorphism Rotating Circular Text Badge ── */}
+            <div className="absolute -bottom-6 -right-6 md:-bottom-10 md:-right-10 w-24 h-24 md:w-32 md:h-32 rounded-full bg-moon-ivory/60 backdrop-blur-[6px] border border-charcoal/5 shadow-sm flex items-center justify-center z-20 select-none transition-all duration-700 hover:scale-110 hover:bg-moon-ivory/75">
+              {/* Rotating SVG Text */}
+              <div className="w-full h-full animate-[spin_30s_linear_infinite] hover:animate-[spin_15s_linear_infinite] transition-all duration-1000">
+                <svg viewBox="0 0 100 100" className="w-full h-full">
+                  <defs>
+                    <path
+                      id="circlePath"
+                      d="M 50,50 m -37,0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0"
+                      fill="none"
+                    />
+                  </defs>
+                  <text className="fill-charcoal font-sans text-[6.5px] font-medium uppercase">
+                    <textPath href="#circlePath" startOffset="0%" textLength="232.5" lengthAdjust="spacing">
+                      •  22LUNA  •  SKIN  •  HAIR  •  DENTAL  •  BENGALURU  
+                    </textPath>
+                  </text>
+                </svg>
+              </div>
+
+              {/* Stationary Monogram in Center */}
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                <svg
+                  width="18"
+                  height="16"
+                  viewBox="0 0 13 11"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="text-charcoal/70 w-4 h-4 md:w-5 md:h-5"
+                >
+                  <path
+                    d="M0.000429727 11.004C0.000429727 7.882 4.92843 6.062 4.92843 2.716C4.92843 0.937997 4.15843 0.167997 2.87043 0.167997C1.54043 0.167997 0.36443 1.442 0.18243 2.688H0.15443V0.251998C1.70843 0.251998 2.18443 -2.38419e-06 3.13643 -2.38419e-06C5.40443 -2.38419e-06 6.07643 1.078 6.07643 2.45C6.07643 5.936 1.90443 6.342 0.40643 10.01H4.38243C5.79643 10.01 5.92943 8.218 5.92943 8.036H5.95043V11.004H0.000429727ZM6.88777 11.004C6.88777 7.882 11.8158 6.062 11.8158 2.716C11.8158 0.937997 11.0458 0.167997 9.75777 0.167997C8.42777 0.167997 7.25177 1.442 7.06977 2.688H7.04177V0.251998C8.59577 0.251998 9.07177 -2.38419e-06 10.0238 -2.38419e-06C12.2918 -2.38419e-06 12.9638 1.078 12.9638 2.45C12.9638 5.936 8.79177 6.342 7.29377 10.01H11.2698C12.6838 10.01 12.8168 8.218 12.8168 8.036H12.8378V11.004H6.88777Z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </div>
+            </div>
+
             <div className="w-full h-full relative rounded-t-full overflow-hidden bg-charcoal/5">
               <CloudinaryImage
                 src={doctorImageUrl}

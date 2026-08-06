@@ -14,9 +14,6 @@ interface ProgramItem {
     publicId: string;
 }
 
-// ─────────────────────────────────────────────────────────
-// 👇 PASTE YOUR CLOUDINARY PUBLIC IDs FOR EACH PROGRAM HERE
-// ─────────────────────────────────────────────────────────
 const PROGRAMS: ProgramItem[] = [
     {
         id: "01",
@@ -34,16 +31,15 @@ const PROGRAMS: ProgramItem[] = [
         id: "03",
         title: "Dental",
         description: "Smile design and cosmetic dentistry.",
-        publicId: "dental_fpthem", // Dental image public ID
+        publicId: "dentalv2_a3b50f",
     },
     {
         id: "04",
         title: "Wellness & IV",
         description: "IV therapy and longevity programs.",
-        publicId: "reviv", // Wellness image public ID
+        publicId: "reviv",
     },
 ];
-// ─────────────────────────────────────────────────────────
 
 // Map care category item IDs to their corresponding landing page anchors
 const getProgramSectionUrl = (id: string): string => {

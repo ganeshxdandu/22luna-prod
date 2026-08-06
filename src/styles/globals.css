@@ -243,5 +243,12 @@ html.lenis, html.lenis body {
   animation-delay: 0.5s;
 }
 
+@keyframes conveyorUp {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-50%); }
+}
 
-
+@keyframes conveyorDown {
+  0% { transform: translateY(-50%); }
+  100% { transform: translateY(0); }
+}
