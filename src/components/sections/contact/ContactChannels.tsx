@@ -53,8 +53,8 @@ const CHANNELS: Channel[] = [
   {
     title: 'Email',
     icon: Mail,
-    value: 'hello@22luna.in',
-    href: 'mailto:hello@22luna.in',
+    value: '22lunaskin@gmail.com',
+    href: 'mailto:22lunaskin@gmail.com',
     description: 'Best for detailed medical history queries or international coordination.',
   },
   {
