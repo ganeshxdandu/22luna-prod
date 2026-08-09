@@ -9,14 +9,14 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
 
 const navLinks = [
-  {label: 'Home', href: '/'},
+  { label: 'Home', href: '/' },
   { label: 'About', href: '/about' },
   // { label: 'Consultation', href: '/consultation' },
   { label: 'Concerns', href: '/concerns' },
   { label: 'Treatments', href: '/treatments' },
-  { label: 'Shop', href: '/shop' },
   { label: 'Medical Tourism', href: '/medical-tourism' },
   { label: 'Contact', href: '/contact' },
+  { label: 'Shop', href: '/shop' },
 ];
 
 export type HeaderVariant = 'dark' | 'light';
@@ -99,26 +99,37 @@ export function Header({ className, variant = 'dark' }: HeaderProps) {
           <nav className="hidden md:flex items-center gap-7">
             {navLinks.map((link) => {
               const isActive = pathname === link.href;
+              const isShop = link.label === 'Shop';
               return (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className={cn(
-                    'font-sans transition-colors duration-300 relative text-sm tracking-tight',
-                    isLightMode
-                      ? isActive ? 'font-medium' : 'font-light'
-                      : isActive ? 'font-semibold' : 'font-light',
-                    isLightMode
-                      ? isActive
-                        ? 'text-botanical'
-                        : 'text-stone-gray hover:text-botanical'
-                      : isActive
-                        ? 'text-white'
-                        : 'text-moon-ivory/80 hover:text-white'
+                <React.Fragment key={link.href}>
+                  {isShop && (
+                    <span 
+                      className={cn(
+                        'w-px h-3.5 block shrink-0 -mx-1.5', 
+                        isLightMode ? 'bg-charcoal/15' : 'bg-white/15'
+                      )} 
+                      aria-hidden="true" 
+                    />
                   )}
-                >
-                  {link.label}
-                </Link>
+                  <Link
+                    href={link.href}
+                    className={cn(
+                      'font-sans transition-colors duration-300 relative text-sm tracking-tight',
+                      isLightMode
+                        ? isActive ? 'font-medium' : 'font-light'
+                        : isActive ? 'font-semibold' : 'font-light',
+                      isLightMode
+                        ? isActive
+                          ? 'text-botanical'
+                          : 'text-stone-gray hover:text-botanical'
+                        : isActive
+                          ? 'text-white'
+                          : 'text-moon-ivory/80 hover:text-white'
+                    )}
+                  >
+                    {link.label}
+                  </Link>
+                </React.Fragment>
               );
             })}
           </nav>
@@ -207,16 +218,23 @@ export function Header({ className, variant = 'dark' }: HeaderProps) {
       {mobileOpen && (
         <div className="fixed inset-0 z-40 bg-charcoal/95 backdrop-blur-md flex flex-col pt-20 px-8 md:hidden">
           <nav className="flex flex-col gap-7 mt-6">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                onClick={() => setMobileOpen(false)}
-                className="text-moon-ivory/80 font-display text-2xl tracking-wide hover:text-moon-ivory transition-colors"
-              >
-                {link.label}
-              </Link>
-            ))}
+            {navLinks.map((link) => {
+              const isShop = link.label === 'Shop';
+              return (
+                <React.Fragment key={link.href}>
+                  {isShop && (
+                    <div className="w-full h-px bg-white/10 my-2" aria-hidden="true" />
+                  )}
+                  <Link
+                    href={link.href}
+                    onClick={() => setMobileOpen(false)}
+                    className="text-moon-ivory/80 font-display text-2xl tracking-wide hover:text-moon-ivory transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                </React.Fragment>
+              );
+            })}
           </nav>
           <div className="mt-10">
             <Link

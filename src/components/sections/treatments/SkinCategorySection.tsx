@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { motion } from 'framer-motion';
-import { fadeUp, fadeIn } from '@/lib/animations';
+import { fadeIn } from '@/lib/animations';
 import { cn } from '@/lib/utils';
 import { SKIN_GROUPS } from '@/lib/treatments-catalogue';
 import { TreatmentCard } from './TreatmentCard';
@@ -19,36 +19,72 @@ export function SkinCategorySection({ className }: SkinCategorySectionProps) {
     >
       <div className="max-w-site mx-auto w-full px-6 md:px-8">
 
-        {/* Section Header */}
-        <div className="flex flex-col lg:flex-row items-start justify-between gap-8 lg:gap-16 pb-12 md:pb-16 border-b border-charcoal/10">
-          <motion.div
-            variants={fadeIn}
-            initial="hidden"
-            whileInView="visible"
+        {/* Editorial Section Header */}
+        <div className="pt-8 pb-16 md:pb-20">
+          {/* Category ID Label */}
+          <motion.span
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            custom={{ delay: 0.1 }}
-            className="w-full lg:w-[45%]"
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="font-sans text-[0.7rem] tracking-[0.22em] uppercase text-botanical font-medium block mb-3"
           >
-            <span className="font-sans text-[0.7rem] tracking-[0.22em] uppercase text-botanical font-medium block mb-3">
-              Category 01
-            </span>
-            <h2 className="font-display text-charcoal uppercase leading-[1.05] tracking-[-0.03em] text-[2.2rem] sm:text-[2.75rem] lg:text-[3.25rem] font-normal">
-              Skin Care
-            </h2>
-          </motion.div>
+            Category 01
+          </motion.span>
 
-          <motion.div
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="visible"
+          {/* Large Editorial Heading */}
+          <motion.h2
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            custom={{ delay: 0.2 }}
-            className="w-full lg:w-[50%] lg:max-w-[520px]"
+            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+            className="font-display text-charcoal uppercase leading-[0.95] tracking-[-0.04em] text-[2.75rem] sm:text-[4rem] lg:text-[5rem] font-light mb-12"
           >
-            <p className="font-sans text-stone-gray text-[14px] sm:text-[15px] lg:text-[16px] leading-[1.85] font-light">
-              Skin health is not achieved through a single solution. Our skin care portfolio spans routine maintenance, active clinical correction, and deep regenerative biostimulation. Organized below into five targeted groups to help you find the precise level of care required.
-            </p>
-          </motion.div>
+            Skin Care
+          </motion.h2>
+
+          {/* Editorial Details Block */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start mt-8">
+            {/* Stats Column */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+              className="lg:col-span-4 flex flex-row lg:flex-col gap-6 lg:gap-4 border-l border-charcoal/10 pl-6 py-1"
+            >
+              <div>
+                <span className="font-display text-charcoal text-2xl font-light leading-none block">18</span>
+                <span className="font-sans text-[0.65rem] tracking-[0.18em] uppercase text-stone-gray font-medium">Treatments</span>
+              </div>
+              <div className="lg:border-t lg:border-charcoal/5 lg:pt-4">
+                <span className="font-display text-charcoal text-2xl font-light leading-none block">05</span>
+                <span className="font-sans text-[0.65rem] tracking-[0.18em] uppercase text-stone-gray font-medium">Treatment Groups</span>
+              </div>
+            </motion.div>
+
+            {/* Description Narrative Column */}
+            <motion.div
+              initial={{ opacity: 0, y: 25 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
+              className="lg:col-span-8 lg:max-w-[620px]"
+            >
+              <p className="font-sans text-stone-gray text-[14px] sm:text-[15.5px] leading-[1.8] font-light">
+                Skin health is not achieved through a single solution. Our skin care portfolio spans routine maintenance, active clinical correction, and deep regenerative biostimulation. Our curated collection combines regenerative medicine, advanced energy devices and medical-grade protocols designed for long-term skin health.
+              </p>
+            </motion.div>
+          </div>
+
+          {/* Thin Elegant Divider */}
+          <motion.div
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.4 }}
+            className="w-full h-px bg-charcoal/10 mt-16 md:mt-20 origin-left"
+          />
         </div>
 
         {/* Grouped Treatments Listing */}

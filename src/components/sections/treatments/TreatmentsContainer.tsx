@@ -4,7 +4,6 @@ import * as React from 'react';
 import { Search, X } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { TreatmentsHero } from './TreatmentsHero';
-import { CategoryCardsOverview } from './CategoryCardsOverview';
 import { SkinCategorySection } from './SkinCategorySection';
 import { HairCategorySection } from './HairCategorySection';
 import { DentalCategorySection } from './DentalCategorySection';
@@ -21,6 +20,7 @@ import { cn } from '@/lib/utils';
 export function TreatmentsContainer() {
   const [searchQuery, setSearchQuery] = React.useState('');
   const [headerVisible, setHeaderVisible] = React.useState(true);
+  const [activeSection, setActiveSection] = React.useState('skin-category');
 
   // Sync scroll detection to shift sticky top position in tandem with main Header
   React.useEffect(() => {
@@ -42,6 +42,46 @@ export function TreatmentsContainer() {
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // IntersectionObserver scroll spy to track active section
+  React.useEffect(() => {
+    const sections = ['skin-category', 'hair-category', 'dental-category', 'wellness-category'];
+    if (!('IntersectionObserver' in window)) return;
+
+    const observerOptions = {
+      root: null,
+      rootMargin: '-25% 0px -55% 0px',
+      threshold: 0.05,
+    };
+
+    const observerCallback = (entries: IntersectionObserverEntry[]) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+    sections.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    return () => {
+      sections.forEach((id) => {
+        const el = document.getElementById(id);
+        if (el) observer.unobserve(el);
+      });
+    };
+  }, []);
+
+  const navItems = React.useMemo(() => [
+    { id: 'skin-category', label: 'Skin' },
+    { id: 'hair-category', label: 'Hair' },
+    { id: 'dental-category', label: 'Dental' },
+    { id: 'wellness-category', label: 'Wellness & IV' },
+  ], []);
 
   // Consolidate all treatments for search lookup
   const allTreatments = React.useMemo(() => {
@@ -105,61 +145,62 @@ export function TreatmentsContainer() {
       {/* ── Sticky Sub-navigation Header ── */}
       <div
         className={cn(
-          "sticky z-40 bg-moon-ivory/95 backdrop-blur-md border-b border-charcoal/10 transition-all duration-500 w-full shadow-sm px-6 md:px-8 py-3 md:py-4",
+          "sticky z-40 bg-moon-ivory/95 backdrop-blur-md border-b border-charcoal/10 transition-all duration-500 w-full shadow-sm px-6 md:px-8 py-3 md:py-2.5",
           headerVisible ? "top-16 md:top-[72px]" : "top-0"
         )}
       >
         <div className="max-w-site mx-auto flex flex-col md:flex-row md:items-center justify-between gap-4">
           
           {/* Category Navigation Links */}
-          <div className="flex items-center gap-6 overflow-x-auto scrollbar-none whitespace-nowrap py-1">
-            <button
-              onClick={() => scrollToSection('skin-category')}
-              className="font-sans text-xs md:text-[13px] tracking-[0.08em] text-stone-gray hover:text-botanical transition-colors font-medium uppercase"
-            >
-              Skin
-            </button>
-            <button
-              onClick={() => scrollToSection('hair-category')}
-              className="font-sans text-xs md:text-[13px] tracking-[0.08em] text-stone-gray hover:text-botanical transition-colors font-medium uppercase"
-            >
-              Hair
-            </button>
-            <button
-              onClick={() => scrollToSection('dental-category')}
-              className="font-sans text-xs md:text-[13px] tracking-[0.08em] text-stone-gray hover:text-botanical transition-colors font-medium uppercase"
-            >
-              Dental
-            </button>
-            <button
-              onClick={() => scrollToSection('wellness-category')}
-              className="font-sans text-xs md:text-[13px] tracking-[0.08em] text-stone-gray hover:text-botanical transition-colors font-medium uppercase"
-            >
-              Wellness & IV
-            </button>
+          <div className="flex items-center gap-6 md:gap-8 overflow-x-auto scrollbar-none whitespace-nowrap py-1 relative">
+            {navItems.map((item) => {
+              const isActive = activeSection === item.id;
+              return (
+                <button
+                  key={item.id}
+                  onClick={() => scrollToSection(item.id)}
+                  className={cn(
+                    "relative py-2 font-sans text-xs md:text-[13px] tracking-[0.12em] uppercase transition-colors duration-300 font-medium cursor-pointer flex items-baseline gap-1 select-none",
+                    isActive ? "text-botanical" : "text-stone-gray hover:text-charcoal"
+                  )}
+                >
+                  <span>{item.label}</span>
+                  {isActive && (
+                    <motion.div
+                      layoutId="activeCategoryUnderline"
+                      className="absolute bottom-0 left-0 right-0 h-[2px] bg-botanical"
+                      transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                    />
+                  )}
+                </button>
+              );
+            })}
           </div>
 
-          {/* Luxury Search Input Bar */}
-          <div className="relative w-full md:w-80">
-            <span className="absolute inset-y-0 left-3.5 flex items-center pointer-events-none text-stone-gray/50">
-              <Search size={14} />
-            </span>
-            <input
-              type="text"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search treatments..."
-              className="w-full pl-9 pr-8 py-2 bg-soft-ivory/70 border border-charcoal/15 rounded-full text-xs md:text-sm text-charcoal placeholder-stone-gray/40 focus:outline-none focus:border-botanical focus:bg-white transition-all duration-300 font-sans font-light tracking-wide shadow-inner"
-            />
-            {searchQuery && (
-              <button
-                onClick={() => setSearchQuery('')}
-                className="absolute inset-y-0 right-3.5 flex items-center text-stone-gray/60 hover:text-botanical transition-colors"
-                aria-label="Clear search"
-              >
-                <X size={15} />
-              </button>
-            )}
+          {/* Luxury Minimal Search Input */}
+          <div className="relative w-full md:w-60 group">
+            <div className="absolute inset-0 bg-charcoal/[0.02] group-hover:bg-charcoal/[0.04] transition-colors rounded-full pointer-events-none" />
+            <div className="relative flex items-center w-full px-3.5 py-1.5 border border-charcoal/10 rounded-full transition-all duration-300 focus-within:border-botanical/60 focus-within:bg-white focus-within:shadow-sm focus-within:shadow-botanical/5">
+              <span className="text-stone-gray/40 mr-2 flex items-center pointer-events-none select-none transition-colors duration-300 group-focus-within:text-botanical">
+                <Search size={13} />
+              </span>
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Search catalogue..."
+                className="w-full bg-transparent text-xs md:text-sm text-charcoal placeholder-stone-gray/40 focus:outline-none font-sans font-light tracking-wide"
+              />
+              {searchQuery && (
+                <button
+                  onClick={() => setSearchQuery('')}
+                  className="flex items-center text-stone-gray/40 hover:text-botanical transition-colors"
+                  aria-label="Clear search"
+                >
+                  <X size={13} />
+                </button>
+              )}
+            </div>
           </div>
         </div>
       </div>
@@ -213,8 +254,7 @@ export function TreatmentsContainer() {
         </section>
       ) : (
         <>
-          {/* Default Categories Overview & Section Lists */}
-          <CategoryCardsOverview />
+          {/* Default Categories Section Lists */}
           <SkinCategorySection />
           <HairCategorySection />
           <DentalCategorySection />

@@ -19,13 +19,13 @@ const PROGRAMS: ProgramItem[] = [
         id: "01",
         title: "Skin",
         description: "Prescription facials, lasers & regenerative skin care.",
-        publicId: "skin_qo9vhn", // Your skin image public ID (Initially loaded)
+        publicId: "Firefly_make_him_look_straight_to_the_camera_body_also_straight_not_tilting_676817_zdkm7f.png", // Your skin image public ID (Initially loaded)
     },
     {
         id: "02",
         title: "Hair",
         description: "Medical hair restoration and scalp health.",
-        publicId: "hair_v9hkrz", // Hair image public ID
+        publicId: "Firefly_erfuqj.jpg", // Hair image public ID
     },
     {
         id: "03",
