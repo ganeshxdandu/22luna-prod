@@ -9,14 +9,10 @@ import { BreadcrumbSchema } from '@/components/seo/BreadcrumbSchema';
 // ── Section imports ──────────────────────────────────────────────────────────
 import { TreatmentHero } from '@/components/sections/treatment/TreatmentHero';
 import { TreatmentIntroduction } from '@/components/sections/treatment/TreatmentIntroduction';
-import { TreatmentWhyChoose } from '@/components/sections/treatment/TreatmentWhyChoose';
 import { TreatmentSuitability } from '@/components/sections/treatment/TreatmentSuitability';
 import { TreatmentHowItWorks } from '@/components/sections/treatment/TreatmentHowItWorks';
 import { TreatmentJourney } from '@/components/sections/treatment/TreatmentJourney';
-import { TreatmentQuickFacts } from '@/components/sections/treatment/TreatmentQuickFacts';
 import { TreatmentBenefits } from '@/components/sections/treatment/TreatmentBenefits';
-import { TreatmentApproach } from '@/components/sections/treatment/TreatmentApproach';
-import { TreatmentResults } from '@/components/sections/treatment/TreatmentResults';
 import { TreatmentFAQ } from '@/components/sections/treatment/TreatmentFAQ';
 import { TreatmentCTA } from '@/components/sections/treatment/TreatmentCTA';
 
@@ -81,37 +77,25 @@ export default async function TreatmentDetailPage({ params }: TreatmentPageProps
       {/* ── SECTION 1: Hero ── */}
       <TreatmentHero treatment={treatment} />
 
-      {/* ── SECTION 2: Introduction ── */}
+      {/* ── SECTION 2: Introduction & Spotlight ── */}
       <TreatmentIntroduction treatment={treatment} />
 
-      {/* ── SECTION 3: Why Choose This Treatment ── */}
-      <TreatmentWhyChoose treatment={treatment} />
-
-      {/* ── SECTION 4: Patient Suitability ── */}
+      {/* ── SECTION 3: Patient Suitability ── */}
       <TreatmentSuitability treatment={treatment} />
 
-      {/* ── SECTION 5: How It Works ── */}
+      {/* ── SECTION 4: How It Works ── */}
       <TreatmentHowItWorks treatment={treatment} />
 
-      {/* ── SECTION 6: Your Treatment Journey ── */}
+      {/* ── SECTION 5: Your Treatment Journey ── */}
       <TreatmentJourney treatment={treatment} />
 
-      {/* ── SECTION 7: Quick Facts ── */}
-      <TreatmentQuickFacts treatment={treatment} />
-
-      {/* ── SECTION 8: Benefits ── */}
+      {/* ── SECTION 6: Benefits ── */}
       <TreatmentBenefits treatment={treatment} />
 
-      {/* ── SECTION 9: Our Approach ── */}
-      <TreatmentApproach treatment={treatment} />
-
-      {/* ── SECTION 10: Results ── */}
-      <TreatmentResults treatment={treatment} />
-
-      {/* ── SECTION 11: FAQs ── */}
+      {/* ── SECTION 7: FAQs ── */}
       <TreatmentFAQ treatment={treatment} />
 
-      {/* ── SECTION 12: Consultation CTA ── */}
+      {/* ── SECTION 8: Consultation CTA ── */}
       <TreatmentCTA treatment={treatment} />
 
       {/* ── FOOTER ── */}

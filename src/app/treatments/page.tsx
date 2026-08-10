@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { UnderstandingCTA } from '@/components/sections/UnderstandingCTA';
@@ -41,6 +42,24 @@ export default function TreatmentsPage() {
 
       {/* ── Interactive Container with Hero, Sticky Sub-nav, Search, and Category listings ── */}
       <TreatmentsContainer />
+
+      {/* ── Contextual Discovery LUNA+ ── */}
+      <section className="bg-soft-ivory py-12 border-b border-charcoal/10 px-6 md:px-8 w-full select-none text-center">
+        <div className="max-w-[600px] mx-auto flex flex-col items-center">
+          <span className="font-sans text-[0.65rem] tracking-[0.25em] uppercase text-botanical font-semibold mb-2 block">
+            DISCOVER LUNA+
+          </span>
+          <p className="font-sans text-stone-gray text-xs md:text-sm tracking-wide leading-relaxed mb-4">
+            More value for your continued journey. Credits automatically allocated to your profile.
+          </p>
+          <Link
+            href="/luna-plus"
+            className="font-sans text-[0.7rem] uppercase font-medium tracking-wider text-botanical hover:text-botanical/80 underline underline-offset-4 inline-flex items-center gap-1 transition-colors"
+          >
+            Learn More About LUNA+ →
+          </Link>
+        </div>
+      </section>
 
       {/* ── SECTION 7: Consultation CTA Banner ── */}
       <UnderstandingCTA

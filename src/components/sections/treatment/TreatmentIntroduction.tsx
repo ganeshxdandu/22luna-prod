@@ -52,21 +52,60 @@ export function TreatmentIntroduction({ treatment, className }: TreatmentIntrodu
           </motion.h2>
         </div>
 
-        {/* ── RIGHT: Paragraphs ── */}
-        <div className="w-full lg:w-[52%] lg:max-w-[520px] flex flex-col gap-6">
-          {treatment.introParagraphs.map((para, i) => (
-            <motion.p
-              key={i}
+        {/* ── RIGHT: Paragraphs & Spotlight ── */}
+        <div className="w-full lg:w-[52%] lg:max-w-[520px] flex flex-col gap-8">
+          <div className="flex flex-col gap-6">
+            {treatment.introParagraphs.map((para, i) => (
+              <motion.p
+                key={i}
+                variants={fadeUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                custom={{ delay: 0.2 + i * 0.1 }}
+                className="font-sans text-stone-gray text-[14px] sm:text-[15px] lg:text-[16px] leading-[1.85] font-light"
+              >
+                {para}
+              </motion.p>
+            ))}
+          </div>
+
+          {/* Actives & Tech Spotlight */}
+          {(treatment.actives || treatment.technology) && (
+            <motion.div
               variants={fadeUp}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              custom={{ delay: 0.2 + i * 0.1 }}
-              className="font-sans text-stone-gray text-[14px] sm:text-[15px] lg:text-[16px] leading-[1.85] font-light"
+              custom={{ delay: 0.4 }}
+              className="border-t border-charcoal/10 pt-6 flex flex-col gap-5"
             >
-              {para}
-            </motion.p>
-          ))}
+              {treatment.actives && treatment.actives.length > 0 && (
+                <div className="flex flex-col gap-2">
+                  <span className="font-sans text-[0.6rem] tracking-[0.2em] uppercase text-stone-gray font-medium">
+                    Active Formulations
+                  </span>
+                  <div className="flex flex-wrap gap-2">
+                    {treatment.actives.map((act) => (
+                      <span key={act} className="font-sans text-xs font-light px-3 py-1 bg-charcoal/5 text-charcoal border border-charcoal/8 rounded-full">
+                        {act}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+              {treatment.technology && (
+                <div className="flex flex-col gap-1.5">
+                  <span className="font-sans text-[0.6rem] tracking-[0.2em] uppercase text-stone-gray font-medium">
+                    Clinical System / Technology
+                  </span>
+                  <span className="font-sans text-xs text-charcoal font-light leading-relaxed">
+                    {treatment.technology}
+                  </span>
+                </div>
+              )}
+            </motion.div>
+          )}
         </div>
 
       </div>

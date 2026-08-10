@@ -115,7 +115,9 @@ export function Footer({ className }: FooterProps) {
                                     href: "/about#advanced-technology",
                                 },
                                 { label: "Treatments", href: "/treatments" },
+                                { label: "LUNA+", href: "/luna-plus" },
                                 { label: "Concerns Index", href: "/concerns" },
+                                { label: "Careers", href: "/careers" },
                                 {
                                     label: "Consultation Philosophy",
                                     href: "/consultation",

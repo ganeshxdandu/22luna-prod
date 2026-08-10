@@ -37,9 +37,29 @@ export const SKIN_GROUPS: TreatmentGroup[] = [
     groupName: 'Essential Facials',
     treatments: [
       {
-        name: 'HydraFacial',
-        slug: 'hydrafacial',
-        description: 'Medical-grade cleansing, extraction and hydration in one session.',
+        name: 'Enzyme Radiance Ritual — Foaming Enzyme',
+        slug: 'enzyme-radiance-ritual',
+        description: 'A foaming enzyme treatment to renew radiance and exfoliate the skin.',
+      },
+      {
+        name: 'Hydrafacial Deluxe',
+        slug: 'hydrafacial-deluxe',
+        description: 'Deluxe medical-grade cleansing, extraction, and hydration facial.',
+      },
+      {
+        name: 'Clear Balance Acne Facial — Dermalogica',
+        slug: 'clear-balance-acne-facial',
+        description: 'Targeted Dermalogica treatment for acne-prone skin to clarify and balance.',
+      },
+      {
+        name: 'Mandeluxe Glow Facial',
+        slug: 'mandeluxe-glow-facial',
+        description: 'Mandelic acid exfoliating facial designed to restore deep radiance and glow.',
+      },
+      {
+        name: 'Two for Glow — Fire & Ice + Vitaglow IV',
+        slug: 'two-for-glow',
+        description: 'A signature treatment combining Fire & Ice protocol with Vitaglow IV infusion.',
       },
       {
         name: 'Chemical Peel',
@@ -62,14 +82,34 @@ export const SKIN_GROUPS: TreatmentGroup[] = [
     groupName: 'Therapeutic Facials',
     treatments: [
       {
-        name: 'Glow Facial',
-        slug: 'glow-facial',
-        description: 'A brightening protocol for dull, uneven-toned skin.',
+        name: 'HydraFacial Platinum',
+        slug: 'hydrafacial-platinum',
+        description: 'Advanced HydraFacial with custom booster, lymphatic drainage, and LED light.',
       },
       {
-        name: 'Acne Facial',
-        slug: 'acne-facial',
-        description: 'A targeted treatment for active breakouts and congestion.',
+        name: 'O₂ Derm Oxy Facial — Oxygen Vitality Facial',
+        slug: 'o2-derm-oxy-facial',
+        description: 'Oxygenating facial to revive, purify, and deeply hydrate fatigued skin.',
+      },
+      {
+        name: 'Dual Element Fire & Ice Cryo Facial',
+        slug: 'dual-element-fire-ice-cryo-facial',
+        description: 'Clinical facial using thermal action and cold cryotherapy to lift and clarify.',
+      },
+      {
+        name: 'ZO Obagi Hydraboost Therapy Facial',
+        slug: 'zo-obagi-hydraboost-therapy',
+        description: 'Clinical barrier-restoration and hydration treatment using ZO Obagi protocol.',
+      },
+      {
+        name: 'Forma RF Tech Touch Therapy Facial',
+        slug: 'forma-rf-tech-touch-therapy',
+        description: 'Radiofrequency skin tightening combined with hands-on touch therapy.',
+      },
+      {
+        name: 'Elixir PRF Restore Therapy Facial',
+        slug: 'elixir-prf-restore-therapy',
+        description: 'Regenerative platelet-rich fibrin facial utilizing autologous growth factors.',
       },
       {
         name: 'Anti-Aging Facial',

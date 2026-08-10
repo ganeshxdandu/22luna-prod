@@ -97,7 +97,7 @@ export const CONCERN_DETAIL_DATA: Record<string, ConcernDetailData> = {
 
     suitableTreatments: [
       { name: 'Microneedling', slug: 'microneedling', description: 'Precision micro-channels that break down scar tissue and trigger collagen.' },
-      { name: 'HydraFacial', slug: 'hydrafacial', description: 'Painlessly extracts pore congestion and restores deep hydration.' },
+      { name: 'Hydrafacial Deluxe', slug: 'hydrafacial-deluxe', description: 'Painlessly extracts pore congestion and restores deep hydration.' },
       { name: 'Chemical Peel', slug: 'chemical-peel', description: 'Accelerates surface exfoliation to smooth texture and lighten marks.' },
       { name: 'PRP Skin', slug: 'prp-skin', description: 'Uses autologous growth factors to accelerate dermal repair.' },
     ],
@@ -151,7 +151,7 @@ export const CONCERN_DETAIL_DATA: Record<string, ConcernDetailData> = {
 
     suitableTreatments: [
       { name: 'Chemical Peel', slug: 'chemical-peel', description: 'Targeted acid exfoliants that safely shed pigmented surface layers.' },
-      { name: 'HydraFacial', slug: 'hydrafacial', description: 'Infuses brightening antioxidants and vitamin C deep into pores.' },
+      { name: 'Hydrafacial Deluxe', slug: 'hydrafacial-deluxe', description: 'Infuses brightening antioxidants and vitamin C deep into pores.' },
       { name: 'Luminosity Program', slug: 'luminosity-program', description: 'A multi-session structured protocol targeting deep pigment layers.' },
     ],
 
@@ -229,7 +229,7 @@ function createGenericConcernData(slug: string): ConcernDetailData {
       { name: 'Teeth Whitening', slug: 'teeth-whitening', description: 'Medical-grade shade lightening for natural enamel brightness.' },
       { name: 'Cosmetic Bonding', slug: 'cosmetic-bonding', description: 'Subtle correction of shape, gaps, and chips.' },
     ] : [
-      { name: 'HydraFacial', slug: 'hydrafacial', description: 'Cleanses, extracts, and deeply hydrates in a single unhurried session.' },
+      { name: 'Hydrafacial Deluxe', slug: 'hydrafacial-deluxe', description: 'Cleanses, extracts, and deeply hydrates in a single unhurried session.' },
       { name: 'Chemical Peel', slug: 'chemical-peel', description: 'Controlled resurfacing to improve tone and texture.' },
       { name: 'Microneedling', slug: 'microneedling', description: 'Stimulates collagen production to refine dermal structure.' },
     ],

@@ -92,14 +92,14 @@ export const DISCOVERY_QUESTIONS: DiscoveryQuestion[] = [
         label: 'Radiance & Smooth Texture',
         description: 'Restoring luster, clearing congestion, and evening out rough tone.',
         categoryWeights: { skin: 8, hair: 0, dental: 0, wellness: 3 },
-        suggestedTreatmentSlugs: ['hydrafacial', 'chemical-peel', 'microneedling'],
+        suggestedTreatmentSlugs: ['hydrafacial-deluxe', 'chemical-peel', 'microneedling'],
       },
       {
         id: 'pigment',
         label: 'Pigmentation & Sun Spots',
         description: 'Lightening melasma, stubborn dark marks, or sun exposure patches.',
         categoryWeights: { skin: 8, hair: 0, dental: 0, wellness: 1 },
-        suggestedTreatmentSlugs: ['chemical-peel', 'luminosity-program', 'hydrafacial'],
+        suggestedTreatmentSlugs: ['chemical-peel', 'luminosity-program', 'hydrafacial-deluxe'],
       },
       {
         id: 'firmness',
@@ -324,7 +324,7 @@ export function calculateDiscoveryResults(selectedOptionIds: string[]): Discover
       suggestedConcernNames: ['Cellular Hydration Depletion', 'Dullness & Exhaustion', 'Oxidative Stress'],
       suggestedTreatments: [
         { name: 'REVIV IV Therapy', slug: 'reviv-iv', description: 'Targeted intravenous micronutrients for instant absorption and cellular recovery.' },
-        { name: 'HydraFacial Syndeo', slug: 'hydrafacial', description: 'Deep cleansing and antioxidant infusion for surface skin glow.' },
+        { name: 'Hydrafacial Deluxe', slug: 'hydrafacial-deluxe', description: 'Deep cleansing and antioxidant infusion for surface skin glow.' },
         { name: 'Luminosity Protocol', slug: 'luminosity-program', description: 'Combined internal wellness and dermal brightening.' },
       ],
       whySuitable:
@@ -339,7 +339,7 @@ export function calculateDiscoveryResults(selectedOptionIds: string[]): Discover
       'Based on what you shared, your focus centers around dermal resilience, texture refinement, tone clarity, and natural collagen support.',
     suggestedConcernNames: ['Skin Texture & Pores', 'Hyperpigmentation & Dullness', 'Fine Lines & Elasticity'],
     suggestedTreatments: [
-      { name: 'HydraFacial Syndeo', slug: 'hydrafacial', description: 'Painless vortex extractions and deep antioxidant hydration.' },
+      { name: 'Hydrafacial Deluxe', slug: 'hydrafacial-deluxe', description: 'Painless vortex extractions and deep antioxidant hydration.' },
       { name: 'Chemical Peel', slug: 'chemical-peel', description: 'Controlled exfoliation that shed dull cells and lightens marks.' },
       { name: 'Microneedling', slug: 'microneedling', description: 'Precision micro-channels that trigger natural dermal collagen.' },
     ],
