@@ -23,8 +23,6 @@ export async function POST(req: NextRequest) {
     const phone     = formData.get('phone') as string | null;
     const address   = formData.get('address') as string | null;
     const role      = formData.get('role') as string | null;
-    const _instagram = formData.get('instagram') as string | null;
-    const _message   = formData.get('message') as string | null;
     const cvFile    = formData.get('cv') as File | null;
 
     // ── Basic Validation ────────────────────────────────────────────────────

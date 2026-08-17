@@ -3,7 +3,7 @@
 import * as React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
+import { motion, useScroll, useTransform, useSpring, type MotionValue } from 'framer-motion';
 import { ArrowUpRight, Crown } from 'lucide-react';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
@@ -27,7 +27,7 @@ function TicketCard({
   stickyTop: string;
   zIndex: number;
   index: number;
-  progress: any;
+  progress: MotionValue<number>;
   children: React.ReactNode;
 }) {
   const isFirst = index === 0;

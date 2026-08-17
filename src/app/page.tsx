@@ -4,8 +4,6 @@ import { Hero } from '@/components/sections/Hero';
 import { LogoMarquee } from '@/components/sections/LogoMarquee';
 import { SignaturePrograms } from '@/components/sections/SignaturePrograms';
 import { MeetDoctor } from '@/components/sections/MeetDoctor';
-import { PatientStories } from '@/components/sections/PatientStories';
-import { QuietTrust } from '@/components/sections/QuietTrust';
 import { PatientVoices } from '@/components/sections/PatientVoices';
 import { FAQ } from '@/components/sections/FAQ';
 import { InstagramFeed } from '@/components/sections/InstagramFeed';
