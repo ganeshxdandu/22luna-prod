@@ -51,28 +51,28 @@ export const DISCOVERY_QUESTIONS: DiscoveryQuestion[] = [
         label: 'Skin Health & Texture',
         description: 'Radiance, breakouts, fine lines, dark spots, or overall firmness.',
         categoryWeights: { skin: 10, hair: 0, dental: 0, wellness: 2 },
-        suggestedConcernSlugs: ['acne-scars', 'hyperpigmentation-melasma', 'fine-lines-wrinkles'],
+        suggestedConcernSlugs: ['acne', 'acne-scars', 'pigmentation-dullness-melasma'],
       },
       {
         id: 'hair',
         label: 'Hair & Scalp Density',
         description: 'Hair thinning, scalp sensitivity, parting loss, or follicle vitality.',
         categoryWeights: { skin: 0, hair: 10, dental: 0, wellness: 2 },
-        suggestedConcernSlugs: ['hair-thinning', 'pattern-hair-loss', 'scalp-sensitivity'],
+        suggestedConcernSlugs: ['hair-loss', 'hair-thinning', 'receding-hairline'],
       },
       {
         id: 'dental',
         label: 'Dental & Smile Aesthetics',
         description: 'Teeth brightness, gummy smile proportions, or digital smile design.',
         categoryWeights: { skin: 0, hair: 0, dental: 10, wellness: 1 },
-        suggestedConcernSlugs: ['gummy-smile', 'teeth-discoloration', 'crooked-crowded-teeth'],
+        suggestedConcernSlugs: ['gummy-smile', 'tooth-discolouration', 'crooked-misaligned-teeth'],
       },
       {
         id: 'wellness',
         label: 'Vitality & IV Hydration',
         description: 'Cellular recovery, deep hydration, energy restoration, or anti-aging nutrients.',
         categoryWeights: { skin: 3, hair: 2, dental: 0, wellness: 10 },
-        suggestedConcernSlugs: ['dullness-uneven-tone', 'fragile-hair-shafts'],
+        suggestedConcernSlugs: ['pigmentation-dullness-melasma', 'weak-brittle-hair'],
       },
       {
         id: 'unsure',
@@ -92,35 +92,35 @@ export const DISCOVERY_QUESTIONS: DiscoveryQuestion[] = [
         label: 'Radiance & Smooth Texture',
         description: 'Restoring luster, clearing congestion, and evening out rough tone.',
         categoryWeights: { skin: 8, hair: 0, dental: 0, wellness: 3 },
-        suggestedTreatmentSlugs: ['hydrafacial-deluxe', 'chemical-peel', 'microneedling'],
+        suggestedTreatmentSlugs: ['medi-facials', 'chemical-peels', 'microneedling-rf'],
       },
       {
         id: 'pigment',
         label: 'Pigmentation & Sun Spots',
         description: 'Lightening melasma, stubborn dark marks, or sun exposure patches.',
         categoryWeights: { skin: 8, hair: 0, dental: 0, wellness: 1 },
-        suggestedTreatmentSlugs: ['chemical-peel', 'luminosity-program', 'hydrafacial-deluxe'],
+        suggestedTreatmentSlugs: ['chemical-peels', 'medi-facials', 'skin-resurfacing'],
       },
       {
         id: 'firmness',
         label: 'Dermal Firmness & Smoothness',
         description: 'Softening early expression lines and supporting natural collagen elasticity.',
         categoryWeights: { skin: 8, hair: 0, dental: 0, wellness: 2 },
-        suggestedTreatmentSlugs: ['microneedling', 'prp-skin', 'botox'],
+        suggestedTreatmentSlugs: ['microneedling-rf', 'prp-skin', 'botox'],
       },
       {
         id: 'density',
         label: 'Hair Density & Scalp Health',
         description: 'Stimulating dormant follicles and nourishing the scalp growth environment.',
         categoryWeights: { skin: 0, hair: 10, dental: 0, wellness: 2 },
-        suggestedTreatmentSlugs: ['prp-hair', 'gfc-hair', 'scalp-treatment'],
+        suggestedTreatmentSlugs: ['prp-hair', 'scalp-rejuvenation', 'scalp-oxy-therapy'],
       },
       {
         id: 'smile',
         label: 'Smile Alignment & Shade',
         description: 'Enhancing teeth brightness and balancing gum-to-tooth proportions.',
         categoryWeights: { skin: 0, hair: 0, dental: 10, wellness: 0 },
-        suggestedTreatmentSlugs: ['teeth-whitening', 'smile-design', 'gummy-smile-botox'],
+        suggestedTreatmentSlugs: ['teeth-whitening', 'smile-designing', 'gummy-smile-correction'],
       },
     ],
   },
@@ -289,11 +289,11 @@ export function calculateDiscoveryResults(selectedOptionIds: string[]): Discover
       topCategory: 'Hair',
       categorySummary:
         'Based on what you shared, your primary focus centers around hair density, scalp environment, and follicle growth vitality.',
-      suggestedConcernNames: ['Diffuse Hair Thinning', 'Scalp Sensitivity & Dryness', 'Follicle Health'],
+      suggestedConcernNames: ['Hair Loss', 'Hair Thinning', 'Receding Hairline'],
       suggestedTreatments: [
-        { name: 'PRP Hair Treatment', slug: 'prp-hair', description: 'Autologous platelet therapy to stimulate dormant hair follicles.' },
-        { name: 'GFC Hair Treatment', slug: 'gfc-hair', description: 'Concentrated growth factor complex for enhanced strand density.' },
-        { name: 'Scalp Health Protocol', slug: 'scalp-treatment', description: 'Restores scalp skin barrier integrity and reduces micro-inflammation.' },
+        { name: 'PRP', slug: 'prp-hair', description: 'Autologous platelet therapy to stimulate dormant hair follicles.' },
+        { name: 'Scalp Rejuvenation', slug: 'scalp-rejuvenation', description: 'Nourishes the hair growth environment and scalp barrier.' },
+        { name: 'Scalp Oxy Therapy', slug: 'scalp-oxy-therapy', description: 'High-pressure oxygen and nutrient mist to refresh follicles.' },
       ],
       whySuitable:
         'These medical approaches focus on biological growth factors and scalp skin barrier health without relying on temporary surface concealers.',
@@ -305,11 +305,11 @@ export function calculateDiscoveryResults(selectedOptionIds: string[]): Discover
       topCategory: 'Dental',
       categorySummary:
         'Based on what you shared, your focus centers around smile aesthetics, tooth shade brightness, and digital smile proportion planning.',
-      suggestedConcernNames: ['Teeth Discoloration & Staining', 'Gummy Smile Proportions', 'Aesthetic Alignment'],
+      suggestedConcernNames: ['Tooth Discolouration', 'Gummy Smile', 'Missing Teeth'],
       suggestedTreatments: [
-        { name: '3D Digital Smile Design', slug: 'smile-design', description: 'Interactive 3D digital planning for precise aesthetic facial harmony.' },
-        { name: 'Medical Teeth Whitening', slug: 'teeth-whitening', description: 'Enamel-safe professional shade brightening.' },
-        { name: 'Gummy Smile Correction', slug: 'gummy-smile-botox', description: 'Subtle neuromodulator balancing of upper lip elevation.' },
+        { name: 'Smile Designing', slug: 'smile-designing', description: 'Digital smile engineering for facial-dental harmony.' },
+        { name: 'Teeth Whitening', slug: 'teeth-whitening', description: 'Clinical shade brightening for a radiant, confident smile.' },
+        { name: 'Correction of Gummy Smile', slug: 'gummy-smile-correction', description: 'Aesthetic alignment of gum margins and upper lip elevation.' },
       ],
       whySuitable:
         'Digital smile planning allows us to preview subtle anatomical balance and enamel shade before any clinical work begins.',
@@ -321,14 +321,14 @@ export function calculateDiscoveryResults(selectedOptionIds: string[]): Discover
       topCategory: 'Wellness',
       categorySummary:
         'Based on what you shared, your focus centers around systemic cellular hydration, inner energy restoration, and anti-aging vitality.',
-      suggestedConcernNames: ['Cellular Hydration Depletion', 'Dullness & Exhaustion', 'Oxidative Stress'],
+      suggestedConcernNames: ['Pigmentation / Dullness / Melasma', 'Hair Loss', 'PCOS'],
       suggestedTreatments: [
-        { name: 'REVIV IV Therapy', slug: 'reviv-iv', description: 'Targeted intravenous micronutrients for instant absorption and cellular recovery.' },
-        { name: 'Hydrafacial Deluxe', slug: 'hydrafacial-deluxe', description: 'Deep cleansing and antioxidant infusion for surface skin glow.' },
-        { name: 'Luminosity Protocol', slug: 'luminosity-program', description: 'Combined internal wellness and dermal brightening.' },
+        { name: 'PRP', slug: 'prp-hair', description: 'Autologous platelet therapy to stimulate follicles affected by hormonal thinning.' },
+        { name: 'Medi Facials', slug: 'medi-facials', description: 'Physician-led clinical facials to manage skin congestion.' },
+        { name: 'Anti Ageing', slug: 'anti-ageing', description: 'Structured preventative protocols targeting cellular aging.' },
       ],
       whySuitable:
-        'Intravenous wellness delivers essential vitamins and antioxidants directly into circulation to complement your outer skin care.',
+        'Intravenous wellness and clinical skin/hair therapies work synergistically to address internal balance and restore outer vitality.',
     };
   }
 
@@ -337,11 +337,11 @@ export function calculateDiscoveryResults(selectedOptionIds: string[]): Discover
     topCategory: 'Skin',
     categorySummary:
       'Based on what you shared, your focus centers around dermal resilience, texture refinement, tone clarity, and natural collagen support.',
-    suggestedConcernNames: ['Skin Texture & Pores', 'Hyperpigmentation & Dullness', 'Fine Lines & Elasticity'],
+    suggestedConcernNames: ['Acne', 'Acne Scars', 'Pigmentation / Dullness / Melasma'],
     suggestedTreatments: [
-      { name: 'Hydrafacial Deluxe', slug: 'hydrafacial-deluxe', description: 'Painless vortex extractions and deep antioxidant hydration.' },
-      { name: 'Chemical Peel', slug: 'chemical-peel', description: 'Controlled exfoliation that shed dull cells and lightens marks.' },
-      { name: 'Microneedling', slug: 'microneedling', description: 'Precision micro-channels that trigger natural dermal collagen.' },
+      { name: 'Medi Facials', slug: 'medi-facials', description: 'Physician-led clinical facials for skin repair and deep hydration.' },
+      { name: 'Chemical Peels', slug: 'chemical-peels', description: 'Controlled dermal exfoliation to treat acne, marks, and texture.' },
+      { name: 'Micro-Needling / RF', slug: 'microneedling-rf', description: 'Advanced micro-channeling to rebuild collagen and refine texture.' },
     ],
     whySuitable:
       'These non-invasive, evidence-based procedures work synergistically with your skin biology to improve texture and radiance with minimal downtime.',

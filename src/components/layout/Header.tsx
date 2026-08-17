@@ -8,7 +8,9 @@ import { ShoppingBag, ArrowUpRight, ChevronDown, Crown } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { TREATMENT_CATEGORIES } from '@/lib/treatments-catalogue';
+import { CONCERN_CATEGORIES } from '@/lib/concerns-catalogue';
 import { useLenis } from 'lenis/react';
+import { CloudinaryImage } from '@/components/ui/CloudinaryImage';
 
 const navLinks = [
   { label: 'Home', href: '/' },
@@ -42,9 +44,11 @@ export function Header({ className, variant = 'dark' }: HeaderProps) {
   const lenis = useLenis();
 
   // Mega Menu states
-  const [isMegaOpen, setIsMegaOpen] = React.useState(false);
-  const [activeCategoryIdx, setActiveCategoryIdx] = React.useState(0);
+  const [megaMenuType, setMegaMenuType] = React.useState<'treatments' | 'concerns' | null>(null);
+  const [activeTreatmentCategoryIdx, setActiveTreatmentCategoryIdx] = React.useState(0);
+  const [activeConcernCategoryIdx, setActiveConcernCategoryIdx] = React.useState(0);
   const [mobileTreatmentsOpen, setMobileTreatmentsOpen] = React.useState(false);
+  const [mobileConcernsOpen, setMobileConcernsOpen] = React.useState(false);
 
   const closeTimeoutRef = React.useRef<NodeJS.Timeout | null>(null);
 
@@ -58,16 +62,25 @@ export function Header({ className, variant = 'dark' }: HeaderProps) {
   const startCloseTimeout = () => {
     cancelCloseTimeout();
     closeTimeoutRef.current = setTimeout(() => {
-      setIsMegaOpen(false);
+      setMegaMenuType(null);
     }, 150);
   };
 
   const handleTreatmentsMouseEnter = () => {
     cancelCloseTimeout();
-    setIsMegaOpen(true);
+    setMegaMenuType('treatments');
   };
 
   const handleTreatmentsMouseLeave = () => {
+    startCloseTimeout();
+  };
+
+  const handleConcernsMouseEnter = () => {
+    cancelCloseTimeout();
+    setMegaMenuType('concerns');
+  };
+
+  const handleConcernsMouseLeave = () => {
     startCloseTimeout();
   };
 
@@ -81,31 +94,32 @@ export function Header({ className, variant = 'dark' }: HeaderProps) {
 
   const closeMegaMenu = () => {
     cancelCloseTimeout();
-    setIsMegaOpen(false);
+    setMegaMenuType(null);
   };
 
   React.useEffect(() => {
     setMobileTreatmentsOpen(false);
+    setMobileConcernsOpen(false);
   }, [mobileOpen]);
 
   // Escape key closes the mega menu
   React.useEffect(() => {
-    if (!isMegaOpen) return;
+    if (megaMenuType === null) return;
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         cancelCloseTimeout();
-        setIsMegaOpen(false);
+        setMegaMenuType(null);
       }
     };
     document.addEventListener('keydown', handleKeyDown);
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
     };
-  }, [isMegaOpen]);
+  }, [megaMenuType]);
 
   // Lock body scroll and stop Lenis when mega menu or mobile drawer is open
   React.useEffect(() => {
-    if (isMegaOpen || mobileOpen) {
+    if (megaMenuType !== null || mobileOpen) {
       document.body.style.overflow = 'hidden';
       if (lenis) lenis.stop();
     } else {
@@ -116,9 +130,10 @@ export function Header({ className, variant = 'dark' }: HeaderProps) {
       document.body.style.overflow = '';
       if (lenis) lenis.start();
     };
-  }, [isMegaOpen, mobileOpen, lenis]);
+  }, [megaMenuType, mobileOpen, lenis]);
 
-  const activeCat = TREATMENT_CATEGORIES[activeCategoryIdx];
+  const activeCat = TREATMENT_CATEGORIES[activeTreatmentCategoryIdx];
+  const activeConcernCat = CONCERN_CATEGORIES[activeConcernCategoryIdx];
 
   const isLight = variant === 'light';
 
@@ -163,7 +178,7 @@ export function Header({ className, variant = 'dark' }: HeaderProps) {
     <>
       {/* Backdrop Overlay to dim the page beneath the header */}
       <AnimatePresence>
-        {isMegaOpen && (
+        {megaMenuType !== null && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -200,6 +215,7 @@ export function Header({ className, variant = 'dark' }: HeaderProps) {
               const isActive = pathname === link.href;
               const isShop = link.label === 'Shop';
               const isTreatments = link.label === 'Treatments';
+              const isConcerns = link.label === 'Concerns';
 
               return (
                 <React.Fragment key={link.href}>
@@ -223,13 +239,13 @@ export function Header({ className, variant = 'dark' }: HeaderProps) {
                         className={cn(
                           'font-sans transition-colors duration-300 relative text-sm tracking-tight flex items-center gap-1',
                           isLightMode
-                            ? isActive || isMegaOpen ? 'font-medium' : 'font-light'
-                            : isActive || isMegaOpen ? 'font-semibold' : 'font-light',
+                            ? isActive || megaMenuType === 'treatments' ? 'font-medium' : 'font-light'
+                            : isActive || megaMenuType === 'treatments' ? 'font-semibold' : 'font-light',
                           isLightMode
-                            ? isActive || isMegaOpen
+                            ? isActive || megaMenuType === 'treatments'
                               ? 'text-botanical'
                               : 'text-stone-gray hover:text-botanical'
-                            : isActive || isMegaOpen
+                            : isActive || megaMenuType === 'treatments'
                               ? 'text-white'
                               : 'text-moon-ivory/80 hover:text-white'
                         )}
@@ -240,7 +256,40 @@ export function Header({ className, variant = 'dark' }: HeaderProps) {
                           strokeWidth={1.5}
                           className={cn(
                             "transition-transform duration-300",
-                            isMegaOpen && "rotate-180"
+                            megaMenuType === 'treatments' && "rotate-180"
+                          )}
+                        />
+                      </Link>
+                    </div>
+                  ) : isConcerns ? ( 
+                    <div
+                      onMouseEnter={handleConcernsMouseEnter}
+                      onMouseLeave={handleConcernsMouseLeave}
+                      className="py-4 cursor-pointer"
+                    >
+                      <Link
+                        href={link.href}
+                        className={cn(
+                          'font-sans transition-colors duration-300 relative text-sm tracking-tight flex items-center gap-1',
+                          isLightMode
+                            ? isActive || megaMenuType === 'concerns' ? 'font-medium' : 'font-light'
+                            : isActive || megaMenuType === 'concerns' ? 'font-semibold' : 'font-light',
+                          isLightMode
+                            ? isActive || megaMenuType === 'concerns'
+                              ? 'text-botanical'
+                              : 'text-stone-gray hover:text-botanical'
+                            : isActive || megaMenuType === 'concerns'
+                              ? 'text-white'
+                              : 'text-moon-ivory/80 hover:text-white'
+                        )}
+                      >
+                        {link.label}
+                        <ChevronDown 
+                          size={13} 
+                          strokeWidth={1.5}
+                          className={cn(
+                            "transition-transform duration-300",
+                            megaMenuType === 'concerns' && "rotate-180"
                           )}
                         />
                       </Link>
@@ -359,7 +408,7 @@ export function Header({ className, variant = 'dark' }: HeaderProps) {
 
         {/* Desktop Mega Menu — 3-area layout */}
         <AnimatePresence>
-          {isMegaOpen && (
+          {megaMenuType === 'treatments' && (
             <motion.div
               initial={{ opacity: 0, y: -6 }}
               animate={{ opacity: 1, y: 0 }}
@@ -379,19 +428,19 @@ export function Header({ className, variant = 'dark' }: HeaderProps) {
                       <button
                         key={cat.id}
                         role="tab"
-                        aria-selected={activeCategoryIdx === idx}
-                        onClick={() => setActiveCategoryIdx(idx)}
+                        aria-selected={activeTreatmentCategoryIdx === idx}
+                        onClick={() => setActiveTreatmentCategoryIdx(idx)}
                         onFocus={cancelCloseTimeout}
                         onBlur={startCloseTimeout}
                         className={cn(
                           'relative px-8 py-5 font-sans text-[12px] tracking-tight uppercase transition-colors duration-200 focus:outline-none shrink-0 cursor-pointer',
-                          activeCategoryIdx === idx
+                          activeTreatmentCategoryIdx === idx
                             ? 'text-botanical font-medium'
                             : 'text-stone-gray hover:text-charcoal font-light'
                         )}
                       >
                         {cat.name}
-                        {activeCategoryIdx === idx && (
+                        {activeTreatmentCategoryIdx === idx && (
                           <motion.span
                             layoutId="catUnderline"
                             className="absolute bottom-0 left-8 right-8 h-[2px] bg-botanical"
@@ -420,7 +469,60 @@ export function Header({ className, variant = 'dark' }: HeaderProps) {
                       exit={{ opacity: 0, y: 4 }}
                       transition={{ duration: 0.18, ease: 'easeOut' }}
                     >
-                      {activeCat.treatmentGroups ? (
+                      {activeCat.id === 'wellness' ? (
+                        /* Custom Wellness/REVIV block */
+                        <div className="flex gap-10 h-full items-center">
+                          {/* Text Side */}
+                          <div className="flex-1 max-w-[480px]">
+                            <div className="flex items-center gap-2 mb-3">
+                              <span className="font-sans text-[10px] tracking-[0.2em] uppercase text-stone-gray font-semibold">
+                                LUNA × REVIV
+                              </span>
+                              <span className="w-1.5 h-1.5 rounded-full bg-botanical shrink-0 animate-pulse" />
+                            </div>
+                            <h4 className="font-display text-[1.8rem] leading-[1.25] text-charcoal mb-4">
+                              Intravenous Hydration &amp; Longevity
+                            </h4>
+                            <p className="font-sans font-light text-[13.5px] leading-relaxed text-stone-gray mb-6">
+                              IV therapies and wellness formulations delivered through our global partnership with REVIV. Administered in our luxury medical sanctuary for optimal cellular absorption, recovery, and inner vitality.
+                            </p>
+                            
+                            {/* Small Stats Grid */}
+                            <div className="grid grid-cols-2 gap-6 border-y border-charcoal/10 py-5 mb-8">
+                              <div>
+                                <p className="font-display text-[1.3rem] text-botanical font-light">2,000,000+</p>
+                                <p className="font-sans text-[9px] tracking-wider uppercase text-stone-gray">IV Therapies Globally</p>
+                              </div>
+                              <div>
+                                <p className="font-display text-[1.3rem] text-botanical font-light">100+ Clinics</p>
+                                <p className="font-sans text-[9px] tracking-wider uppercase text-stone-gray">Global REVIV Network</p>
+                              </div>
+                            </div>
+
+                            <a
+                              href="https://revivindia.com/iv-therapies"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-2 rounded-full bg-botanical text-moon-ivory hover:bg-botanical/90 font-sans text-[11px] uppercase tracking-wider px-6 py-3 transition-all duration-300"
+                            >
+                              <span>Continue to REVIV</span>
+                              <ArrowUpRight size={13} strokeWidth={1.8} />
+                            </a>
+                          </div>
+
+                          {/* Image Side */}
+                          <div className="hidden lg:block w-[280px] h-[360px] relative rounded-[8px] overflow-hidden shadow-sm">
+                            <CloudinaryImage
+                              src="ivdrip_yhlvex"
+                              alt="REVIV Wellness Suite"
+                              fill
+                              sizes="600px"
+                              quality={100}
+                              className="object-cover"
+                            />
+                          </div>
+                        </div>
+                      ) : activeCat.treatmentGroups ? (
                         /* Categories with groups (Skin) */
                         <div className="flex flex-wrap gap-x-16 gap-y-10">
                           {activeCat.treatmentGroups.map((group) => (
@@ -451,7 +553,7 @@ export function Header({ className, variant = 'dark' }: HeaderProps) {
                           ))}
                         </div>
                       ) : (
-                        /* Flat list categories (Hair, Dental, Wellness) */
+                        /* Flat list categories (Hair, Dental) */
                         <div className="flex flex-wrap gap-x-16 gap-y-10">
                           {(() => {
                             const list = activeCat.treatments || [];
@@ -487,15 +589,163 @@ export function Header({ className, variant = 'dark' }: HeaderProps) {
                       )}
 
                       {/* View All footer */}
+                      {activeCat.id !== 'wellness' && (
+                        <div className="mt-10 pt-5 border-t border-charcoal/10">
+                          <Link
+                            href={`/treatments#${activeCat.id}`}
+                            onClick={closeMegaMenu}
+                            onFocus={cancelCloseTimeout}
+                            onBlur={startCloseTimeout}
+                            className="group/all font-sans text-[11px] tracking-[0.18em] uppercase font-medium text-botanical hover:text-charcoal transition-colors duration-200 flex items-center gap-2"
+                          >
+                            View All {activeCat.name} Treatments
+                            <span className="inline-block transition-transform duration-200 group-hover/all:translate-x-1">→</span>
+                          </Link>
+                        </div>
+                      )}
+                    </motion.div>
+                  </AnimatePresence>
+                </div>
+
+                {/* CTA Panel — right */}
+                <div className="w-[320px] shrink-0 bg-botanical flex flex-col justify-between px-10 py-10">
+                  <div>
+                    <p className="font-sans text-[9px] tracking-[0.25em] uppercase text-moon-ivory/45 mb-5 font-medium">
+                      Need help choosing?
+                    </p>
+                    <h3 className="font-display text-[1.6rem] leading-snug tracking-tight text-moon-ivory mb-5">
+                      Not sure which treatment is right for you?
+                    </h3>
+                    <div className="w-10 h-px bg-moon-ivory/25 mb-5" />
+                    <p className="font-sans text-[12px] font-light text-moon-ivory/60 leading-relaxed">
+                      Every concern is unique. Let our experts guide you toward the right treatment for your goals.
+                    </p>
+                  </div>
+                  <Link
+                    href="https://wa.me/918971725522?text=I%20would%20like%20to%20book%20a%20consultation."
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={closeMegaMenu}
+                    onFocus={cancelCloseTimeout}
+                    onBlur={startCloseTimeout}
+                    className="group/cta mt-10 inline-flex items-center justify-between w-full border border-moon-ivory/20 hover:border-moon-ivory/50 px-5 py-4 rounded-full transition-colors duration-200"
+                  >
+                    <span className="font-sans text-[11px] tracking-[0.18em] uppercase font-medium text-moon-ivory">
+                      Book a Consultation
+                    </span>
+                    <span className="text-moon-ivory/60 group-hover/cta:text-moon-ivory group-hover/cta:translate-x-0.5 transition-all duration-200 text-sm">
+                      →
+                    </span>
+                  </Link>
+                </div>
+              </div>
+            </motion.div>
+          )}
+
+          {megaMenuType === 'concerns' && (
+            <motion.div
+              initial={{ opacity: 0, y: -6 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -6 }}
+              transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
+              onMouseEnter={handleMenuMouseEnter}
+              onMouseLeave={handleMenuMouseLeave}
+              role="dialog"
+              aria-label="Concerns navigation"
+              className="absolute left-0 right-0 top-full z-40 bg-moon-ivory border-b border-charcoal/10 shadow-xl shadow-charcoal/5"
+            >
+              {/* ── AREA 1: Horizontal category tabs ──────────────────── */}
+              <div className="border-b border-charcoal/10">
+                <div className="max-w-site mx-auto w-full px-4 sm:px-6 md:px-10">
+                  <div className="flex items-end gap-0" role="tablist" aria-label="Concern categories">
+                    {CONCERN_CATEGORIES.map((cat, idx) => (
+                      <button
+                        key={cat.id}
+                        role="tab"
+                        aria-selected={activeConcernCategoryIdx === idx}
+                        onClick={() => setActiveConcernCategoryIdx(idx)}
+                        onFocus={cancelCloseTimeout}
+                        onBlur={startCloseTimeout}
+                        className={cn(
+                          'relative px-8 py-5 font-sans text-[12px] tracking-tight uppercase transition-colors duration-200 focus:outline-none shrink-0 cursor-pointer',
+                          activeConcernCategoryIdx === idx
+                            ? 'text-botanical font-medium'
+                            : 'text-stone-gray hover:text-charcoal font-light'
+                        )}
+                      >
+                        {cat.name}
+                        {activeConcernCategoryIdx === idx && (
+                          <motion.span
+                            layoutId="concernCatUnderline"
+                            className="absolute bottom-0 left-8 right-8 h-[2px] bg-botanical"
+                          />
+                        )}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* ── AREA 2 + 3: Concern columns + CTA panel ─────────── */}
+              <div className="max-w-site mx-auto w-full px-4 sm:px-6 md:px-10 flex gap-0 h-[70vh]">
+
+                {/* Concern content — left */}
+                <div 
+                  onWheel={(e) => e.stopPropagation()}
+                  onTouchMove={(e) => e.stopPropagation()}
+                  className="flex-1 min-w-0 min-h-0 h-full py-10 pr-12 border-r border-charcoal/10 overflow-y-auto overscroll-y-contain"
+                >
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={activeConcernCat.id}
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 4 }}
+                      transition={{ duration: 0.18, ease: 'easeOut' }}
+                    >
+                      <div className="flex flex-wrap gap-x-16 gap-y-10">
+                        {(() => {
+                          const list = activeConcernCat.concerns || [];
+                          const perCol = Math.max(4, Math.ceil(list.length / 3));
+                          const cols = Array.from(
+                            { length: Math.ceil(list.length / perCol) },
+                            (_, i) => list.slice(i * perCol, (i + 1) * perCol)
+                          );
+                          return cols.map((col, ci) => (
+                            <div key={ci} className="flex flex-col min-w-[190px] max-w-[250px] flex-shrink-0">
+                              <ul className="flex flex-col gap-3">
+                                {col.map((c) => (
+                                  <li key={c.slug}>
+                                    <Link
+                                      href={`/concerns/${c.slug}`}
+                                      onClick={closeMegaMenu}
+                                      onFocus={cancelCloseTimeout}
+                                      onBlur={startCloseTimeout}
+                                      className="group/link font-sans font-light text-[13.5px] text-charcoal/75 hover:text-botanical transition-colors duration-150 flex items-baseline gap-2"
+                                    >
+                                      <span className="flex-1 leading-relaxed">{c.name}</span>
+                                      <span className="opacity-0 group-hover/link:opacity-100 transition-all duration-150 group-hover/link:translate-x-0.5 text-botanical shrink-0">
+                                        <ArrowUpRight size={12} strokeWidth={1.5} />
+                                      </span>
+                                    </Link>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          ));
+                        })()}
+                      </div>
+
+                      {/* View All footer */}
                       <div className="mt-10 pt-5 border-t border-charcoal/10">
                         <Link
-                          href={`/treatments#${activeCat.id}`}
+                          href={`/concerns#${activeConcernCat.id}`}
                           onClick={closeMegaMenu}
                           onFocus={cancelCloseTimeout}
                           onBlur={startCloseTimeout}
                           className="group/all font-sans text-[11px] tracking-[0.18em] uppercase font-medium text-botanical hover:text-charcoal transition-colors duration-200 flex items-center gap-2"
                         >
-                          View All {activeCat.name} Treatments
+                          View All {activeConcernCat.name}
                           <span className="inline-block transition-transform duration-200 group-hover/all:translate-x-1">→</span>
                         </Link>
                       </div>
@@ -524,7 +774,7 @@ export function Header({ className, variant = 'dark' }: HeaderProps) {
                     onClick={closeMegaMenu}
                     onFocus={cancelCloseTimeout}
                     onBlur={startCloseTimeout}
-                    className="group/cta mt-10 inline-flex items-center justify-between w-full border border-moon-ivory/20 hover:border-moon-ivory/50 px-5 py-4 transition-colors duration-200"
+                    className="group/cta mt-10 inline-flex items-center justify-between w-full border border-moon-ivory/20 hover:border-moon-ivory/50 px-5 py-4 rounded-full transition-colors duration-200"
                   >
                     <span className="font-sans text-[11px] tracking-[0.18em] uppercase font-medium text-moon-ivory">
                       Book a Consultation
@@ -547,6 +797,7 @@ export function Header({ className, variant = 'dark' }: HeaderProps) {
             {navLinks.map((link) => {
               const isShop = link.label === 'Shop';
               const isTreatments = link.label === 'Treatments';
+              const isConcerns = link.label === 'Concerns';
 
               if (isShop) {
                 return (
@@ -612,6 +863,20 @@ export function Header({ className, variant = 'dark' }: HeaderProps) {
                                       </div>
                                     </div>
                                   ))
+                                ) : category.id === 'wellness' ? (
+                                  <a
+                                    href="https://revivindia.com/iv-therapies"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    onClick={() => {
+                                      setMobileOpen(false);
+                                      setMobileTreatmentsOpen(false);
+                                    }}
+                                    className="text-moon-ivory/60 hover:text-white font-sans text-xs py-1.5 block flex items-center gap-1.5"
+                                  >
+                                    <span>Continue to REVIV</span>
+                                    <ArrowUpRight size={12} className="text-botanical shrink-0" />
+                                  </a>
                                 ) : (
                                   category.treatments?.map((t) => (
                                     <Link
@@ -639,6 +904,65 @@ export function Header({ className, variant = 'dark' }: HeaderProps) {
                             className="text-botanical hover:text-white font-sans text-xs uppercase tracking-wider mt-2 font-medium"
                           >
                             View All Treatments →
+                          </Link>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </React.Fragment>
+                );
+              }
+
+              if (isConcerns) {
+                return (
+                  <React.Fragment key={link.href}>
+                    <button
+                      onClick={() => setMobileConcernsOpen((o) => !o)}
+                      className="text-moon-ivory/80 font-display text-2xl tracking-wide hover:text-moon-ivory transition-colors flex items-center justify-between text-left w-full cursor-pointer focus:outline-none"
+                    >
+                      {link.label}
+                      <span className={cn("text-lg font-light transition-transform duration-300", mobileConcernsOpen ? "rotate-90" : "")}>
+                        →
+                      </span>
+                    </button>
+                    <AnimatePresence>
+                      {mobileConcernsOpen && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: 'auto', opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          className="overflow-hidden pl-4 flex flex-col gap-4 mt-2 border-l border-white/10"
+                        >
+                          {CONCERN_CATEGORIES.map((category) => (
+                            <div key={category.id} className="flex flex-col gap-1.5 mt-2">
+                              <span className="font-sans text-[9px] tracking-[0.15em] text-stone-gray uppercase block font-semibold">
+                                {category.name}
+                              </span>
+                              <div className="flex flex-col gap-1 pl-2">
+                                {category.concerns?.map((c) => (
+                                  <Link
+                                    key={c.slug}
+                                    href={`/concerns/${c.slug}`}
+                                    onClick={() => {
+                                      setMobileOpen(false);
+                                      setMobileConcernsOpen(false);
+                                    }}
+                                    className="text-moon-ivory/60 hover:text-white font-sans text-xs py-0.5 block"
+                                  >
+                                    {c.name}
+                                  </Link>
+                                ))}
+                              </div>
+                            </div>
+                          ))}
+                          <Link
+                            href="/concerns"
+                            onClick={() => {
+                              setMobileOpen(false);
+                              setMobileConcernsOpen(false);
+                            }}
+                            className="text-botanical hover:text-white font-sans text-xs uppercase tracking-wider mt-2 font-medium"
+                          >
+                            View All Concerns →
                           </Link>
                         </motion.div>
                       )}

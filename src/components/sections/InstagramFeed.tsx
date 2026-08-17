@@ -86,48 +86,44 @@ const STATIC_FEED: InstagramPost[] = [
   },
 ];
 
-const ROW1_POSTS = [STATIC_FEED[0], STATIC_FEED[1], STATIC_FEED[2], STATIC_FEED[3]];
-const ROW2_POSTS = [STATIC_FEED[4], STATIC_FEED[5], STATIC_FEED[6]];
+const padPosts = (postsArray: InstagramPost[], minCount: number = 8): InstagramPost[] => {
+  if (postsArray.length === 0) return [];
+  let result = [...postsArray];
+  while (result.length < minCount) {
+    result = [...result, ...postsArray];
+  }
+  return result;
+};
 
 export interface InstagramFeedProps {
   className?: string;
 }
 
 export function InstagramFeed({ className }: InstagramFeedProps) {
-  const [posts, setPosts] = React.useState<{ row1: InstagramPost[]; row2: InstagramPost[] }>({
-    row1: ROW1_POSTS,
-    row2: ROW2_POSTS,
-  });
+  const [posts, setPosts] = React.useState<InstagramPost[]>(STATIC_FEED);
 
   React.useEffect(() => {
-    const token = process.env.NEXT_PUBLIC_INSTAGRAM_ACCESS_TOKEN;
-    if (token) {
-      fetch(`https://graph.instagram.com/me/media?fields=id,media_type,media_url,permalink,caption,thumbnail_url&limit=12&access_token=${token}`)
-        .then((res) => res.json())
-        .then((data) => {
-          if (data && data.data) {
-            interface IGDataPost {
-              id: string;
-              media_type: string;
-              media_url: string;
-              permalink: string;
-              caption?: string;
-              thumbnail_url?: string;
-            }
-            const fetchedPosts: InstagramPost[] = data.data.map((item: IGDataPost) => ({
-              id: item.id,
-              mediaUrl: item.media_type === 'VIDEO' ? item.thumbnail_url || item.media_url : item.media_url,
-              permalink: item.permalink,
-              caption: item.caption,
-            }));
-            const r1 = fetchedPosts.slice(0, Math.ceil(fetchedPosts.length / 2));
-            const r2 = fetchedPosts.slice(Math.ceil(fetchedPosts.length / 2));
-            setPosts({ row1: r1, row2: r2 });
-          }
-        })
-        .catch((err) => console.warn('Instagram API fetch failed, falling back to static feed:', err));
-    }
+    fetch('/api/instagram')
+      .then((res) => res.json())
+      .then((resJson) => {
+        if (resJson && resJson.data && resJson.data.length > 0) {
+          setPosts(resJson.data);
+        }
+      })
+      .catch((err) => console.warn('Instagram local API fetch failed, falling back to static feed:', err));
   }, []);
+
+  const row1 = React.useMemo(() => {
+    const half = Math.ceil(posts.length / 2);
+    const r1 = posts.slice(0, half);
+    return padPosts(r1, 8);
+  }, [posts]);
+
+  const row2 = React.useMemo(() => {
+    const half = Math.ceil(posts.length / 2);
+    const r2 = posts.slice(half);
+    return padPosts(r2, 8);
+  }, [posts]);
 
   return (
     <section
@@ -185,8 +181,8 @@ export function InstagramFeed({ className }: InstagramFeedProps) {
 
         {/* ROW 1 (Moves left) */}
         <div className="flex w-full overflow-hidden">
-          <div className="flex gap-6 shrink-0 min-w-full justify-around animate-marquee hover:[animation-play-state:paused] py-1 cursor-pointer">
-            {[...posts.row1, ...posts.row1].map((post, idx) => {
+          <div className="flex gap-6 shrink-0 min-w-full justify-start animate-marquee hover:[animation-play-state:paused] py-1 cursor-pointer">
+            {[...row1, ...row1].map((post, idx) => {
               if (post.isPlaceholder) {
                 return (
                   <div
@@ -221,8 +217,8 @@ export function InstagramFeed({ className }: InstagramFeedProps) {
 
         {/* ROW 2 (Moves right - reverse direction) */}
         <div className="flex w-full overflow-hidden">
-          <div className="flex gap-6 shrink-0 min-w-full justify-around animate-marquee hover:[animation-play-state:paused] py-1 cursor-pointer [animation-direction:reverse]">
-            {[...posts.row2, ...posts.row2].map((post, idx) => (
+          <div className="flex gap-6 shrink-0 min-w-full justify-start animate-marquee hover:[animation-play-state:paused] py-1 cursor-pointer [animation-direction:reverse]">
+            {[...row2, ...row2].map((post, idx) => (
               <Link
                 key={`r2-post-${post.id}-${idx}`}
                 href={post.permalink}

@@ -53,10 +53,10 @@ export function Footer({ className }: FooterProps) {
             )}
         >
             <div className="max-w-[1440px] mx-auto px-6 md:px-12 lg:px-16 pt-16 pb-12 md:pt-24 md:pb-16">
-                {/* ── TOP SECTION: EDITORIAL 3-COLUMN GRID ── */}
+                {/* ── TOP SECTION: EDITORIAL 4-COLUMN GRID ── */}
                 <div className="grid grid-cols-1 md:grid-cols-12 gap-y-12 gap-x-8 md:gap-x-12 pb-16 md:pb-24">
-                    {/* COLUMN 1: BRAND LOGO & STATEMENT (5 cols) */}
-                    <div className="md:col-span-5 flex flex-col gap-6 md:pr-8">
+                    {/* COLUMN 1: BRAND LOGO & STATEMENT (4 cols) */}
+                    <div className="md:col-span-4 flex flex-col gap-6 md:pr-8">
                         <Link href="/" className="relative h-9 w-28 shrink-0">
                             <Image
                                 src="/logo.svg"
@@ -101,28 +101,18 @@ export function Footer({ className }: FooterProps) {
                         </div>
                     </div>
 
-                    {/* COLUMN 2: QUICK NAVIGATION (3 cols) */}
-                    <div className="md:col-span-3 flex flex-col gap-5">
+                    {/* COLUMN 2: CLINICAL SERVICES (2 cols) */}
+                    <div className="md:col-span-2 flex flex-col gap-5">
                         <h4 className="font-sans font-medium text-[0.72rem] uppercase tracking-[0.2em] text-white">
-                            Explore
+                            Clinical
                         </h4>
                         <nav className="flex flex-col gap-3 font-sans font-light text-[0.85rem]">
                             {[
-                                { label: "Home", href: "/" },
-                                { label: "About", href: "/about" },
-                                {
-                                    label: "Advanced Technology",
-                                    href: "/about#advanced-technology",
-                                },
                                 { label: "Treatments", href: "/treatments" },
-                                { label: "LUNA+", href: "/luna-plus" },
                                 { label: "Concerns Index", href: "/concerns" },
-                                { label: "Careers", href: "/careers" },
-                                {
-                                    label: "Consultation Philosophy",
-                                    href: "/consultation",
-                                },
-                                { label: "Contact Clinic", href: "/contact" },
+                                { label: "LUNA+", href: "/luna-plus" },
+                                { label: "Starting Point", href: "/find-your-starting-point" },
+                                { label: "Shop", href: "/shop" },
                             ].map((link) => (
                                 <Link
                                     key={link.href}
@@ -135,7 +125,39 @@ export function Footer({ className }: FooterProps) {
                         </nav>
                     </div>
 
-                    {/* COLUMN 3: CLINIC CONTACT & HOURS (4 cols) */}
+                    {/* COLUMN 3: THE CLINIC (2 cols) */}
+                    <div className="md:col-span-2 flex flex-col gap-5">
+                        <h4 className="font-sans font-medium text-[0.72rem] uppercase tracking-[0.2em] text-white">
+                            The Clinic
+                        </h4>
+                        <nav className="flex flex-col gap-3 font-sans font-light text-[0.85rem]">
+                            {[
+                                { label: "Home", href: "/" },
+                                { label: "About Us", href: "/about" },
+                                {
+                                    label: "Technology",
+                                    href: "/about#advanced-technology",
+                                },
+                                {
+                                    label: "Philosophy",
+                                    href: "/consultation",
+                                },
+                                { label: "Medical Tourism", href: "/medical-tourism" },
+                                { label: "Careers", href: "/careers" },
+                                { label: "Contact", href: "/contact" },
+                            ].map((link) => (
+                                <Link
+                                    key={link.href}
+                                    href={link.href}
+                                    className="hover:text-gold transition-colors duration-300 w-fit"
+                                >
+                                    {link.label}
+                                </Link>
+                            ))}
+                        </nav>
+                    </div>
+
+                    {/* COLUMN 4: CLINIC CONTACT & HOURS (4 cols) */}
                     <div className="md:col-span-4 flex flex-col gap-5">
                         <h4 className="font-sans font-medium text-[0.72rem] uppercase tracking-[0.2em] text-white">
                             Sanctuary

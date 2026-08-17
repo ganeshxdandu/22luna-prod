@@ -1,6 +1,6 @@
 import { MetadataRoute } from 'next';
 import { SKIN_GROUPS, HAIR_TREATMENTS, DENTAL_TREATMENTS } from '@/lib/treatments-catalogue';
-import { SKIN_CONCERNS, HAIR_CONCERNS, DENTAL_CONCERNS } from '@/lib/concerns-catalogue';
+import { SKIN_CONCERNS, HAIR_CONCERNS, DENTAL_CONCERNS, SPECIAL_CONCERNS } from '@/lib/concerns-catalogue';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://22luna.in';
@@ -59,6 +59,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...SKIN_CONCERNS.map((c) => c.slug),
     ...HAIR_CONCERNS.map((c) => c.slug),
     ...DENTAL_CONCERNS.map((c) => c.slug),
+    ...SPECIAL_CONCERNS.map((c) => c.slug),
   ];
 
   const concernEntries = concernSlugs.map((slug) => ({

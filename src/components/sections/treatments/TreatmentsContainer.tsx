@@ -13,7 +13,6 @@ import {
   SKIN_GROUPS,
   HAIR_TREATMENTS,
   DENTAL_TREATMENTS,
-  WELLNESS_TREATMENTS,
 } from '@/lib/treatments-catalogue';
 import { cn } from '@/lib/utils';
 
@@ -99,10 +98,6 @@ export function TreatmentsContainer() {
 
     DENTAL_TREATMENTS.forEach((t) => {
       list.push({ ...t, category: 'Dental' });
-    });
-
-    WELLNESS_TREATMENTS.forEach((t) => {
-      list.push({ ...t, category: 'Wellness & IV' });
     });
 
     return list;

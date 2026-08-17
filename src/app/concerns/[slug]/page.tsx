@@ -19,19 +19,18 @@ import { ConcernCTA } from '@/components/sections/concern/ConcernCTA';
 
 // ─────────────────────────────────────────────────────────────────────────────
 
+import { CONCERN_CATEGORIES } from '@/lib/concerns-catalogue';
+
 interface ConcernPageProps {
   params: Promise<{ slug: string }>;
 }
 
 export async function generateStaticParams() {
-  return [
-    { slug: 'acne-scars' },
-    { slug: 'hyperpigmentation-melasma' },
-    { slug: 'fine-lines-wrinkles' },
-    { slug: 'hair-thinning' },
-    { slug: 'gummy-smile' },
-    { slug: 'rosacea-redness' },
-  ];
+  return CONCERN_CATEGORIES.flatMap((category) =>
+    category.concerns.map((c) => ({
+      slug: c.slug,
+    }))
+  );
 }
 
 export async function generateMetadata(

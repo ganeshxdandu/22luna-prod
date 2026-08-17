@@ -8,6 +8,7 @@ import { ConcernCategoriesOverview } from '@/components/sections/concerns/Concer
 import { SkinConcernsSection } from '@/components/sections/concerns/SkinConcernsSection';
 import { HairConcernsSection } from '@/components/sections/concerns/HairConcernsSection';
 import { DentalConcernsSection } from '@/components/sections/concerns/DentalConcernsSection';
+import { SpecialConcernsSection } from '@/components/sections/concerns/SpecialConcernsSection';
 import { ConcernsCTA } from '@/components/sections/concerns/ConcernsCTA';
 
 import { BreadcrumbSchema } from '@/components/seo/BreadcrumbSchema';
@@ -60,6 +61,9 @@ export default function ConcernsPage() {
 
       {/* ── SECTION 5: Dental Concerns Listing ── */}
       <DentalConcernsSection />
+
+      {/* ── SECTION 5.5: Special Concerns Listing ── */}
+      <SpecialConcernsSection />
 
       {/* ── SECTION 6: Consultation Guidance CTA ── */}
       <ConcernsCTA />

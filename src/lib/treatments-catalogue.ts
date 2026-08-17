@@ -30,276 +30,120 @@ export interface TreatmentCategory {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// SKIN
+// SKIN GROUPS
 // ─────────────────────────────────────────────────────────────────────────────
 export const SKIN_GROUPS: TreatmentGroup[] = [
   {
-    groupName: 'Essential Facials',
+    groupName: 'Clinical Facials & Peels',
     treatments: [
-      {
-        name: 'Enzyme Radiance Ritual — Foaming Enzyme',
-        slug: 'enzyme-radiance-ritual',
-        description: 'A foaming enzyme treatment to renew radiance and exfoliate the skin.',
-      },
-      {
-        name: 'Hydrafacial Deluxe',
-        slug: 'hydrafacial-deluxe',
-        description: 'Deluxe medical-grade cleansing, extraction, and hydration facial.',
-      },
-      {
-        name: 'Clear Balance Acne Facial — Dermalogica',
-        slug: 'clear-balance-acne-facial',
-        description: 'Targeted Dermalogica treatment for acne-prone skin to clarify and balance.',
-      },
-      {
-        name: 'Mandeluxe Glow Facial',
-        slug: 'mandeluxe-glow-facial',
-        description: 'Mandelic acid exfoliating facial designed to restore deep radiance and glow.',
-      },
-      {
-        name: 'Two for Glow — Fire & Ice + Vitaglow IV',
-        slug: 'two-for-glow',
-        description: 'A signature treatment combining Fire & Ice protocol with Vitaglow IV infusion.',
-      },
-      {
-        name: 'Chemical Peel',
-        slug: 'chemical-peel',
-        description: 'Controlled exfoliation to renew texture and clarity.',
-      },
-      {
-        name: 'Dermaplaning',
-        slug: 'dermaplaning',
-        description: 'Precision manual exfoliation for immediately smoother skin.',
-      },
-      {
-        name: 'LED Therapy',
-        slug: 'led-therapy',
-        description: 'Targeted light wavelengths that calm, repair and stimulate collagen.',
-      },
-    ],
+      { name: 'Chemical Peels', slug: 'chemical-peels', description: 'Controlled dermal exfoliation to treat acne, marks, and texture.' },
+      { name: 'Medi Facials', slug: 'medi-facials', description: 'Physician-led clinical facials for skin repair and deep hydration.' },
+      { name: 'Facials', slug: 'facials', description: 'Custom skin cleansing and rejuvenation protocols.' },
+      { name: 'Skin Polishing', slug: 'skin-polishing', description: 'Micro-dermabrasion exfoliation for instant surface smoothing.' },
+      { name: 'Lymphatic Drainage', slug: 'lymphatic-drainage', description: 'Mechanical massage to reduce facial puffiness and support detoxification.' }
+    ]
   },
   {
-    groupName: 'Therapeutic Facials',
+    groupName: 'Injectables & Contouring',
     treatments: [
-      {
-        name: 'HydraFacial Platinum',
-        slug: 'hydrafacial-platinum',
-        description: 'Advanced HydraFacial with custom booster, lymphatic drainage, and LED light.',
-      },
-      {
-        name: 'O₂ Derm Oxy Facial — Oxygen Vitality Facial',
-        slug: 'o2-derm-oxy-facial',
-        description: 'Oxygenating facial to revive, purify, and deeply hydrate fatigued skin.',
-      },
-      {
-        name: 'Dual Element Fire & Ice Cryo Facial',
-        slug: 'dual-element-fire-ice-cryo-facial',
-        description: 'Clinical facial using thermal action and cold cryotherapy to lift and clarify.',
-      },
-      {
-        name: 'ZO Obagi Hydraboost Therapy Facial',
-        slug: 'zo-obagi-hydraboost-therapy',
-        description: 'Clinical barrier-restoration and hydration treatment using ZO Obagi protocol.',
-      },
-      {
-        name: 'Forma RF Tech Touch Therapy Facial',
-        slug: 'forma-rf-tech-touch-therapy',
-        description: 'Radiofrequency skin tightening combined with hands-on touch therapy.',
-      },
-      {
-        name: 'Elixir PRF Restore Therapy Facial',
-        slug: 'elixir-prf-restore-therapy',
-        description: 'Regenerative platelet-rich fibrin facial utilizing autologous growth factors.',
-      },
-      {
-        name: 'Anti-Aging Facial',
-        slug: 'anti-aging-facial',
-        description: 'Peptide and collagen-stimulating therapy for mature skin.',
-      },
-      {
-        name: 'Sensitive Skin Facial',
-        slug: 'sensitive-skin-facial',
-        description: 'Gentle, barrier-restoring treatment for reactive skin types.',
-      },
-    ],
+      { name: 'Botox', slug: 'botox', description: 'Precision wrinkle relaxation and dynamic line smoothing.' },
+      { name: 'Dermal Fillers', slug: 'dermal-fillers', description: 'Hyaluronic acid restoration of structural volume and contours.' },
+      { name: 'Thread Lifts', slug: 'thread-lifts', description: 'Absorbable suspension threads to lift sagging tissues.' },
+      { name: 'Mesotherapy', slug: 'mesotherapy', description: 'Micro-infusions of vitamins and skin-boosters for hydration.' },
+      { name: 'Lip Rejuvenation / Lip Volume and Contour', slug: 'lip-rejuvenation', description: 'Aesthetic mapping for volume, contour, and vermilion hydration.' },
+      { name: 'Liquid Rhinoplasty', slug: 'liquid-rhinoplasty', description: 'Non-surgical nose contouring and symmetry correction using fillers.' },
+      { name: 'Non Surgical Facial Contouring', slug: 'non-surgical-facial-contouring', description: 'Comprehensive profile balancing using injectables.' },
+      { name: 'Non Surgical Jawline Enhancement', slug: 'non-surgical-jawline-enhancement', description: 'Jawline definition and contour refinement.' }
+    ]
   },
   {
-    groupName: 'Precision Treatments',
+    groupName: 'Advanced Energy & Lasers',
     treatments: [
-      {
-        name: 'Microneedling',
-        slug: 'microneedling',
-        description: 'Controlled micro-channels that trigger deep collagen remodelling.',
-      },
-      {
-        name: 'PRP Skin',
-        slug: 'prp-skin',
-        description: 'Your own growth factors delivered to heal, repair and rejuvenate.',
-      },
-      {
-        name: 'Mesotherapy',
-        slug: 'mesotherapy-skin',
-        description: 'Customised cocktails of vitamins and actives infused beneath the surface.',
-      },
-      {
-        name: 'Polynucleotides',
-        slug: 'polynucleotides',
-        description: 'Advanced biostimulator for deep skin regeneration and lasting hydration.',
-      },
-    ],
+      { name: 'Laser Hair Reduction', slug: 'laser-hair-reduction', description: 'Medical-grade diode hair reduction for smooth skin.' },
+      { name: 'Micro-Needling / Advanced Micro Needling with Radiofrequency', slug: 'microneedling-rf', description: 'Microneedling RF to rebuild deep collagen and smooth scars.' },
+      { name: 'PRP', slug: 'prp-skin', description: 'Platelet-rich plasma autologous growth factors for dermal repair.' },
+      { name: 'Skin Tightening', slug: 'skin-tightening', description: 'Radiofrequency energy to lift lax skin and stimulate elasticity.' },
+      { name: 'Skin Resurfacing', slug: 'skin-resurfacing', description: 'Laser peeling to renew texture, pitting, and lines.' },
+      { name: 'Q Switched Nd:YAG Laser for Skin Rejuvenation / Tattoo Removal / Treatment of Veins / Carbon Peel Facial', slug: 'q-switched-laser', description: 'Advanced Q-Switched laser for pigment, tattoos, veins, and carbon facials.' }
+    ]
   },
   {
-    groupName: 'Signature Programs',
+    groupName: 'Specialized Protocols',
     treatments: [
-      {
-        name: 'Luminosity Program',
-        slug: 'luminosity-program',
-        description: 'A multi-session brightening plan for persistent dullness and pigmentation.',
-      },
-      {
-        name: 'Acne Control Program',
-        slug: 'acne-control-program',
-        description: 'A structured course addressing active acne, scarring and long-term prevention.',
-      },
-      {
-        name: 'Anti-Aging Protocol',
-        slug: 'anti-aging-protocol',
-        description: 'A comprehensive programme targeting lines, volume and skin quality together.',
-      },
-    ],
-  },
-  {
-    groupName: 'Special Categories',
-    treatments: [
-      {
-        name: "Men's Skin",
-        slug: 'mens-skin',
-        description: 'Treatments adapted for thicker skin, daily shaving and specific male concerns.',
-      },
-      {
-        name: 'Bridal Skin',
-        slug: 'bridal-skin',
-        description: 'A tailored programme timed to deliver peak radiance on your wedding day.',
-      },
-      {
-        name: 'Teen Skin',
-        slug: 'teen-skin',
-        description: 'Gentle, age-appropriate treatments for younger skin concerns.',
-      },
-    ],
-  },
+      { name: 'Sclerotherapy', slug: 'sclerotherapy', description: 'Micro-injection treatment for spider veins and small vessels.' },
+      { name: 'Bride/Groom To Be Treatments', slug: 'bridal-groom-treatments', description: 'Curated aesthetic timelines for pre-wedding radiance.' },
+      { name: 'Removal of Warts / Skin Tags', slug: 'warts-skin-tags-removal', description: 'Precise radiofrequency ablation of warts, tags, and lesions.' },
+      { name: 'Facial Muscle Restoration / Deep Dermal Remodelling', slug: 'facial-muscle-restoration', description: 'Deep muscle stimulation and tissue rebuilding.' },
+      { name: 'Blefaroplasma', slug: 'blefaroplasma', description: 'Non-surgical plasma eyelid lifting and skin contracture.' },
+      { name: 'Anti Ageing', slug: 'anti-ageing', description: 'Structured preventative protocols targeting cellular aging.' },
+      { name: 'Light Therapy', slug: 'light-therapy', description: 'Narrow-band LED wavelengths for cellular healing and acne.' }
+    ]
+  }
 ];
 
 // ─────────────────────────────────────────────────────────────────────────────
-// HAIR
+// HAIR TREATMENTS
 // ─────────────────────────────────────────────────────────────────────────────
 export const HAIR_TREATMENTS: CatalogueItem[] = [
-  {
-    name: 'PRP Hair Treatment',
-    slug: 'prp-hair',
-    description: 'Platelet-rich plasma injected at the scalp to stimulate dormant follicles.',
-  },
-  {
-    name: 'GFC Treatment',
-    slug: 'gfc-hair',
-    description: 'Growth factor concentrate - a refined evolution of PRP for hair density.',
-  },
-  {
-    name: 'Hair Mesotherapy',
-    slug: 'hair-mesotherapy',
-    description: 'Direct delivery of vitamins and actives to nourish the scalp environment.',
-  },
-  {
-    name: 'Scalp Treatment',
-    slug: 'scalp-treatment',
-    description: 'Targeted care for dryness, dandruff, sensitivity and scalp health.',
-  },
-  {
-    name: 'Exosome Therapy',
-    slug: 'exosome-hair',
-    description: 'Next-generation regenerative treatment to support hair regrowth.',
-  },
-  {
-    name: 'PRF Hair',
-    slug: 'prf-hair',
-    description: 'Platelet-rich fibrin - a natural, additive-free alternative to PRP.',
-  },
+  { name: 'PRP', slug: 'prp-hair', description: 'Autologous platelet therapy to stimulate dormant hair follicles.' },
+  { name: 'Scalp Rejuvenation', slug: 'scalp-rejuvenation', description: 'Nourishes the hair growth environment and scalp barrier.' },
+  { name: 'Scalp Oxy Therapy', slug: 'scalp-oxy-therapy', description: 'High-pressure oxygen and nutrient mist to refresh follicles.' },
+  { name: 'Botox', slug: 'hair-botox', description: 'Deep conditioning treatment to restore hair fiber resilience.' },
+  { name: 'Men\'s Laser Hair Removal', slug: 'mens-laser-hair-removal', description: 'Targeted laser hair reduction for neck, chest, and back.' },
+  { name: 'Hair Loss', slug: 'hair-loss-treatment', description: 'Physician-led cellular recovery plans for progressive thinning.' },
+  { name: 'Beard Shaping', slug: 'beard-shaping', description: 'Precision laser hair reduction to outline clean beard margins.' }
 ];
 
 // ─────────────────────────────────────────────────────────────────────────────
-// WELLNESS & IV
+// DENTAL TREATMENTS
+// ─────────────────────────────────────────────────────────────────────────────
+export const DENTAL_TREATMENTS: CatalogueItem[] = [
+  { name: 'Cleaning and Polishing', slug: 'cleaning-polishing', description: 'Essential scale and polish to maintain gum and enamel health.' },
+  { name: 'Filling / Restoration', slug: 'filling-restoration', description: 'Composite bonding restorations for decay and structural flaws.' },
+  { name: 'Root Canal Treatment (Microscope Enhanced)', slug: 'root-canal-treatment', description: 'Precision microscope-assisted root canal therapy.' },
+  { name: 'Crowns and Bridges', slug: 'crowns-bridges', description: 'Durable custom porcelain crowns to reconstruct teeth.' },
+  { name: 'Dental Implants', slug: 'dental-implants', description: 'Permanent, bio-integrated titanium tooth replacements.' },
+  { name: 'Dentures', slug: 'dentures', description: 'Custom partial or full mouth prostheses for tooth loss.' },
+  { name: 'Extraction', slug: 'extraction', description: 'Safe, comfortable removal of non-restorable or wisdom teeth.' },
+  { name: 'Gum Disease', slug: 'gum-disease', description: 'Deep root planing and scaling to treat periodontal inflammation.' },
+  { name: 'Treatment for Sensitive Teeth', slug: 'sensitive-teeth-treatment', description: 'Desensitizing sealers and enamel mineral replacement.' },
+  { name: 'Porcelain Veneers', slug: 'porcelain-veneers', description: 'Ultra-thin custom porcelain shells for aesthetic reshaping.' },
+  { name: 'Teeth Whitening', slug: 'teeth-whitening', description: 'Clinical shade brightening for a radiant, confident smile.' },
+  { name: 'Braces', slug: 'braces', description: 'Aesthetic brackets or alignment for structural correction.' },
+  { name: 'Tooth Jewellery', slug: 'tooth-jewellery', description: 'Non-invasive cosmetic crystals applied to the enamel.' },
+  { name: 'Smile Designing', slug: 'smile-designing', description: 'Digital smile engineering for facial-dental harmony.' },
+  { name: 'Correction of Gummy Smile', slug: 'gummy-smile-correction', description: 'Aesthetic alignment of gum margins and upper lip elevation.' },
+  { name: 'Full Mouth Rehabilitation', slug: 'full-mouth-rehabilitation', description: 'Total bite correction and reconstruction for multiple teeth.' },
+  { name: 'Party Gums', slug: 'party-gums', description: 'Temporary aesthetic gum shaping and smile brightening.' }
+];
+
+// ─────────────────────────────────────────────────────────────────────────────
+// WELLNESS & IV (DO NOT REMOVE OR REDEFINE THE REDIRECT SYSTEM)
 // ─────────────────────────────────────────────────────────────────────────────
 export const WELLNESS_TREATMENTS: CatalogueItem[] = [
   {
     name: 'REVIV IV Hydration',
     slug: 'reviv-iv-hydration',
     description: 'Medical-grade intravenous hydration and replenishment formulated by REVIV.',
-  },
-  {
-    name: 'Vitaglow Infusion',
-    slug: 'vitaglow-infusion',
-    description: 'Advanced vitamin and antioxidant cocktail for cellular rejuvenation and skin radiance.',
-  },
-  {
-    name: 'Royal Flush Longevity',
-    slug: 'royal-flush-longevity',
-    description: 'Premium hydration and detoxification infusion to optimize wellness and recovery.',
-  },
-  {
-    name: 'Megaboost Infusion',
-    slug: 'megaboost-infusion',
-    description: 'Targeted wellness infusion designed to boost immune health and physical resilience.',
-  },
+  }
 ];
 
 // ─────────────────────────────────────────────────────────────────────────────
-// DENTAL
+// UPCOMING TREATMENTS
 // ─────────────────────────────────────────────────────────────────────────────
-export const DENTAL_TREATMENTS: CatalogueItem[] = [
-  {
-    name: 'Smile Design',
-    slug: 'smile-design',
-    description: 'A comprehensive makeover planned digitally and executed with precision.',
-  },
-  {
-    name: 'Teeth Whitening',
-    slug: 'teeth-whitening',
-    description: 'Professional-grade whitening for a brighter, more confident smile.',
-  },
-  {
-    name: 'Dental Veneers',
-    slug: 'dental-veneers',
-    description: 'Ultra-thin porcelain shells that reshape, colour and align the smile.',
-  },
-  {
-    name: 'Clear Aligners',
-    slug: 'clear-aligners',
-    description: 'Discreet orthodontic alignment without fixed brackets or wires.',
-  },
-  {
-    name: 'Dental Implants',
-    slug: 'dental-implants',
-    description: 'A permanent, natural-feeling solution for missing teeth.',
-  },
-  {
-    name: 'Crown & Bridge',
-    slug: 'crown-bridge',
-    description: 'Restorative coverage that protects and reconstructs damaged teeth.',
-  },
-  {
-    name: 'Cosmetic Bonding',
-    slug: 'cosmetic-bonding',
-    description: 'Subtle correction of chips, gaps and minor imperfections in a single session.',
-  },
-  {
-    name: 'Root Canal Treatment',
-    slug: 'root-canal',
-    description: 'Precise, comfortable treatment to save and restore an infected tooth.',
-  },
+export const UPCOMING_TREATMENTS: CatalogueItem[] = [
+  { name: 'Fat Loss', slug: 'fat-loss', description: 'Advanced non-invasive lipolysis and body shaping technology.' },
+  { name: 'Body Sculpting / Body Contouring', slug: 'body-sculpting', description: 'Muscle definition and fat reduction protocols.' },
+  { name: 'Double Chin / Fat Loss / Cellulite', slug: 'double-chin-cellulite', description: 'Targeted submental fat reduction and tissue smoothing.' },
+  { name: 'Microblading & Permanent Make Up', slug: 'microblading-makeup', description: 'Precision semi-permanent brow and lip pigment mapping.' },
+  { name: 'Intimate Body Rejuvenation', slug: 'intimate-rejuvenation', description: 'Non-surgical tissue tightening and wellness rejuvenation.' },
+  { name: 'O-Shot / P-Shot', slug: 'o-shot-p-shot', description: 'Autologous growth factor therapies for sexual wellness.' },
+  { name: 'Non Surgical Ear Lobe Repair', slug: 'ear-lobe-repair', description: 'Aesthetic restoration of stretched or torn lobes.' },
+  { name: 'Cryo Facial', slug: 'cryo-facial', description: 'Sub-zero vapor cryotherapy to stimulate micro-circulation and collagen.' }
 ];
 
 // ─────────────────────────────────────────────────────────────────────────────
-// CATEGORY CARDS (used in the overview grid)
+// CATEGORY CARDS
 // ─────────────────────────────────────────────────────────────────────────────
 export const TREATMENT_CATEGORIES: TreatmentCategory[] = [
   {

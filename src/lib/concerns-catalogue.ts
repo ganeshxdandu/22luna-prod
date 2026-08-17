@@ -23,44 +23,94 @@ export interface ConcernCategory {
 // ─────────────────────────────────────────────────────────────────────────────
 export const SKIN_CONCERNS: ConcernItem[] = [
   {
-    name: 'Acne & Acne Scars',
+    name: 'Acne',
+    slug: 'acne',
+    description: 'Active breakouts, comedones, and superficial skin inflammation.',
+  },
+  {
+    name: 'Acne Scars',
     slug: 'acne-scars',
-    description: 'Active breakouts, inflammation, or lingering textural pitting from past acne.',
+    description: 'Textural pitting, depressions, or post-inflammatory marks left behind by past acne.',
   },
   {
-    name: 'Hyperpigmentation & Melasma',
-    slug: 'hyperpigmentation-melasma',
-    description: 'Stubborn sun spots, hormonal patches, or post-inflammatory dark marks.',
+    name: 'Pigmentation / Dullness / Melasma',
+    slug: 'pigmentation-dullness-melasma',
+    description: 'Hormonal melasma patches, uneven skin tone, and lackluster skin lacking radiance.',
   },
   {
-    name: 'Fine Lines & Wrinkles',
-    slug: 'fine-lines-wrinkles',
-    description: 'Early expression lines, crow\'s feet, or loss of smooth dermal resilience.',
+    name: 'Enlarged Pores',
+    slug: 'enlarged-pores',
+    description: 'Visible pore openings, excess sebum, and texture irregularities around the T-zone.',
   },
   {
-    name: 'Uneven Tone & Dullness',
-    slug: 'dullness-uneven-tone',
-    description: 'Lusterless skin lacking radiance, often caused by dead cell accumulation or fatigue.',
+    name: 'Freckles / Sunspots / Marks',
+    slug: 'freckles-sunspots-marks',
+    description: 'Localized solar lentigines, UV-induced freckles, and isolated dark marks.',
   },
   {
-    name: 'Dark Circles & Eye Hollows',
-    slug: 'dark-circles-under-eye',
-    description: 'Periorbital shadows, thinning under-eye skin, or volume loss in tear troughs.',
+    name: 'Dark Lips',
+    slug: 'dark-lips',
+    description: 'Hyperpigmentation of the lip vermilion caused by genetics, sun, or lifestyle.',
   },
   {
-    name: 'Enlarged Pores & Congestion',
-    slug: 'enlarged-pores-congestion',
-    description: 'Blackheads, excess sebum production, and visible pore openings across the T-zone.',
+    name: 'Dark Circles',
+    slug: 'dark-circles',
+    description: 'Under-eye shadows, thin periorbital skin, or volume depletion in tear troughs.',
   },
   {
-    name: 'Rosacea & Facial Redness',
-    slug: 'rosacea-redness',
-    description: 'Persistent flushing, visible micro-vessels, or reactive skin barrier sensitivity.',
+    name: 'Uneven Skin Tone',
+    slug: 'uneven-skin-tone',
+    description: 'Mottled redness, dynamic discoloration, and patchy pigmentation.',
   },
   {
-    name: 'Loss of Firmness & Volume',
-    slug: 'volume-loss-laxity',
-    description: 'Gradual softening of contour definition along jawline, cheeks, and midface.',
+    name: 'Tanning / Sun Damage',
+    slug: 'tanning-sun-damage',
+    description: 'Generalized UV darkening, compromised barrier health, and sun-induced dehydration.',
+  },
+  {
+    name: 'Rosacea & Sensitive Skin',
+    slug: 'rosacea-sensitive-skin',
+    description: 'Persistent facial flushing, visible capillaries, and hyper-reactive skin barriers.',
+  },
+  {
+    name: 'Stretch Marks',
+    slug: 'stretch-marks',
+    description: 'Dermal elastin fractures presenting as red or silver textural bands on the body.',
+  },
+  {
+    name: 'Warts and Skin Tags',
+    slug: 'warts-skin-tags',
+    description: 'Benign epidermal growths, papillomas, and localized skin elevations.',
+  },
+  {
+    name: 'Burns / Scars / Keloids',
+    slug: 'burns-scars-keloids',
+    description: 'Hypertrophic tissue repair, burn marks, or raised keloidal scar formations.',
+  },
+  {
+    name: 'Hyperhidrosis',
+    slug: 'hyperhidrosis',
+    description: 'Excessive, uncontrolled sweating of underarms, palms, or soles.',
+  },
+  {
+    name: 'Wrinkles & Ageing',
+    slug: 'wrinkles-ageing',
+    description: 'Fine lines, expression wrinkles, static creases, and loss of dermal resilience.',
+  },
+  {
+    name: 'Bridal / Event Skin Preparation',
+    slug: 'bridal-event-prep',
+    description: 'Structured clinical protocols designed to prepare skin for events.',
+  },
+  {
+    name: 'Keratosis Pilaris',
+    slug: 'keratosis-pilaris',
+    description: 'Small rough bumps around upper arms or thighs caused by keratin buildup.',
+  },
+  {
+    name: 'Spider Veins',
+    slug: 'spider-veins',
+    description: 'Superficial micro-capillaries showing through the skin surface.',
   },
 ];
 
@@ -69,34 +119,34 @@ export const SKIN_CONCERNS: ConcernItem[] = [
 // ─────────────────────────────────────────────────────────────────────────────
 export const HAIR_CONCERNS: ConcernItem[] = [
   {
-    name: 'Hair Loss & Thinning',
+    name: 'Hair Loss',
+    slug: 'hair-loss',
+    description: 'Excessive follicle shedding, thinning crown lines, or receding placement.',
+  },
+  {
+    name: 'Hair Thinning',
     slug: 'hair-thinning',
-    description: 'Gradual decrease in overall hair volume, density, or scalp coverage.',
-  },
-  {
-    name: 'Pattern Hair Loss',
-    slug: 'pattern-hair-loss',
-    description: 'Hereditary thinning along the crown, parting line, or temples.',
-  },
-  {
-    name: 'Scalp Sensitivity & Dryness',
-    slug: 'scalp-sensitivity',
-    description: 'Itchiness, flaking, or compromised scalp skin health affecting follicle growth.',
-  },
-  {
-    name: 'Stress-Related Shedding',
-    slug: 'telogen-effluvium',
-    description: 'Sudden, noticeable hair loss following illness, stress, or nutritional shifts.',
+    description: 'Gradual decrease in individual hair strand caliber and overall density.',
   },
   {
     name: 'Receding Hairline',
     slug: 'receding-hairline',
-    description: 'Shift in temporal hair placement requiring targeted follicle stimulation.',
+    description: 'Temporal recession or frontal hairline regression requiring active stimulation.',
   },
   {
-    name: 'Fragile & Brittle Strands',
-    slug: 'fragile-hair-shafts',
-    description: 'Weakened hair shafts prone to breakage before reaching natural growth length.',
+    name: 'Dandruff & Flaky Scalp',
+    slug: 'dandruff-flaky-scalp',
+    description: 'Excessive skin cell shedding, flaking, or yeast-associated scalp irritation.',
+  },
+  {
+    name: 'Dry / Unhealthy Scalp',
+    slug: 'dry-unhealthy-scalp',
+    description: 'Compromised scalp barrier presenting as itchiness, lack of follicle nutrition, or tightness.',
+  },
+  {
+    name: 'Weak / Brittle Hair',
+    slug: 'weak-brittle-hair',
+    description: 'Fragile hair shafts prone to premature breakage and lack of tensile strength.',
   },
 ];
 
@@ -105,34 +155,75 @@ export const HAIR_CONCERNS: ConcernItem[] = [
 // ─────────────────────────────────────────────────────────────────────────────
 export const DENTAL_CONCERNS: ConcernItem[] = [
   {
-    name: 'Gummy Smile & Asymmetry',
-    slug: 'gummy-smile',
-    description: 'Excessive gum display when smiling or uneven gum margins across upper teeth.',
+    name: 'Tooth Decay / Cavities',
+    slug: 'tooth-decay-cavities',
+    description: 'Enamel demineralization and carious lesions requiring clinical restorations.',
   },
   {
-    name: 'Teeth Discoloration & Staining',
-    slug: 'teeth-discoloration',
-    description: 'Enamel yellowing from coffee, tea, aging, or deep intrinsic staining.',
+    name: 'Tooth Discolouration',
+    slug: 'tooth-discolouration',
+    description: 'Intrinsic or extrinsic staining of enamel due to diet, age, or habits.',
   },
   {
-    name: 'Crooked or Crowded Teeth',
-    slug: 'crooked-crowded-teeth',
-    description: 'Misaligned teeth or bite irregularities seeking subtle aesthetic correction.',
+    name: 'Missing Teeth',
+    slug: 'missing-teeth',
+    description: 'Gaps in dentition requiring functional and aesthetic prosthetic reconstruction.',
   },
   {
-    name: 'Chipped, Cracked or Worn Teeth',
-    slug: 'chipped-worn-teeth',
-    description: 'Surface damage, uneven edge wear, or structural flaws in natural enamel.',
+    name: 'Chipped / Cracked Teeth',
+    slug: 'chipped-cracked-teeth',
+    description: 'Fractures in dental enamel or dentin structure requiring repairs.',
+  },
+  {
+    name: 'Crooked / Misaligned Teeth',
+    slug: 'crooked-misaligned-teeth',
+    description: 'Malocclusions, teeth crowding, or rotations seeking alignment.',
   },
   {
     name: 'Gaps Between Teeth',
-    slug: 'tooth-gaps',
-    description: 'Noticeable spaces (diastema) between central or lateral teeth.',
+    slug: 'gaps-between-teeth',
+    description: 'Naturally occurring spaces (diastemas) affecting smile symmetry.',
   },
   {
-    name: 'Missing or Damaged Teeth',
-    slug: 'missing-damaged-teeth',
-    description: 'Gaps requiring functional and aesthetic permanent reconstruction.',
+    name: 'Gum Disease / Bleeding Gums',
+    slug: 'gum-disease-bleeding-gums',
+    description: 'Gingival bleeding, periodontal swelling, and plaque accumulation.',
+  },
+  {
+    name: 'Tooth Sensitivity',
+    slug: 'tooth-sensitivity',
+    description: 'Sharp dentin response to hot, cold, or sweet thermal changes.',
+  },
+  {
+    name: 'Bad Breath',
+    slug: 'bad-breath',
+    description: 'Halitosis caused by plaque buildup, bacteria, or periodontal issues.',
+  },
+  {
+    name: 'Worn / Damaged Teeth',
+    slug: 'worn-damaged-teeth',
+    description: 'Loss of enamel height due to bruxism, grinding, or acid erosion.',
+  },
+  {
+    name: 'Gummy Smile',
+    slug: 'gummy-smile',
+    description: 'Excessive display of gum tissue above upper teeth when smiling.',
+  },
+  {
+    name: 'Wisdom Teeth / Impacted Teeth',
+    slug: 'wisdom-teeth-impacted',
+    description: 'Third molar pain, localized pressure, or partial eruption issues.',
+  },
+];
+
+// ─────────────────────────────────────────────────────────────────────────────
+// SPECIAL / CROSS-DISCIPLINARY CONCERNS
+// ─────────────────────────────────────────────────────────────────────────────
+export const SPECIAL_CONCERNS: ConcernItem[] = [
+  {
+    name: 'PCOS',
+    slug: 'pcos',
+    description: 'Hormonal variations that impact dermal clarity (acne) and follicle growth density.',
   },
 ];
 
@@ -160,5 +251,12 @@ export const CONCERN_CATEGORIES: ConcernCategory[] = [
     description: 'Understand aesthetic and structural dental concerns from alignment to enamel shade.',
     cloudinaryPublicId: 'dental_fpthem',
     concerns: DENTAL_CONCERNS,
+  },
+  {
+    id: 'special-concerns',
+    name: 'Special Concerns',
+    description: 'Multi-system hormonal concerns like PCOS that cross clinical disciplines.',
+    cloudinaryPublicId: 'ivdrip_yhlvex',
+    concerns: SPECIAL_CONCERNS,
   },
 ];

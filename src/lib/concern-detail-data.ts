@@ -1,9 +1,15 @@
 /**
- * Concern Detail Data Schema
+ * Concern Detail Data Schema & Generator
  * Single source of truth for all individual concern detail pages (/concerns/[slug]).
  */
 
-import { SKIN_CONCERNS, HAIR_CONCERNS, DENTAL_CONCERNS, ConcernItem } from './concerns-catalogue';
+import {
+  SKIN_CONCERNS,
+  HAIR_CONCERNS,
+  DENTAL_CONCERNS,
+  SPECIAL_CONCERNS,
+  ConcernItem,
+} from './concerns-catalogue';
 
 export interface ConcernCause {
   factor: string;
@@ -58,134 +64,50 @@ export interface ConcernDetailData {
 // ─────────────────────────────────────────────────────────────────────────────
 // EXPLICIT CONCERN DETAIL REPOSITORY
 // ─────────────────────────────────────────────────────────────────────────────
-
-export const CONCERN_DETAIL_DATA: Record<string, ConcernDetailData> = {
-  'acne-scars': {
-    slug: 'acne-scars',
-    name: 'Acne & Acne Scars',
-    tagline: 'Understanding active breakouts, lingering inflammation, and textural skin changes.',
-    category: 'Skin',
-
-    understandingHeading: 'Understanding Acne & Textural Scars.',
-    understandingParagraphs: [
-      'Acne occurs when hair follicles become clogged with excess sebum, dead skin cells, and acne-causing bacteria. When deep inflammation damages the underlying dermal tissue, the skin repairs itself by producing either too little or too much collagen, resulting in textural scarring.',
-      'Scars can present as pitted depressions (ice pick, boxcar, or rolling scars) or raised tissue. Understanding whether your primary concern is active inflammation or past scarring dictates the clinical approach.',
-    ],
-    howCommon: 'Acne affects up to 85% of people at some point in their lives, with over 40% experiencing some degree of lingering scar texture.',
-
-    signsNoticed: [
-      'Active papules, pustules, or deep painful nodules beneath the surface',
-      'Small pitted depressions or indentations across cheeks and temples',
-      'Uneven texture when light reflects across the skin',
-      'Persistent post-inflammatory redness or dark spots after breakouts heal',
-      'Flushing or tenderness in areas prone to congestion',
-    ],
-
-    causes: [
-      { factor: 'Hormonal Fluctuations', explanation: 'Androgen spikes stimulate sebaceous glands to produce excess sebum.' },
-      { factor: 'Follicular Hyperkeratinization', explanation: 'Abnormal shedding of dead skin cells traps oil inside pores.' },
-      { factor: 'Bacterial Overgrowth', explanation: 'C. acnes bacteria proliferate in oxygen-deprived congested pores.' },
-      { factor: 'Inflammatory Healing Response', explanation: 'Deep dermal tissue disruption during severe breakouts alters collagen repair.' },
-    ],
-
-    adviceGuidance: [
-      'When home skincare products no longer prevent recurring cystic breakouts',
-      'When past breakouts leave permanent indentations or pitted marks',
-      'If acne causes emotional distress or self-consciousness in social settings',
-      'Before attempting harsh physical exfoliants that may worsen inflammation',
-    ],
-
-    suitableTreatments: [
-      { name: 'Microneedling', slug: 'microneedling', description: 'Precision micro-channels that break down scar tissue and trigger collagen.' },
-      { name: 'Hydrafacial Deluxe', slug: 'hydrafacial-deluxe', description: 'Painlessly extracts pore congestion and restores deep hydration.' },
-      { name: 'Chemical Peel', slug: 'chemical-peel', description: 'Accelerates surface exfoliation to smooth texture and lighten marks.' },
-      { name: 'PRP Skin', slug: 'prp-skin', description: 'Uses autologous growth factors to accelerate dermal repair.' },
-    ],
-
-    preventionTips: [
-      'Use gentle, non-comedogenic cleansers twice daily',
-      'Avoid picking, squeezing, or popping active lesions',
-      'Incorporate salicylic or lactic acid gradually into your routine',
-      'Apply non-greasy SPF daily to prevent post-inflammatory dark marks',
-    ],
-
-    faqs: [
-      { question: 'Can old acne scars be completely removed?', answer: 'While complete erasure is rarely realistic, clinical treatments can significantly smooth depth, soften edges, and improve texture by 60% to 80%.' },
-      { question: 'Should I treat active acne or scars first?', answer: 'We always prioritize calming active inflammation and preventing new breakouts before aggressively resurfacing old scars.' },
-    ],
-  },
-
-  'hyperpigmentation-melasma': {
-    slug: 'hyperpigmentation-melasma',
-    name: 'Hyperpigmentation & Melasma',
-    tagline: 'Understanding dark spots, sun damage, and hormonal skin discoloration.',
-    category: 'Skin',
-
-    understandingHeading: 'Understanding Pigment Formation.',
-    understandingParagraphs: [
-      'Hyperpigmentation occurs when melanocytes (pigment-producing cells) produce excess melanin in response to sun exposure, hormonal changes, or inflammation. Melasma specifically presents as symmetrical, brownish patches on the forehead, cheeks, or upper lip.',
-      'Because pigment can lie in superficial epidermal layers or deeper dermal layers, understanding your specific depth is essential before attempting light or chemical therapies.',
-    ],
-    howCommon: 'Very common, affecting up to 50% of women during reproductive years and over 80% of individuals exposed to frequent UV radiation.',
-
-    signsNoticed: [
-      'Symmetrical brown or grayish patches on cheeks, forehead, or upper lip',
-      'Isolated dark spots or sun freckles following summer months',
-      'Dark marks lingering long after acne or mosquito bites have healed',
-      'Uneven skin tone that requires concealer to balance',
-    ],
-
-    causes: [
-      { factor: 'UV Radiation', explanation: 'Sunlight triggers melanocytes to produce protective pigment.' },
-      { factor: 'Hormonal Changes', explanation: 'Estrogen and progesterone shifts during pregnancy or oral contraceptives trigger melasma.' },
-      { factor: 'Post-Inflammatory Response', explanation: 'Injury, acne, or harsh scrubs stimulate localized melanin surge.' },
-      { factor: 'Heat Exposure', explanation: 'Thermal energy from saunas or hot environments can worsen melasma patches.' },
-    ],
-
-    adviceGuidance: [
-      'When OTC brightening creams fail to lighten stubborn patches after 8 weeks',
-      'If pigmentation darkens rapidly following sun exposure despite sunblock',
-      'When patches cover larger facial areas and affect your confidence',
-      'Before trying aggressive DIY remedies or unverified chemical soaps',
-    ],
-
-    suitableTreatments: [
-      { name: 'Chemical Peel', slug: 'chemical-peel', description: 'Targeted acid exfoliants that safely shed pigmented surface layers.' },
-      { name: 'Hydrafacial Deluxe', slug: 'hydrafacial-deluxe', description: 'Infuses brightening antioxidants and vitamin C deep into pores.' },
-      { name: 'Luminosity Program', slug: 'luminosity-program', description: 'A multi-session structured protocol targeting deep pigment layers.' },
-    ],
-
-    preventionTips: [
-      'Apply broad-spectrum SPF 50+ every morning, rain or shine',
-      'Wear wide-brimmed hats when spending extended time outdoors',
-      'Avoid harsh physical scrubbers that inflame melanocytes',
-      'Incorporate tyrosinase inhibitors like Vitamin C, Niacinamide, or Azelaic acid',
-    ],
-
-    faqs: [
-      { question: 'Is melasma permanent?', answer: 'Melasma can be managed effectively into remission, though maintenance and strict sun protection are required to prevent recurrence.' },
-      { question: 'Why do my spots get darker in the sun even with sunscreen?', answer: 'Standard sunscreen blocks UV rays, but visible blue light and heat can also trigger pigment in sensitive skin. Mineral sunscreens with iron oxides offer broader protection.' },
-    ],
-  },
-};
+export const CONCERN_DETAIL_DATA: Record<string, ConcernDetailData> = {};
 
 // ─────────────────────────────────────────────────────────────────────────────
-// DYNAMIC GENERATOR FOR ALL OTHER CONCERNS
+// DYNAMIC GENERATOR FOR ALL CONCERNS
 // ─────────────────────────────────────────────────────────────────────────────
-
 function createGenericConcernData(slug: string): ConcernDetailData {
   let item: ConcernItem | undefined;
 
   for (const c of SKIN_CONCERNS) { if (c.slug === slug) { item = c; break; } }
   if (!item) { for (const c of HAIR_CONCERNS) { if (c.slug === slug) { item = c; break; } } }
   if (!item) { for (const c of DENTAL_CONCERNS) { if (c.slug === slug) { item = c; break; } } }
+  if (!item) { for (const c of SPECIAL_CONCERNS) { if (c.slug === slug) { item = c; break; } } }
 
   const name = item ? item.name : slug.replace(/-/g, ' ').replace(/\b\w/g, (l) => l.toUpperCase());
   const description = item ? item.description : 'Understanding this concern and exploring evidence-based care options.';
 
-  const isHair = slug.includes('hair') || slug.includes('scalp') || slug.includes('thinning');
-  const isDental = slug.includes('smile') || slug.includes('teeth') || slug.includes('tooth') || slug.includes('gummy') || slug.includes('dent');
-  const category = isHair ? 'Hair & Scalp' : isDental ? 'Dental & Smile' : 'Skin';
+  const isHair = slug.includes('hair') || slug.includes('scalp') || slug.includes('thinning') || slug.includes('loss');
+  const isDental = slug.includes('smile') || slug.includes('teeth') || slug.includes('tooth') || slug.includes('gummy') || slug.includes('dent') || slug.includes('decay') || slug.includes('cavity') || slug.includes('breath') || slug.includes('gum') || slug.includes('filling') || slug.includes('polish');
+  const isSpecial = slug === 'pcos';
+  const category = isHair ? 'Hair & Scalp' : isDental ? 'Dental & Smile' : isSpecial ? 'Special / Cross-Disciplinary' : 'Skin';
+
+  const defaultSuitableTreatments = isHair
+    ? [
+        { name: 'PRP', slug: 'prp-hair', description: 'Autologous platelet therapy to stimulate dormant hair follicles.' },
+        { name: 'Scalp Rejuvenation', slug: 'scalp-rejuvenation', description: 'Nourishes the hair growth environment and scalp barrier.' },
+        { name: 'Scalp Oxy Therapy', slug: 'scalp-oxy-therapy', description: 'High-pressure oxygen and nutrient mist to refresh follicles.' },
+      ]
+    : isDental
+      ? [
+          { name: 'Smile Designing', slug: 'smile-designing', description: 'Digital smile engineering for facial-dental harmony.' },
+          { name: 'Teeth Whitening', slug: 'teeth-whitening', description: 'Clinical shade brightening for a radiant, confident smile.' },
+          { name: 'Cleaning and Polishing', slug: 'cleaning-polishing', description: 'Essential scale and polish to maintain gum and enamel health.' },
+        ]
+      : isSpecial
+        ? [
+            { name: 'Medi Facials', slug: 'medi-facials', description: 'Physician-led clinical facials to manage skin congestion and hormonal breakouts.' },
+            { name: 'PRP', slug: 'prp-hair', description: 'Autologous platelet therapy to stimulate follicles affected by hormonal thinning.' },
+            { name: 'Chemical Peels', slug: 'chemical-peels', description: 'Targeted skin peeling to address persistent breakouts.' },
+          ]
+        : [
+            { name: 'Medi Facials', slug: 'medi-facials', description: 'Physician-led clinical facials for skin repair and deep hydration.' },
+            { name: 'Chemical Peels', slug: 'chemical-peels', description: 'Controlled dermal exfoliation to treat acne, marks, and texture.' },
+            { name: 'Micro-Needling / RF', slug: 'microneedling-rf', description: 'Advanced micro-channeling to rebuild collagen and refine texture.' },
+          ];
 
   return {
     slug,
@@ -198,7 +120,7 @@ function createGenericConcernData(slug: string): ConcernDetailData {
       `${name} is a common concern that can develop due to biological, environmental, or lifestyle factors.`,
       `Understanding why this concern develops is the first step toward choosing a safe, effective, and tailored approach. During a consultation, we evaluate your individual presentation rather than relying on generic assumptions.`,
     ],
-    howCommon: `Frequently observed across many age groups and skin or biological profiles.`,
+    howCommon: `Frequently observed across many age groups and biological profiles.`,
 
     signsNoticed: [
       `Noticeable changes in appearance, texture, or symmetry related to ${name.toLowerCase()}`,
@@ -220,19 +142,7 @@ function createGenericConcernData(slug: string): ConcernDetailData {
       'When you want an honest, medical perspective on what is achievable',
     ],
 
-    suitableTreatments: isHair ? [
-      { name: 'PRP Hair Treatment', slug: 'prp-hair', description: 'Autologous platelet therapy to stimulate dormant hair follicles.' },
-      { name: 'GFC Treatment', slug: 'gfc-hair', description: 'Concentrated growth factors for enhanced scalp density.' },
-      { name: 'Scalp Treatment', slug: 'scalp-treatment', description: 'Restores scalp skin barrier health and reduces inflammation.' },
-    ] : isDental ? [
-      { name: 'Smile Design', slug: 'smile-design', description: '3D digital planning for comprehensive aesthetic smile alignment.' },
-      { name: 'Teeth Whitening', slug: 'teeth-whitening', description: 'Medical-grade shade lightening for natural enamel brightness.' },
-      { name: 'Cosmetic Bonding', slug: 'cosmetic-bonding', description: 'Subtle correction of shape, gaps, and chips.' },
-    ] : [
-      { name: 'Hydrafacial Deluxe', slug: 'hydrafacial-deluxe', description: 'Cleanses, extracts, and deeply hydrates in a single unhurried session.' },
-      { name: 'Chemical Peel', slug: 'chemical-peel', description: 'Controlled resurfacing to improve tone and texture.' },
-      { name: 'Microneedling', slug: 'microneedling', description: 'Stimulates collagen production to refine dermal structure.' },
-    ],
+    suitableTreatments: defaultSuitableTreatments,
 
     preventionTips: [
       'Maintain a consistent, gentle daily care routine',
