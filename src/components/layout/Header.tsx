@@ -792,8 +792,12 @@ export function Header({ className, variant = 'dark' }: HeaderProps) {
 
       {/* Mobile Drawer */}
       {mobileOpen && (
-        <div className="fixed inset-0 z-40 bg-charcoal/95 backdrop-blur-md flex flex-col pt-20 px-8 md:hidden overflow-y-auto">
-          <nav className="flex flex-col gap-6 mt-6 pb-12">
+        <div
+          data-lenis-prevent
+          className="fixed inset-0 z-40 bg-charcoal/95 backdrop-blur-md flex flex-col pt-20 px-8 md:hidden overflow-y-auto overscroll-contain touch-pan-y h-full"
+          style={{ WebkitOverflowScrolling: 'touch' }}
+        >
+          <nav className="flex flex-col gap-6 mt-6 pb-16">
             {navLinks.map((link) => {
               const isShop = link.label === 'Shop';
               const isTreatments = link.label === 'Treatments';
