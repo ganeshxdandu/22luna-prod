@@ -14,12 +14,19 @@ interface ProgramItem {
     publicId: string;
 }
 
+const SKIN_SLIDESHOW_IMAGES = [
+    "https://res.cloudinary.com/dz5xgcfj/image/upload/v1787028951/001_ssyptd.png",
+    "https://res.cloudinary.com/dz5xgcfj/image/upload/v1787028963/002_nzc0jl.png",
+    "https://res.cloudinary.com/dz5xgcfj/image/upload/v1787028911/003_katprd.png",
+    "https://res.cloudinary.com/dz5xgcfj/image/upload/v1787028924/004_hbabo1.png",
+];
+
 const PROGRAMS: ProgramItem[] = [
     {
         id: "01",
         title: "Skin",
         description: "Prescription facials, lasers & regenerative skin care.",
-        publicId: "Firefly_make_him_look_straight_to_the_camera_body_also_straight_not_tilting_676817_zdkm7f.png", // Your skin image public ID (Initially loaded)
+        publicId: SKIN_SLIDESHOW_IMAGES[0],
     },
     {
         id: "02",
@@ -56,7 +63,19 @@ export interface SignatureProgramsProps {
 
 export function SignaturePrograms({ className }: SignatureProgramsProps) {
     const [activeIndex, setActiveIndex] = React.useState(0);
+    const [skinSlideIndex, setSkinSlideIndex] = React.useState(0);
     const itemRefs = React.useRef<(HTMLAnchorElement | null)[]>([]);
+
+    // Automatically cycle through skin slideshow images when Skin (01) is active
+    React.useEffect(() => {
+        if (activeIndex !== 0) return;
+
+        const interval = setInterval(() => {
+            setSkinSlideIndex((prev) => (prev + 1) % SKIN_SLIDESHOW_IMAGES.length);
+        }, 1800);
+
+        return () => clearInterval(interval);
+    }, [activeIndex]);
 
     React.useEffect(() => {
         let observer: IntersectionObserver | null = null;
@@ -99,6 +118,11 @@ export function SignaturePrograms({ className }: SignatureProgramsProps) {
             if (observer) observer.disconnect();
         };
     }, []);
+
+    const isSkinActive = activeIndex === 0;
+    const currentDisplayImage = isSkinActive
+        ? SKIN_SLIDESHOW_IMAGES[skinSlideIndex]
+        : PROGRAMS[activeIndex].publicId;
 
     return (
         <section
@@ -197,7 +221,7 @@ export function SignaturePrograms({ className }: SignatureProgramsProps) {
                     </div>
                 </div>
 
-                {/* ── Right Content: Display Active Image ── */}
+                {/* ── Right Content: Display Active Image / Slideshow ── */}
                 <div className="lg:col-span-5 w-full flex justify-center">
                     <motion.div
                         variants={fadeIn}
@@ -206,22 +230,22 @@ export function SignaturePrograms({ className }: SignatureProgramsProps) {
                         viewport={{ once: true }}
                         className="w-full aspect-[4/5] relative rounded-sm overflow-hidden bg-charcoal/5 group shadow-sm border border-charcoal/5"
                     >
-                        {/* Animated cross-fade between active program images */}
+                        {/* Animated cross-fade between active program images and skin slides */}
                         <AnimatePresence mode="wait">
                             <motion.div
-                                key={activeIndex}
+                                key={isSkinActive ? `skin-slide-${skinSlideIndex}` : `program-${activeIndex}`}
                                 initial={{ opacity: 0, scale: 1.02 }}
                                 animate={{ opacity: 1, scale: 1 }}
                                 exit={{ opacity: 0, scale: 0.98 }}
                                 transition={{
-                                    duration: 0.45,
+                                    duration: 0.35,
                                     ease: [0.16, 1, 0.3, 1],
                                 }}
                                 className="absolute inset-0 w-full h-full"
                             >
                                 <CloudinaryImage
-                                    src={PROGRAMS[activeIndex].publicId}
-                                    alt={PROGRAMS[activeIndex].title}
+                                    src={currentDisplayImage}
+                                    alt={`${PROGRAMS[activeIndex].title} Signature Program`}
                                     fill
                                     priority
                                     sizes="(max-width: 1024px) 100vw, 40vw"
@@ -232,6 +256,23 @@ export function SignaturePrograms({ className }: SignatureProgramsProps) {
 
                         {/* Subtle overlay shading */}
                         <div className="absolute inset-0 bg-charcoal/5 pointer-events-none" />
+
+                        {/* Slideshow Indicator Dots for Skin */}
+                        {isSkinActive && (
+                            <div className="absolute bottom-4 left-0 right-0 flex items-center justify-center gap-1.5 z-20 pointer-events-none">
+                                {SKIN_SLIDESHOW_IMAGES.map((_, dotIdx) => (
+                                    <span
+                                        key={`dot-${dotIdx}`}
+                                        className={cn(
+                                            "h-1 rounded-full transition-all duration-500",
+                                            dotIdx === skinSlideIndex
+                                                ? "w-6 bg-white shadow-sm"
+                                                : "w-1.5 bg-white/40"
+                                        )}
+                                    />
+                                ))}
+                            </div>
+                        )}
                     </motion.div>
                 </div>
             </div>

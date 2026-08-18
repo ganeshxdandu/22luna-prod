@@ -4,7 +4,6 @@ import * as React from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { CloudinaryImage } from '@/components/ui/CloudinaryImage';
-import { buildCloudinaryUrl } from '@/lib/cloudinary';
 import { cn } from '@/lib/utils';
 import { fadeUp } from '@/lib/animations';
 
@@ -13,10 +12,9 @@ interface InstagramPost {
   mediaUrl: string;
   permalink: string;
   caption?: string;
-  isPlaceholder?: boolean;
 }
 
-// Local custom Instagram icon component since the active lucide-react package version excludes brand icons
+// Local custom Instagram icon component
 function InstagramIcon({ className, size = 16 }: { className?: string; size?: number }) {
   return (
     <svg
@@ -40,51 +38,20 @@ function InstagramIcon({ className, size = 16 }: { className?: string; size?: nu
 
 const INSTAGRAM_PROFILE_URL = 'https://www.instagram.com/22lunaclinic/';
 
-// Curated fallback posts using the clinic's real Cloudinary assets
-const STATIC_FEED: InstagramPost[] = [
-  {
-    id: 'static_1',
-    mediaUrl: buildCloudinaryUrl('wellness_mit4vq', { width: 400, height: 400, crop: 'fill' }),
-    permalink: INSTAGRAM_PROFILE_URL,
-    caption: 'Follow our journey of wellness & longevity.',
-  },
-  {
-    id: 'static_space_one',
-    mediaUrl: 'https://res.cloudinary.com/doycsx0hd/image/upload/q_auto/f_auto/v1776607603/space-one_sze6zc.png',
-    permalink: INSTAGRAM_PROFILE_URL,
-    caption: 'Inside our calm Bengaluru sanctuary designed to help you slow down.',
-  },
-  {
-    id: 'static_2',
-    mediaUrl: buildCloudinaryUrl('hair_v9hkrz', { width: 400, height: 400, crop: 'fill' }),
-    permalink: INSTAGRAM_PROFILE_URL,
-    caption: 'Keravive Scalp Treatment - Hydrafacial for your hair health.',
-  },
-  {
-    id: 'static_space_three',
-    mediaUrl: 'https://res.cloudinary.com/doycsx0hd/image/upload/q_auto/f_auto/v1776607577/space-three_ugvc0n.png',
-    permalink: INSTAGRAM_PROFILE_URL,
-    caption: 'Quiet, intentional spaces for mindful aesthetic care.',
-  },
-  {
-    id: 'static_3',
-    mediaUrl: buildCloudinaryUrl('hero_s6fbu6', { width: 400, height: 400, crop: 'fill' }),
-    permalink: INSTAGRAM_PROFILE_URL,
-    caption: 'Your crown is your signature - medical hair restoration.',
-  },
-  {
-    id: 'static_4',
-    mediaUrl: buildCloudinaryUrl('dental_fpthem', { width: 400, height: 400, crop: 'fill' }),
-    permalink: INSTAGRAM_PROFILE_URL,
-    caption: 'Smile designs custom crafted by our cosmetic dentistry team.',
-  },
-  {
-    id: 'static_5',
-    mediaUrl: buildCloudinaryUrl('skin_qo9vhn', { width: 400, height: 400, crop: 'fill' }),
-    permalink: INSTAGRAM_PROFILE_URL,
-    caption: 'Beautiful skin starts with clinical diagnostics.',
-  },
-];
+const SKELETON_ITEMS = Array.from({ length: 8 }, (_, i) => ({ id: `skeleton-${i}` }));
+
+function SkeletonCard({ className }: { className?: string }) {
+  return (
+    <div
+      className={cn(
+        "w-[240px] md:w-[280px] aspect-square rounded-[4px] bg-charcoal/[0.04] border border-charcoal/[0.06] shrink-0 relative overflow-hidden flex items-center justify-center animate-pulse",
+        className
+      )}
+    >
+      <InstagramIcon className="text-charcoal/10" size={28} />
+    </div>
+  );
+}
 
 const padPosts = (postsArray: InstagramPost[], minCount: number = 8): InstagramPost[] => {
   if (postsArray.length === 0) return [];
@@ -100,30 +67,34 @@ export interface InstagramFeedProps {
 }
 
 export function InstagramFeed({ className }: InstagramFeedProps) {
-  const [posts, setPosts] = React.useState<InstagramPost[]>(STATIC_FEED);
+  const [posts, setPosts] = React.useState<InstagramPost[]>([]);
+  const [isLoading, setIsLoading] = React.useState(true);
 
   React.useEffect(() => {
     fetch('/api/instagram')
       .then((res) => res.json())
       .then((resJson) => {
-        if (resJson && resJson.data && resJson.data.length > 0) {
+        if (resJson && Array.isArray(resJson.data) && resJson.data.length > 0) {
           setPosts(resJson.data);
         }
       })
-      .catch((err) => console.warn('Instagram local API fetch failed, falling back to static feed:', err));
+      .catch((err) => console.warn('Instagram API fetch failed:', err))
+      .finally(() => setIsLoading(false));
   }, []);
 
+  const hasPosts = posts.length > 0;
+
   const row1 = React.useMemo(() => {
+    if (!hasPosts) return [];
     const half = Math.ceil(posts.length / 2);
-    const r1 = posts.slice(0, half);
-    return padPosts(r1, 8);
-  }, [posts]);
+    return padPosts(posts.slice(0, half), 8);
+  }, [posts, hasPosts]);
 
   const row2 = React.useMemo(() => {
+    if (!hasPosts) return [];
     const half = Math.ceil(posts.length / 2);
-    const r2 = posts.slice(half);
-    return padPosts(r2, 8);
-  }, [posts]);
+    return padPosts(posts.slice(half), 8);
+  }, [posts, hasPosts]);
 
   return (
     <section
@@ -182,16 +153,12 @@ export function InstagramFeed({ className }: InstagramFeedProps) {
         {/* ROW 1 (Moves left) */}
         <div className="flex w-full overflow-hidden">
           <div className="flex gap-6 shrink-0 min-w-full justify-start animate-marquee hover:[animation-play-state:paused] py-1 cursor-pointer">
-            {[...row1, ...row1].map((post, idx) => {
-              if (post.isPlaceholder) {
-                return (
-                  <div
-                    key={`r1-placeholder-${idx}`}
-                    className="w-[240px] md:w-[280px] aspect-square rounded-[4px] bg-charcoal/[0.04] border border-charcoal/[0.03] shrink-0"
-                  />
-                );
-              }
-              return (
+            {isLoading || !hasPosts ? (
+              [...SKELETON_ITEMS, ...SKELETON_ITEMS].map((item, idx) => (
+                <SkeletonCard key={`r1-skel-${item.id}-${idx}`} />
+              ))
+            ) : (
+              [...row1, ...row1].map((post, idx) => (
                 <Link
                   key={`r1-post-${post.id}-${idx}`}
                   href={post.permalink}
@@ -210,34 +177,40 @@ export function InstagramFeed({ className }: InstagramFeedProps) {
                     <InstagramIcon className="text-white" size={24} />
                   </div>
                 </Link>
-              );
-            })}
+              ))
+            )}
           </div>
         </div>
 
         {/* ROW 2 (Moves right - reverse direction) */}
         <div className="flex w-full overflow-hidden">
           <div className="flex gap-6 shrink-0 min-w-full justify-start animate-marquee hover:[animation-play-state:paused] py-1 cursor-pointer [animation-direction:reverse]">
-            {[...row2, ...row2].map((post, idx) => (
-              <Link
-                key={`r2-post-${post.id}-${idx}`}
-                href={post.permalink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-[240px] md:w-[280px] aspect-square rounded-[4px] overflow-hidden relative shrink-0 group border border-charcoal/[0.03] shadow-sm bg-charcoal/5"
-              >
-                <CloudinaryImage
-                  src={post.mediaUrl}
-                  alt={post.caption || 'Instagram post'}
-                  fill
-                  sizes="280px"
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-charcoal/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  <InstagramIcon className="text-white" size={24} />
-                </div>
-              </Link>
-            ))}
+            {isLoading || !hasPosts ? (
+              [...SKELETON_ITEMS, ...SKELETON_ITEMS].map((item, idx) => (
+                <SkeletonCard key={`r2-skel-${item.id}-${idx}`} />
+              ))
+            ) : (
+              [...row2, ...row2].map((post, idx) => (
+                <Link
+                  key={`r2-post-${post.id}-${idx}`}
+                  href={post.permalink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-[240px] md:w-[280px] aspect-square rounded-[4px] overflow-hidden relative shrink-0 group border border-charcoal/[0.03] shadow-sm bg-charcoal/5"
+                >
+                  <CloudinaryImage
+                    src={post.mediaUrl}
+                    alt={post.caption || 'Instagram post'}
+                    fill
+                    sizes="280px"
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-charcoal/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <InstagramIcon className="text-white" size={24} />
+                  </div>
+                </Link>
+              ))
+            )}
           </div>
         </div>
       </div>

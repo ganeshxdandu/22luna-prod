@@ -20,9 +20,9 @@ export function DifferentKind({ className }: DifferentKindProps) {
       <div className="max-w-site mx-auto w-full p-6 md:p-8 flex flex-col lg:flex-row justify-between items-stretch gap-12 lg:gap-16">
         
         {/* Left Column: Narrative description & navigation (flush-left) */}
-        <div className="w-full lg:w-[35%] lg:max-w-[380px] flex flex-col justify-between lg:min-h-[420px] py-2 shrink-0">
+        <div className="w-full lg:w-[38%] lg:max-w-[420px] flex flex-col justify-between py-2 shrink-0">
           
-          {/* TOP: Section Metadata (Label 14px split) */}
+          {/* TOP: Section Metadata (Chapter 02) */}
           <motion.div
             variants={fadeIn}
             initial="hidden"
@@ -36,30 +36,46 @@ export function DifferentKind({ className }: DifferentKindProps) {
             </span>
           </motion.div>
 
-          {/* BOTTOM: Narrative Paragraphs stacked with spacing (Text 16px fluid) */}
-          <motion.div
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            custom={{ delay: 0.2 }}
-            className="flex flex-col gap-6 mt-auto"
-          >
-            <p className="font-sans text-stone-gray text-[14px] sm:text-[15px] lg:text-[16px] leading-[1.8] font-light">
-              When I began shaping 22Luna, my vision extended beyond clinical excellence. I wanted every patient to feel a sense of calm from the moment they arrived.
-            </p>
-            <p className="font-sans text-stone-gray text-[14px] sm:text-[15px] lg:text-[16px] leading-[1.8] font-light">
-              The architecture, interiors, lighting, and every interaction were thoughtfully considered to replace anxiety with reassurance.
-            </p>
-            <p className="font-sans text-stone-gray text-[14px] sm:text-[15px] lg:text-[16px] leading-[1.8] font-light">
-              Luxury, to us, is not about appearances. It is about creating an experience where patients feel genuinely welcomed, respected, and cared for at every step.
-            </p>
-          </motion.div>
+          {/* BOTTOM: Grouped Heading + Narrative Paragraphs aligned to bottom */}
+          <div className="flex flex-col mt-auto pt-8 lg:pt-12">
+            {/* Heading (Aligned with design language across chapters) */}
+            <motion.h2
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              custom={{ delay: 0.15 }}
+              className="font-display uppercase leading-[1.05] tracking-[-0.03em] text-[28px] sm:text-[34px] lg:text-[40px] mb-6"
+            >
+              <span className="text-charcoal block font-light">A Different Kind</span>
+              <span className="text-botanical block font-medium">Of Clinic.</span>
+            </motion.h2>
+
+            {/* Narrative Paragraphs stacked with spacing */}
+            <motion.div
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              custom={{ delay: 0.25 }}
+              className="flex flex-col gap-5"
+            >
+              <p className="font-sans text-stone-gray text-[14px] sm:text-[15px] lg:text-[16px] leading-[1.8] font-light">
+                When I began shaping 22Luna, my vision extended beyond clinical excellence. I wanted every patient to feel a sense of calm from the moment they arrived.
+              </p>
+              <p className="font-sans text-stone-gray text-[14px] sm:text-[15px] lg:text-[16px] leading-[1.8] font-light">
+                The architecture, interiors, lighting, and every interaction were thoughtfully considered to replace anxiety with reassurance.
+              </p>
+              <p className="font-sans text-stone-gray text-[14px] sm:text-[15px] lg:text-[16px] leading-[1.8] font-light">
+                Luxury, to us, is not about appearances. It is about creating an experience where patients feel genuinely welcomed, respected, and cared for at every step.
+              </p>
+            </motion.div>
+          </div>
 
         </div>
 
-        {/* Right Column: Landscape Image Block with Centered Text (40px title) */}
-        <div className="w-full lg:w-[60%] flex-1 shrink-0 flex items-center justify-center">
+        {/* Right Column: Clean Landscape Sanctuary Image Block */}
+        <div className="w-full lg:w-[58%] flex-1 shrink-0 flex items-center justify-center">
           <motion.div
             variants={scaleIn}
             initial="hidden"
@@ -68,31 +84,15 @@ export function DifferentKind({ className }: DifferentKindProps) {
             custom={{ delay: 0.15, duration: 1.1 }}
             className="relative w-full aspect-[16/10] overflow-hidden rounded-[2px] shadow-sm bg-soft-ivory flex items-center justify-center group"
           >
-            {/* Background Image */}
             <CloudinaryImage
               src="https://res.cloudinary.com/dz5xgcfj/image/upload/v1785160928/SAN_8471_m8zyuz.jpg"
-              alt="A Different Kind of Clinic - 22Luna Interior Lobby"
+              alt="22Luna Sanctuary Interior Lounge and Architecture"
               fill
               sizes="(max-width: 1024px) 100vw, 60vw"
               className="object-cover transition-transform duration-700 ease-editorial group-hover:scale-[1.02]"
             />
-
-            {/* Dark Overlay for title readability */}
-            <div className="absolute inset-0 bg-charcoal/20 z-10 transition-opacity duration-500 group-hover:bg-charcoal/25" />
-
-            {/* Centered Typography Heading */}
-            <div className="absolute inset-0 flex items-center justify-center z-20 p-4">
-              <motion.h3
-                variants={fadeUp}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                custom={{ delay: 0.3 }}
-                className="font-display text-white uppercase text-[20px] sm:text-[28px] md:text-[34px] lg:text-[40px] tracking-[0.03em] text-center leading-tight max-w-[80%] drop-shadow-sm select-none"
-              >
-                A Different Kind of Clinic
-              </motion.h3>
-            </div>
+            {/* Subtle soft gradient overlay */}
+            <div className="absolute inset-0 bg-charcoal/5 pointer-events-none" />
           </motion.div>
         </div>
 
