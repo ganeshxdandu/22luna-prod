@@ -34,7 +34,7 @@ export function FacialsFinalCTA({ className }: FacialsFinalCTAProps) {
               className="flex items-center gap-4 mb-8"
             >
               <div className="w-8 h-px bg-botanical/50" />
-              <span className="font-sans text-[0.58rem] tracking-tight uppercase text-botanical font-medium">
+              <span className="font-sans text-xs tracking-tight uppercase text-botanical font-medium">
                 22Luna Clinical Facials
               </span>
             </motion.div>
@@ -73,7 +73,7 @@ export function FacialsFinalCTA({ className }: FacialsFinalCTAProps) {
               whileInView="visible"
               viewport={{ once: true, margin: '-80px' }}
               custom={{ delay: 0.3, duration: 1.0 }}
-              className="font-sans font-light text-[15px] sm:text-[16px] leading-[1.85] mb-10 text-stone-gray"
+              className="font-sans font-light text-[15px] sm:text-base leading-[1.85] mb-10 text-stone-gray"
             >
               Thoughtful care, advanced technology and treatments designed
               around you.
@@ -90,7 +90,7 @@ export function FacialsFinalCTA({ className }: FacialsFinalCTAProps) {
                 href="https://wa.me/918971725522?text=I%20would%20like%20to%20book%20a%20facial%20consultation%20at%2022Luna."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-full bg-botanical text-moon-ivory font-sans text-[0.75rem] uppercase tracking-tight px-8 py-4 transition-all duration-300 hover:bg-botanical/90 group shadow-sm"
+                className="inline-flex items-center gap-2 rounded-full bg-botanical text-moon-ivory font-sans text-xs uppercase tracking-tight px-8 py-4 transition-all duration-300 hover:bg-botanical/90 group shadow-sm font-medium"
               >
                 Book a Consultation
                 <ArrowUpRight
@@ -107,7 +107,7 @@ export function FacialsFinalCTA({ className }: FacialsFinalCTAProps) {
         {/* Bottom subtle divider */}
         <div className="mt-20 md:mt-28 flex items-center gap-5">
           <div className="flex-1 h-px bg-charcoal/[0.06]" />
-          <span className="font-sans text-[0.5rem] tracking-tight uppercase shrink-0 text-stone-gray/40">
+          <span className="font-sans text-xs tracking-tight uppercase shrink-0 text-stone-gray/50">
             22Luna · Sanctuary
           </span>
           <div className="flex-1 h-px bg-charcoal/[0.06]" />

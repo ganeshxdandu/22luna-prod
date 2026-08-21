@@ -52,7 +52,7 @@ export function SpecialFacialCategories({ className }: SpecialFacialCategoriesPr
           <div>
             <div className="flex items-center gap-3 mb-4">
               <span className="w-8 h-px bg-botanical/60" />
-              <span className="font-sans text-[0.6rem] tracking-tight uppercase text-botanical font-medium">
+              <span className="font-sans text-xs tracking-tight uppercase text-botanical font-medium">
                 Targeted Life Stages
               </span>
             </div>
@@ -66,7 +66,7 @@ export function SpecialFacialCategories({ className }: SpecialFacialCategoriesPr
             </h2>
           </div>
 
-          <p className="font-sans font-light text-stone-gray text-[14px] leading-[1.8] max-w-[320px]">
+          <p className="font-sans font-light text-stone-gray text-[15px] sm:text-base leading-[1.8] max-w-[360px]">
             Dedicated physician protocols engineered for specific physiological milestones, routines, and skin sensitivities.
           </p>
         </div>
@@ -80,10 +80,10 @@ export function SpecialFacialCategories({ className }: SpecialFacialCategoriesPr
             >
               <div>
                 <div className="flex items-center justify-between pb-4 mb-6 border-b border-charcoal/[0.05]">
-                  <span className="font-sans text-[0.55rem] tracking-tight uppercase text-stone-gray/50">
+                  <span className="font-sans text-xs tracking-tight uppercase text-stone-gray/60 font-medium">
                     PROGRAM {String(i + 1).padStart(2, '0')}
                   </span>
-                  <span className="font-sans text-[0.55rem] tracking-tight uppercase text-botanical font-medium">
+                  <span className="font-sans text-xs tracking-tight uppercase text-botanical font-medium">
                     {cat.focus}
                   </span>
                 </div>
@@ -92,16 +92,16 @@ export function SpecialFacialCategories({ className }: SpecialFacialCategoriesPr
                   {cat.name}
                 </h3>
 
-                <p className="font-sans font-light text-stone-gray text-[13.5px] leading-[1.75]">
+                <p className="font-sans font-light text-stone-gray text-[14.5px] sm:text-[15px] leading-[1.75]">
                   {cat.descriptor}
                 </p>
               </div>
 
               <div className="mt-8 pt-4 border-t border-charcoal/[0.04] flex items-center justify-between">
-                <span className="font-sans text-[0.6rem] tracking-tight uppercase text-charcoal/40 group-hover:text-botanical transition-colors">
+                <span className="font-sans text-xs tracking-tight uppercase text-charcoal/50 group-hover:text-botanical transition-colors font-medium">
                   Custom Formulation
                 </span>
-                <ArrowUpRight size={14} className="text-charcoal/30 group-hover:text-botanical group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+                <ArrowUpRight size={14} className="text-charcoal/40 group-hover:text-botanical group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
               </div>
             </div>
           ))}

@@ -1,5 +1,5 @@
 import localFont from 'next/font/local';
-import { Outfit } from 'next/font/google';
+import { Outfit, Great_Vibes } from 'next/font/google';
 
 /**
  * Configure primary display/editorial font: BeautiqueDisplay.
@@ -69,5 +69,15 @@ export const displayFont = localFont({
 export const sansFont = Outfit({
   subsets: ['latin'],
   variable: '--font-sans',
+  display: 'swap',
+});
+
+/**
+ * Configure calligraphic/signature font (Great Vibes from Google Fonts).
+ */
+export const signatureFont = Great_Vibes({
+  weight: '400',
+  subsets: ['latin'],
+  variable: '--font-signature',
   display: 'swap',
 });

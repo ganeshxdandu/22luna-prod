@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next';
-import { displayFont, sansFont } from '@/app/fonts';
+import { displayFont, sansFont, signatureFont } from '@/app/fonts';
 import { ThemeProvider } from '@/components/providers/ThemeProvider';
 import { ScrollProvider } from '@/components/providers/ScrollProvider';
 import { GuidedDiscoveryModal } from '@/components/ui/GuidedDiscoveryModal';
@@ -69,7 +69,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${sansFont.variable} ${displayFont.variable}`}
+      className={`${sansFont.variable} ${displayFont.variable} ${signatureFont.variable}`}
       suppressHydrationWarning
     >
       <body className="flex flex-col min-h-screen bg-background">

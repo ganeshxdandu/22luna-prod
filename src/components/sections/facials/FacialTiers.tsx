@@ -28,15 +28,15 @@ function TreatmentRow({
       <div className="flex items-baseline gap-4 sm:gap-6 pr-4">
         <span
           className={cn(
-            'font-sans text-[0.55rem] tracking-tight uppercase shrink-0 font-light',
-            isDark ? 'text-white/20' : 'text-charcoal/30'
+            'font-sans text-xs tracking-tight uppercase shrink-0 font-light',
+            isDark ? 'text-white/30' : 'text-charcoal/40'
           )}
         >
           {String(index + 1).padStart(2, '0')}
         </span>
         <span
           className={cn(
-            'font-display text-[1.1rem] sm:text-[1.25rem] md:text-[1.35rem] font-light leading-[1.3] transition-colors duration-300',
+            'font-display text-[1.15rem] sm:text-[1.3rem] md:text-[1.4rem] font-light leading-[1.3] transition-colors duration-300',
             isDark
               ? 'text-moon-ivory group-hover:text-gold'
               : 'text-charcoal group-hover:text-botanical'
@@ -47,7 +47,7 @@ function TreatmentRow({
       </div>
       <span
         className={cn(
-          'font-sans text-[0.7rem] uppercase tracking-tight opacity-0 group-hover:opacity-100 transition-all duration-300 shrink-0 transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5',
+          'font-sans text-xs uppercase tracking-tight opacity-0 group-hover:opacity-100 transition-all duration-300 shrink-0 transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5',
           isDark ? 'text-gold' : 'text-botanical'
         )}
       >
@@ -84,7 +84,7 @@ function TierEssential() {
           <div className="lg:col-span-5 flex flex-col">
             <div className="flex items-center gap-3 mb-6">
               <span className="w-6 h-px bg-botanical/60" />
-              <span className="font-sans text-[0.6rem] tracking-tight uppercase text-botanical font-medium">
+              <span className="font-sans text-xs tracking-tight uppercase text-botanical font-medium">
                 01 / Level One
               </span>
             </div>
@@ -98,19 +98,19 @@ function TierEssential() {
               <span className="italic text-stone-gray font-light">Facials.</span>
             </h3>
 
-            <p className="font-sans font-light text-stone-gray leading-[1.85] text-[14.5px] max-w-[400px] mb-8">
+            <p className="font-sans font-light text-stone-gray leading-[1.85] text-[15px] sm:text-base max-w-[440px] mb-8">
               The foundation of radiant skin. Gentle yet effective, these facials maintain hydration, glow, and overall skin health — perfect for regular upkeep and routine skin nutrition.
             </p>
 
             <div className="flex items-center gap-6 mt-2 pt-6 border-t border-charcoal/[0.06]">
               <div>
                 <span className="block font-display text-xl text-charcoal font-light">Upkeep</span>
-                <span className="font-sans text-[0.52rem] uppercase tracking-tight text-stone-gray">Category</span>
+                <span className="font-sans text-xs uppercase tracking-tight text-stone-gray/60">Category</span>
               </div>
               <div className="w-px h-8 bg-charcoal/[0.08]" />
               <div>
                 <span className="block font-display text-xl text-botanical font-light">Luminous</span>
-                <span className="font-sans text-[0.52rem] uppercase tracking-tight text-stone-gray">Finish</span>
+                <span className="font-sans text-xs uppercase tracking-tight text-stone-gray/60">Finish</span>
               </div>
             </div>
           </div>
@@ -153,7 +153,7 @@ function TierTherapeutic() {
 
       <div className="max-w-site mx-auto px-6 md:px-8 lg:px-12 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-          {/* Treatment List Column (Reverse Order for Asymmetric Editorial Rhythm) */}
+          {/* Treatment List Column */}
           <div className="lg:col-span-7 order-2 lg:order-1 flex flex-col">
             <div className="border-t border-charcoal/[0.1]">
               {THERAPEUTIC_TREATMENTS.map((treatment, idx) => (
@@ -166,7 +166,7 @@ function TierTherapeutic() {
           <div className="lg:col-span-5 order-1 lg:order-2 flex flex-col lg:pl-6">
             <div className="flex items-center gap-3 mb-6">
               <span className="w-6 h-px bg-botanical/60" />
-              <span className="font-sans text-[0.6rem] tracking-tight uppercase text-botanical font-medium">
+              <span className="font-sans text-xs tracking-tight uppercase text-botanical font-medium">
                 02 / Level Two
               </span>
             </div>
@@ -180,19 +180,19 @@ function TierTherapeutic() {
               <span className="italic text-botanical font-light">Facials.</span>
             </h3>
 
-            <p className="font-sans font-light text-stone-gray leading-[1.85] text-[14.5px] max-w-[400px] mb-8">
+            <p className="font-sans font-light text-stone-gray leading-[1.85] text-[15px] sm:text-base max-w-[440px] mb-8">
               Targeted solutions for specific concerns like acne, pigmentation, and sensitivity. These physician-calibrated treatments correct, restore, and strengthen the skin barrier over time.
             </p>
 
             <div className="flex items-center gap-6 mt-2 pt-6 border-t border-charcoal/[0.06]">
               <div>
                 <span className="block font-display text-xl text-charcoal font-light">Corrective</span>
-                <span className="font-sans text-[0.52rem] uppercase tracking-tight text-stone-gray">Protocol</span>
+                <span className="font-sans text-xs uppercase tracking-tight text-stone-gray/60">Protocol</span>
               </div>
               <div className="w-px h-8 bg-charcoal/[0.08]" />
               <div>
                 <span className="block font-display text-xl text-botanical font-light">Restorative</span>
-                <span className="font-sans text-[0.52rem] uppercase tracking-tight text-stone-gray">Benefit</span>
+                <span className="font-sans text-xs uppercase tracking-tight text-stone-gray/60">Benefit</span>
               </div>
             </div>
           </div>
@@ -238,27 +238,37 @@ function TierPrecision() {
       </span>
 
       <div className="max-w-site mx-auto px-6 md:px-8 lg:px-12 relative z-10">
-        {/* Top Header */}
-        <div className="max-w-3xl mb-16 md:mb-20">
-          <div className="flex items-center gap-3 mb-6">
-            <span className="w-6 h-px bg-botanical/60" />
-            <span className="font-sans text-[0.6rem] tracking-tight uppercase text-botanical font-medium">
-              03 / Level Three
+        {/* Top Header — Stacked on mobile, Justify-between on desktop */}
+        <div className="mb-16 md:mb-20">
+          {/* Eyebrow + Red Tag Row */}
+          <div className="flex items-center justify-between gap-4 mb-6">
+            <div className="flex items-center gap-3">
+              <span className="w-6 h-px bg-botanical/60" />
+              <span className="font-sans text-xs tracking-tight uppercase text-botanical font-medium">
+                03 / Level Three
+              </span>
+            </div>
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-500/10 border border-red-500/25 text-red-600 font-sans text-xs tracking-tight uppercase font-medium">
+              <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
+              Prescription Facial
             </span>
           </div>
 
-          <h3
-            className="font-display font-light text-charcoal uppercase leading-[0.95] tracking-tight mb-6"
-            style={{ fontSize: 'clamp(2.4rem, 5vw, 4.5rem)' }}
-          >
-            Precision Performance
-            <br />
-            <span className="italic text-botanical font-light">Facial.</span>
-          </h3>
+          {/* Heading (Left) + Paragraph (Right on desktop) */}
+          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 lg:gap-16">
+            <h3
+              className="font-display font-light text-charcoal uppercase leading-[0.95] tracking-tight"
+              style={{ fontSize: 'clamp(2.4rem, 5vw, 4.5rem)' }}
+            >
+              Precision Performance
+              <br />
+              <span className="italic text-botanical font-light">Facial.</span>
+            </h3>
 
-          <p className="font-sans font-light text-stone-gray leading-[1.85] text-[15px] max-w-[540px]">
-            High-efficacy, result-driven treatments. Using advanced devices and clinical-grade actives, these facials refine texture, enhance radiance, and address early signs of aging with measurable transformation.
-          </p>
+            <p className="font-sans font-light text-stone-gray leading-[1.85] text-[15px] sm:text-base max-w-[500px]">
+              High-efficacy, result-driven treatments. Using advanced devices and clinical-grade actives, these facials refine texture, enhance radiance, and address early signs of aging with measurable transformation.
+            </p>
+          </div>
         </div>
 
         {/* 4-Stage Architectural Interactive Sequence */}
@@ -266,15 +276,15 @@ function TierPrecision() {
           {PRECISION_STEPS.map((item, idx) => (
             <div
               key={item.step}
-              className="relative bg-soft-ivory/60 border border-charcoal/[0.08] p-8 md:p-10 rounded-[2px] flex flex-col justify-between min-h-[260px] group hover:border-botanical/40 hover:bg-soft-ivory transition-all duration-500"
+              className="relative bg-soft-ivory/60 border border-charcoal/[0.08] p-8 md:p-10 rounded-[2px] flex flex-col justify-between min-h-[270px] group hover:border-botanical/40 hover:bg-soft-ivory transition-all duration-500"
             >
               <div>
                 <div className="flex items-center justify-between mb-8 pb-4 border-b border-charcoal/[0.06]">
-                  <span className="font-sans text-[0.6rem] tracking-tight uppercase text-stone-gray/60">
+                  <span className="font-sans text-xs tracking-tight uppercase text-stone-gray/60 font-medium">
                     STAGE {item.step}
                   </span>
                   {idx < PRECISION_STEPS.length - 1 ? (
-                    <span className="font-sans text-[0.65rem] text-charcoal/20 group-hover:text-botanical transition-colors">
+                    <span className="font-sans text-xs text-charcoal/30 group-hover:text-botanical transition-colors">
                       →
                     </span>
                   ) : (
@@ -286,12 +296,12 @@ function TierPrecision() {
                   {item.title}
                 </h4>
 
-                <p className="font-sans font-light text-stone-gray text-[13px] leading-[1.7]">
+                <p className="font-sans font-light text-stone-gray text-[14px] sm:text-[15px] leading-[1.7]">
                   {item.desc}
                 </p>
               </div>
 
-              <div className="mt-8 pt-3 border-t border-charcoal/[0.04] flex items-center justify-between text-[0.55rem] tracking-tight uppercase text-stone-gray/40">
+              <div className="mt-8 pt-3 border-t border-charcoal/[0.04] flex items-center justify-between text-xs tracking-tight uppercase text-stone-gray/50">
                 <span>Phase {item.step}</span>
                 <span>Calibrated</span>
               </div>
@@ -305,10 +315,10 @@ function TierPrecision() {
             href="https://wa.me/918971725522?text=I%20would%20like%20to%20explore%20Precision%20Performance%20Facials."
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 font-sans text-[0.72rem] uppercase tracking-tight text-botanical hover:text-charcoal transition-colors duration-300 group"
+            className="inline-flex items-center gap-2 font-sans text-xs uppercase tracking-tight text-botanical hover:text-charcoal transition-colors duration-300 group font-medium"
           >
             Explore Precision Performance
-            <ArrowUpRight size={13} strokeWidth={1.8} className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            <ArrowUpRight size={14} strokeWidth={1.8} className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </Link>
         </div>
       </div>
@@ -334,7 +344,7 @@ function TierSuper() {
           <div className="lg:col-span-5 flex flex-col">
             <div className="flex items-center gap-3 mb-6">
               <span className="w-6 h-px bg-botanical/60" />
-              <span className="font-sans text-[0.6rem] tracking-tight uppercase text-botanical font-medium">
+              <span className="font-sans text-xs tracking-tight uppercase text-botanical font-medium">
                 04 / Level Four
               </span>
             </div>
@@ -348,7 +358,7 @@ function TierSuper() {
               <span className="italic text-botanical font-light">Facials.</span>
             </h3>
 
-            <p className="font-sans font-light text-stone-gray leading-[1.85] text-[14.5px] max-w-[420px]">
+            <p className="font-sans font-light text-stone-gray leading-[1.85] text-[15px] sm:text-base max-w-[440px]">
               Next-level treatments that push results further. Concentrated actives and advanced synergistic techniques work simultaneously to deliver dramatic improvements in skin tone, elasticity, and cellular vitality.
             </p>
           </div>
@@ -358,10 +368,10 @@ function TierSuper() {
             {/* Modular Option A */}
             <div className="bg-moon-ivory border border-charcoal/[0.1] p-8 md:p-10 rounded-[2px] relative group hover:border-botanical transition-all duration-400">
               <div className="flex items-center justify-between mb-4 pb-3 border-b border-charcoal/[0.06]">
-                <span className="font-sans text-[0.55rem] tracking-tight uppercase text-stone-gray/60">
+                <span className="font-sans text-xs tracking-tight uppercase text-stone-gray/60 font-medium">
                   COMBINATION PATHWAY 01
                 </span>
-                <span className="font-sans text-[0.6rem] tracking-tight uppercase text-botanical font-medium">
+                <span className="font-sans text-xs tracking-tight uppercase text-botanical font-semibold">
                   SYNERGY A
                 </span>
               </div>
@@ -370,11 +380,11 @@ function TierSuper() {
                   <h4 className="font-display text-2xl md:text-[1.85rem] font-light text-charcoal leading-tight">
                     2 Treatments <span className="text-stone-gray font-light text-xl">+</span> 1 Facial
                   </h4>
-                  <p className="font-sans font-light text-stone-gray text-xs mt-1">
+                  <p className="font-sans font-light text-stone-gray text-[14px] sm:text-[15px] mt-1">
                     Dual targeted clinical energy procedures merged with intensive restorative hydration.
                   </p>
                 </div>
-                <span className="font-sans text-[0.65rem] tracking-tight uppercase px-4 py-2 border border-charcoal/10 rounded-full text-charcoal/70 self-start sm:self-center shrink-0">
+                <span className="font-sans text-xs tracking-tight uppercase px-4 py-2 border border-charcoal/10 rounded-full text-charcoal/70 self-start sm:self-center shrink-0">
                   Select
                 </span>
               </div>
@@ -383,7 +393,7 @@ function TierSuper() {
             {/* Subtle Editorial Divider */}
             <div className="flex items-center gap-4 px-4">
               <div className="flex-1 h-px bg-charcoal/[0.1]" />
-              <span className="font-sans text-[0.55rem] tracking-tight uppercase text-stone-gray/50">
+              <span className="font-sans text-xs tracking-tight uppercase text-stone-gray/60 font-medium">
                 OR
               </span>
               <div className="flex-1 h-px bg-charcoal/[0.1]" />
@@ -392,10 +402,10 @@ function TierSuper() {
             {/* Modular Option B */}
             <div className="bg-moon-ivory border border-charcoal/[0.1] p-8 md:p-10 rounded-[2px] relative group hover:border-botanical transition-all duration-400">
               <div className="flex items-center justify-between mb-4 pb-3 border-b border-charcoal/[0.06]">
-                <span className="font-sans text-[0.55rem] tracking-tight uppercase text-stone-gray/60">
+                <span className="font-sans text-xs tracking-tight uppercase text-stone-gray/60 font-medium">
                   COMBINATION PATHWAY 02
                 </span>
-                <span className="font-sans text-[0.6rem] tracking-tight uppercase text-botanical font-medium">
+                <span className="font-sans text-xs tracking-tight uppercase text-botanical font-semibold">
                   SYNERGY B
                 </span>
               </div>
@@ -404,11 +414,11 @@ function TierSuper() {
                   <h4 className="font-display text-2xl md:text-[1.85rem] font-light text-charcoal leading-tight">
                     2 Facials <span className="text-stone-gray font-light text-xl">+</span> 1 Treatment
                   </h4>
-                  <p className="font-sans font-light text-stone-gray text-xs mt-1">
+                  <p className="font-sans font-light text-stone-gray text-[14px] sm:text-[15px] mt-1">
                     Dual clinical infusion and enzyme renewal layered with one high-impact energy modality.
                   </p>
                 </div>
-                <span className="font-sans text-[0.65rem] tracking-tight uppercase px-4 py-2 border border-charcoal/10 rounded-full text-charcoal/70 self-start sm:self-center shrink-0">
+                <span className="font-sans text-xs tracking-tight uppercase px-4 py-2 border border-charcoal/10 rounded-full text-charcoal/70 self-start sm:self-center shrink-0">
                   Select
                 </span>
               </div>
@@ -422,12 +432,12 @@ function TierSuper() {
                   <h5 className="font-display text-lg tracking-tight font-light">
                     Clinical Doctor Review
                   </h5>
-                  <p className="font-sans text-xs text-moon-ivory/70 font-light">
+                  <p className="font-sans text-[14px] text-moon-ivory/80 font-light">
                     Every bespoke super facial permutation is finalized by our aesthetic physicians.
                   </p>
                 </div>
               </div>
-              <span className="font-sans text-[0.55rem] tracking-tight uppercase text-gold shrink-0 hidden sm:block">
+              <span className="font-sans text-xs tracking-tight uppercase text-gold shrink-0 hidden sm:block font-medium">
                 Required Step
               </span>
             </div>
@@ -456,7 +466,7 @@ function TierUltraLuxe() {
           <div className="lg:col-span-6 flex flex-col">
             <div className="flex items-center gap-3 mb-6">
               <span className="w-8 h-px bg-gold/50" />
-              <span className="font-sans text-[0.6rem] tracking-tight uppercase text-gold font-medium">
+              <span className="font-sans text-xs tracking-tight uppercase text-gold font-medium">
                 05 / The Pinnacle
               </span>
             </div>
@@ -472,7 +482,7 @@ function TierUltraLuxe() {
               </span>
             </h3>
 
-            <p className="font-sans font-light leading-[1.9] text-[15px] max-w-[480px] mb-10 text-moon-ivory/70">
+            <p className="font-sans font-light leading-[1.9] text-[15px] sm:text-base max-w-[480px] mb-10 text-moon-ivory/80">
               The ultimate aesthetic indulgence. These facials combine rare bio-actives, proprietary regenerative factors, and advanced machine touch for an unparalleled sensory and results-driven experience, leaving the skin rejuvenated and luminous.
             </p>
 
@@ -481,7 +491,7 @@ function TierUltraLuxe() {
                 href="https://wa.me/918971725522?text=I%20would%20like%20to%20reserve%20an%20Ultra%20Luxe%20Facial%20experience."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 rounded-full border border-gold/40 text-gold hover:bg-gold hover:text-midnight font-sans text-[0.72rem] uppercase tracking-tight px-8 py-4 transition-all duration-300 group"
+                className="inline-flex items-center gap-3 rounded-full border border-gold/40 text-gold hover:bg-gold hover:text-midnight font-sans text-xs uppercase tracking-tight px-8 py-4 transition-all duration-300 group font-medium"
               >
                 Reserve Ultra Luxe Session
                 <ArrowUpRight size={14} strokeWidth={1.8} className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -493,10 +503,10 @@ function TierUltraLuxe() {
           <div className="lg:col-span-6">
             <div className="border border-white/10 bg-white/[0.02] backdrop-blur-sm p-8 sm:p-12 rounded-[2px] relative">
               <div className="flex items-center justify-between pb-6 border-b border-white/10 mb-8">
-                <span className="font-sans text-[0.55rem] tracking-tight uppercase text-gold/80">
+                <span className="font-sans text-xs tracking-tight uppercase text-gold/90 font-medium">
                   PRIVATE SANCTUARY SUITE
                 </span>
-                <span className="font-sans text-[0.52rem] tracking-tight uppercase text-white/30">
+                <span className="font-sans text-xs tracking-tight uppercase text-white/40">
                   BY APPOINTMENT ONLY
                 </span>
               </div>
@@ -506,7 +516,7 @@ function TierUltraLuxe() {
                   <h4 className="font-display text-2xl text-moon-ivory font-light mb-1">
                     Multi-Vector Cellular Rejuvenation
                   </h4>
-                  <p className="font-sans text-xs text-moon-ivory/50 font-light leading-relaxed">
+                  <p className="font-sans text-[14px] text-moon-ivory/60 font-light leading-relaxed">
                     Custom combinations of deep tissue RF remodelling, hyperbaric oxygen infusion, autologous growth factors, and cold-laser toning.
                   </p>
                 </div>
@@ -517,13 +527,13 @@ function TierUltraLuxe() {
                   <h4 className="font-display text-2xl text-moon-ivory font-light mb-1">
                     End-to-End Physician Supervision
                   </h4>
-                  <p className="font-sans text-xs text-moon-ivory/50 font-light leading-relaxed">
+                  <p className="font-sans text-[14px] text-moon-ivory/60 font-light leading-relaxed">
                     Continuous real-time skin diagnostics, bespoke formulation mixing, and post-treatment barrier recovery kits included.
                   </p>
                 </div>
               </div>
 
-              <div className="mt-10 pt-6 border-t border-white/10 flex items-center justify-between text-moon-ivory/40 font-sans text-[0.55rem] tracking-tight uppercase">
+              <div className="mt-10 pt-6 border-t border-white/10 flex items-center justify-between text-moon-ivory/50 font-sans text-xs tracking-tight uppercase">
                 <span>Tailored Dosing</span>
                 <span>Zero Compromise</span>
               </div>

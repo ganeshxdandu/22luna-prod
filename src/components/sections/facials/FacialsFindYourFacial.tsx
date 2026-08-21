@@ -36,7 +36,7 @@ export function FacialsFindYourFacial({ className }: FacialsFindYourFacialProps)
             <div className="lg:col-span-7">
               <div className="flex items-center gap-3 mb-6">
                 <span className="w-8 h-px bg-botanical/60" />
-                <span className="font-sans text-[0.6rem] tracking-tight uppercase text-botanical font-medium">
+                <span className="font-sans text-xs tracking-tight uppercase text-botanical font-medium">
                   Diagnostic Discovery
                 </span>
               </div>
@@ -51,7 +51,7 @@ export function FacialsFindYourFacial({ className }: FacialsFindYourFacialProps)
                 <span className="italic text-botanical font-light">Begin?</span>
               </h2>
 
-              <p className="font-sans font-light text-stone-gray text-[15px] sm:text-[16px] leading-[1.85] max-w-[500px]">
+              <p className="font-sans font-light text-stone-gray text-[15px] sm:text-base leading-[1.85] max-w-[540px]">
                 Your skin doesn&apos;t need a one-size-fits-all solution. Our clinical team and diagnostic tools help you match the exact facial tier and treatment matrix best suited to your current skin tolerances, concerns, and long-term vitality.
               </p>
             </div>
@@ -59,7 +59,7 @@ export function FacialsFindYourFacial({ className }: FacialsFindYourFacialProps)
             <div className="lg:col-span-5 flex flex-col gap-4 sm:flex-row lg:flex-col justify-center">
               <Link
                 href="/meet-luna"
-                className="inline-flex items-center justify-between rounded-full bg-botanical text-moon-ivory font-sans text-[0.75rem] uppercase tracking-tight px-8 py-4 transition-all duration-300 hover:bg-botanical/90 group shadow-sm"
+                className="inline-flex items-center justify-between rounded-full bg-botanical text-moon-ivory font-sans text-xs uppercase tracking-tight px-8 py-4 transition-all duration-300 hover:bg-botanical/90 group shadow-sm font-medium"
               >
                 <span>Take The Luna Skin Quiz</span>
                 <ArrowUpRight
@@ -73,7 +73,7 @@ export function FacialsFindYourFacial({ className }: FacialsFindYourFacialProps)
                 href="https://wa.me/918971725522?text=I%20would%20like%20guidance%20on%20choosing%20the%20right%20facial%20at%2022Luna."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-between rounded-full border border-charcoal/20 text-charcoal font-sans text-[0.75rem] uppercase tracking-tight px-8 py-4 transition-all duration-300 hover:border-botanical hover:text-botanical group"
+                className="inline-flex items-center justify-between rounded-full border border-charcoal/20 text-charcoal font-sans text-xs uppercase tracking-tight px-8 py-4 transition-all duration-300 hover:border-botanical hover:text-botanical group font-medium"
               >
                 <span>Consult Our Doctors On WhatsApp</span>
                 <ArrowUpRight

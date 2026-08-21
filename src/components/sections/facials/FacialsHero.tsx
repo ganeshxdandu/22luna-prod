@@ -48,11 +48,11 @@ export function FacialsHero({ className }: FacialsHeroProps) {
             className="flex items-center gap-5 mb-10"
           >
             <div className="w-12 h-px bg-charcoal/15" />
-            <span className="font-sans text-[0.6rem] tracking-tight uppercase text-stone-gray/60">
+            <span className="font-sans text-xs tracking-tight uppercase text-stone-gray/70">
               Clinical Facials
             </span>
             <div className="flex-1 h-px bg-charcoal/[0.06]" />
-            <span className="font-sans text-[0.55rem] tracking-tight uppercase text-stone-gray/30 hidden sm:block">
+            <span className="font-sans text-xs tracking-tight uppercase text-stone-gray/40 hidden sm:block">
               22Luna Sanctuary
             </span>
           </motion.div>
@@ -99,10 +99,8 @@ export function FacialsHero({ className }: FacialsHeroProps) {
             transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1], delay: 0.5 }}
             className="mt-14 flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8"
           >
-            {/* Supporting copy */}
-            <p className="font-sans font-light text-stone-gray leading-[1.85] max-w-[480px]"
-              style={{ fontSize: 'clamp(14px, 1.2vw, 16px)' }}
-            >
+            {/* Supporting copy — 16px desktop, 15px mobile, min 14px */}
+            <p className="font-sans font-light text-stone-gray leading-[1.85] text-[15px] sm:text-base max-w-[500px]">
               From foundational skin maintenance to advanced, result-driven
               facial experiences, our clinical facials are designed to meet
               your skin where it is — and take it further.
@@ -112,19 +110,19 @@ export function FacialsHero({ className }: FacialsHeroProps) {
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 shrink-0">
               <a
                 href="#facial-tiers"
-                className="inline-flex items-center gap-2 rounded-full bg-botanical text-moon-ivory font-sans text-[0.72rem] uppercase tracking-tight px-7 py-3.5 transition-all duration-300 hover:bg-botanical/90 group"
+                className="inline-flex items-center gap-2 rounded-full bg-botanical text-moon-ivory font-sans text-xs uppercase tracking-tight px-7 py-3.5 transition-all duration-300 hover:bg-botanical/90 group"
               >
                 Explore Facials
-                <ArrowUpRight size={13} strokeWidth={1.8} className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                <ArrowUpRight size={14} strokeWidth={1.8} className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </a>
               <Link
                 href="https://wa.me/918971725522?text=I%20would%20like%20to%20book%20a%20facial%20consultation."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-full border border-charcoal/20 text-charcoal/60 font-sans text-[0.72rem] uppercase tracking-tight px-7 py-3.5 transition-all duration-300 hover:border-botanical hover:text-botanical group"
+                className="inline-flex items-center gap-2 rounded-full border border-charcoal/20 text-charcoal/70 font-sans text-xs uppercase tracking-tight px-7 py-3.5 transition-all duration-300 hover:border-botanical hover:text-botanical group"
               >
                 Book Consultation
-                <ArrowUpRight size={13} strokeWidth={1.8} className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                <ArrowUpRight size={14} strokeWidth={1.8} className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </Link>
             </div>
           </motion.div>
@@ -137,7 +135,7 @@ export function FacialsHero({ className }: FacialsHeroProps) {
             className="mt-16 flex items-center gap-5"
           >
             <div className="h-px flex-1 bg-charcoal/[0.07]" />
-            <span className="font-sans text-[0.5rem] tracking-tight uppercase text-charcoal/22 shrink-0">
+            <span className="font-sans text-xs tracking-tight uppercase text-charcoal/40 shrink-0">
               Five levels of facial care
             </span>
             <div className="h-px w-8 bg-charcoal/[0.07]" />

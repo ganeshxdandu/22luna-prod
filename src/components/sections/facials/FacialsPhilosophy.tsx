@@ -25,7 +25,7 @@ export function FacialsPhilosophy({ className }: FacialsPhilosophyProps) {
           <div className="lg:col-span-7 flex flex-col pr-0 lg:pr-8">
             <div className="flex items-center gap-3 mb-6">
               <span className="w-8 h-px bg-botanical/60" />
-              <span className="font-sans text-[0.6rem] tracking-tight uppercase text-botanical font-medium">
+              <span className="font-sans text-xs tracking-tight uppercase text-botanical font-medium">
                 Our Facial Philosophy
               </span>
             </div>
@@ -56,10 +56,10 @@ export function FacialsPhilosophy({ className }: FacialsPhilosophyProps) {
               transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
               className="space-y-4"
             >
-              <p className="font-sans font-light text-stone-gray leading-[1.85] text-[15px]">
+              <p className="font-sans font-light text-stone-gray leading-[1.85] text-[15px] sm:text-base">
                 Every skin has different needs, and every stage of your skin journey deserves a different level of care.
               </p>
-              <p className="font-sans font-light text-stone-gray leading-[1.85] text-[15px]">
+              <p className="font-sans font-light text-stone-gray leading-[1.85] text-[15px] sm:text-base">
                 At 22Luna, our facial menu moves from gentle maintenance to highly targeted, advanced treatments — allowing you to choose an experience that matches your skin, your concerns, and your goals.
               </p>
             </motion.div>
