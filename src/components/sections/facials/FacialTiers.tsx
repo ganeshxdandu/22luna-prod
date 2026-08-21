@@ -3,7 +3,6 @@
 import * as React from 'react';
 import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
-import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 
 // ─── Shared Treatment Item Component ─────────────────────────────────────────

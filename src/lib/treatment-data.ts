@@ -111,10 +111,24 @@ export interface TreatmentData {
   technology?: string;
 }
 
+import { SKIN_FACIALS_DATA } from './treatments/skin-facials-data';
+import { INJECTABLES_DATA } from './treatments/injectables-data';
+import { ENERGY_LASERS_DATA } from './treatments/energy-lasers-data';
+import { SPECIALIZED_PROTOCOLS_DATA } from './treatments/specialized-protocols-data';
+import { HAIR_CLINICAL_DATA } from './treatments/hair-data';
+import { DENTAL_CLINICAL_DATA } from './treatments/dental-data';
+
 // ─────────────────────────────────────────────────────────────────────────────
-// EXPLICIT TREATMENT DATA REPOSITORY (LEAVE EMPTY TO LET GENERIC GENERATOR HANDLE)
+// EXPLICIT TREATMENT DATA REPOSITORY
 // ─────────────────────────────────────────────────────────────────────────────
-export const TREATMENT_DATA: Record<string, TreatmentData> = {};
+export const TREATMENT_DATA: Record<string, TreatmentData> = {
+  ...SKIN_FACIALS_DATA,
+  ...INJECTABLES_DATA,
+  ...ENERGY_LASERS_DATA,
+  ...SPECIALIZED_PROTOCOLS_DATA,
+  ...HAIR_CLINICAL_DATA,
+  ...DENTAL_CLINICAL_DATA,
+};
 
 // GENERIC TREATMENT DATA GENERATOR FOR CATALOGUE ITEMS NOT EXPLICITLY IN MAP
 // ─────────────────────────────────────────────────────────────────────────────

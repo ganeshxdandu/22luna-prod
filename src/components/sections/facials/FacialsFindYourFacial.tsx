@@ -3,7 +3,6 @@
 import * as React from 'react';
 import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
-import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 
 export interface FacialsFindYourFacialProps {
@@ -53,7 +52,7 @@ export function FacialsFindYourFacial({ className }: FacialsFindYourFacialProps)
               </h2>
 
               <p className="font-sans font-light text-stone-gray text-[15px] sm:text-[16px] leading-[1.85] max-w-[500px]">
-                Your skin doesn't need a one-size-fits-all solution. Our clinical team and diagnostic tools help you match the exact facial tier and treatment matrix best suited to your current skin tolerances, concerns, and long-term vitality.
+                Your skin doesn&apos;t need a one-size-fits-all solution. Our clinical team and diagnostic tools help you match the exact facial tier and treatment matrix best suited to your current skin tolerances, concerns, and long-term vitality.
               </p>
             </div>
 
