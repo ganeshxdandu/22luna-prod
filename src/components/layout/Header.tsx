@@ -4,13 +4,13 @@ import * as React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { ShoppingBag, ArrowUpRight, ChevronDown, Crown } from 'lucide-react';
+import { ShoppingBag, ArrowUpRight, ChevronDown, ChevronRight, Crown } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { TREATMENT_CATEGORIES } from '@/lib/treatments-catalogue';
 import { CONCERN_CATEGORIES } from '@/lib/concerns-catalogue';
 import { useLenis } from 'lenis/react';
-import { CloudinaryImage } from '@/components/ui/CloudinaryImage';
+import { TreatmentsMegaMenu } from './TreatmentsMegaMenu';
 
 const navLinks = [
   { label: 'Home', href: '/' },
@@ -46,10 +46,11 @@ export function Header({ className, variant = 'dark' }: HeaderProps) {
 
   // Mega Menu states
   const [megaMenuType, setMegaMenuType] = React.useState<'treatments' | 'concerns' | null>(null);
-  const [activeTreatmentCategoryIdx, setActiveTreatmentCategoryIdx] = React.useState(0);
   const [activeConcernCategoryIdx, setActiveConcernCategoryIdx] = React.useState(0);
   const [mobileTreatmentsOpen, setMobileTreatmentsOpen] = React.useState(false);
+  const [mobileActiveTreatmentCategory, setMobileActiveTreatmentCategory] = React.useState<string | null>('skin');
   const [mobileConcernsOpen, setMobileConcernsOpen] = React.useState(false);
+  const [mobileActiveConcernCategory, setMobileActiveConcernCategory] = React.useState<string | null>('skin-concerns');
 
   const closeTimeoutRef = React.useRef<NodeJS.Timeout | null>(null);
 
@@ -133,7 +134,6 @@ export function Header({ className, variant = 'dark' }: HeaderProps) {
     };
   }, [megaMenuType, mobileOpen, lenis]);
 
-  const activeCat = TREATMENT_CATEGORIES[activeTreatmentCategoryIdx];
   const activeConcernCat = CONCERN_CATEGORIES[activeConcernCategoryIdx];
 
   const isLight = variant === 'light';
@@ -407,258 +407,35 @@ export function Header({ className, variant = 'dark' }: HeaderProps) {
           </div>
         </div>
 
-        {/* Desktop Mega Menu — 3-area layout */}
+        {/* Desktop Mega Menus */}
         <AnimatePresence>
           {megaMenuType === 'treatments' && (
-            <motion.div
-              initial={{ opacity: 0, y: -6 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -6 }}
-              transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
+            <TreatmentsMegaMenu
+              isOpen={megaMenuType === 'treatments'}
+              onClose={closeMegaMenu}
               onMouseEnter={handleMenuMouseEnter}
               onMouseLeave={handleMenuMouseLeave}
-              role="dialog"
-              aria-label="Treatments navigation"
-              className="absolute left-0 right-0 top-full z-40 bg-moon-ivory border-b border-charcoal/10 shadow-xl shadow-charcoal/5"
-            >
-              {/* ── AREA 1: Horizontal category tabs ──────────────────── */}
-              <div className="border-b border-charcoal/10">
-                <div className="max-w-site mx-auto w-full px-4 sm:px-6 md:px-10">
-                  <div className="flex items-end gap-0" role="tablist" aria-label="Treatment categories">
-                    {TREATMENT_CATEGORIES.map((cat, idx) => (
-                      <button
-                        key={cat.id}
-                        role="tab"
-                        aria-selected={activeTreatmentCategoryIdx === idx}
-                        onClick={() => setActiveTreatmentCategoryIdx(idx)}
-                        onFocus={cancelCloseTimeout}
-                        onBlur={startCloseTimeout}
-                        className={cn(
-                          'relative px-8 py-5 font-sans text-[12px] tracking-tight uppercase transition-colors duration-200 focus:outline-none shrink-0 cursor-pointer',
-                          activeTreatmentCategoryIdx === idx
-                            ? 'text-botanical font-medium'
-                            : 'text-stone-gray hover:text-charcoal font-light'
-                        )}
-                      >
-                        {cat.name}
-                        {activeTreatmentCategoryIdx === idx && (
-                          <motion.span
-                            layoutId="catUnderline"
-                            className="absolute bottom-0 left-8 right-8 h-[2px] bg-botanical"
-                          />
-                        )}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              {/* ── AREA 2 + 3: Treatment columns + CTA panel ─────────── */}
-              <div className="max-w-site mx-auto w-full px-4 sm:px-6 md:px-10 flex gap-0 h-[70vh]">
-
-                {/* Treatment content — left */}
-                <div 
-                  onWheel={(e) => e.stopPropagation()}
-                  onTouchMove={(e) => e.stopPropagation()}
-                  className="flex-1 min-w-0 min-h-0 h-full py-10 pr-12 border-r border-charcoal/10 overflow-y-auto overscroll-y-contain"
-                >
-                  <AnimatePresence mode="wait">
-                    <motion.div
-                      key={activeCat.id}
-                      initial={{ opacity: 0, y: 8 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: 4 }}
-                      transition={{ duration: 0.18, ease: 'easeOut' }}
-                    >
-                      {activeCat.id === 'wellness' ? (
-                        /* Custom Wellness/REVIV block */
-                        <div className="flex gap-10 h-full items-center">
-                          {/* Text Side */}
-                          <div className="flex-1 max-w-[480px]">
-                            <div className="flex items-center gap-2 mb-3">
-                              <span className="font-sans text-[10px] tracking-[0.2em] uppercase text-stone-gray font-semibold">
-                                LUNA × REVIV
-                              </span>
-                              <span className="w-1.5 h-1.5 rounded-full bg-botanical shrink-0 animate-pulse" />
-                            </div>
-                            <h4 className="font-display text-[1.8rem] leading-[1.25] text-charcoal mb-4">
-                              Intravenous Hydration &amp; Longevity
-                            </h4>
-                            <p className="font-sans font-light text-[13.5px] leading-relaxed text-stone-gray mb-6">
-                              IV therapies and wellness formulations delivered through our global partnership with REVIV. Administered in our luxury medical sanctuary for optimal cellular absorption, recovery, and inner vitality.
-                            </p>
-                            
-                            {/* Small Stats Grid */}
-                            <div className="grid grid-cols-2 gap-6 border-y border-charcoal/10 py-5 mb-8">
-                              <div>
-                                <p className="font-display text-[1.3rem] text-botanical font-light">2,000,000+</p>
-                                <p className="font-sans text-[9px] tracking-wider uppercase text-stone-gray">IV Therapies Globally</p>
-                              </div>
-                              <div>
-                                <p className="font-display text-[1.3rem] text-botanical font-light">100+ Clinics</p>
-                                <p className="font-sans text-[9px] tracking-wider uppercase text-stone-gray">Global REVIV Network</p>
-                              </div>
-                            </div>
-
-                            <a
-                              href="https://revivindia.com/iv-therapies"
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="inline-flex items-center gap-2 rounded-full bg-botanical text-moon-ivory hover:bg-botanical/90 font-sans text-[11px] uppercase tracking-wider px-6 py-3 transition-all duration-300"
-                            >
-                              <span>Continue to REVIV</span>
-                              <ArrowUpRight size={13} strokeWidth={1.8} />
-                            </a>
-                          </div>
-
-                          {/* Image Side */}
-                          <div className="hidden lg:block w-[280px] h-[360px] relative rounded-[8px] overflow-hidden shadow-sm">
-                            <CloudinaryImage
-                              src="ivdrip_yhlvex"
-                              alt="REVIV Wellness Suite"
-                              fill
-                              sizes="600px"
-                              quality={100}
-                              className="object-cover"
-                            />
-                          </div>
-                        </div>
-                      ) : activeCat.treatmentGroups ? (
-                        /* Categories with groups (Skin) */
-                        <div className="flex flex-wrap gap-x-16 gap-y-10">
-                          {activeCat.treatmentGroups.map((group) => (
-                            <div key={group.groupName} className="flex flex-col min-w-[190px] max-w-[250px] flex-shrink-0">
-                              <p className="font-sans text-[10px] tracking-[0.2em] uppercase text-stone-gray font-semibold mb-3">
-                                {group.groupName}
-                              </p>
-                              <div className="h-px bg-charcoal/10 mb-4" />
-                              <ul className="flex flex-col gap-3">
-                                {group.treatments.map((t) => (
-                                  <li key={t.slug}>
-                                    <Link
-                                      href={`/treatments/${t.slug}`}
-                                      onClick={closeMegaMenu}
-                                      onFocus={cancelCloseTimeout}
-                                      onBlur={startCloseTimeout}
-                                      className="group/link font-sans font-light text-[13.5px] text-charcoal/75 hover:text-botanical transition-colors duration-150 flex items-baseline gap-2"
-                                    >
-                                      <span className="flex-1 leading-relaxed">{t.name}</span>
-                                      <span className="opacity-0 group-hover/link:opacity-100 transition-all duration-150 group-hover/link:translate-x-0.5 text-botanical shrink-0">
-                                        <ArrowUpRight size={12} strokeWidth={1.5} />
-                                      </span>
-                                    </Link>
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
-                          ))}
-                        </div>
-                      ) : (
-                        /* Flat list categories (Hair, Dental) */
-                        <div className="flex flex-wrap gap-x-16 gap-y-10">
-                          {(() => {
-                            const list = activeCat.treatments || [];
-                            const perCol = Math.max(4, Math.ceil(list.length / 3));
-                            const cols = Array.from(
-                              { length: Math.ceil(list.length / perCol) },
-                              (_, i) => list.slice(i * perCol, (i + 1) * perCol)
-                            );
-                            return cols.map((col, ci) => (
-                              <div key={ci} className="flex flex-col min-w-[190px] max-w-[250px] flex-shrink-0">
-                                <ul className="flex flex-col gap-3">
-                                  {col.map((t) => (
-                                    <li key={t.slug}>
-                                      <Link
-                                        href={`/treatments/${t.slug}`}
-                                        onClick={closeMegaMenu}
-                                        onFocus={cancelCloseTimeout}
-                                        onBlur={startCloseTimeout}
-                                        className="group/link font-sans font-light text-[13.5px] text-charcoal/75 hover:text-botanical transition-colors duration-150 flex items-baseline gap-2"
-                                      >
-                                        <span className="flex-1 leading-relaxed">{t.name}</span>
-                                        <span className="opacity-0 group-hover/link:opacity-100 transition-all duration-150 group-hover/link:translate-x-0.5 text-botanical shrink-0">
-                                          <ArrowUpRight size={12} strokeWidth={1.5} />
-                                        </span>
-                                      </Link>
-                                    </li>
-                                  ))}
-                                </ul>
-                              </div>
-                            ));
-                          })()}
-                        </div>
-                      )}
-
-                      {/* View All footer */}
-                      {activeCat.id !== 'wellness' && (
-                        <div className="mt-10 pt-5 border-t border-charcoal/10">
-                          <Link
-                            href={`/treatments#${activeCat.id}`}
-                            onClick={closeMegaMenu}
-                            onFocus={cancelCloseTimeout}
-                            onBlur={startCloseTimeout}
-                            className="group/all font-sans text-[11px] tracking-tight uppercase font-medium text-botanical hover:text-charcoal transition-colors duration-200 flex items-center gap-2"
-                          >
-                            View All {activeCat.name} Treatments
-                            <span className="inline-block transition-transform duration-200 group-hover/all:translate-x-1">→</span>
-                          </Link>
-                        </div>
-                      )}
-                    </motion.div>
-                  </AnimatePresence>
-                </div>
-
-                {/* CTA Panel — right */}
-                <div className="w-[320px] shrink-0 bg-botanical flex flex-col justify-between px-10 py-10">
-                  <div>
-                    <p className="font-sans text-[9px] tracking-[0.25em] uppercase text-moon-ivory/45 mb-5 font-medium">
-                      Need help choosing?
-                    </p>
-                    <h3 className="font-display text-[1.6rem] leading-snug tracking-tight text-moon-ivory mb-5">
-                      Not sure which treatment is right for you?
-                    </h3>
-                    <div className="w-10 h-px bg-moon-ivory/25 mb-5" />
-                    <p className="font-sans text-[12px] font-light text-moon-ivory/60 leading-relaxed">
-                      Every concern is unique. Let our experts guide you toward the right treatment for your goals.
-                    </p>
-                  </div>
-                  <Link
-                    href="https://wa.me/918971725522?text=I%20would%20like%20to%20book%20a%20consultation."
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={closeMegaMenu}
-                    onFocus={cancelCloseTimeout}
-                    onBlur={startCloseTimeout}
-                    className="group/cta mt-10 inline-flex items-center justify-between w-full border border-moon-ivory/20 hover:border-moon-ivory/50 px-5 py-4 rounded-full transition-colors duration-200"
-                  >
-                    <span className="font-sans text-[11px] tracking-[0.18em] uppercase font-medium text-moon-ivory">
-                      Book a Consultation
-                    </span>
-                    <span className="text-moon-ivory/60 group-hover/cta:text-moon-ivory group-hover/cta:translate-x-0.5 transition-all duration-200 text-sm">
-                      →
-                    </span>
-                  </Link>
-                </div>
-              </div>
-            </motion.div>
+              onFocus={cancelCloseTimeout}
+              onBlur={startCloseTimeout}
+            />
           )}
 
           {megaMenuType === 'concerns' && (
             <motion.div
-              initial={{ opacity: 0, y: -6 }}
+              initial={{ opacity: 0, y: -4 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -6 }}
-              transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
+              exit={{ opacity: 0, y: -4 }}
+              transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] }}
               onMouseEnter={handleMenuMouseEnter}
               onMouseLeave={handleMenuMouseLeave}
               role="dialog"
               aria-label="Concerns navigation"
-              className="absolute left-0 right-0 top-full z-40 bg-moon-ivory border-b border-charcoal/10 shadow-xl shadow-charcoal/5"
+              className="absolute left-0 right-0 top-full z-40 bg-moon-ivory border-b border-charcoal/15 shadow-2xl shadow-charcoal/10"
             >
-              {/* ── AREA 1: Horizontal category tabs ──────────────────── */}
-              <div className="border-b border-charcoal/10">
-                <div className="max-w-site mx-auto w-full px-4 sm:px-6 md:px-10">
-                  <div className="flex items-end gap-0" role="tablist" aria-label="Concern categories">
+              {/* ── TOP CATEGORY SELECTOR ──────────────────────────────── */}
+              <div className="border-b border-charcoal/10 bg-moon-ivory/95 backdrop-blur-md">
+                <div className="max-w-[1520px] mx-auto w-full px-6 sm:px-8 md:px-12">
+                  <div className="flex items-center gap-6 md:gap-10" role="tablist" aria-label="Concern categories">
                     {CONCERN_CATEGORIES.map((cat, idx) => (
                       <button
                         key={cat.id}
@@ -668,17 +445,18 @@ export function Header({ className, variant = 'dark' }: HeaderProps) {
                         onFocus={cancelCloseTimeout}
                         onBlur={startCloseTimeout}
                         className={cn(
-                          'relative px-8 py-5 font-sans text-[12px] tracking-tight uppercase transition-colors duration-200 focus:outline-none shrink-0 cursor-pointer',
+                          'relative py-4 px-1 font-sans text-xs tracking-[0.12em] uppercase transition-colors duration-200 focus:outline-none cursor-pointer group',
                           activeConcernCategoryIdx === idx
-                            ? 'text-botanical font-medium'
-                            : 'text-stone-gray hover:text-charcoal font-light'
+                            ? 'text-botanical font-semibold'
+                            : 'text-stone-gray hover:text-charcoal font-medium'
                         )}
                       >
-                        {cat.name}
+                        <span className="relative z-10">{cat.name}</span>
                         {activeConcernCategoryIdx === idx && (
                           <motion.span
                             layoutId="concernCatUnderline"
-                            className="absolute bottom-0 left-8 right-8 h-[2px] bg-botanical"
+                            className="absolute bottom-0 left-0 right-0 h-[2px] bg-botanical"
+                            transition={{ type: 'spring', stiffness: 500, damping: 35 }}
                           />
                         )}
                       </button>
@@ -687,34 +465,58 @@ export function Header({ className, variant = 'dark' }: HeaderProps) {
                 </div>
               </div>
 
-              {/* ── AREA 2 + 3: Concern columns + CTA panel ─────────── */}
-              <div className="max-w-site mx-auto w-full px-4 sm:px-6 md:px-10 flex gap-0 h-[70vh]">
+              {/* ── ACTIVE CATEGORY INTRO BAR ──────────────────────────── */}
+              <div className="border-b border-charcoal/10 bg-moon-ivory">
+                <div className="max-w-[1520px] mx-auto w-full px-6 sm:px-8 md:px-12 py-4 flex items-baseline justify-between">
+                  <div className="flex items-baseline gap-4">
+                    <span className="font-display text-2xl md:text-3xl font-normal text-charcoal tracking-tight">
+                      {activeConcernCat.name}
+                    </span>
+                    <span className="font-sans font-light text-[13.5px] text-stone-gray hidden sm:inline-block border-l border-charcoal/20 pl-4">
+                      Explore clinical concerns and tailored aesthetic care paths.
+                    </span>
+                  </div>
 
-                {/* Concern content — left */}
-                <div 
-                  onWheel={(e) => e.stopPropagation()}
-                  onTouchMove={(e) => e.stopPropagation()}
-                  className="flex-1 min-w-0 min-h-0 h-full py-10 pr-12 border-r border-charcoal/10 overflow-y-auto overscroll-y-contain"
-                >
-                  <AnimatePresence mode="wait">
-                    <motion.div
-                      key={activeConcernCat.id}
-                      initial={{ opacity: 0, y: 8 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: 4 }}
-                      transition={{ duration: 0.18, ease: 'easeOut' }}
-                    >
-                      <div className="flex flex-wrap gap-x-16 gap-y-10">
+                  <Link
+                    href={`/concerns#${activeConcernCat.id}`}
+                    onClick={closeMegaMenu}
+                    onFocus={cancelCloseTimeout}
+                    onBlur={startCloseTimeout}
+                    className="font-sans text-[11px] tracking-[0.12em] uppercase font-semibold text-botanical hover:text-charcoal transition-colors duration-150 inline-flex items-center gap-1.5 group/all shrink-0"
+                  >
+                    <span>View All {activeConcernCat.name}</span>
+                    <span className="inline-block transition-transform duration-150 group-hover/all:translate-x-0.5">→</span>
+                  </Link>
+                </div>
+              </div>
+
+              {/* ── MAIN EDITORIAL GRID ────────────────────────────────── */}
+              <div className="max-w-[1520px] mx-auto w-full px-6 sm:px-8 md:px-12 py-7 md:py-8">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={activeConcernCat.id}
+                    initial={{ opacity: 0, y: 4 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -4 }}
+                    transition={{ duration: 0.15, ease: 'easeOut' }}
+                    className="grid grid-cols-1 md:grid-cols-5 gap-7 lg:gap-8 xl:gap-10 items-start"
+                  >
+                    {/* Left 4 columns for concerns */}
+                    <div className="md:col-span-4 min-w-0">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 xl:gap-8">
                         {(() => {
                           const list = activeConcernCat.concerns || [];
-                          const perCol = Math.max(4, Math.ceil(list.length / 3));
+                          const perCol = Math.max(4, Math.ceil(list.length / 4));
                           const cols = Array.from(
                             { length: Math.ceil(list.length / perCol) },
                             (_, i) => list.slice(i * perCol, (i + 1) * perCol)
                           );
                           return cols.map((col, ci) => (
-                            <div key={ci} className="flex flex-col min-w-[190px] max-w-[250px] flex-shrink-0">
-                              <ul className="flex flex-col gap-3">
+                            <div key={ci} className="flex flex-col">
+                              <p className="font-sans text-[11px] tracking-[0.08em] uppercase text-charcoal/70 font-semibold pb-2 border-b border-charcoal/15 mb-3">
+                                {ci === 0 ? 'Primary Concerns' : ci === 1 ? 'Structural & Texture' : ci === 2 ? 'Specialized Focus' : 'Targeted Care'}
+                              </p>
+                              <ul className="space-y-2">
                                 {col.map((c) => (
                                   <li key={c.slug}>
                                     <Link
@@ -722,10 +524,10 @@ export function Header({ className, variant = 'dark' }: HeaderProps) {
                                       onClick={closeMegaMenu}
                                       onFocus={cancelCloseTimeout}
                                       onBlur={startCloseTimeout}
-                                      className="group/link font-sans font-light text-[13.5px] text-charcoal/75 hover:text-botanical transition-colors duration-150 flex items-baseline gap-2"
+                                      className="group/link font-sans font-light text-[13.5px] text-charcoal/80 hover:text-botanical transition-colors duration-150 flex items-baseline justify-between py-0.5"
                                     >
-                                      <span className="flex-1 leading-relaxed">{c.name}</span>
-                                      <span className="opacity-0 group-hover/link:opacity-100 transition-all duration-150 group-hover/link:translate-x-0.5 text-botanical shrink-0">
+                                      <span className="leading-snug transition-transform duration-150 group-hover/link:translate-x-0.5">{c.name}</span>
+                                      <span className="opacity-0 -translate-x-1 group-hover/link:opacity-100 group-hover/link:translate-x-0 transition-all duration-150 text-botanical shrink-0 ml-1.5">
                                         <ArrowUpRight size={12} strokeWidth={1.5} />
                                       </span>
                                     </Link>
@@ -736,55 +538,50 @@ export function Header({ className, variant = 'dark' }: HeaderProps) {
                           ));
                         })()}
                       </div>
+                    </div>
 
-                      {/* View All footer */}
-                      <div className="mt-10 pt-5 border-t border-charcoal/10">
-                        <Link
-                          href={`/concerns#${activeConcernCat.id}`}
-                          onClick={closeMegaMenu}
-                          onFocus={cancelCloseTimeout}
-                          onBlur={startCloseTimeout}
-                          className="group/all font-sans text-[11px] tracking-tight uppercase font-medium text-botanical hover:text-charcoal transition-colors duration-200 flex items-center gap-2"
-                        >
-                          View All {activeConcernCat.name}
-                          <span className="inline-block transition-transform duration-200 group-hover/all:translate-x-1">→</span>
-                        </Link>
+                    {/* Column 5: CTA Panel */}
+                    <div className="md:col-span-1 h-full">
+                      <div className="bg-botanical text-moon-ivory p-6 rounded-[4px] flex flex-col justify-between shadow-sm h-full min-h-[300px]">
+                        <div>
+                          <span className="font-sans text-[9.5px] tracking-[0.18em] uppercase text-moon-ivory/60 font-semibold block mb-3">
+                            Guided Discovery
+                          </span>
+                          <p className="font-display text-xl leading-snug text-moon-ivory font-normal tracking-tight mb-3">
+                            Identify your primary concern
+                          </p>
+                          <div className="w-8 h-px bg-moon-ivory/25 mb-3" />
+                          <p className="font-sans font-light text-[12.5px] leading-relaxed text-moon-ivory/80">
+                            Take our short interactive quiz to uncover personalized physician-curated treatment paths.
+                          </p>
+                        </div>
+
+                        <div className="mt-6 pt-4 border-t border-moon-ivory/20">
+                          <Link
+                            href="/find-your-starting-point"
+                            onClick={closeMegaMenu}
+                            onFocus={cancelCloseTimeout}
+                            onBlur={startCloseTimeout}
+                            className="group/quiz inline-flex items-center justify-between w-full bg-moon-ivory hover:bg-white text-botanical font-sans text-[10.5px] tracking-[0.12em] uppercase font-semibold px-4.5 py-3 rounded-full shadow-sm transition-all duration-200"
+                          >
+                            <span>Take the Luna Quiz</span>
+                            <ArrowUpRight size={12} strokeWidth={2} className="transition-transform duration-200 group-hover/quiz:translate-x-0.5 group-hover/quiz:-translate-y-0.5" />
+                          </Link>
+
+                          <a
+                            href="https://wa.me/918971725522?text=I%20would%20like%20to%20book%20a%20consultation."
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={closeMegaMenu}
+                            className="font-sans text-[11px] text-moon-ivory/65 hover:text-moon-ivory block text-center mt-2.5 transition-colors"
+                          >
+                            Or speak with an advisor →
+                          </a>
+                        </div>
                       </div>
-                    </motion.div>
-                  </AnimatePresence>
-                </div>
-
-                {/* CTA Panel — right */}
-                <div className="w-[320px] shrink-0 bg-botanical flex flex-col justify-between px-10 py-10">
-                  <div>
-                    <p className="font-sans text-[9px] tracking-[0.25em] uppercase text-moon-ivory/45 mb-5 font-medium">
-                      Need help choosing?
-                    </p>
-                    <h3 className="font-display text-[1.6rem] leading-snug tracking-tight text-moon-ivory mb-5">
-                      Not sure which treatment is right for you?
-                    </h3>
-                    <div className="w-10 h-px bg-moon-ivory/25 mb-5" />
-                    <p className="font-sans text-[12px] font-light text-moon-ivory/60 leading-relaxed">
-                      Every concern is unique. Let our experts guide you toward the right treatment for your goals.
-                    </p>
-                  </div>
-                  <Link
-                    href="https://wa.me/918971725522?text=I%20would%20like%20to%20book%20a%20consultation."
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={closeMegaMenu}
-                    onFocus={cancelCloseTimeout}
-                    onBlur={startCloseTimeout}
-                    className="group/cta mt-10 inline-flex items-center justify-between w-full border border-moon-ivory/20 hover:border-moon-ivory/50 px-5 py-4 rounded-full transition-colors duration-200"
-                  >
-                    <span className="font-sans text-[11px] tracking-[0.18em] uppercase font-medium text-moon-ivory">
-                      Book a Consultation
-                    </span>
-                    <span className="text-moon-ivory/60 group-hover/cta:text-moon-ivory group-hover/cta:translate-x-0.5 transition-all duration-200 text-sm">
-                      →
-                    </span>
-                  </Link>
-                </div>
+                    </div>
+                  </motion.div>
+                </AnimatePresence>
               </div>
             </motion.div>
           )}
@@ -827,9 +624,14 @@ export function Header({ className, variant = 'dark' }: HeaderProps) {
                       className="text-moon-ivory/80 font-display text-2xl tracking-wide hover:text-moon-ivory transition-colors flex items-center justify-between text-left w-full cursor-pointer focus:outline-none"
                     >
                       {link.label}
-                      <span className={cn("text-lg font-light transition-transform duration-300", mobileTreatmentsOpen ? "rotate-90" : "")}>
-                        →
-                      </span>
+                      <ChevronDown
+                        size={20}
+                        strokeWidth={1.5}
+                        className={cn(
+                          "transition-transform duration-300 text-moon-ivory/60",
+                          mobileTreatmentsOpen && "rotate-180 text-botanical"
+                        )}
+                      />
                     </button>
                     <AnimatePresence>
                       {mobileTreatmentsOpen && (
@@ -837,78 +639,145 @@ export function Header({ className, variant = 'dark' }: HeaderProps) {
                           initial={{ height: 0, opacity: 0 }}
                           animate={{ height: 'auto', opacity: 1 }}
                           exit={{ height: 0, opacity: 0 }}
-                          className="overflow-hidden pl-4 flex flex-col gap-4 mt-2 border-l border-white/10"
+                          transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+                          className="overflow-hidden pl-3 flex flex-col gap-3 mt-3 border-l border-white/15"
                         >
-                          {TREATMENT_CATEGORIES.map((category) => (
-                            <div key={category.id} className="flex flex-col gap-1.5 mt-2">
-                              <span className="font-sans text-[9px] tracking-[0.15em] text-stone-gray uppercase block font-semibold">
-                                {category.name}
-                              </span>
-                              <div className="flex flex-col gap-1 pl-2">
-                                {category.treatmentGroups ? (
-                                  category.treatmentGroups.map((group) => (
-                                    <div key={group.groupName} className="mb-2">
-                                      <span className="font-sans text-[8px] text-white/40 uppercase tracking-wider block mb-1">
-                                        {group.groupName}
-                                      </span>
-                                      <div className="flex flex-col gap-1 pl-2 border-l border-white/5">
-                                        {group.treatments.map((t) => (
-                                          <Link
-                                            key={t.slug}
-                                            href={`/treatments/${t.slug}`}
-                                            onClick={() => {
-                                              setMobileOpen(false);
-                                              setMobileTreatmentsOpen(false);
-                                            }}
-                                            className="text-moon-ivory/60 hover:text-white font-sans text-xs py-0.5 block"
-                                          >
-                                            {t.name}
-                                          </Link>
-                                        ))}
-                                      </div>
-                                    </div>
-                                  ))
-                                ) : category.id === 'wellness' ? (
-                                  <a
-                                    href="https://revivindia.com/iv-therapies"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    onClick={() => {
-                                      setMobileOpen(false);
-                                      setMobileTreatmentsOpen(false);
-                                    }}
-                                    className="text-moon-ivory/60 hover:text-white font-sans text-xs py-1.5 block flex items-center gap-1.5"
+                          {/* Category Accordion (One open at a time) */}
+                          <div className="flex flex-col divide-y divide-white/10">
+                            {TREATMENT_CATEGORIES.map((category) => {
+                              const isCatOpen = mobileActiveTreatmentCategory === category.id;
+                              return (
+                                <div key={category.id} className="py-2.5">
+                                  <button
+                                    onClick={() =>
+                                      setMobileActiveTreatmentCategory((prev) =>
+                                        prev === category.id ? null : category.id
+                                      )
+                                    }
+                                    className="flex items-center justify-between w-full text-left py-1 text-moon-ivory hover:text-white font-sans text-xs tracking-[0.2em] uppercase font-medium focus:outline-none"
                                   >
-                                    <span>Continue to REVIV</span>
-                                    <ArrowUpRight size={12} className="text-botanical shrink-0" />
-                                  </a>
-                                ) : (
-                                  category.treatments?.map((t) => (
-                                    <Link
-                                      key={t.slug}
-                                      href={`/treatments/${t.slug}`}
-                                      onClick={() => {
-                                        setMobileOpen(false);
-                                        setMobileTreatmentsOpen(false);
-                                      }}
-                                      className="text-moon-ivory/60 hover:text-white font-sans text-xs py-0.5 block"
-                                    >
-                                      {t.name}
-                                    </Link>
-                                  ))
-                                )}
-                              </div>
-                            </div>
-                          ))}
+                                    <span className={cn(isCatOpen ? "text-botanical font-semibold" : "text-moon-ivory/90")}>
+                                      {category.name}
+                                    </span>
+                                    <ChevronDown
+                                      size={14}
+                                      strokeWidth={1.5}
+                                      className={cn(
+                                        "transition-transform duration-300 text-moon-ivory/60",
+                                        isCatOpen && "rotate-180 text-botanical"
+                                      )}
+                                    />
+                                  </button>
+
+                                  <AnimatePresence>
+                                    {isCatOpen && (
+                                      <motion.div
+                                        initial={{ height: 0, opacity: 0 }}
+                                        animate={{ height: 'auto', opacity: 1 }}
+                                        exit={{ height: 0, opacity: 0 }}
+                                        transition={{ duration: 0.2, ease: 'easeOut' }}
+                                        className="overflow-hidden pt-2.5 pb-1.5 pl-2"
+                                      >
+                                        {category.id === 'skin' ? (
+                                          <div className="flex flex-col gap-4">
+                                            {category.treatmentGroups?.map((group) => (
+                                              <div key={group.groupName} className="flex flex-col">
+                                                <span className="font-sans text-[9px] tracking-[0.2em] text-stone-gray uppercase font-semibold block mb-1.5 pb-1 border-b border-white/5">
+                                                  {group.groupName}
+                                                </span>
+                                                <div className="flex flex-col gap-1 pl-1">
+                                                  {group.treatments.map((t) => (
+                                                    <Link
+                                                      key={t.slug}
+                                                      href={`/treatments/${t.slug}`}
+                                                      onClick={() => {
+                                                        setMobileOpen(false);
+                                                        setMobileTreatmentsOpen(false);
+                                                      }}
+                                                      className="text-moon-ivory/85 hover:text-white font-sans text-[14px] py-1.5 block transition-colors"
+                                                    >
+                                                      {t.name}
+                                                    </Link>
+                                                  ))}
+                                                </div>
+                                              </div>
+                                            ))}
+                                          </div>
+                                        ) : category.id === 'wellness' ? (
+                                          <div className="flex flex-col gap-3 py-1">
+                                            <p className="font-sans font-light text-[13px] text-moon-ivory/75 leading-relaxed">
+                                              Intravenous Hydration &amp; Longevity protocols delivered through our global partnership with REVIV.
+                                            </p>
+                                            <a
+                                              href="https://revivindia.com/iv-therapies"
+                                              target="_blank"
+                                              rel="noopener noreferrer"
+                                              onClick={() => {
+                                                setMobileOpen(false);
+                                                setMobileTreatmentsOpen(false);
+                                              }}
+                                              className="inline-flex items-center gap-1.5 text-botanical hover:text-white font-sans text-xs uppercase tracking-wider py-1 font-medium"
+                                            >
+                                              <span>Continue to REVIV</span>
+                                              <ArrowUpRight size={12} strokeWidth={1.8} />
+                                            </a>
+                                          </div>
+                                        ) : (
+                                          <div className="flex flex-col gap-1 pl-1">
+                                            {category.treatments?.map((t) => (
+                                              <Link
+                                                key={t.slug}
+                                                href={`/treatments/${t.slug}`}
+                                                onClick={() => {
+                                                  setMobileOpen(false);
+                                                  setMobileTreatmentsOpen(false);
+                                                }}
+                                                className="text-moon-ivory/85 hover:text-white font-sans text-[14px] py-1.5 block transition-colors"
+                                              >
+                                                {t.name}
+                                              </Link>
+                                            ))}
+                                          </div>
+                                        )}
+                                      </motion.div>
+                                    )}
+                                  </AnimatePresence>
+                                </div>
+                              );
+                            })}
+                          </div>
+
+                          {/* Mobile Editorial CTA Card */}
+                          <div className="mt-4 p-4 rounded bg-white/5 border border-white/10 flex flex-col gap-2">
+                            <span className="font-sans text-[9px] tracking-[0.2em] uppercase text-stone-gray font-medium">
+                              Find Your Treatment
+                            </span>
+                            <p className="font-display text-base text-moon-ivory font-normal leading-snug">
+                              Not sure where to begin?
+                            </p>
+                            <Link
+                              href="/find-your-starting-point"
+                              onClick={() => {
+                                setMobileOpen(false);
+                                setMobileTreatmentsOpen(false);
+                              }}
+                              className="inline-flex items-center justify-between text-botanical hover:text-white font-sans text-xs uppercase tracking-wider font-medium mt-1 group"
+                            >
+                              <span>Take the Luna Quiz</span>
+                              <ArrowUpRight size={13} strokeWidth={1.8} className="transition-transform group-hover:translate-x-0.5" />
+                            </Link>
+                          </div>
+
                           <Link
                             href="/treatments"
                             onClick={() => {
                               setMobileOpen(false);
                               setMobileTreatmentsOpen(false);
                             }}
-                            className="text-botanical hover:text-white font-sans text-xs uppercase tracking-tight mt-2 font-medium"
+                            className="text-stone-gray hover:text-white font-sans text-xs uppercase tracking-wider mt-1 inline-flex items-center gap-1 font-medium"
                           >
-                            View All Treatments →
+                            <span>View All Treatments</span>
+                            <ChevronRight size={13} strokeWidth={1.5} />
                           </Link>
                         </motion.div>
                       )}
@@ -925,9 +794,14 @@ export function Header({ className, variant = 'dark' }: HeaderProps) {
                       className="text-moon-ivory/80 font-display text-2xl tracking-wide hover:text-moon-ivory transition-colors flex items-center justify-between text-left w-full cursor-pointer focus:outline-none"
                     >
                       {link.label}
-                      <span className={cn("text-lg font-light transition-transform duration-300", mobileConcernsOpen ? "rotate-90" : "")}>
-                        →
-                      </span>
+                      <ChevronDown
+                        size={20}
+                        strokeWidth={1.5}
+                        className={cn(
+                          "transition-transform duration-300 text-moon-ivory/60",
+                          mobileConcernsOpen && "rotate-180 text-botanical"
+                        )}
+                      />
                     </button>
                     <AnimatePresence>
                       {mobileConcernsOpen && (
@@ -935,39 +809,78 @@ export function Header({ className, variant = 'dark' }: HeaderProps) {
                           initial={{ height: 0, opacity: 0 }}
                           animate={{ height: 'auto', opacity: 1 }}
                           exit={{ height: 0, opacity: 0 }}
-                          className="overflow-hidden pl-4 flex flex-col gap-4 mt-2 border-l border-white/10"
+                          transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+                          className="overflow-hidden pl-3 flex flex-col gap-3 mt-3 border-l border-white/15"
                         >
-                          {CONCERN_CATEGORIES.map((category) => (
-                            <div key={category.id} className="flex flex-col gap-1.5 mt-2">
-                              <span className="font-sans text-[9px] tracking-[0.15em] text-stone-gray uppercase block font-semibold">
-                                {category.name}
-                              </span>
-                              <div className="flex flex-col gap-1 pl-2">
-                                {category.concerns?.map((c) => (
-                                  <Link
-                                    key={c.slug}
-                                    href={`/concerns/${c.slug}`}
-                                    onClick={() => {
-                                      setMobileOpen(false);
-                                      setMobileConcernsOpen(false);
-                                    }}
-                                    className="text-moon-ivory/60 hover:text-white font-sans text-xs py-0.5 block"
+                          {/* Category Accordion (One open at a time) */}
+                          <div className="flex flex-col divide-y divide-white/10">
+                            {CONCERN_CATEGORIES.map((category) => {
+                              const isCatOpen = mobileActiveConcernCategory === category.id;
+                              return (
+                                <div key={category.id} className="py-2.5">
+                                  <button
+                                    onClick={() =>
+                                      setMobileActiveConcernCategory((prev) =>
+                                        prev === category.id ? null : category.id
+                                      )
+                                    }
+                                    className="flex items-center justify-between w-full text-left py-1 text-moon-ivory hover:text-white font-sans text-xs tracking-[0.2em] uppercase font-medium focus:outline-none"
                                   >
-                                    {c.name}
-                                  </Link>
-                                ))}
-                              </div>
-                            </div>
-                          ))}
+                                    <span className={cn(isCatOpen ? "text-botanical font-semibold" : "text-moon-ivory/90")}>
+                                      {category.name}
+                                    </span>
+                                    <ChevronDown
+                                      size={14}
+                                      strokeWidth={1.5}
+                                      className={cn(
+                                        "transition-transform duration-300 text-moon-ivory/60",
+                                        isCatOpen && "rotate-180 text-botanical"
+                                      )}
+                                    />
+                                  </button>
+
+                                  <AnimatePresence>
+                                    {isCatOpen && (
+                                      <motion.div
+                                        initial={{ height: 0, opacity: 0 }}
+                                        animate={{ height: 'auto', opacity: 1 }}
+                                        exit={{ height: 0, opacity: 0 }}
+                                        transition={{ duration: 0.2, ease: 'easeOut' }}
+                                        className="overflow-hidden pt-2.5 pb-1.5 pl-2"
+                                      >
+                                        <div className="flex flex-col gap-1 pl-1">
+                                          {category.concerns?.map((c) => (
+                                            <Link
+                                              key={c.slug}
+                                              href={`/concerns/${c.slug}`}
+                                              onClick={() => {
+                                                setMobileOpen(false);
+                                                setMobileConcernsOpen(false);
+                                              }}
+                                              className="text-moon-ivory/85 hover:text-white font-sans text-[14px] py-1.5 block transition-colors"
+                                            >
+                                              {c.name}
+                                            </Link>
+                                          ))}
+                                        </div>
+                                      </motion.div>
+                                    )}
+                                  </AnimatePresence>
+                                </div>
+                              );
+                            })}
+                          </div>
+
                           <Link
                             href="/concerns"
                             onClick={() => {
                               setMobileOpen(false);
                               setMobileConcernsOpen(false);
                             }}
-                            className="text-botanical hover:text-white font-sans text-xs uppercase tracking-wider mt-2 font-medium"
+                            className="text-stone-gray hover:text-white font-sans text-xs uppercase tracking-wider mt-1 inline-flex items-center gap-1 font-medium"
                           >
-                            View All Concerns →
+                            <span>View All Concerns</span>
+                            <ChevronRight size={13} strokeWidth={1.5} />
                           </Link>
                         </motion.div>
                       )}
