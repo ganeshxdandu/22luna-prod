@@ -18,7 +18,8 @@ const navLinks = [
   // { label: 'Consultation', href: '/consultation' },
   { label: 'Concerns', href: '/concerns' },
   { label: 'Treatments', href: '/treatments' },
-  { label: 'Medical Tourism', href: '/medical-tourism' },
+  { label: 'Clinical Facials', href: '/treatments/clinical-facials' },
+  // { label: 'Medical Tourism', href: '/medical-tourism' }, // moved to footer
   // { label: 'Careers', href: '/careers' },
   { label: 'Contact', href: '/contact' },
   { label: 'LUNA+', href: '/luna-plus' },
@@ -596,7 +597,7 @@ export function Header({ className, variant = 'dark' }: HeaderProps) {
                             onClick={closeMegaMenu}
                             onFocus={cancelCloseTimeout}
                             onBlur={startCloseTimeout}
-                            className="group/all font-sans text-[11px] tracking-[0.18em] uppercase font-medium text-botanical hover:text-charcoal transition-colors duration-200 flex items-center gap-2"
+                            className="group/all font-sans text-[11px] tracking-tight uppercase font-medium text-botanical hover:text-charcoal transition-colors duration-200 flex items-center gap-2"
                           >
                             View All {activeCat.name} Treatments
                             <span className="inline-block transition-transform duration-200 group-hover/all:translate-x-1">→</span>
@@ -743,7 +744,7 @@ export function Header({ className, variant = 'dark' }: HeaderProps) {
                           onClick={closeMegaMenu}
                           onFocus={cancelCloseTimeout}
                           onBlur={startCloseTimeout}
-                          className="group/all font-sans text-[11px] tracking-[0.18em] uppercase font-medium text-botanical hover:text-charcoal transition-colors duration-200 flex items-center gap-2"
+                          className="group/all font-sans text-[11px] tracking-tight uppercase font-medium text-botanical hover:text-charcoal transition-colors duration-200 flex items-center gap-2"
                         >
                           View All {activeConcernCat.name}
                           <span className="inline-block transition-transform duration-200 group-hover/all:translate-x-1">→</span>
@@ -905,7 +906,7 @@ export function Header({ className, variant = 'dark' }: HeaderProps) {
                               setMobileOpen(false);
                               setMobileTreatmentsOpen(false);
                             }}
-                            className="text-botanical hover:text-white font-sans text-xs uppercase tracking-wider mt-2 font-medium"
+                            className="text-botanical hover:text-white font-sans text-xs uppercase tracking-tight mt-2 font-medium"
                           >
                             View All Treatments →
                           </Link>

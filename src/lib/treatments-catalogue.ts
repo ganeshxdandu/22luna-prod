@@ -38,7 +38,7 @@ export const SKIN_GROUPS: TreatmentGroup[] = [
     treatments: [
       { name: 'Chemical Peels', slug: 'chemical-peels', description: 'Controlled dermal exfoliation to treat acne, marks, and texture.' },
       { name: 'Medi Facials', slug: 'medi-facials', description: 'Physician-led clinical facials for skin repair and deep hydration.' },
-      { name: 'Facials', slug: 'facials', description: 'Custom skin cleansing and rejuvenation protocols.' },
+      { name: 'Clinical Facials', slug: 'clinical-facials', description: 'Five curated facial tiers — from essential maintenance to ultra luxe transformation.' },
       { name: 'Skin Polishing', slug: 'skin-polishing', description: 'Micro-dermabrasion exfoliation for instant surface smoothing.' },
       { name: 'Lymphatic Drainage', slug: 'lymphatic-drainage', description: 'Mechanical massage to reduce facial puffiness and support detoxification.' }
     ]
