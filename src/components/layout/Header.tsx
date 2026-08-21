@@ -18,7 +18,7 @@ const navLinks = [
   // { label: 'Consultation', href: '/consultation' },
   { label: 'Concerns', href: '/concerns' },
   { label: 'Treatments', href: '/treatments' },
-  { label: 'Clinical Facials', href: '/treatments/clinical-facials' },
+  { label: 'Clinical Facials', href: '/clinical-facials' },
   // { label: 'Medical Tourism', href: '/medical-tourism' }, // moved to footer
   // { label: 'Careers', href: '/careers' },
   { label: 'Contact', href: '/contact' },

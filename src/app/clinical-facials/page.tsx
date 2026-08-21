@@ -17,13 +17,13 @@ export const metadata: Metadata = {
   description:
     'Five tiers of clinical facial care — from foundational hydration to ultra luxe transformation. Discover 22Luna\'s editorial approach to better skin in Bengaluru.',
   alternates: {
-    canonical: 'https://22luna.in/treatments/clinical-facials',
+    canonical: 'https://22luna.in/clinical-facials',
   },
   openGraph: {
     title: 'Clinical Facials | 22Luna Sanctuary',
     description:
       'Five tiers of clinical facial care — from foundational hydration to ultra luxe transformation. Discover 22Luna\'s editorial approach to better skin.',
-    url: 'https://22luna.in/treatments/clinical-facials',
+    url: 'https://22luna.in/clinical-facials',
     images: [
       {
         url: 'https://res.cloudinary.com/dz5xgcfj/image/upload/v1785397953/instruments_cstpp8.png',
@@ -39,8 +39,7 @@ export const metadata: Metadata = {
 
 const BREADCRUMB_ITEMS = [
   { name: 'Home', item: '/' },
-  { name: 'Treatments', item: '/treatments' },
-  { name: 'Clinical Facials', item: '/treatments/clinical-facials' },
+  { name: 'Clinical Facials', item: '/clinical-facials' },
 ];
 
 // ─── Page ────────────────────────────────────────────────────────────────────
@@ -50,7 +49,7 @@ export default function ClinicalFacialsPage() {
     <main className="flex flex-col">
       <BreadcrumbSchema items={BREADCRUMB_ITEMS} />
 
-      {/* Light header — consistent with other editorial pages */}
+      {/* Light header */}
       <Header variant="light" />
 
       {/* ── 01: Hero ── */}
