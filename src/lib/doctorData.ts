@@ -16,6 +16,33 @@ export interface DoctorProfile {
 
 export const DOCTOR_PROFILES: DoctorProfile[] = [
   {
+    id: "dr-niharika-mandhyan",
+    name: "Dr. Niharika Mandhyan",
+    specialty: "FOUNDER & PROSTHODONTIST",
+    image: "https://res.cloudinary.com/dz5xgcfj/image/upload/v1787484561/DrNiharika_u3bmmm.png",
+    biography: [
+      "Dr. Niharika Mandhyan is the Founder and Medical Director of 22Luna Skin, Hair & Dental Sanctuary in Bengaluru. As a specialist Prosthodontist and Aesthetic practitioner, she established 22Luna with a vision to redefine aesthetic and reconstructive care through unhurried consultations, evidence-based science, and holistic facial harmony.",
+      "With extensive clinical expertise spanning advanced prosthodontics, cosmetic dentistry, full-mouth rehabilitation, and cutting-edge non-invasive skin rejuvenation, Dr. Niharika emphasizes a natural, preservative approach. She believes that true aesthetics begins by listening deeply to each patient's lifestyle and concerns, curating bespoke treatment pathways that restore confidence without looking altered.",
+      "She actively collaborates with international leaders in aesthetic technology and regenerative medicine, bringing gold-standard global innovations—such as micro-invasive laser protocols and advanced regenerative systems—directly to 22Luna’s private treatment suites.",
+    ],
+    areasOfExpertise: [
+      "Prosthodontics & Full Mouth Rehabilitation",
+      "Cosmetic & Aesthetic Dentistry",
+      "Dental Implants & Reconstructive Care",
+      "Invisalign & Digital Smile Design",
+      "Advanced Medical Facial Aesthetics",
+      "Holistic Facial Harmony Assessment",
+      "Regenerative Skin & Tissue Protocols",
+    ],
+    educationAndCredentials: [
+      "MDS – Prosthodontics and Crown & Bridge, V.S. Dental College, Bangalore",
+      "BDS, V.S. Dental College, Bangalore",
+      "Certified Invisalign Provider",
+      "Fellowship & Advanced Training in Clinical Aesthetic Medicine",
+    ],
+    experience: "10+ Years of Clinical & Aesthetic Excellence",
+  },
+  {
     id: "dr-devanjali",
     name: "Dr. Devanjali",
     specialty: "ORTHODONTIST",
@@ -39,11 +66,6 @@ export const DOCTOR_PROFILES: DoctorProfile[] = [
       "MDS Orthodontics",
       "Fellowship in Esthetic Dentistry",
     ],
-  },
-  {
-    id: "dr-iqbal",
-    name: "Dr. Iqbal",
-    specialty: "ORTHODONTIST",
   },
   {
     id: "dr-romir-navaneetham",

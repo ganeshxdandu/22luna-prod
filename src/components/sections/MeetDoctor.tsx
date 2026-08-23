@@ -16,7 +16,7 @@ export interface MeetDoctorProps {
 
 export function MeetDoctor({ className }: MeetDoctorProps) {
     const doctorImageUrl =
-        "https://res.cloudinary.com/dz5xgcfj/image/upload/v1785290554/doc_cxeext.png";
+        "https://res.cloudinary.com/dz5xgcfj/image/upload/v1787484561/DrNiharika_u3bmmm.png";
 
     return (
         <section

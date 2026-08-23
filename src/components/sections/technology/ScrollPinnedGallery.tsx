@@ -138,10 +138,10 @@ export function ScrollPinnedGallery({ className }: ScrollPinnedGalleryProps) {
 
                   {/* Pedestal Shadow Element (moves with image) */}
                   <div className={cn(
-                    "absolute top-[52%] sm:top-[48%] left-1/2 -translate-x-1/2 w-20 h-[4px] bg-charcoal/[0.05] rounded-full blur-[3.5px] z-0 transition-all duration-[850ms] ease-[cubic-bezier(0.16,1,0.3,1)]",
+                    "absolute top-[52%] sm:top-[48%] left-1/2 -translate-x-1/2 w-28 h-[5px] bg-charcoal/[0.05] rounded-full blur-[4px] z-0 transition-all duration-[850ms] ease-[cubic-bezier(0.16,1,0.3,1)]",
                     isActive 
-                      ? "scale-x-[0.72] opacity-30 blur-[5px] lg:scale-x-100 lg:opacity-60 lg:blur-[3.5px]" 
-                      : "scale-x-100 opacity-60 blur-[3.5px]",
+                      ? "scale-x-[0.72] opacity-30 blur-[5px] lg:scale-x-100 lg:opacity-60 lg:blur-[4px]" 
+                      : "scale-x-100 opacity-60 blur-[4px]",
                     "lg:group-hover:scale-x-[0.72] lg:group-hover:opacity-30 lg:group-hover:blur-[5px]"
                   )} />
 
@@ -151,7 +151,7 @@ export function ScrollPinnedGallery({ className }: ScrollPinnedGalleryProps) {
                   {/* Product render container */}
                   <div className="relative w-full flex-1 flex items-center justify-center overflow-visible mb-3 z-10">
                     <div className={cn(
-                      "relative w-32 h-32 xs:w-36 xs:h-36 sm:w-40 sm:h-40 lg:w-32 lg:h-32 xl:w-40 xl:h-40 transform-gpu transition-all duration-[850ms] ease-[cubic-bezier(0.16,1,0.3,1)]",
+                      "relative w-40 h-40 xs:w-44 xs:h-44 sm:w-48 sm:h-48 lg:w-44 lg:h-44 xl:w-52 xl:h-52 transform-gpu transition-all duration-[850ms] ease-[cubic-bezier(0.16,1,0.3,1)]",
                       isActive 
                         ? "-translate-y-2.5 scale-[1.04] lg:translate-y-0 lg:scale-100" 
                         : "translate-y-0 scale-100",
@@ -161,7 +161,7 @@ export function ScrollPinnedGallery({ className }: ScrollPinnedGalleryProps) {
                         src={card.image}
                         alt={card.alt}
                         fill
-                        sizes="(max-width: 640px) 144px, (max-width: 768px) 160px, 160px"
+                        sizes="(max-width: 640px) 180px, (max-width: 768px) 200px, 220px"
                         className="object-contain filter drop-shadow-[0_8px_16px_rgba(0,0,0,0.02)]"
                       />
                     </div>
