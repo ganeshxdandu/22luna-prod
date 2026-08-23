@@ -19,7 +19,7 @@ export const DOCTOR_PROFILES: DoctorProfile[] = [
     id: "dr-niharika-mandhyan",
     name: "Dr. Niharika Mandhyan",
     specialty: "FOUNDER & PROSTHODONTIST",
-    image: "https://res.cloudinary.com/dz5xgcfj/image/upload/v1787484561/DrNiharika_u3bmmm.png",
+    image: "https://res.cloudinary.com/dz5xgcfj/image/upload/v1787496766/niharika_jhzopp.png",
     biography: [
       "Dr. Niharika Mandhyan is the Founder and Medical Director of 22Luna Skin, Hair & Dental Sanctuary in Bengaluru. As a specialist Prosthodontist and Aesthetic practitioner, she established 22Luna with a vision to redefine aesthetic and reconstructive care through unhurried consultations, evidence-based science, and holistic facial harmony.",
       "With extensive clinical expertise spanning advanced prosthodontics, cosmetic dentistry, full-mouth rehabilitation, and cutting-edge non-invasive skin rejuvenation, Dr. Niharika emphasizes a natural, preservative approach. She believes that true aesthetics begins by listening deeply to each patient's lifestyle and concerns, curating bespoke treatment pathways that restore confidence without looking altered.",
@@ -117,7 +117,7 @@ export const DOCTOR_PROFILES: DoctorProfile[] = [
   },
   {
     id: "dr-arinban",
-    name: "Dr. Arinban",
+    name: "Dr. Arinban Chatterjee",
     specialty: "PERIODONTIST",
     image: "https://res.cloudinary.com/dz5xgcfj/image/upload/v1785294034/anirban_snoaqm.png",
   },
