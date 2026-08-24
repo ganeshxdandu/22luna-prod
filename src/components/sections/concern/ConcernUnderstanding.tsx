@@ -22,7 +22,7 @@ export function ConcernUnderstanding({ concern, className }: ConcernUnderstandin
         {/* Left Column: Heading */}
         <div className="w-full lg:w-[44%] flex flex-col shrink-0">
           <motion.div
-            variants={fadeIn}
+            variants={ fadeIn }
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
