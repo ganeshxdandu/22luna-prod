@@ -1,5 +1,5 @@
 /**
- * Concern Detail Data Schema & Generator
+ * Concern Detail Data Schema & Repository
  * Single source of truth for all individual concern detail pages (/concerns/[slug]).
  */
 
@@ -10,6 +10,11 @@ import {
   SPECIAL_CONCERNS,
   ConcernItem,
 } from './concerns-catalogue';
+
+import { SKIN_CONCERNS_DATA } from './concerns/skin-concerns-data';
+import { HAIR_CONCERNS_DATA } from './concerns/hair-concerns-data';
+import { DENTAL_CONCERNS_DATA } from './concerns/dental-concerns-data';
+import { SPECIAL_CONCERNS_DATA } from './concerns/special-concerns-data';
 
 export interface ConcernCause {
   factor: string;
@@ -64,10 +69,15 @@ export interface ConcernDetailData {
 // ─────────────────────────────────────────────────────────────────────────────
 // EXPLICIT CONCERN DETAIL REPOSITORY
 // ─────────────────────────────────────────────────────────────────────────────
-export const CONCERN_DETAIL_DATA: Record<string, ConcernDetailData> = {};
+export const CONCERN_DETAIL_DATA: Record<string, ConcernDetailData> = {
+  ...SKIN_CONCERNS_DATA,
+  ...HAIR_CONCERNS_DATA,
+  ...DENTAL_CONCERNS_DATA,
+  ...SPECIAL_CONCERNS_DATA,
+};
 
 // ─────────────────────────────────────────────────────────────────────────────
-// DYNAMIC GENERATOR FOR ALL CONCERNS
+// DYNAMIC GENERATOR FALLBACK (Safety mechanism for any unmapped slug)
 // ─────────────────────────────────────────────────────────────────────────────
 function createGenericConcernData(slug: string): ConcernDetailData {
   let item: ConcernItem | undefined;
@@ -78,12 +88,12 @@ function createGenericConcernData(slug: string): ConcernDetailData {
   if (!item) { for (const c of SPECIAL_CONCERNS) { if (c.slug === slug) { item = c; break; } } }
 
   const name = item ? item.name : slug.replace(/-/g, ' ').replace(/\b\w/g, (l) => l.toUpperCase());
-  const description = item ? item.description : 'Understanding this concern and exploring evidence-based care options.';
+  const description = item ? item.description : 'Understanding this concern and exploring evidence-based clinical options at 22 Luna.';
 
   const isHair = slug.includes('hair') || slug.includes('scalp') || slug.includes('thinning') || slug.includes('loss');
   const isDental = slug.includes('smile') || slug.includes('teeth') || slug.includes('tooth') || slug.includes('gummy') || slug.includes('dent') || slug.includes('decay') || slug.includes('cavity') || slug.includes('breath') || slug.includes('gum') || slug.includes('filling') || slug.includes('polish');
   const isSpecial = slug === 'pcos';
-  const category = isHair ? 'Hair & Scalp' : isDental ? 'Dental & Smile' : isSpecial ? 'Special / Cross-Disciplinary' : 'Skin';
+  const category = isHair ? 'Hair Concerns' : isDental ? 'Dental Concerns' : isSpecial ? 'Special Concerns' : 'Skin Concerns';
 
   const defaultSuitableTreatments = isHair
     ? [
@@ -117,8 +127,8 @@ function createGenericConcernData(slug: string): ConcernDetailData {
 
     understandingHeading: `Understanding ${name}.`,
     understandingParagraphs: [
-      `${name} is a common concern that can develop due to biological, environmental, or lifestyle factors.`,
-      `Understanding why this concern develops is the first step toward choosing a safe, effective, and tailored approach. During a consultation, we evaluate your individual presentation rather than relying on generic assumptions.`,
+      `${name} is a common clinical concern that develops due to biological, environmental, or lifestyle factors.`,
+      `Understanding why this concern develops is the first step toward choosing a safe, effective, and tailored approach. During a consultation at 22 Luna, we evaluate your individual presentation to craft a personalized treatment plan.`,
     ],
     howCommon: `Frequently observed across many age groups and biological profiles.`,
 
